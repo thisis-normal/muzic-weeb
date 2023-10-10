@@ -1,19 +1,40 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://localhost/muzic-weeb/public/css/index/style.css">
 
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/style.css">
-    <title><?php echo SITENAME;?></title>
 </head>
-<body>
-<?php require APPROOT . '/views/include/navbar.php';?>
-<div class="container">
 
+<body>
+    <div class="topbar">
+        <div class="prev-next-buttons">
+            <button type="button" class="fa fas fa-chevron-left"></button>
+            <button type="button" class="fa fas fa-chevron-right"></button>
+        </div>
+
+        <div class="navbar">
+            <ul>
+                <li>
+                    <a href="#">Premium</a>
+                </li>
+                <!-- <li>
+              <a href="#">Support</a>
+            </li>
+            <li>
+              <a href="#">Download</a>
+            </li> -->
+                <li class="divider">|</li>
+                <li>
+                    <a href="signup.html">Sign Up</a>
+                </li>
+            </ul>
+            <a href="<?= URLROOT ?>/Users/login"><button type="button">Log In</button></a>
+        </div>
+    </div>
