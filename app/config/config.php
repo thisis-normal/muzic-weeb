@@ -9,6 +9,6 @@ const DB_NAME = 'mvc';
 echo '<br>';
 //URL Root
 define("APPROOT", dirname(dirname(__FILE__)));
-const URLROOT = 'http://localhost:2002/mvc';
+const URLROOT = 'http://localhost/muzic-weeb';
 //Site Name
 const SITENAME = 'PHPMVC';
