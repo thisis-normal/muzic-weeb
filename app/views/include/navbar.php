@@ -1,50 +1,75 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
-    <div class="container">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="<?php echo URLROOT ?>"><?php echo SITENAME ?></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="<?php echo URLROOT ?>/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo URLROOT ?>/pages/about">About</a>
-                    </li>
-                </ul>
+<!DOCTYPE html>
+<html lang="en">
 
-                <ul class="navbar-nav ml-auto">
-                    <?php if (isset($_SESSION['user_id'])) : ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+    <link rel="stylesheet" href="http://localhost/muzic-weeb/public/css/index/style.css">
+</head>
 
-                        <li class="nav-item">
-                            <p><?php echo $_SESSION['user_name'] ?></p>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo URLROOT ?>/posts/index">POST</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo URLROOT ?>/users/logout">Logout</a>
-                        </li>
-                    <?php else : ?>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <a href="#">
+                <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Logo" />
+            </a>
+        </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page"
-                           href="<?php echo URLROOT ?>/users/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo URLROOT ?>/users/login">Login</a>
-                    </li>
-                </ul>
-                <?php endif; ?>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="fa fa-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="fa fa-search"></span>
+                        <span>Search</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="fa fas fa-book"></span>
+                        <span>Your Library</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="fa fas fa-plus-square"></span>
+                        <span>Create Playlist</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="fa fas fa-heart"></span>
+                        <span>Liked Songs</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="policies">
+            <ul>
+                <li>
+                    <a href="#">Cookies</a>
+                </li>
+                <li>
+                    <a href="#">Privacy</a>
+                </li>
+            </ul>
         </div>
     </div>
-</nav>
+</body>
+
+</html>
