@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="http://localhost/muzic-weeb/public/css/index/style.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/index/style.css" />
     <title>Login</title>
 </head>
 
@@ -12,7 +12,6 @@
     <div class="header"></div>
     <div class="login">
         <h1 class="login_title">Log in to NHAC</h1>
-
         <div class="form">
             <div class="formusername flex">
                 <label for="txtusername">Email or username</label>
@@ -31,7 +30,7 @@
         <div class="footer">
             <a href="#">Forgot your password?</a>
             <hr />
-            <p>Don't have an account?<a href="#"> Sign up</a></p>
+            <p>Don't have an account?<a href="<?= URLROOT?>/users/register">Sign up</a></p>
         </div>
     </div>
 </body>

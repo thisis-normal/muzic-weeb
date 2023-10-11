@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="http://localhost/muzic-weeb/public/css/index/style.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/index/style.css" />
     <title>Register</title>
 </head>
 
@@ -31,7 +31,7 @@
         <div class="footer">
             <!-- <a href="#">Forgot your password?</a> -->
             <hr />
-            <p>Have an account?<a href="#"> Log in.</a></p>
+            <p>Have an account?<a href="<?= URLROOT?>/users/login"> Log in.</a></p>
         </div>
     </div>
 </body>
