@@ -15,11 +15,8 @@ class Core
     public function __construct()
     {
         $url = $this->getURL();
-//        var_dump($url); die();
-//        echo $url;
         //return error if url is null
         if (is_null($url)) {
-            echo 'URL is null' . '<br>';
             $url = $this->currentController;
         }
         if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
@@ -28,7 +25,7 @@ class Core
             //unset 0 index
             unset($url[0]);
         } else {
-            echo 'Controller not found' . '<br>';
+//            echo 'Controller not found' . '<br>';
         }
         //require the controller
         require_once '../app/controllers/' . $this->currentController . '.php';
@@ -44,7 +41,7 @@ class Core
                 //unset 1 index
                 unset($url[1]);
             } else {
-                echo 'Method not found' . '<br>';
+//                echo 'Method not found' . '<br>';
             }
         }
         //get params
