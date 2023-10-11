@@ -6,7 +6,7 @@ const DB_PASS = '';
 const DB_NAME = 'muzic_weeb';
 //App Root
 //echo dirname(dirname(__FILE__));
-echo '<br>';
+
 //URL Root
 define("APPROOT", dirname(dirname(__FILE__)));
 const URLROOT = 'http://localhost:2002/muzic-weeb';
