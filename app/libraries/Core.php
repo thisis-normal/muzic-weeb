@@ -15,10 +15,11 @@ class Core
     public function __construct()
     {
         $url = $this->getURL();
-        echo $url;
+//        var_dump($url); die();
+//        echo $url;
         //return error if url is null
         if (is_null($url)) {
-            //                echo 'URL is null' .'<br>';
+            echo 'URL is null' . '<br>';
             $url = $this->currentController;
         }
         if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
