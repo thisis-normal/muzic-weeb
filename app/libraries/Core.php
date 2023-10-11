@@ -15,7 +15,7 @@ class Core
     public function __construct()
     {
         $url = $this->getURL();
-        echo $url;
+
         //return error if url is null
         if (is_null($url)) {
             //                echo 'URL is null' .'<br>';
