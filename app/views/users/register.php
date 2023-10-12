@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/index/style.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/index/style.css" />
     <title>Register</title>
 </head>
 
@@ -15,8 +15,12 @@
 
         <div class="form">
             <div class="formusername flex">
-                <label for="txtusername">Email or username</label>
-                <input type="text" id="txtusername" placeholder="Email or username" />
+                <label for="txtusername">Username</label>
+                <input type="text" id="txtusername" placeholder="Username" />
+            </div>
+            <div class="formusername flex">
+                <label for="txtemail">Email</label>
+                <input type="text" id="txtemail" placeholder="Email" />
             </div>
             <div class="formpassword flex">
                 <label for="txtpassword">Create a password</label>
@@ -31,7 +35,7 @@
         <div class="footer">
             <!-- <a href="#">Forgot your password?</a> -->
             <hr />
-            <p>Have an account?<a href="<?= URLROOT?>/users/login"> Log in.</a></p>
+            <p>Have an account?<a href="<?= URLROOT ?>/users/login"> Log in.</a></p>
         </div>
     </div>
 </body>

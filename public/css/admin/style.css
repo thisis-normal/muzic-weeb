@@ -636,3 +636,22 @@ hr {
 .footer a {
   color: #fff;
 }
+.form_create {
+  display: none;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  background-color: #fff;
+  border: 1px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%, -50%);
+  justify-content: center;
+  padding-left: 50px;
+  /* align-items: center; */
+}
+.form_create input {
+  width: 250px;
+  height: 40px;
+}

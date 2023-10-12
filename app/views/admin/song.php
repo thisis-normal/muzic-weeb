@@ -1,3 +1,12 @@
+<style>
+    .truncate-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+        /* Điều chỉnh độ rộng tối đa bạn muốn hiển thị */
+    }
+</style>
 <main>
     <div class="head-title">
         <div class="left">
@@ -29,17 +38,27 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Genre id</th>
-                        <th>Genre name</th>
+                        <th>Song title</th>
+                        <th>Artist</th>
+                        <th>Release date</th>
+                        <th>Album</th>
+                        <th>Genre</th>
+                        <th>File path</th>
                         <th>Action</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            1
+                            anh khạc hay em khạc
                         </td>
-                        <td>aaaaaaaaaaaaaaaaaaaaaaa</td>
+                        <td>Erik</td>
+                        <td>6/4/2002</td>
+                        <td> </td>
+                        <td>Nhạc trẻ</td>
+                        <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
+
                         <td>
                             <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
                             <a href=""><i class='bx bxs-edit' style='color:#0042fb'></i></a>
