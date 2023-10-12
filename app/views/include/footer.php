@@ -1,5 +1,5 @@
 <div class="music-player">
-    <audio id="audio-player" src="<?php echo URLROOT?>/public/song/onlyc.mp3"></audio>
+    <audio id="audio-player" src="<?php echo URLROOT ?>/public/song/onlyc.mp3"></audio>
     <div class="song-bar">
         <div class="song-infos">
             <div class="image-container">
