@@ -12,7 +12,7 @@ class Admin extends Controller
 
     public function index()
     {
-//        $this->view('admin/login');
+        $this->view('admin/login');
     }
 
     public function about()

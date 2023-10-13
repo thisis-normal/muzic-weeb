@@ -8,7 +8,7 @@
             </p>
         </div>
         <div class="button">
-            <button type="button">Sign up free</button>
+            <a href="<?php echo URLROOT ?>/users/register"><button type="button">Sign up free</button></a>
         </div>
     </div>
 <?php else : ?>

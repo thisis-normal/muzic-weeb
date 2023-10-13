@@ -57,7 +57,7 @@
         </div>
 
         <div class="spotify-playlists">
-            <h2>Category1</h2>
+            <h2>Category100000</h2>
             <div class="list">
 
                 <div class="item">
