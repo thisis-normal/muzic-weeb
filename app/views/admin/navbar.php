@@ -1,11 +1,3 @@
-<?php
-// Initialize session
-//session_start();
-if (!isset($_SESSION['admin_id'])) {
-    header('location: ' . URLROOT . '/pages/about');
-    exit;
-}
-?>
 <section id="sidebar">
     <a href="#" class="brand">
         <i class="bx bxs-smile"></i>

@@ -13,7 +13,6 @@
 
 <body>
     <?php flash('register_success') ?>
-
     <div class="topbar">
         <div class="prev-next-buttons">
             <button type="button" class="fa fas fa-chevron-left"></button>

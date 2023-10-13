@@ -1,14 +1,18 @@
 <?php
 
-class admin extends Controller
+/**
+ * @property mixed $adminModel
+ */
+class Admin extends Controller
 {
     public function __construct()
     {
+        $this->adminModel = $this->model('Admin');
     }
 
     public function index()
     {
-        $this->view('admin/login');
+//        $this->view('admin/login');
     }
 
     public function about()
@@ -17,6 +21,6 @@ class admin extends Controller
             'title' => 'About Us',
             'description' => 'App to share posts with other users'
         ];
-        $this->view('pages/about', $data);
+        $this->view('admin/about', $data);
     }
 }
