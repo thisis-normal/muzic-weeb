@@ -1,6 +1,6 @@
 <?php
 // Initialize session
-session_start();
+//session_start();
 if (!isset($_SESSION['admin_id'])) {
     header('location: ' . URLROOT . '/pages/about');
     exit;
@@ -59,7 +59,7 @@ if (!isset($_SESSION['admin_id'])) {
             </a>
         </li>
         <li>
-            <a href="#" class="logout">
+            <a href="<?=URLROOT?>/users/logoutAdmin" class="logout">
                 <i class="bx bxs-log-out-circle"></i>
                 <span class="text">Logout</span>
             </a>

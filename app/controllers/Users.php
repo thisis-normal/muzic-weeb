@@ -211,4 +211,15 @@ class Users extends Controller
         //redirect to home
         redirect('pages/index');
     }
+    public function logoutAdmin()
+    {
+        //unset session variables
+        unset($_SESSION['admin_id']);
+        unset($_SESSION['admin_name']);
+        unset($_SESSION['admin_email']);
+        //destroy session
+        session_destroy();
+        //redirect to home
+        redirect('post/add');
+    }
 }
