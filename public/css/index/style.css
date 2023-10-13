@@ -357,8 +357,25 @@ hr {
   /* padding: 4px; */
 }
 
-.home_info:hover .home_info-popup {
-  display: block !important;
+.home_username {
+  background-color: #252525;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  padding: 4px 8px;
+  display: none;
+}
+.home_user:hover + .home_username {
+  display: block;
+}
+#popupToggle:checked + label + .home_info-popup {
+  display: block;
+}
+#popupToggle:checked + label + .home_username {
+  display: none !important;
+}
+#popupToggle {
+  display: none;
 }
 .home_info-popup ul {
   display: flex;
