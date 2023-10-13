@@ -1,8 +1,6 @@
 <?php
 session_start();
 //Flash message helper
-//Example - flash('register_success', 'You are now registered');
-//Display in view = echo php flash('register_success');
 function flash($name = '', $message = '', $class = 'alert alert-success')
 {
     if (!empty($name)) {
@@ -24,9 +22,18 @@ function flash($name = '', $message = '', $class = 'alert alert-success')
     }
 }
 
-function isLoggedIn()
+function isUserLoggedIn()
 {
     if (isset($_SESSION['user_id'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isAdminLoggedIn()
+{
+    if (isset($_SESSION['admin_id'])) {
         return true;
     } else {
         return false;

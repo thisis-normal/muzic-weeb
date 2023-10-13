@@ -1,7 +1,6 @@
 <?php
 class User {
     private $db;
-    private $table = 'users';
     private $username;
     private $email;
     private $password;
@@ -26,6 +25,18 @@ class User {
             return false;
         }
     }
+    public function findUserByUsername($username) {
+        $this->db->query("SELECT * FROM users WHERE username = :username");
+        //Bind value
+        $this->db->bind(':username', $username);
+        $row = $this->db->single();
+        //Check row
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     //REGISTER FUNCTION
@@ -35,6 +46,7 @@ class User {
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
+//        $this->db->bind(':regis_date', currentTimestamp);
         //Execute
         if ($this->db->execute()) {
             return true;
@@ -50,12 +62,28 @@ class User {
         return $row;
     }
 
-    public function login($email, $password) {
+    public function loginEmail($email, $password) {
         $this->db->query("SELECT * FROM users WHERE email = :email");
         //Bind value
         $this->db->bind(':email', $email);
         $row = $this->db->single();
         $hashed_password = $row->password;
+        if (password_verify($password, $hashed_password)) {
+            return $row;
+        } else {
+            return false;
+        }
+    }
+    public function loginUsername($username, $password) {
+        $this->db->query("SELECT * FROM users WHERE username = :username");
+        //Bind value
+        $this->db->bind(':username', $username);
+        $row = $this->db->single();
+        if($row !== false){
+            $hashed_password = $row->password;
+        } else {
+            return false;
+        }
         if (password_verify($password, $hashed_password)) {
             return $row;
         } else {

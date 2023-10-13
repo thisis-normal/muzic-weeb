@@ -8,9 +8,9 @@ const DB_NAME = 'muzic_weeb';
 //echo dirname(dirname(__FILE__));
 
 //URL Root
-define("APPROOT", dirname(dirname(__FILE__)));
+define("APPROOT", dirname(dirname(__FILE__))); //C:\laragon\www\muzic-weeb\app
 const URLROOT = 'http://localhost:2002/muzic-weeb';
 //Site Name
 const SITENAME = 'PHPMVC';
 
-define("currentTimestamp", date('Y-m-d H:i:s'));
+//define("currentTimestamp",  new \DateTime(null, new \DateTimeZone('UTC')));

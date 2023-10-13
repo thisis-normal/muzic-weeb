@@ -1,7 +1,17 @@
+<?php
+// Initialize session
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header('location: ' . URLROOT . '/pages/about');
+    exit;
+}
+?>
 <section id="sidebar">
     <a href="#" class="brand">
         <i class="bx bxs-smile"></i>
-        <span class="text">AdminHub</span>
+        <span class="text">
+            Hello <?= $_SESSION['admin_name'] ?>
+        </span>
     </a>
     <ul class="side-menu top">
         <li class="active">
@@ -17,7 +27,7 @@
             </a>
         </li>
         <li>
-            <a href="#" data-tab="song-tab">
+            <a href="<?= APPROOT ?>/views/admin/song" data-tab="song-tab">
                 <i class="bx bxs-music"></i>
                 <span class="text">Song</span>
             </a>

@@ -62,10 +62,10 @@
         <div class="policies">
             <ul>
                 <li>
-                    <a href="#">Cookies</a>
+                    <a href="https://www.spotify.com/vn-en/legal/cookies-policy/">Cookies</a>
                 </li>
                 <li>
-                    <a href="#">Privacy</a>
+                    <a href="https://www.spotify.com/vn-en/legal/privacy-policy/">Privacy</a>
                 </li>
             </ul>
         </div>

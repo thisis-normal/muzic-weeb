@@ -28,7 +28,7 @@
             <div class="formusername flex">
                 <label for="txtemail">Email</label>
                 <input type="text" id="txtemail" name="email" placeholder="Email" value="<?= $data['email'] ?>"/>
-                <?php if (!empty($data['username_error'])) : ?>
+                <?php if (!empty($data['email_error'])) : ?>
                     <span class="invalid-feedback"><?= $data['email_error'] ?></span>
                 <?php endif; ?>
             </div>
@@ -36,7 +36,7 @@
                 <label for="txtpassword">Create a password</label>
                 <input type="password" id="txtpassword" name="password" placeholder="Create a password"
                        value="<?= $data['password'] ?>"/>
-                <?php if (!empty($data['username_error'])) : ?>
+                <?php if (!empty($data['password_error'])) : ?>
                     <span class="invalid-feedback"><?= $data['password_error'] ?></span>
                 <?php endif; ?>
             </div>
