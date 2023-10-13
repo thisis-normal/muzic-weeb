@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @property mixed $userModel
+ */
 class Users extends Controller
 {
     public function __construct()
