@@ -368,11 +368,11 @@ hr {
 .home_user:hover + .home_username {
   display: block;
 }
+#popupToggle:checked + label .home_username {
+  display: none; /* Đặt background-color khi checked */
+}
 #popupToggle:checked + label + .home_info-popup {
   display: block;
-}
-#popupToggle:checked + label + .home_username {
-  display: none !important;
 }
 #popupToggle {
   display: none;
