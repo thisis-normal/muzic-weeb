@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <title>Document</title> -->
-    <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/index/style.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/index/style.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="" onclick="loadContent('<?php echo URLROOT ?>/users/login',event)">
                         <span class="fa fa-home"></span>
                         <span>Home</span>
                     </a>

@@ -1,4 +1,12 @@
 <?php
+$bruh = [
+    'username' => '',
+    'email' => '',
+    'password' => '',
+    'username_error' => '',
+    'email_error' => '',
+    'password_error' => '',
+];
 
 /**
  * @property mixed $userModel
@@ -9,6 +17,7 @@ class Users extends Controller
     {
         $this->userModel = $this->model('User');
     }
+    // Initialize data with empty error messages
 
     public function register()
     {
@@ -19,14 +28,12 @@ class Users extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             //init data
             $data = [
-                'name' => trim($_POST['name']),
+                'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
-                'confirm_password' => trim($_POST['confirm_password']),
-                'name_error' => '',
+                'username_error' => '',
                 'email_error' => '',
                 'password_error' => '',
-                'confirm_password_error' => '',
             ];
 
             //validate email
@@ -41,8 +48,8 @@ class Users extends Controller
             }
 
             //validate name
-            if (empty($data['name'])) {
-                $data['name_error'] = 'Please enter name';
+            if (empty($data['username'])) {
+                $data['username_error'] = 'Please enter username';
             }
 
             //validate password
@@ -52,20 +59,11 @@ class Users extends Controller
                 $data['password_error'] = 'Password must be at least 3 characters';
             }
 
-            //validate confirm password
-            if (empty($data['confirm_password'])) {
-                $data['confirm_password_error'] = 'Please confirm password';
-            } else {
-                if ($data['password'] != $data['confirm_password']) {
-                    $data['confirm_password_error'] = 'Passwords do not match';
-                }
-            }
             //make sure errors are empty
-            if (empty($data['email_error']) && empty($data['name_error']) && empty($data['password_error']) && empty($data['confirm_password_error'])) {
+            if (empty($data['email_error']) && empty($data['username_error']) && empty($data['password_error'])) {
                 //validated
                 //Hash password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
                 //Call model function to register user
                 if ($this->userModel->register($data)) {
                     flash('register_success', 'You are registered and can log in');
@@ -80,14 +78,12 @@ class Users extends Controller
         } else {
             //init data
             $data = [
-                'name' => '',
-                'email' => '',
-                'password' => '',
-                'confirm_password' => '',
+                'username' => trim($_POST['username']),
+                'email' => trim($_POST['email']),
+                'password' => trim($_POST['password']),
                 'name_error' => '',
                 'email_error' => '',
                 'password_error' => '',
-                'confirm_password_error' => '',
             ];
             //load view
             $this->view('users/register', $data);

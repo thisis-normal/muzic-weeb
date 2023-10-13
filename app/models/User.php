@@ -1,6 +1,13 @@
 <?php
 class User {
     private $db;
+    private $table = 'users';
+    private $username;
+    private $email;
+    private $password;
+    private $regis_date;
+    private $is_prepared = 0;
+
     public function __construct()
     {
         $this->db = new Database;
@@ -23,11 +30,11 @@ class User {
 
     //REGISTER FUNCTION
     public function register($data) {
-        $this->db->query("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
+        $this->db->query("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         //Bind values
-        $this->db->bind(':name', $data['name']);
-        $this->db->bind(':email',$data['email']);
-        $this->db->bind(':password',$data['password']);
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
         //Execute
         if ($this->db->execute()) {
             return true;

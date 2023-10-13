@@ -543,3 +543,6 @@ i:hover {
 .volume-bar .progress-bar:hover .progress::after {
   --size: 0.8em;
 }
+.invalid-feedback {
+  color: red; /* Set the text color to red */
+}
