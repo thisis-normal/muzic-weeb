@@ -14,10 +14,14 @@ class Pages extends Controller
         ];
         $this->view('pages/index', $data);
     }
-
+    public function playlist()
+    {
+        $this->view('pages/playlist');
+    }
     public function about()
     {
-        $data = ['title' => 'About Us',
+        $data = [
+            'title' => 'About Us',
             'description' => 'App to share posts with other users'
         ];
         $this->view('pages/about', $data);

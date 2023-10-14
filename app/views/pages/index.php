@@ -5,8 +5,6 @@
 <div class="main-container">
     <?php require APPROOT . '/views/include/header.php'; ?>
     <div id="mainContent">
-
-
         <div class="spotify-playlists">
             <div class="showall">
                 <a href="">
@@ -18,7 +16,7 @@
             </div>
 
             <div class="list">
-                <div class="item" onclick="loadContent('<?php echo URLROOT ?>/users/login')">
+                <div class="item" onclick="loadContent('<?php echo URLROOT ?>/pages/playlist',event)">
                     <img src="https://scontent.fhan5-9.fna.fbcdn.net/v/t1.6435-1/132339848_1082217975562826_8163229432639064333_n.jpg?stp=dst-jpg_p100x100&_nc_cat=109&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=xoNptGZIC2kAX8p40Jt&_nc_oc=AQnEi9zY-vjcAMOusj9WcmyuCIULOcvLOP1TzidLm7fa7z37gWtwmygau20qIPi7yHE&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fhan5-9.fna&oh=00_AfB2mH7ekxI0XHFrgHPwtpQf5v76wC9DJa4UCddqK2tApA&oe=65489C2D" />
                     <div class="play">
                         <span class="fa fa-play"></span>

@@ -62,6 +62,9 @@
         </div>
     </div>
 <?php endif; ?>
+</body>
+
+</html>
 <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
 <script>
     const audioPlayer = document.getElementById("audio-player");
