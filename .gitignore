@@ -1,1 +1,5 @@
 .idea
+# Ignore music files
+*/public/song/demo.txt\
+#ignore all .mp3 files
+*.mp3

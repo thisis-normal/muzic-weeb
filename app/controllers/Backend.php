@@ -98,6 +98,6 @@ class Backend extends Controller
         //destroy session
         session_destroy();
         //redirect to home
-        redirect('post/add');
+        redirect('backend/login');
     }
 }
