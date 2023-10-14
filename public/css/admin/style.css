@@ -307,10 +307,12 @@ body {
 
 /* MAIN */
 #content main {
+  background-color: var(--grey);
   width: 100%;
   padding: 36px 24px;
   font-family: var(--poppins);
   max-height: calc(100vh - 56px);
+  height: 100vh;
   overflow-y: auto;
 }
 #content main .head-title {
@@ -319,6 +321,7 @@ body {
   justify-content: space-between;
   grid-gap: 16px;
   flex-wrap: wrap;
+  color: var(--dark);
 }
 #content main .head-title .left h1 {
   font-size: 36px;
@@ -347,7 +350,7 @@ body {
   padding: 0 16px;
   border-radius: 36px;
   background: var(--success);
-  color: var(--light);
+  color: var(--dark);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -441,9 +444,11 @@ body {
   font-size: 13px;
   text-align: left;
   border-bottom: 1px solid var(--grey);
+  color: var(--dark);
 }
 #content main .table-data .order table td {
   padding: 16px 0;
+  color: var(--dark);
 }
 #content main .table-data .order table tr td:first-child {
   display: flex;
