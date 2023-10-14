@@ -62,7 +62,7 @@
                 </li>
             </ul>
         </div>
-        <a href="#" class="btn-create">
+        <a href="#" class="btn-create user btnpopup">
             <i class='bx bx-plus'></i>
             <span class="text">User Create</span>
         </a>
@@ -84,6 +84,7 @@
                         <th>Password</th>
                         <th>Register date</th>
                         <th>Premium</th>
+                        <th>Role</th>
                         <th>Action</th>
 
                     </tr>
@@ -98,13 +99,11 @@
                             <div><input type="checkbox" id="ni">
                                 <label for="ni" class="ni"></label>
                             </div>
-
-
                         </td>
-
+                        <td>user</td>
                         <td>
-                            <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                            <a href="javascript:void(0);" class="edit-button"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                            <a href="" class="delete-user" data-user="Erik"><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                            <a href="" class="edit-button" data-user="Erik" data-emai="email" data-pass="pass" data-role="user"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                         </td>
                     </tr>
 
@@ -114,8 +113,12 @@
 
     </div>
     <!-- form create -->
+
     <form id="data-form">
-        <div class="form_create">
+
+        <div class="form_create popup">
+            <h1>Create user</h1>
+            <br>
             <div>
                 <input type="text" id="username" placeholder="Username">
             </div>
@@ -127,12 +130,46 @@
 
                 <input type="text" id="password" placeholder="Password">
             </div>
-            <div><input type="checkbox" id="ni1">
-                <label for="ni1" class="ni"></label>
+            <div>
+                <select name="" id="">
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                </select>
             </div>
-            <button id="save-button">Save</button>
-            <button id="cancel-button">Hủy</button>
+            <div>
+
+                <button id="save-button">Create Account</button>
+            </div>
+
         </div>
     </form>
+    <form id="data-form1">
 
+        <div class="form_create popup">
+            <h1>Create user</h1>
+            <br>
+            <div>
+                <input type="text" id="username" placeholder="Username">
+            </div>
+            <div>
+
+                <input type="text" id="email" placeholder="Email">
+            </div>
+            <div>
+
+                <input type="text" id="password" placeholder="Password">
+            </div>
+            <div>
+                <select name="" id="">
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+            <div>
+
+                <button id="save-button">Create Account</button>
+            </div>
+
+        </div>
+    </form>
 </main>

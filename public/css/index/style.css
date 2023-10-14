@@ -74,15 +74,26 @@ body {
 }
 
 .main-container {
+  padding: 8px;
   margin-left: 245px;
   margin-bottom: 100px;
+  border-radius: 10px;
+  background-color: #000;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .topbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: #101010;
-  padding: 14px 30px;
+  padding: 8px 30px;
+  border-radius: 10px 10px 0 0;
 }
 .topbar .prev-next-buttons button {
   color: #7a7a7a;
@@ -129,9 +140,9 @@ body {
 .topbar .navbar button {
   background-color: #ffffff;
   color: #000000;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  padding: 14px 30px;
+  padding: 8px 24px;
   border: 0px;
   border-radius: 40px;
   cursor: pointer;
@@ -318,11 +329,11 @@ hr {
 }
 /* home */
 .home_user {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 30px;
   background-color: #000000;
-  font-size: 25px;
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -404,7 +415,7 @@ hr {
   --secondary-color: #999;
   --green-color: #2d5;
   --padding: 1em;
-  background-color: #111;
+  background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -562,4 +573,46 @@ i:hover {
 }
 .invalid-feedback {
   color: red; /* Set the text color to red */
+}
+#mainContent {
+  border-radius: 0 0 10px 10px;
+  background-color: #121212;
+}
+/* playlisst */
+.entityInfo {
+  /* background-color: #1db954; */
+  padding: 40px 0 10px 0;
+  display: inline-block;
+  width: 100%;
+  background: linear-gradient(180deg, #8ed2c4 0%, #000 116.9%);
+
+  height: 500px;
+  color: #ffffff;
+  padding: 24px;
+}
+
+.entityInfo .leftSection {
+  width: 30%;
+  float: left;
+  max-width: 250px;
+}
+
+.entityInfo .leftSection img {
+  width: 100%;
+}
+
+.entityInfo .rightSection {
+  width: 70%;
+  float: left;
+  padding: 5px 10px 5px 40px;
+  box-sizing: border-box;
+}
+
+.entityInfo .rightSection h2 {
+  margin-top: 0px;
+}
+
+.entityInfo .rightSection p {
+  color: #939393;
+  font-weight: 200;
 }

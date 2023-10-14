@@ -6,8 +6,10 @@
   box-sizing: border-box;
 }
 .tab-content {
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
   display: none; /* Ẩn tất cả các tab-content mặc định */
-  height: 100%; /* Khoảng cách nội dung bên trong tab-content */
+  height: 100%;
   background-color: #fff; /* Màu nền của tab-content */
 }
 .active {
@@ -636,7 +638,22 @@ hr {
 .footer a {
   color: #fff;
 }
+
+/* create */
+.bg-popup {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
+.swal2-center {
+  z-index: 9999 !important;
+}
 .form_create {
+  z-index: 99999;
   display: none;
   flex-direction: column;
   width: 400px;
@@ -648,10 +665,29 @@ hr {
   left: 50%;
   transform: translate(-80%, -50%);
   justify-content: center;
-  padding-left: 50px;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  /* padding-left: 50px; */
   /* align-items: center; */
 }
-.form_create input {
+.form_create input,
+.form_create select,
+.form_create button {
   width: 250px;
   height: 40px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #636363;
+  font-size: 14px;
+  padding: 4px 12px;
+  margin: 8px 0;
+}
+.form_create button {
+  cursor: pointer;
+  background-color: #19c330;
+  border: none;
+  color: #fff;
+  font-weight: bold;
 }

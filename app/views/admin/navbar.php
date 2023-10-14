@@ -51,7 +51,7 @@
             </a>
         </li>
         <li>
-            <a href="<?=URLROOT?>/users/logoutAdmin" class="logout">
+            <a href="<?= URLROOT ?>/users/logoutAdmin" class="logout">
                 <i class="bx bxs-log-out-circle"></i>
                 <span class="text">Logout</span>
             </a>
