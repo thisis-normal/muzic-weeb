@@ -1,11 +1,6 @@
 <?php
 class User {
     private $db;
-    private $username;
-    private $email;
-    private $password;
-    private $regis_date;
-    private $is_prepared = 0;
 
     public function __construct()
     {
@@ -14,7 +9,7 @@ class User {
 
     //Find user by email
     public function findUserByEmail($email) {
-        $this->db->query("SELECT * FROM users WHERE email = :email");
+        $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user'");
         //Bind value
         $this->db->bind(':email', $email);
         $row = $this->db->single();
@@ -26,7 +21,7 @@ class User {
         }
     }
     public function findUserByUsername($username) {
-        $this->db->query("SELECT * FROM users WHERE username = :username");
+        $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user'");
         //Bind value
         $this->db->bind(':username', $username);
         $row = $this->db->single();
@@ -55,7 +50,7 @@ class User {
         }
     }
     public function getUserById($id) {
-        $this->db->query("SELECT * FROM users WHERE id = :id");
+        $this->db->query("SELECT * FROM users WHERE id = :id AND role = 'user'");
         //Bind value
         $this->db->bind(':id', $id);
         $row = $this->db->single();
@@ -63,7 +58,7 @@ class User {
     }
 
     public function loginEmail($email, $password) {
-        $this->db->query("SELECT * FROM users WHERE email = :email");
+        $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user'");
         //Bind value
         $this->db->bind(':email', $email);
         $row = $this->db->single();
@@ -75,7 +70,7 @@ class User {
         }
     }
     public function loginUsername($username, $password) {
-        $this->db->query("SELECT * FROM users WHERE username = :username");
+        $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user'");
         //Bind value
         $this->db->bind(':username', $username);
         $row = $this->db->single();

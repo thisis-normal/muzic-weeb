@@ -9,18 +9,18 @@
 </head>
 
 <body>
+<form action="<?=URLROOT?>/backend/login" method="post">
     <div class="header"></div>
     <div class="login">
         <h1 class="login_title">Log in to Admin</h1>
-
         <div class="form">
             <div class="formusername flex">
                 <label for="txtusername">Username</label>
-                <input type="text" id="txtusername" placeholder="Username" />
+                <input type="text" id="txtusername" placeholder="Username"  name="username"/>
             </div>
             <div class="formpassword flex">
                 <label for="txtpassword">Password</label>
-                <input type="password" id="txtpassword" placeholder="Password" />
+                <input type="password" id="txtpassword" placeholder="Password" name="password" />
             </div>
             <!-- <div class="formremember">
           <input type="checkbox" name="" id="Rememberme" />
@@ -34,6 +34,8 @@
         <p>Don't have an account?<a href="#"> Sign up</a></p>
       </div> -->
     </div>
+</form>
+
 </body>
 
 </html>

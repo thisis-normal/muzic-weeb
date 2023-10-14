@@ -133,7 +133,6 @@ class Users extends Controller
                 if (!$this->userModel->findUserByEmail($username_or_email)) {
                     $data['username_or_email_error'] = 'No user found';
                 }
-                var_dump("Email");
             } else {
                 //search by username
                 if (!$this->userModel->findUserByUsername($username_or_email)) {
@@ -149,15 +148,9 @@ class Users extends Controller
                 } else {
                     $loggedInUser = $this->userModel->loginUsername($username_or_email, $password);
                 }
-//                var_dump($loggedInUser); die();
                 if ($loggedInUser) {
-                    if ($loggedInUser->role == 'admin') {
-                        $this->createAdminSession($loggedInUser);
-                        redirect('admin/index');
-                    } else {
-                        $this->createUserSession($loggedInUser);
-                        redirect('pages/index');
-                    }
+                    $this->createUserSession($loggedInUser);
+                    redirect('pages/index');
                 } else {
                     $data['password_error'] = 'Password incorrect';
                     $this->view('users/login', $data);
@@ -189,14 +182,6 @@ class Users extends Controller
         //redirect to dashboard
         redirect('pages/index');
     }
-    public function createAdminSession($user)
-    {
-        $_SESSION['admin_id'] = $user->id;
-        $_SESSION['admin_name'] = $user->username;
-        $_SESSION['admin_email'] = $user->email;
-        //redirect to dashboard
-        redirect('admin/index');
-    }
 
     public function logout()
     {
@@ -210,16 +195,5 @@ class Users extends Controller
         session_destroy();
         //redirect to home
         redirect('pages/index');
-    }
-    public function logoutAdmin()
-    {
-        //unset session variables
-        unset($_SESSION['admin_id']);
-        unset($_SESSION['admin_name']);
-        unset($_SESSION['admin_email']);
-        //destroy session
-        session_destroy();
-        //redirect to home
-        redirect('post/add');
     }
 }
