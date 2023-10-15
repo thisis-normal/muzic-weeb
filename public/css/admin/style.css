@@ -657,7 +657,8 @@ hr {
 .swal2-center {
   z-index: 9999 !important;
 }
-.form_create {
+.form_create,
+.form_update {
   z-index: 99999;
   display: none;
   flex-direction: column;
@@ -679,7 +680,10 @@ hr {
 }
 .form_create input,
 .form_create select,
-.form_create button {
+.form_create button,
+.form_update input,
+.form_update select,
+.form_update button {
   width: 250px;
   height: 40px;
   border-radius: 5px;
@@ -689,7 +693,8 @@ hr {
   padding: 4px 12px;
   margin: 8px 0;
 }
-.form_create button {
+.form_create button,
+.form_update button {
   cursor: pointer;
   background-color: #19c330;
   border: none;
