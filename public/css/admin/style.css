@@ -701,3 +701,6 @@ hr {
   color: #fff;
   font-weight: bold;
 }
+.invalid-feedback {
+  color: red; /* Set the text color to red */
+}
