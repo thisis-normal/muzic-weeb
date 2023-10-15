@@ -62,7 +62,7 @@
                 </li>
             </ul>
         </div>
-        <a href="#" class="btn-create user btnpopup">
+        <a href="#" class="btn-create user btnpopup" data-form="form_create_user">
             <i class='bx bx-plus'></i>
             <span class="text">User Create</span>
         </a>
@@ -103,7 +103,7 @@
                         <td>user</td>
                         <td>
                             <a href="" class="delete-user" data-user="Erik"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                            <a href="" class="edit-button btnpopup" data-user="Erik" data-email="Chungvvvv@gmail.com" data-pass="chung" data-role="Admin"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                            <a href="" class="edit-button btnpopup" data-form="form_update_user" data-user="Erik" data-email="Chungvvvv@gmail.com" data-pass="chung" data-role="Admin"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                         </td>
                     </tr>
 
@@ -114,9 +114,9 @@
     </div>
     <!-- form create -->
 
-    <form id="data-form">
+    <form>
 
-        <div class="form_create popup">
+        <div class="form_create popup form_create_user">
             <h1>Create user</h1>
             <br>
             <div>
@@ -143,31 +143,32 @@
 
         </div>
     </form>
-    <form id="data-form1">
+    <!-- update form -->
+    <form>
 
-        <div class="form_update popup">
+        <div class="form_update popup form_update_user">
             <h1>Update user</h1>
             <br>
             <div>
-                <input type="text" id="username" placeholder="Username">
+                <input type="text" id="username" data-field="user" placeholder="Username">
             </div>
             <div>
 
-                <input type="text" id="email" placeholder="Email">
+                <input type="text" id="email" data-field="email" placeholder="Email">
             </div>
             <div>
 
-                <input type="text" id="password" placeholder="Password">
+                <input type="text" id="password" data-field="pass" placeholder="Password">
             </div>
             <div>
-                <select name="role" id="role">
+                <select name="role" id="role" data-field="role">
                     <option value="User">User</option>
                     <option value="Admin">Admin</option>
                 </select>
             </div>
             <div>
 
-                <button id="save-button">Create Account</button>
+                <button id="save-button">Update Account</button>
             </div>
 
         </div>
