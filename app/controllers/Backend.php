@@ -12,7 +12,11 @@ class Backend extends Controller
 
     public function index()
     {
-        return $this->login();
+        if (isAdminLoggedIn()) {
+            redirect('admins/index');
+        } else {
+            redirect('backend/login');
+        }
     }
 
 
@@ -98,6 +102,6 @@ class Backend extends Controller
         //destroy session
         session_destroy();
         //redirect to home
-        redirect('backend/login');
+        redirect('backend/');
     }
 }

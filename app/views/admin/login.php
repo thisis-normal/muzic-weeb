@@ -1,3 +1,4 @@
+<?php /** @var array $data */ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,11 +17,17 @@
         <div class="form">
             <div class="formusername flex">
                 <label for="txtusername">Username</label>
-                <input type="text" id="txtusername" placeholder="Username"  name="username"/>
+                <input type="text" id="txtusername" placeholder="Username" name="username" value="<?= $data['username'] ?>"/>
+                <?php if (!empty($data['username_error'])) : ?>
+                    <span class="invalid-feedback"><?= $data['username_error'] ?></span>
+                <?php endif; ?>
             </div>
             <div class="formpassword flex">
                 <label for="txtpassword">Password</label>
-                <input type="password" id="txtpassword" placeholder="Password" name="password" />
+                <input type="password" id="txtpassword" placeholder="Password" name="password" value="<?= $data['password'] ?>"/>
+                <?php if (!empty($data['password_error'])) : ?>
+                    <span class="invalid-feedback"><?= $data['password_error'] ?></span>
+                <?php endif; ?>
             </div>
             <!-- <div class="formremember">
           <input type="checkbox" name="" id="Rememberme" />
