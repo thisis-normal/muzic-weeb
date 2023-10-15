@@ -1,6 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <?php require APPROOT . '/views/include/navbar.php'; ?>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 <div class="main-container">
     <?php require APPROOT . '/views/include/header.php'; ?>

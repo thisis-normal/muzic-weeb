@@ -79,8 +79,9 @@ body {
   margin-bottom: 100px;
   border-radius: 10px;
   background-color: #000;
-  overflow-y: scroll;
+  /* overflow-y: auto; */
   height: 100vh;
+  max-height: calc(100vh - 56px);
 }
 
 .topbar {
