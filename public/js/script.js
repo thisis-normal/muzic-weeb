@@ -1,34 +1,52 @@
 //admin
-const createButton = document.querySelector(".btn-create.user");
-
-const createpopup = document.querySelector(".form_create.popup");
-const editButton = document.querySelector(".edit-button");
-const editpopup = document.querySelector(".form_update.popup");
+const createButtons = document.querySelectorAll(".btn-create");
 
 
-createButton.addEventListener("click", function () {
-
-    createpopup.style.display = "flex";
+const editButtons = document.querySelectorAll(".edit-button");
+console.log(createButtons);
+createButtons.forEach(createButton => {
+    createButton.addEventListener("click", function () {
+        const formId = createButton.getAttribute("data-form");
+        const createpopup = document.querySelector(`.${formId}`);
+        createpopup.style.display = "flex";
+    });
 });
-editButton.addEventListener('click', (event) => {
-    event.preventDefault();
+editButtons.forEach(editButton => {
+    editButton.addEventListener('click', (event) => {
+        event.preventDefault();
 
-    editpopup.style.display = "flex";
-    username = editButton.getAttribute("data-user");
-    document.querySelector(".form_update #username").setAttribute("value", username);
-    email = editButton.getAttribute("data-email");
-    document.querySelector(".form_update #email").setAttribute("value", email);
-    pass = editButton.getAttribute("data-pass");
-    document.querySelector(".form_update #password").setAttribute("value", pass);
-    const role = editButton.getAttribute("data-role");
-    const roleSelect = document.getElementById("role");
-    for (let i = 0; i < roleSelect.options.length; i++) {
-        if (roleSelect.options[i].value === role) {
-            roleSelect.selectedIndex = i;
-            break;
+        const formId = editButton.getAttribute("data-form");
+        const editpopup = document.querySelector(`.${formId}`);
+        editpopup.style.display = "flex";
 
+        const formUpdate = document.querySelector(".form_update");
+
+        // Lấy tất cả các thuộc tính data-* của nút chỉnh sửa
+        const dataAttributes = editButton.dataset;
+
+        // Duyệt qua tất cả thuộc tính data-* và đặt giá trị cho các trường trong biểu mẫu chỉnh sửa
+        for (let key in dataAttributes) {
+            if (dataAttributes.hasOwnProperty(key)) {
+                const value = dataAttributes[key];
+                console.log(value);
+                const inputField = formUpdate.querySelector(`[data-field="${key}"]`);
+                if (inputField) {
+                    if (inputField.tagName === 'SELECT') {
+                        const selectOptions = inputField.options;
+                        for (let i = 0; i < selectOptions.length; i++) {
+                            if (selectOptions[i].value === value) {
+                                selectOptions[i].selected = true;
+                                break;
+                            }
+                        }
+                    } else {
+
+                        inputField.value = value;
+                    }
+                }
+            }
         }
-    };
+    });
 });
 
 
@@ -127,6 +145,18 @@ btnpopups.forEach(btnpopup => {
                 });
             }
         });
+    });
+})
+// upfile
+var fileInputs = document.querySelectorAll('.form-input-file');
+fileInputs.forEach(fileInput => {
+    fileInput.addEventListener('change', function (e) {
+        console.log(fileInput.className);
+        const fileInputText = document.querySelector('.file_update >.form-input--file-text');
+        console.log(fileInputText);
+        var value = e.target.value.length > 0 ? e.target.value : fileInputTextContent;
+        fileInputText.value = value.replace('C:\\fakepath\\', '');
+
     });
 })
 
