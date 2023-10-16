@@ -10,4 +10,8 @@ class  Admins extends Controller
     {
         $this->view('admin/user');
     }
+    public function artist()
+    {
+        $this->view('admin/artists');
+    }
 }

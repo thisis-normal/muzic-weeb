@@ -31,7 +31,7 @@
             </a>
         </li>
         <li>
-            <a href="#" data-tab="artists-tab">
+            <a href="<?= URLROOT ?>/admins/artist" data-tab="artists-tab">
                 <i class="bx bx-user-pin"></i>
                 <span class="text">Artists</span>
             </a>

@@ -50,16 +50,19 @@ editButtons.forEach(editButton => {
 
 
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+const activenav = document.querySelector(".activenav");
 
 allSideMenu.forEach(item => {
     const li = item.parentElement;
+    console.log(item.textContent.trim());
+    console.log(activenav.textContent);
+    if (item.textContent.trim() === activenav.textContent) {
 
-    item.addEventListener('click', function () {
         allSideMenu.forEach(i => {
             i.parentElement.classList.remove('active');
         })
         li.classList.add('active');
-    })
+    }
 });
 
 // TOGGLE SIDEBAR
@@ -105,21 +108,27 @@ switchMode.addEventListener('change', function () {
     }
 })
 // tab
-const activenav = document.querySelector(".activenav");
+// const activenav = document.querySelector(".activenav");
 
-const tabContents = document.querySelectorAll(".tab-content");
-const tabLinks = document.querySelectorAll(".side-menu a");
+// const tabContents = document.querySelectorAll(".tab-content");
+// const tabLinks = document.querySelectorAll(".side-menu a");
 
-tabLinks.forEach((link) => {
-    console.log(link.textContent)
-    if (link.textContent == activenav.textContent) {
+// tabLinks.forEach((link) => {
+//     console.log(activenav.textContent)
+//     if (link.textContent === activenav.textContent) {
+//         // Loại bỏ lớp "active" từ tất cả các tab
+//         tabContents.forEach((content) => content.classList.remove("active"));
 
-        // Loại bỏ lớp "active" từ tất cả các tab
-        tabContents.forEach((content) => content.classList.remove("active"));
-        link.classList.add("active");
+//         // Lấy id hoặc data attribute của tab tương ứng
+//         const tabId = link.getAttribute("data-tab");
 
-    }
-});
+//         // Tìm tab với id tương ứng và thêm lớp "active"
+//         const tab = document.getElementById(tabId);
+//         if (tab) {
+//             tab.classList.add("active");
+//         }
+//     }
+// });
 
 const popups = document.querySelectorAll(".popup");
 const closepopups = document.querySelectorAll(".bg-popup");
