@@ -54,8 +54,7 @@ const activenav = document.querySelector(".activenav");
 
 allSideMenu.forEach(item => {
     const li = item.parentElement;
-    console.log(item.textContent.trim());
-    console.log(activenav.textContent);
+
     if (item.textContent.trim() === activenav.textContent) {
 
         allSideMenu.forEach(i => {

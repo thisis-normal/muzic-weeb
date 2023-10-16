@@ -14,4 +14,8 @@ class  Admins extends Controller
     {
         $this->view('admin/artists');
     }
+    public function song()
+    {
+        $this->view('admin/song');
+    }
 }
