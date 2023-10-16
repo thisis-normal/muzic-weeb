@@ -56,6 +56,7 @@ if (!isset($_SESSION['admin_id'])) {
         </div>
         <div id="user-tab" class="tab-content">
             <?php require APPROOT . '/views/admin/user.php'; ?>
+<!--            request to user-management controller with listUser method -->
         </div>
     </section>
 </body>

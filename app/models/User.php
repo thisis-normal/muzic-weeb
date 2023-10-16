@@ -33,8 +33,6 @@ class User {
         }
     }
 
-//insertUser
-//register
     //REGISTER FUNCTION
     public function insertUser($data) {
         $this->db->query("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");

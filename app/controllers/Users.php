@@ -1,4 +1,14 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+//require '../PHPMailer/src/Exception.php';
+//require '../PHPMailer/src/PHPMailer.php';
+//require '../PHPMailer/src/SMTP.php';
+require __DIR__ . '/../PHPMailer/src/Exception.php';
+require __DIR__ . '/../PHPMailer/src/PHPMailer.php';
+require __DIR__ . '/../PHPMailer/src/SMTP.php';
 require_once 'GeneralController.php';
 // Initialize data with empty error messages
 $data = [
@@ -18,6 +28,7 @@ class Users extends Controller
     public function __construct()
     {
         $this->userModel = $this->model('User');
+        $this->adminModel = $this->model('Admin');
     }
 
     public function register()
@@ -33,9 +44,14 @@ class Users extends Controller
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password'])
             ];
-            $generalObj = new GeneralController;
+            $generalObj = new GeneralController();
             //validate email
             $data['email_error'] = $generalObj->validateEmail($data['email']);
+            if ($this->userModel->getUserByEmail($data['email'])) {
+                $data['email_error'] = 'Email is already taken';
+            } elseif ($this->adminModel->getAdminByEmail($data['email'])) {
+                $data['email_error'] = 'Email is already taken';
+            }
             //validate username
             $data['username_error'] = $generalObj->validateUsername($data['username']);
             if ($this->userModel->getUserByUsername($data['username'])) {
@@ -148,6 +164,68 @@ class Users extends Controller
         }
     }
 
+    public function forgotPassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $data = [
+                'email' => trim($_POST['email']),
+                'email_error' => '',
+            ];
+            //validate email
+            $generalObj = new GeneralController();
+            if ($this->userModel->getUserByEmail($data['email'])) {
+                $data['email_error'] = '';
+            } else {
+                $data['email_error'] = 'Email is not registered';
+            }
+            $data['email_error'] = $generalObj->validateEmail($data['email']);
+//            var_dump($data['email_error']); die();
+            //make sure errors are empty
+            if (empty($data['email_error'])) {
+                //validated
+                //generate token
+                $token = bin2hex(random_bytes(50));
+                //save token to database
+                $this->userModel->saveToken($data['email'], $token);
+                //send email
+                $mail = new PHPMailer(true);
+                try {
+                    //Server settings
+                    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
+                    $mail->isSMTP();                                            // Send using SMTP
+                    $mail->Host = 'smtp.gmail.com';                             // Set the SMTP server to send through
+                    $mail->SMTPAuth = true;                                     // Enable SMTP authentication
+                    $mail->Username = 'normal2002.dev@gmail.com';               // SMTP username
+                    $mail->Password = 'fwcmyyxeepdteraz';                     // SMTP password
+                    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                    $mail->Port = 587;                                          // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+                    //Recipients
+                    $mail->setFrom('normal2002.dev@gmail.com', 'Admin');
+                    $mail->addAddress($data['email']);                                  // Add a recipient
+                    // Content
+                    $mail->isHTML(true);                                        // Set email format to HTML
+                    $mail->Subject = 'Reset Password';
+                    $mail->Body = '<p>Please click the link below to reset your password</p>
+                    <a href="http://localhost:8080/users/reset-password?email=' . $data['email'] . '&token=' . $token . '">Reset Password</a>';
+                    $mail->send();
+                    flash('sent_password_reset', 'Pleas e check your email to reset password');
+                    $this->view('users/forgot-password', $data);
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+            } else {
+                $this->view('users/forgot-password', $data);
+            }
+        } else {
+            $data = [
+                'email' => trim($_POST['email'] ?? ''),
+                'email_error' => '',
+            ];
+            $this->view('users/forgot-password', $data);
+        }
+    }
+
     public function createUserSession($user)
     {
         $_SESSION['user_id'] = $user->id;
@@ -171,5 +249,8 @@ class Users extends Controller
         session_destroy();
         //redirect to home
         redirect('pages/index');
+    }
+    public function demo() {
+        $this->view('errors/404');
     }
 }

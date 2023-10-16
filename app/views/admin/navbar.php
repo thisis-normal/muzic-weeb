@@ -37,7 +37,9 @@
             </a>
         </li>
         <li>
-            <a href="<?=URLROOT?>/view/admin/user" data-tab="user-tab">
+<!--            <a href=" --><?php //require APPROOT . '/views/admin/user.php'; ?><!--" data-tab="user-tab">-->
+<!--            <a href="--><?php //=URLROOT?><!--/user-management/list-user" data-tab="user-tab">-->
+            <a href="#" data-tab="user-tab">
                 <i class="bx bxs-group"></i>
                 <span class="text">User</span>
             </a>
