@@ -1,3 +1,4 @@
+<?php /** @var array $data */ ?>
 <style>
     .truncate-text {
         white-space: nowrap;
@@ -64,7 +65,7 @@
         </div>
         <a href="#" class="btn-create user btnpopup">
             <i class='bx bx-plus'></i>
-            <span class="text">User Create</span>
+            <span class="text">Create User</span>
         </a>
     </div>
 
@@ -114,26 +115,24 @@
     </div>
     <!-- form create -->
 
-    <form id="data-form">
+    <form id="data-form" action="<?=URLROOT?>/user-management/create-user" method="post">
 
         <div class="form_create popup">
             <h1>Create user</h1>
             <br>
             <div>
-                <input type="text" id="username" placeholder="Username">
+                <input type="text" id="username" placeholder="Username" name="username" required>
             </div>
             <div>
-
-                <input type="text" id="email" placeholder="Email">
+                <input type="email" id="email" placeholder="Email" name="email" required>
             </div>
             <div>
-
-                <input type="text" id="password" placeholder="Password">
+                <input type="text" id="password" placeholder="Password" name="password" required>
             </div>
             <div>
-                <select name="" id="">
-                    <option value="User">User</option>
-                    <option value="Admin">Admin</option>
+                <select name="role" id="">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
                 </select>
             </div>
             <div>
@@ -149,15 +148,22 @@
             <h1>Update user</h1>
             <br>
             <div>
-                <input type="text" id="username" placeholder="Username">
+                <input type="text" id="username" name="username" placeholder="Username" value="<?= $data['username'] ?>"/>
+                <?php if (!empty($data['username_error'])) : ?>
+                    <span class="invalid-feedback"><?= $data['username_error'] ?></span>
+                <?php endif; ?>
             </div>
             <div>
-
-                <input type="text" id="email" placeholder="Email">
+                <input type="text" id="email" name="email" placeholder="Email"  value="<?=$data['email'] ?>"/>
+                <?php if (!empty($data['email_error'])) : ?>
+                    <span class="invalid-feedback"><?= $data['email_error'] ?></span>
+                <?php endif; ?>
             </div>
             <div>
-
-                <input type="text" id="password" placeholder="Password">
+                <input type="text" id="password" name="password" placeholder="Password"  value="<?=$data['password'] ?>"/>
+                <?php if (!empty($data['password_error'])) : ?>
+                    <span class="invalid-feedback"><?= $data['password_error'] ?></span>
+                <?php endif; ?>
             </div>
             <div>
                 <select name="role" id="role">
@@ -167,7 +173,7 @@
             </div>
             <div>
 
-                <button id="save-button">Create Account</button>
+                <button id="save-button">Update Account</button>
             </div>
 
         </div>

@@ -9,7 +9,7 @@ class Admin
     {
         $this->db = new Database;
     }
-    public function findAdminByUsername($username) {
+    public function getAdminByUsername($username) {
         $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'admin'");
         //Bind value
         $this->db->bind(':username', $username);
@@ -36,6 +36,25 @@ class Admin
         } else {
             return false;
         }
+    }
+    public function createUser($username, $email, $password, $role) {
+        $this->db->query("INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)");
+        //Bind values
+        $this->db->bind(':username', $username);
+        $this->db->bind(':email', $email);
+        $this->db->bind(':role', $role);
+        $this->db->bind(':password', $password);
+        //Execute function
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getAllUsers() {
+        $this->db->query("SELECT * FROM users WHERE role = 'user'");
+        $results = $this->db->resultSet();
+        return $results;
     }
 
 }

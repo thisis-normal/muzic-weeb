@@ -19,14 +19,28 @@ class Core
         if (is_null($url)) {
             $url = $this->currentController;
         }
-        if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
-            //if exists, set as controller
-            $this->currentController = ucwords($url[0]);
-            //unset 0 index
-            unset($url[0]);
-        } else {
-//            echo 'Controller not found' . '<br>';
+        //look in controllers for first value
+        if (isset($url[0])) {
+            $controller = $url[0];
+            // Translate hyphenated controller to camelCase
+            $controller = str_replace('-', ' ', $controller);
+            $controller = ucwords($controller);
+            $controller = str_replace(' ', '', $controller);
+            if (file_exists('../app/controllers/' . $controller . '.php')) {
+                //if exists, set as controller
+                $this->currentController = $controller;
+                //unset 0 index
+                unset($url[0]);
+            }
         }
+//        if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
+//            //if exists, set as controller
+//            $this->currentController = ucwords($url[0]);
+//            //unset 0 index
+//            unset($url[0]);
+//        } else {
+////            echo 'Controller not found' . '<br>';
+//        }
         //require the controller
         require_once '../app/controllers/' . $this->currentController . '.php';
         //instantiate controller class
@@ -35,13 +49,18 @@ class Core
         $url = $this->getURL();
         //check for second part of url
         if (isset($url[1])) {
-            //check to see if method exists in controller
-            if (method_exists($this->currentController, $url[1])) {
-                $this->currentMethod = $url[1];
-                //unset 1 index
+            $method = $url[1];
+            // Translate hyphenated method to camelCase
+            $method = str_replace('-', ' ', $method);
+            $method = ucwords($method);
+//            var_dump($method);
+            $method = str_replace(' ', '', $method);
+//            var_dump($method);
+            if (method_exists($this->currentController, $method)) {
+                $this->currentMethod = $method;
                 unset($url[1]);
             } else {
-//                echo 'Method not found' . '<br>';
+                //method not found
             }
         }
         //get params
@@ -51,7 +70,8 @@ class Core
     }
 
 
-    public function getURL()
+    public
+    function getURL()
     {
         if (isset($_GET['url'])) {
             $url = rtrim($_GET['url'], '/');

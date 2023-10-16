@@ -1,4 +1,5 @@
 <?php
+require_once 'GeneralController.php';
 // Initialize data with empty error messages
 $data = [
     'username' => '',
@@ -30,45 +31,20 @@ class Users extends Controller
             $data = [
                 'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
-                'password' => trim($_POST['password']),
-                'username_error' => '',
-                'email_error' => '',
-                'password_error' => '',
+                'password' => trim($_POST['password'])
             ];
-
+            $generalObj = new GeneralController;
             //validate email
-            if (empty($data['email'])) {
-                $data['email_error'] = 'Please enter email';
-            } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                $data['email_error'] = 'Please enter valid email';
-//                var_dump(1); die();
-            } else {
-                //check email
-                if ($this->userModel->findUserByEmail($data['email'])) {
-                    //user found
-                    $data['email_error'] = 'Email is already taken';
-                }
-            }
-
+            $data['email_error'] = $generalObj->validateEmail($data['email']);
             //validate username
-            if (empty($data['username'])) {
-                $data['username_error'] = 'Please enter username';
-            } elseif (strlen($data['username']) < 3) {
-                $data['username_error'] = 'Username must be at least 3 characters';
-            } else {
-                //check username
-                if ($this->userModel->findUserByUsername($data['username'])) {
-                    //user found
-                    $data['username_error'] = 'Username is already taken';
-                }
+            $data['username_error'] = $generalObj->validateUsername($data['username']);
+            if ($this->userModel->getUserByUsername($data['username'])) {
+                $data['username_error'] = 'Username is already taken';
+            } elseif ($this->adminModel->getAdminByUsername($data['username'])) {
+                $data['username_error'] = 'Username is already taken';
             }
-
             //validate password
-            if (empty($data['password'])) {
-                $data['password_error'] = 'Please enter password';
-            } elseif (strlen($data['password']) < 3) {
-                $data['password_error'] = 'Password must be at least 3 characters';
-            }
+            $data['password_error'] = $generalObj->validatePassword($data['password']);
 
             //make sure errors are empty
             if (empty($data['email_error']) && empty($data['username_error']) && empty($data['password_error'])) {
@@ -76,7 +52,7 @@ class Users extends Controller
                 //Hash password
                 $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
                 //Call model function to register user
-                if ($this->userModel->register($data)) {
+                if ($this->userModel->insertUser($data)) {
                     flash('register_success', 'You are registered and can log in');
                     redirect('users/login');
                 } else {
@@ -87,7 +63,7 @@ class Users extends Controller
                 $this->view('users/register', $data);
             }
         } else {
-            //init data
+            //init data to save text in form
             $data = [
                 'username' => trim(isset($_POST['username']) ? $_POST['username'] : ''),
                 'email' => trim(isset($_POST['email']) ? $_POST['email'] : ''),
@@ -130,12 +106,12 @@ class Users extends Controller
             if (filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
                 $isEmail = true;
                 //search by email
-                if (!$this->userModel->findUserByEmail($username_or_email)) {
+                if (!$this->userModel->getUserByEmail($username_or_email)) {
                     $data['username_or_email_error'] = 'No user found';
                 }
             } else {
                 //search by username
-                if (!$this->userModel->findUserByUsername($username_or_email)) {
+                if (!$this->userModel->getUserByUsername($username_or_email)) {
                     $data['username_or_email_error'] = 'No user found';
                 }
             }

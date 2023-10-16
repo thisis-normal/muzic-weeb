@@ -37,7 +37,7 @@
             </a>
         </li>
         <li>
-            <a href="#" data-tab="user-tab">
+            <a href="<?=URLROOT?>/view/admin/user" data-tab="user-tab">
                 <i class="bx bxs-group"></i>
                 <span class="text">User</span>
             </a>

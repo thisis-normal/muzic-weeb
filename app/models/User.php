@@ -8,7 +8,7 @@ class User {
     }
 
     //Find user by email
-    public function findUserByEmail($email) {
+    public function getUserByEmail($email) {
         $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user'");
         //Bind value
         $this->db->bind(':email', $email);
@@ -20,7 +20,7 @@ class User {
             return false;
         }
     }
-    public function findUserByUsername($username) {
+    public function getUserByUsername($username) {
         $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user'");
         //Bind value
         $this->db->bind(':username', $username);
@@ -33,9 +33,10 @@ class User {
         }
     }
 
-
+//insertUser
+//register
     //REGISTER FUNCTION
-    public function register($data) {
+    public function insertUser($data) {
         $this->db->query("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         //Bind values
         $this->db->bind(':username', $data['username']);

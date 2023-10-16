@@ -1,4 +1,5 @@
 <?php
+require_once 'GeneralController.php';
 
 /**
  * @property mixed $adminModel
@@ -30,27 +31,17 @@ class Backend extends Controller
             $data = [
                 'username' => trim($_POST['username']),
                 'password' => trim($_POST['password']),
-                'username_error' => '',
-                'password_error' => '',
             ];
-
+            $generalObj = new GeneralController;
             //validate username
-            if (empty($data['username'])) {
-                $data['username_error'] = 'Please enter username';
-            } elseif (strlen($data['username']) < 3) {
-                $data['username_error'] = 'Username must be at least 3 characters';
-            } else {
-                //check username
-                if (!$this->adminModel->findAdminByUsername($data['username'])) {
-                    //user not found
-                    $data['username_error'] = 'No user found';
-                }
+            $data['username_error'] = $generalObj->validateUsername($data['username']);
+            //check username
+            if (!$this->adminModel->getAdminByUsername($data['username'])) {
+                //user not found
+                $data['username_error'] = 'No user found';
             }
-
             //validate password
-            if (empty($data['password'])) {
-                $data['password_error'] = 'Please enter password';
-            }
+            $data['password_error'] = $generalObj->validatePassword($data['password']);
 
             //make sure errors are empty
             if (empty($data['username_error']) && empty($data['password_error'])) {
@@ -81,10 +72,12 @@ class Backend extends Controller
             $this->view('admin/login', $data);
         }
     }
+
     public function about()
     {
         $this->view('admin/index');
     }
+
     public function createAdminSession($user)
     {
         $_SESSION['admin_id'] = $user->id;
@@ -93,6 +86,7 @@ class Backend extends Controller
         //redirect to dashboard
         redirect('admin/index');
     }
+
     public function logout()
     {
         //unset session variables
@@ -103,5 +97,11 @@ class Backend extends Controller
         session_destroy();
         //redirect to home
         redirect('backend/');
+    }
+
+    public function bruhBruh()
+    {
+        var_dump(1);
+        die();
     }
 }
