@@ -37,9 +37,9 @@
             </a>
         </li>
         <li>
-            <a href="<?=URLROOT?>/view/admin/user" data-tab="user-tab">
+            <a href="<?= URLROOT ?>/admins/user" data-tab="user-tab">
                 <i class="bx bxs-group"></i>
-                <span class="text">User</span>
+                <span class="text">Users</span>
             </a>
         </li>
     </ul>
@@ -51,7 +51,7 @@
             </a>
         </li>
         <li>
-            <a href="<?=URLROOT?>/backend/logout" class="logout">
+            <a href="<?= URLROOT ?>/backend/logout" class="logout">
                 <i class="bx bxs-log-out-circle"></i>
                 <span class="text">Logout</span>
             </a>

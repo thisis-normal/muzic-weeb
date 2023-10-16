@@ -1,7 +1,6 @@
 //admin
+
 const createButtons = document.querySelectorAll(".btn-create");
-
-
 const editButtons = document.querySelectorAll(".edit-button");
 console.log(createButtons);
 createButtons.forEach(createButton => {
@@ -106,24 +105,22 @@ switchMode.addEventListener('change', function () {
     }
 })
 // tab
+const activenav = document.querySelector(".activenav");
+
 const tabContents = document.querySelectorAll(".tab-content");
 const tabLinks = document.querySelectorAll(".side-menu a");
 
 tabLinks.forEach((link) => {
-    link.addEventListener("click", () => {
+    console.log(link.textContent)
+    if (link.textContent == activenav.textContent) {
+
         // Loại bỏ lớp "active" từ tất cả các tab
         tabContents.forEach((content) => content.classList.remove("active"));
+        link.classList.add("active");
 
-        // Lấy id hoặc data attribute của tab tương ứng
-        const tabId = link.getAttribute("data-tab");
-
-        // Tìm tab với id tương ứng và thêm lớp "active"
-        const tab = document.getElementById(tabId);
-        if (tab) {
-            tab.classList.add("active");
-        }
-    });
+    }
 });
+
 const popups = document.querySelectorAll(".popup");
 const closepopups = document.querySelectorAll(".bg-popup");
 const btnpopups = document.querySelectorAll(".btnpopup");
