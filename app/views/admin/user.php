@@ -1,4 +1,7 @@
-<?php /** @var array $data */ ?>
+<?php
+require APPROOT . '/views/admin/index.php';
+/** @var array $data */ ?>
+
 <style>
     .truncate-text {
         white-space: nowrap;
@@ -49,75 +52,72 @@
         color: #D84F68;
     }
 </style>
-<main>
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-            <h1><?php flash('post_message'); ?></h1>
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li><i class="bx bx-chevron-right"></i></li>
-                <li>
-                    <a class="active" href="#">Users</a>
-                </li>
-            </ul>
+<div id="user-tab" class="tab-content active">
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1>Dashboard</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li><i class="bx bx-chevron-right"></i></li>
+                    <li>
+                        <a class="activenav" href="#">Users</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="btn-create user btnpopup" data-form="form_create_user">
+                <i class='bx bx-plus'></i>
+                <span class="text">Create User</span>
+            </a>
         </div>
-        <a href="#" class="btn-create user btnpopup" data-form="form_create_user">
-            <i class='bx bx-plus'></i>
-            <span class="text">Create User</span>
-        </a>
-    </div>
 
 
-    <div class="table-data">
-        <div class="order">
-            <!-- <div class="head">
+        <div class="table-data">
+            <div class="order">
+                <!-- <div class="head">
                 <h3>Recent Orders</h3>
                 <i class="bx bx-search"></i>
                 <i class="bx bx-filter"></i>
             </div> -->
-            <table>
-                <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Register date</th>
-                    <th>Premium</th>
-                    <th>Role</th>
-                    <th>Action</th>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Register date</th>
+                            <th>Premium</th>
+                            <th>Role</th>
+                            <th>Action</th>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Erik</td>
-                    <td>Chungvvvv@gmail.com</td>
-                    <td>chung</td>
-                    <td>06/04/2002</td>
-                    <td>
-                        <div><input type="checkbox" id="ni">
-                            <label for="ni" class="ni"></label>
-                        </div>
-                    </td>
-                    <td>user</td>
-                    <td>
-                        <a href="" class="delete-user" data-user="Erik"><i class='bx bx-trash'
-                                                                           style='color:#fb0004'></i></a>
-                        <a href="" class="edit-button btnpopup" data-form="form_update_user" data-user="Erik"
-                           data-email="Chungvvvv@gmail.com" data-pass="chung" data-role="Admin"><i class='bx bxs-edit'
-                                                                                                   style='color:#0042fb'></i></a>
-                    </td>
-                </tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Erik</td>
+                            <td>Chungvvvv@gmail.com</td>
+                            <td>chung</td>
+                            <td>06/04/2002</td>
+                            <td>
+                                <div><input type="checkbox" id="ni">
+                                    <label for="ni" class="ni"></label>
+                                </div>
+                            </td>
+                            <td>user</td>
+                            <td>
+                                <a href="" class="delete-user" data-user="Erik"><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                <a href="" class="edit-button btnpopup" data-form="form_update_user" data-user="Erik" data-email="Chungvvvv@gmail.com" data-pass="chung" data-role="Admin"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                            </td>
+                        </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-
-    </div>
-    <!-- form create -->
+        <!-- form create -->
 
     <form id="data-form" action="<?= URLROOT ?>/user-management/create-user" method="post">
         <div class="form_create popup form_create_user">
@@ -193,10 +193,14 @@
             </div>
             <div>
 
-                <button id="save-button">Update Account</button>
-                <button id="save-button">Update Account</button>
-            </div>
+                    <button id="save-button">Update Account</button>
 
-        </div>
-    </form>
-</main>
+                </div>
+
+            </div>
+        </form>
+    </main>
+</div>
+</section>
+</body>
+<script src="<?= URLROOT ?>/public/js/script.js"></script>
