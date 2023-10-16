@@ -10,12 +10,13 @@ class GeneralController extends Controller {
             return 'Please enter email';
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return 'Please enter valid email';
-        } elseif ($this->userModel->getUserByEmail($email)) {
-            return 'Email is already taken';
         } else {
             return '';
         }
     }
+//    elseif ($this->userModel->getUserByEmail($email)) {
+//            return 'Email is already taken';
+//        }
     public function validateUsername($username) {
         if (empty($username)) {
             return 'Please enter username';

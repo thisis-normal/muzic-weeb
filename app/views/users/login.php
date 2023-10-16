@@ -40,7 +40,7 @@
             <button type="submit">Log In</button>
         </div>
         <div class="footer">
-            <a href="#">Forgot your password?</a>
+            <a href="<?=URLROOT?>/users/forgot-password">Forgot your password?</a>
             <hr/>
             <p>Don't have an account?<a href="<?= URLROOT ?>/users/register">Sign up</a></p>
         </div>

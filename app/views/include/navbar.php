@@ -27,7 +27,7 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="<?=URLROOT?>/users/demo">
                             <span class="fa fa-search"></span>
                             <span>Search</span>
                         </a>

@@ -1,9 +1,10 @@
 <?php
+
 require_once 'GeneralController.php';
 
 class  UserManagement extends Controller
 {
-    public function index()
+    public function __construct()
     {
         $this->adminModel = $this->model('Admin');
         $this->userModel = $this->model('User');
@@ -30,9 +31,20 @@ class  UserManagement extends Controller
             if ($this->userModel->getUserByUsername($data['username'])) {
                 //user found
                 $data['username_error'] = 'Username is already taken';
+            } elseif ($this->adminModel->getAdminByUsername($data['username'])) {
+                //admin found
+                $data['username_error'] = 'Username is already taken';
+            } else {
+                //user not found
+                $data['username_error'] = '';
             }
             //validate email
             $data['email_error'] = $generalObj->validateEmail($data['email']);
+            if ($this->userModel->getUserByEmail($data['email'])) {
+                $data['email_error'] = 'Email is already taken';
+            } elseif ($this->adminModel->getAdminByEmail($data['email'])) {
+                $data['email_error'] = 'Email is already taken';
+            }
             //validate password
             $data['password_error'] = $generalObj->validatePassword($data['password']);
             //validate role
@@ -46,11 +58,14 @@ class  UserManagement extends Controller
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 //register user
                 if ($this->adminModel->createUser($data['username'], $data['email'], $data['password'], $data['role'])) {
-//                    flash('register_success', 'You are registered and can log in');
-                    redirect('admins/user');
+                    flash('register_success', 'You are registered and can log in');
+                    $this->view('admin/user', $data);
                 } else {
                     die('Something went wrong');
                 }
+            } else {
+                //load view with errors
+                $this->view('admin/user', $data);
             }
         } else {
             //init data
@@ -64,7 +79,18 @@ class  UserManagement extends Controller
                 'password_error' => '',
                 'role_error' => '',
             ];
-            redirect('admins/user');
+            //load view
+            $this->view('admin/index', $data);
         }
+    }
+    public function listUser()
+    {
+//        var_dump(1); die();
+        require APPROOT . '/views/admin/user.php';
+//        $users = $this->adminModel->getAllUser();
+//        $data = [
+//            'users' => $users
+//        ];
+//        $this->view('admins/index', $data);
     }
 }
