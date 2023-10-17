@@ -112,7 +112,7 @@ INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, 
 	(5, 'bruh@gooo.com', 'fe5d135cc349c8b32b32b5ab578a1751b77064b185a28e59c815c3d7feb2fd313c8b819b02a5c04d7c4b9374b953465ab63d', '2023-10-17 04:29:35', '2023-10-17 12:29:35', '1'),
 	(6, 'admin@mmm.com', 'e29cced4ca76f6cc5caba17f1a104993dc2ea0c2686ef964a8fade750cc595c48662ed30e2efd747fd65cb0b4c16724e0755', '2023-10-17 07:23:13', '2023-10-17 15:23:13', '1'),
 	(7, 'tysyxy@mailinator.com', '6e6f607505697edf75dc55d9920c55766f9380dce98c518c656d4e3e7cf140089316a8769b8dc3f863546aa7b24d00e6d7e5', '2023-10-17 07:27:29', '2023-10-17 15:27:29', '1'),
-	(8, 'thuonghuunguyen2002@gmail.com', 'a24d07acbaa927e1a09b3c9809630f040eb59d6fa32499bd338e71bded5603c8c187d105cc03ffeeba6b32a404ebe8e6a509', '2023-10-17 07:27:49', '2023-10-17 15:27:49', '1'),
+	(8, 'thuonghuunguyen2002@gmail.com', 'a24d07acbaa927e1a09b3c9809630f040eb59d6fa32499bd338e71bded5603c8c187d105cc03ffeeba6b32a404ebe8e6a509', '2023-10-17 10:26:33', '2023-10-17 15:27:49', 'invalid'),
 	(9, 'thuonghuunguyen2002@gmail.com', '7e01db65a6046c7ea2df03902820b92511389aad211e0cdb6dbb80e4fc039547feb5a1e12acae9be58ee2b69a235ab07e213', '2023-10-17 08:41:15', '2023-10-17 16:41:15', '1'),
 	(10, 'thuonghuunguyen2002@gmail.com', 'bfea0508c1f2f2326c9113e4315a5ec6456bf83a74f3b224e20edf944c0ec116c5c640126453d56d649d289704e84229372d', '2023-10-17 08:43:14', '2023-10-17 16:43:14', '1'),
 	(11, 'thuonghuunguyen2002@gmail.com', '2be4affadb24e4f2f206b1042df500d124913bffd1618f822195e3338ef402f30e100adb4b73d445baa5f49b2506c5532976', '2023-10-17 08:45:25', '2023-10-17 16:45:25', '1'),
@@ -120,7 +120,7 @@ INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, 
 	(13, 'thuonghuunguyen2002@gmail.com', 'f9aef3a347b6d0c76ca58e8107d9641bf9826e27d8cd3a3c52d5330bfa3c17a98ce0e036ac42590a741af9d9f7ebb5eb055e', '2023-10-17 08:52:26', '2023-10-17 16:52:26', '1'),
 	(14, 'thuonghuunguyen2002@gmail.com', 'cb0403b5d923c78c40a04e77fb2640324d1f9f9e201fa764db115b2f9cefd124074a6adfc128c74a16e28060c4e3411bff65', '2023-10-17 08:54:08', '2023-10-17 16:54:08', '1'),
 	(15, 'thuonghuunguyen2002@gmail.com', 'e0433c8e4b86895b4b58baa85111f79efd0d3d63b3f588b13b5d2189f4f82723b92c6396a27f654665f8f5e9eb5b3ae9df0e', '2023-10-17 09:02:57', '2023-10-17 17:02:57', '1'),
-	(16, 'thuonghuunguyen2002@gmail.com', 'badc92c0d028a1c54920beeba0af7af6881746c4bbc78445ae9b7b4f9256d7136f947a67814013204cedd6086b7adc0a4333', '2023-10-17 10:05:40', '2023-10-17 18:05:40', '1');
+	(16, 'thuonghuunguyen2002@gmail.com', 'badc92c0d028a1c54920beeba0af7af6881746c4bbc78445ae9b7b4f9256d7136f947a67814013204cedd6086b7adc0a4333', '2023-10-17 10:23:26', '2023-10-17 18:05:40', 'valid');
 
 -- Dumping structure for table muzic_weeb.song
 CREATE TABLE IF NOT EXISTS `song` (
