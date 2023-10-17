@@ -7,13 +7,13 @@
     </a>
     <ul class="side-menu top">
         <li class="active">
-            <a href="#" data-tab="dashboard-tab">
+            <a href="<?= URLROOT ?>/admins/index" data-tab="dashboard-tab">
                 <i class="bx bxs-dashboard"></i>
                 <span class="text">Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="#" data-tab="genre-tab">
+            <a href="<?= URLROOT ?>/admins/genre" data-tab="genre-tab">
                 <i class="bx bxs-category"></i>
                 <span class="text">Genre</span>
             </a>
@@ -25,7 +25,7 @@
             </a>
         </li>
         <li>
-            <a href="#" data-tab="songrequest-tab">
+            <a href="<?= URLROOT ?>/admins/songrequest" data-tab="songrequest-tab">
                 <i class="bx bx-music"></i>
                 <span class="text">Song request</span>
             </a>
