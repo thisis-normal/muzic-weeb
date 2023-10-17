@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+HELLo
     <?php if (!empty($data['error'])) : ?>
     <h1 style="color: red"><?= $data['error'] ?></h1>
     <?php endif; ?>
