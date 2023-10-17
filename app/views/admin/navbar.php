@@ -19,7 +19,7 @@
             </a>
         </li>
         <li>
-            <a href="<?= APPROOT ?>/views/admin/song" data-tab="song-tab">
+            <a href="<?= URLROOT ?>/admins/song" data-tab="song-tab">
                 <i class="bx bxs-music"></i>
                 <span class="text">Song</span>
             </a>
