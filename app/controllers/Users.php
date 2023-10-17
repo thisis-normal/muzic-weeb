@@ -250,6 +250,6 @@ class Users extends Controller
         redirect('pages/index');
     }
     public function demo() {
-        $this->view('errors/404');
+        $this->view('users/demo');
     }
 }
