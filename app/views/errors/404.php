@@ -14,20 +14,20 @@
     <div class="stars">
         <div class="custom-navbar">
             <div class="brand-logo">
-                <img src="http://salehriaz.com/404Page/img/logo.svg" width="80px">
+                <img src="https://user-images.githubusercontent.com/73392859/275700777-0e4f5ba8-7ac9-4826-904a-06cade4a593b.png" width="80px" alt="">
             </div>
             <div class="navbar-links">
                 <ul>
-                    <li><a href="http://salehriaz.com/404Page/404.html" target="_blank">Home</a></li>
-                    <li><a href="http://salehriaz.com/404Page/404.html" target="_blank">About</a></li>
-                    <li><a href="http://salehriaz.com/404Page/404.html" target="_blank">Features</a></li>
-                    <li><a href="http://salehriaz.com/404Page/404.html" class="btn-request" target="_blank">Request A Demo</a></li>
+                    <li><a href="<?=URLROOT?>" target="_blank">Home</a></li>
+                    <li><a href="https://www.facebook.com/ULSA.IT/" target="_blank">About</a></li>
+                    <li><a href="http://salehriaz.com/404Page/404.html" target="_blank">Artist</a></li>
+                    <li><a href="https://github.com/thisis-normal/muzic-weeb" class="btn-request" target="_blank">Request A Demo</a></li>
                 </ul>
             </div>
         </div>
         <div class="central-body">
             <img class="image-404" src="http://salehriaz.com/404Page/img/404.svg" width="300px">
-            <a href="http://salehriaz.com/404Page/404.html" class="btn-go-home" target="_blank">GO BACK HOME</a>
+            <a href="<?=URLROOT?>" class="btn-go-home" target="_blank">GO BACK HOME</a>
         </div>
         <div class="objects">
             <img class="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" width="40px">

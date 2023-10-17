@@ -85,8 +85,6 @@ class  UserManagement extends Controller
     }
     public function listUser()
     {
-//        var_dump(1); die();
-        require APPROOT . '/views/admin/user.php';
 //        $users = $this->adminModel->getAllUser();
 //        $data = [
 //            'users' => $users

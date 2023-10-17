@@ -25,7 +25,7 @@
             <div class="formusername flex">
                 <label for="txtusername">Email</label>
                 <!--                value="--><?php //= $data['email'] ?><!--"-->
-                <input type="text" id="txtusername" name="email" placeholder="Enter your fk email here"/>
+                <input type="text" id="txtusername" name="email" placeholder="Enter your fk email here" value="<?= $data['email']?>"/>
                 <?php if (!empty($data['email_error'])) : ?>
                     <span style="color: red"><?= $data['email_error'] ?></span>
                 <?php endif; ?>

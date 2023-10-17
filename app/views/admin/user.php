@@ -126,21 +126,20 @@ require APPROOT . '/views/admin/index.php';
             <div>
                 <input type="text" id="username" name="username" placeholder="Username" required/>
                 <?php if (!empty($data['username_error'])) : ?>
-                    <!--                    <span class="invalid-feedback">--><?php //= $data['username_error'] ?><!--</span>-->
+                    <!--    <span class="invalid-feedback">--><?php //= $data['username_error'] ?><!--</span>-->
                     <script>
                         alert("<?= $data['username_error'] ?>")
                     </script>
                 <?php endif; ?>
             </div>
             <div>
-                <input type="email" id="email" name="email" placeholder="Email" value="<?= $data['email'] ?>" required/>
+                <input type="email" id="email" name="email" placeholder="Email" required/>
                 <?php if (!empty($data['email_error'])) : ?>
                     <span class="invalid-feedback"><?= $data['email_error'] ?></span>
                 <?php endif; ?>
             </div>
             <div>
-                <input type="password" id="password" name="password" placeholder="Password"
-                       value="<?= $data['password'] ?>" required/>
+                <input type="password" id="password" name="password" placeholder="Password" required/>
                 <?php if (!empty($data['password_error'])) : ?>
                     <span class="invalid-feedback"><?= $data['password_error'] ?></span>
                 <?php endif; ?>

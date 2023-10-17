@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 //require __DIR__ . '/../../vendor/PHPMailer/phpmailer/src/PHPMailer.php';
 //require __DIR__ . '/../../vendor/PHPMailer/phpmailer/src/SMTP.php';
 // Require the autoloader from Composer
-require __DIR__  . '/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 require_once 'GeneralController.php';
 // Initialize data with empty error messages
 $data = [
@@ -28,6 +28,7 @@ class Users extends Controller
     {
         $this->userModel = $this->model('User');
         $this->adminModel = $this->model('Admin');
+        $this->tokenModel = $this->model('Token');
     }
 
     public function register()
@@ -173,20 +174,21 @@ class Users extends Controller
             ];
             //validate email
             $generalObj = new GeneralController();
-            if ($this->userModel->getUserByEmail($data['email'])) {
-                $data['email_error'] = '';
-            } else {
+            $data['email_error'] = $generalObj->validateEmail($data['email']);
+            if (!$this->userModel->getUserByEmail($data['email'])) {
                 $data['email_error'] = 'Email is not registered';
             }
-            $data['email_error'] = $generalObj->validateEmail($data['email']);
-//            var_dump($data['email_error']); die();
+//                var_dump($data['email_error']); die();
             //make sure errors are empty
             if (empty($data['email_error'])) {
                 //validated
                 //generate token
-                $token = bin2hex(random_bytes(50));
+                try {
+                    $token = bin2hex(random_bytes(50));
+                } catch (\Exception $e) {
+                }
                 //save token to database
-                $this->userModel->saveToken($data['email'], $token);
+                $this->tokenModel->insertToken($data['email'], $token);
                 //send email
                 $mail = new PHPMailer(true);
                 try {
@@ -199,30 +201,59 @@ class Users extends Controller
                     $mail->Password = 'fwcmyyxeepdteraz';                     // SMTP password
                     $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                     $mail->Port = 587;                                          // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+                    $signImg = 'https://user-images.githubusercontent.com/73392859/275767611-5cc355c2-542e-4151-8200-af4d9ac38da5.png';
                     //Recipients
                     $mail->setFrom('normal2002.dev@gmail.com', 'Admin');
                     $mail->addAddress($data['email']);                                  // Add a recipient
                     // Content
                     $mail->isHTML(true);                                        // Set email format to HTML
                     $mail->Subject = 'Reset Password';
-                    $mail->Body = '<p>Please click the link below to reset your password</p>
-                    <a href="http://localhost:8080/users/reset-password?email=' . $data['email'] . '&token=' . $token . '">Reset Password</a>';
+                    $mail->Body = '<h2>We received a request to reset your Muzic Weeb account password.</h2>
+                     <p>Click the button below to reset your password:</p>
+                    <h3><a href="' . URLROOT . '/users/reset-password?email=' . $data['email'] . '&token=' . $token . '">Reset Password</a></h3>
+                    <p>If you didn’t submit a request to reset your password, contact our team immediately at support@ulsait.com</p>
+                    <h4>The link is valid for 1 hour, please change your password fast</h4>
+                    <img src="' . $signImg . '" alt="email_signature">';
                     $mail->send();
-                    flash('sent_password_reset', 'Pleas e check your email to reset password');
+                    flash('sent_password_reset', 'Please check your email to reset password');
                     $this->view('users/forgot-password', $data);
                 } catch (Exception $e) {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    //show an js alert
+                    echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
                 }
             } else {
                 $this->view('users/forgot-password', $data);
             }
         } else {
+            //init data
             $data = [
                 'email' => trim($_POST['email'] ?? ''),
                 'email_error' => '',
             ];
             $this->view('users/forgot-password', $data);
         }
+    }
+
+    public function resetPassword()
+    {
+        //get email & token from url
+        $data = [
+            'email' => trim($_GET['email']),
+            'token' => trim($_GET['token']),
+            'error' => '',
+        ];
+        //check if user exists in database
+        if (!$this->userModel->getUserByEmail($data['email'])) {
+            $data['error'] = 'This link is invalid, are you trying to hack my website???';
+        } elseif (!$this->tokenModel->validateEmailToken($data['email'], $data['token'])) {
+            $data['error'] = 'This link is invalid, are you trying to hack my website???';
+        }elseif ($this->tokenModel->isExpiredToken($data['email'], $data['token'])) {
+            $data['error'] = 'This link is expired';
+        }
+        if (empty($data['error'])) {
+
+        }
+        return $this->view('users/reset-password', $data);
     }
 
     public function createUserSession($user)
@@ -249,7 +280,9 @@ class Users extends Controller
         //redirect to home
         redirect('pages/index');
     }
-    public function demo() {
-        $this->view('users/demo');
+
+    public function demo()
+    {
+        $this->view('errors/404');
     }
 }
