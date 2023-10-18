@@ -18,7 +18,7 @@ class  Admins extends Controller
     public function user()
     {
         $data = [
-            'listUser' => $this->userModel->getAllUser(),
+            'listUser' => $this->adminModel->getAllUsers(),
         ];
         $this->view('admin/user', $data);
     }

@@ -64,7 +64,7 @@ class Admin
         }
     }
     public function getAllUsers() {
-        $this->db->query("SELECT * FROM users WHERE role = 'user'");
+        $this->db->query("SELECT * FROM users");
         $results = $this->db->resultSet();
         return $results;
     }
