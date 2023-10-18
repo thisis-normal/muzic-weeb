@@ -48,6 +48,7 @@ require APPROOT . '/views/admin/index.php';
                             <th>Album</th>
                             <th>Genre</th>
                             <th>File path</th>
+                            <th>Status</th>
                             <th>Action</th>
 
                         </tr>
@@ -62,6 +63,8 @@ require APPROOT . '/views/admin/index.php';
                             <td> </td>
                             <td>Nhạc trẻ</td>
                             <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
+                            <td>Wait</td>
+
 
                             <td>
                                 <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
