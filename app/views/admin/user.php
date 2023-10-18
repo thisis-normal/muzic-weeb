@@ -99,13 +99,10 @@ require APPROOT . '/views/admin/index.php';
                                 <td><?= $user->email ?></td>
                                 <td class="limit-text"><?= $user->password ?></td>
                                 <td align="center"><?= $user->regis_date ?></td>
-                                <td>
-                                    <div><input type="checkbox" id="ni" <?php if ($user->is_premium == 0) {
-                                                                            echo "checked";
-                                                                        } else {
-                                                                            echo "";
-                                                                        } ?>>
-                                        <label for="ni" class="ni"></label>
+                                <td align="center">
+                                    <div> <?php
+                                            echo "$user->is_premium";
+                                            ?>
                                     </div>
                                 </td>
                                 <td><?= $user->role ?></td>
