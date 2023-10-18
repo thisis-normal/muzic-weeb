@@ -236,27 +236,64 @@ class Users extends Controller
 
     public function resetPassword()
     {
-        //get email & token from url
-        $data = [
-            'email' => trim($_GET['email']),
-            'token' => trim($_GET['token']),
-            'error' => '',
-        ];
-        var_dump($data['email']); die();
-        //check if user exists in database
-        if (!$this->userModel->getUserByEmail($data['email'])) {
-            $data['error'] = 'This link is invalid, are you trying to hack my website???';
-        } elseif (!$this->tokenModel->validateEmailToken($data['email'], $data['token'])) {
-            $data['error'] = 'This link is invalid, are you trying to hack my website???';
-        }elseif ($this->tokenModel->isExpiredToken($data['email'], $data['token'])) {
-            $data['error'] = 'This link is expired';
+        //validate token though url using get method
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $data = [
+                'email' => trim($_GET['email']),
+                'token' => trim($_GET['token']),
+                'errorURL' => '',
+            ];
+            //check if user exists in database
+            if (!$this->userModel->getUserByEmail($data['email'])) {
+                $data['errorURL'] = 'This link is invalid, are you trying to hack my website???';
+            } elseif (!$this->tokenModel->validateEmailToken($data['email'], $data['token'])) {
+                $data['errorURL'] = 'This link is invalid, are you trying to hack my website???';
+            } elseif ($this->tokenModel->isExpiredToken($data['email'], $data['token'])) {
+                $data['errorURL'] = 'This link is expired';
+            } elseif ($this->tokenModel->isUsedToken($data['email'], $data['token'])) {
+                $data['errorURL'] = 'This link is used, please request a new one';
+            }
+            if (!empty($data['errorURL'])) {
+                return $this->view('errors/404', $data);
+            } else {
+                return $this->view('users/reset-password', $data);
+            }
         }
-        if (empty($data['error'])) {
+    }
 
-        } else {
-            $this->view('users/reset-password', $data);
+    public function updatePassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $data = [
+                'email' => trim($_POST['email']),
+                'token' => trim($_POST['token']),
+                'password' => trim($_POST['password']),
+                'confirm_password' => trim($_POST['confirm_password']),
+                'password_error' => '',
+            ];
+            //validate password
+            $generalObj = new GeneralController();
+            $data['password_error'] = $generalObj->validatePassword($data['password']);
+            if (!$data['password']) {
+                $data['password_error'] = 'Please enter password';
+            } elseif (!$data['confirm_password']) {
+                $data['password_error'] = 'Please enter confirm password ';
+            } elseif ($data['password'] != $data['confirm_password']) {
+                $data['password_error'] = 'Password does not match';
+            }
+            if (empty($data['password_error'])) {
+                //hash password
+                $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+                //update password
+                $this->userModel->updatePassword($data['email'], $data['password']);
+                //delete token
+                $this->tokenModel->updateTokenStatus($data['email'], $data['token'], 'used');
+                flash('reset_password_success', 'Your password has been changed');
+                redirect('users/login');
+            } else {
+                $this->view('users/reset-password', $data);
+            }
         }
-        return $this->view('users/reset-password', $data);
     }
 
     public function createUserSession($user)

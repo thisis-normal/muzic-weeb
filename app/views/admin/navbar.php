@@ -7,7 +7,7 @@
     </a>
     <ul class="side-menu top">
         <li class="active">
-            <a href="#" data-tab="dashboard-tab">
+            <a href="<?= URLROOT ?>/admins/dashboard" data-tab="dashboard-tab">
                 <i class="bx bxs-dashboard"></i>
                 <span class="text">Dashboard</span>
             </a>

@@ -105,4 +105,16 @@ class User
             return false;
         }
     }
+    public function updatePassword($email, $password) {
+        $this->db->query("UPDATE users SET password = :password WHERE email = :email");
+        //Bind values
+        $this->db->bind(':email', $email);
+        $this->db->bind(':password', $password);
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,40 +1,36 @@
-<!doctype html>
+<?php /** @var array $data */ ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="<?= URLROOT ?>/public/css/index/style.css"/>
+    <title>Register</title>
 </head>
+
 <body>
-HELLo
-    <?php if (!empty($data['error'])) : ?>
-    <h1 style="color: red"><?= $data['error'] ?></h1>
-    <?php endif; ?>
-    <form action="" method="post">
-    <div class="header">
-        <h1 style="color: #1fdf64; text-align: center"><?php flash('register_success') ?></h1>
-    </div>
-    <div class="login">
-        <h1 class="login_title">Reset password</h1>
+<form action="<?= URLROOT ?>/users/update-password" method="post">
+    <div class="header"></div>
+    <div class="signup">
+        <h1 class="signup_title">Reset your password</h1> <br><br><br>
         <div class="form">
-            
-            <div class="formpassword flex">
-                <label for="txtpassword">Password</label>
-                <input type="password" id="txtpassword" name="password" placeholder="Password"value="">
-                      
+            <div class="formusername flex">
+                <label for="txtusername">Enter new password</label>
+                <input type="text" id="txtusername" name="password" placeholder="Enter new password"/>
             </div>
             <div class="formpassword flex">
-                <label for="txtpassword">Password</label>
-                <input type="password" id="txtpassword" name="password" placeholder="Password"
-                       value="">
+                <label for="txtpassword">Confirm your password</label>
+                <input type="password" id="txtpassword" name="confirm_password" placeholder="Confirm your password"/>
+                <?php if (!empty($data['password_error'])) : ?>
+                    <span class="invalid-feedback"><?= $data['password_error'] ?></span>
+                <?php endif; ?>
             </div>
-           
-            <button type="submit">Create</button>
+            <?php if (!empty($data['email']) && !empty($data['token'])) : ?>
+                <input type="hidden" name="email" value="<?=$data['email']?>">
+                <input type="hidden" name="token" value="<?=$data['token']?>">
+            <?php endif; ?>
+            <button type="submit">Update password</button>
         </div>
-       
     </div>
 </form>
 </body>

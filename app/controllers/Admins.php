@@ -11,6 +11,10 @@ class  Admins extends Controller
     {
         $this->view('admin/index'); //load view inside views/admin/index.php
     }
+    public function dashboard()
+    {
+        $this->view('admin/dashboard');
+    }
     public function user()
     {
         $data = [
