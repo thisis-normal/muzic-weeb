@@ -7,6 +7,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 /* index */
+.mainindex {
+  display: flex;
+  flex-wrap: wrap;
+}
 .sidebar {
   position: fixed;
   left: 0;
@@ -76,18 +80,22 @@ body {
 .main-container {
   padding: 8px;
   margin-left: 245px;
-  margin-bottom: 100px;
+  margin-top: 78px;
   border-radius: 10px;
   background-color: #000;
   /* overflow-y: auto; */
   height: 100vh;
   max-height: calc(100vh - 56px);
 }
-
+#mainContent {
+  /* overflow-y: auto; */
+  height: 100vh;
+  max-height: calc(100vh - 56px);
+}
 .topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  left: 0;
+
   right: 0;
   display: flex;
   align-items: center;

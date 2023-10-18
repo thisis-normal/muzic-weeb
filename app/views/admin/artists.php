@@ -74,10 +74,10 @@ require APPROOT . '/views/admin/index.php';
                     <textarea name="biography" id="biography" placeholder="Your bio here!" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-controlGroup-inputWrapper">
-                    <label class="form-input form-input--file">
-                        <input class="form-input-file" type="file" id="file" name="image" accept="image/*" size="14" />
+                    <label class="form-input form-input--file file_update">
+                        <input class="form-input-file" type="file" id="file" accept="image/*" size="14" />
                         <span class="form-input--file-button">Image</span>
-                        <span class="form-input--file-text">Choose avatar</span>
+                        <input type="text" class="form-input--file-text" data-field="image" value="Choose file...">
                     </label>
                 </div>
                 <div>
