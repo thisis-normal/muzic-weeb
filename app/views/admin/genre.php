@@ -45,7 +45,7 @@ require APPROOT . '/views/admin/index.php';
                             </td>
                             <td>aaaaaaaaaaaaaaaaaaaaaaa</td>
                             <td>
-                                <a href="" class="delete-user" data-user=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                <a href="#" class="delete-user" data-delete="aaaaaaaaaaaaaaaaaaaaaaa" data-delete-href="<?= URLROOT ?>/backend"><i class='bx bx-trash' style='color:#fb0004'></i></a>
                                 <a href="" class="edit-button btnpopup" data-form="form_update_genre" data-genrename="aaaaaaaaaaaaaaaaaaaaaaa"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>

@@ -165,27 +165,32 @@ fileInputs.forEach(fileInput => {
     });
 })
 
+function handleDeleteUser(userId, userHref) {
+    Swal.fire({
+        title: `Do you want to delete '${userId}'?`,
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonText: 'Delete',
+        denyButtonText: `Cancel`,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = userHref;
+        } else if (result.isDenied) {
+            Swal.fire('Del  etion canceled', '', 'info');
+        }
+    });
+}
+
 const deleteButtons = document.querySelectorAll(".delete-user");
 deleteButtons.forEach(deleteButton => {
     deleteButton.addEventListener('click', (event) => {
         event.preventDefault();
-        const userName = deleteButton.getAttribute("data-user");
-        const URLROOT = 'http://localhost:2002/muzic-weeb'
-        Swal.fire({
-            title: `Do you want to delete ${userName}?`,
-            icon: 'error',
-            showCancelButton: true,
-            confirmButtonText: 'Delete',
-            denyButtonText: `Cancel`,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = URLROOT + '/user-management/delete-user/?username=' + userName;
-            } else if (result.isDenied) {
-                Swal.fire('Deletion canceled', '', 'info')
-            }
-        });
+        const userId = deleteButton.getAttribute("data-delete");
+        const userHref = deleteButton.getAttribute("data-delete-href");
+        handleDeleteUser(userId, userHref); // Gọi hàm xử lý xóa
     });
 });
+
 //frontend
 
 function loadContent(url, event) {

@@ -100,13 +100,13 @@ require APPROOT . '/views/admin/index.php';
                                 <td class="limit-text"><?= $user->password ?></td>
                                 <td align="center"><?= $user->regis_date ?></td>
                                 <td>
-                                    <div><input type="checkbox" id="ni">
+                                    <div><input type="checkbox" id="ni" checked>
                                         <label for="ni" class="ni"></label>
                                     </div>
                                 </td>
                                 <td><?= $user->role ?></td>
                                 <td>
-                                    <a href="<?= URLROOT ?>/user-management/delete-user?username=<?= $user->username ?>" class="delete-user" data-user="<?= $user->username ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                    <a href="#" class="delete-user" data-delete="<?= $user->username ?>" data-delete-href="<?= URLROOT ?>/user-management/delete-user?username=<?= $user->username ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
                                     <a href="<?= URLROOT ?>/user-management/update-user?username=<?= $user->username ?>" class="edit-button btnpopup" data-form="form_update_user" data-user="<?= $user->username ?>" data-email="<?= $user->email ?>" data-pass="<?= $user->password ?>" data-role="<?= $user->role ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
                             </tr>

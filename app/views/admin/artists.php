@@ -59,7 +59,7 @@ require APPROOT . '/views/admin/index.php';
                             <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
 
                             <td>
-                                <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                <a href="#" class="delete-user" data-delete="Erik" data-delete-href="<?= URLROOT ?>/backend>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
                                 <a href="" class="edit-button btnpopup" data-form="form_update_artist" data-artistname="Erik" data-biography="6/4/2002" data-image="http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>

@@ -64,7 +64,7 @@ require APPROOT . '/views/admin/index.php';
                             <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
 
                             <td>
-                                <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                <a href="#" class="delete-user" data-delete="anh khạc hay em khạc" data-delete-href="<?= URLROOT ?>/backend ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
                                 <a href=""><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
