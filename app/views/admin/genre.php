@@ -16,7 +16,7 @@ require APPROOT . '/views/admin/index.php';
                     </li>
                 </ul>
             </div>
-            <a href="#" class="btn-create">
+            <a href="#" class="btn-create user btnpopup" data-form="form_create_genre">
                 <i class='bx bx-plus'></i>
                 <span class="text">Genre Create</span>
             </a>
@@ -45,8 +45,8 @@ require APPROOT . '/views/admin/index.php';
                             </td>
                             <td>aaaaaaaaaaaaaaaaaaaaaaa</td>
                             <td>
-                                <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href=""><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                <a href="" class="delete-user" data-user=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                <a href="" class="edit-button btnpopup" data-form="form_update_genre" data-genrename="aaaaaaaaaaaaaaaaaaaaaaa"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
 
@@ -55,6 +55,38 @@ require APPROOT . '/views/admin/index.php';
             </div>
 
         </div>
+        <!-- create user form -->
+        <form id="data-form" action="" method="post">
+            <div class="form_create popup form_create_genre">
+                <h1>Create genre</h1>
+                <br>
+                <div>
+                    <input type="text" id="genrename" name="" placeholder="genrename" required />
+
+                </div>
+
+
+                <div>
+
+                    <button id="save-button">Create genre</button>
+                </div>
+            </div>
+        </form>
+        <!-- update form -->
+        <form action="" method="post">
+            <div class="form_update popup form_update_genre">
+                <h1>Update genre</h1>
+                <br>
+                <div>
+                    <input type="text" id="" name="" data-field="genrename" placeholder="Genrename" required />
+
+                </div>
+
+                <div>
+                    <button id="save-button">Update Genre</button>
+                </div>
+            </div>
+        </form>
     </main>
 </div>
 </section>
