@@ -8,6 +8,8 @@
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/index/style.css">
     <script src="<?php echo URLROOT ?>/public/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
 
 </head>
 
@@ -18,17 +20,17 @@
         <button type="button" class="fa fas fa-chevron-left"></button>
         <button type="button" class="fa fas fa-chevron-right"></button>
     </div>
-    <i class="fas fa-magnifying-glass"></i>
-    <i class="fa-magnifying-glass" style="color: #ffffff;"></i>
-    <div class="search">
+    <!-- <i class="fas fa-magnifying-glass"></i>
+    <i class="fa-magnifying-glass" style="color: #ffffff;"></i> -->
+    <!-- <div class="search">
         <input type="text">
-    </div>
+    </div> -->
     <div class="user">
         <!--        <img src="--><?php //echo URLROOT 
                                     ?><!--/public/img/avt.jpg" alt="Avatar">-->
         <!--        <span class="username">--><?php //echo $_SESSION['username'] 
                                                 ?><!--</span>-->
-        <i class="fas fa-chevron-down"></i>
+        <!-- <i class="fas fa-chevron-down"></i> -->
     </div>
     <!--        check session-->
     <?php if (!isUserLoggedIn()) : ?>

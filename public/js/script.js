@@ -117,23 +117,35 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+var timer;
+var userLoggedIn;
 
 function openPage(url) {
-
     if (timer != null) {
         clearTimeout(timer);
     }
 
-    if (url.indexOf("?") == -1) {
-        url = url + "?";
-    }
+    var encodedUrl = encodeURI(url);
+    console.log(encodedUrl);
 
-    var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
-    console.log("")
-    $("#mainContent").load(encodedUrl);
-    $("body").scrollTop(0);
-    history.pushState(null, null, url);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", encodedUrl, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // Trang đã được tải thành công, cập nhật lịch sử trình duyệt
+                document.getElementById("mainContent").innerHTML = xhr.responseText;
+                document.body.scrollTop = 0;
+                history.pushState(null, null, url);
+            } else {
+                // Xử lý lỗi tải trang
+                console.log("Error loading page: " + url);
+            }
+        }
+    };
+    xhr.send();
 }
+
 // tab
 // const activenav = document.querySelector(".activenav");
 
@@ -184,8 +196,9 @@ btnpopups.forEach(btnpopup => {
 var fileInputs = document.querySelectorAll('.form-input-file');
 fileInputs.forEach(fileInput => {
     fileInput.addEventListener('change', function (e) {
-        console.log(fileInput.className);
-        const fileInputText = document.querySelector('.file_update >.form-input--file-text');
+        console.log(fileInput.parentElement);
+        const fileInputText = fileInput.parentElement.querySelector('.form-input--file-text');
+
         console.log(fileInputText);
         var value = e.target.value.length > 0 ? e.target.value : fileInputTextContent;
         fileInputText.value = value.replace('C:\\fakepath\\', '');

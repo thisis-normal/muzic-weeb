@@ -84,10 +84,10 @@ require APPROOT . '/views/admin/index.php';
 
                 </div>
                 <div class="form-controlGroup-inputWrapper">
-                    <label class="form-input form-input--file">
+                    <label class="form-input form-input--file file_update">
                         <input class="form-input-file" type="file" id="file" accept="image/*" size="14" />
                         <span class="form-input--file-button">Image</span>
-                        <span class="form-input--file-text">Choose file..</span>
+                        <input type="text" class="form-input--file-text" data-field="image" value="Choose file...">
                     </label>
                 </div>
 
