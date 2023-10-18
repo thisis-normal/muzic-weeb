@@ -67,7 +67,7 @@ require APPROOT . '/views/admin/index.php';
                     </li>
                 </ul>
             </div>
-            <a href="#" class="btn-create user btnpopup" data-form="form_create_user">
+            <a href="#" class="btn-create btnpopup" data-form="form_create_user">
                 <i class='bx bx-plus'></i>
                 <span class="text">Create User</span>
             </a>
