@@ -117,4 +117,15 @@ class User
             return false;
         }
     }
+    public function deleteUser($username) {
+        $this->db->query("DELETE FROM users WHERE username = :username");
+        //Bind values
+        $this->db->bind(':username', $username);
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

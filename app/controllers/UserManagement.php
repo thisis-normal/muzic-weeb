@@ -89,16 +89,15 @@ class  UserManagement extends Controller
         var_dump('update user');
     }
 
-    public function deleteUser($username)
+    public function deleteUser()
     {
-        $data = [
-            'username' => trim($_GET['username']),
-            'username_error' => '',
-        ];
-        //validate username
-        $generalObj = new GeneralController;
-        $data['username_error'] = $generalObj->validateUsername($username);
-        var_dump($data['username_error']);
+        $username = trim($_GET['username']);
+        if ($this->userModel->deleteUser($username)) {
+            flash('delete_success', 'User deleted');
+            redirect('admins/user');
+        } else {
+            die('Something went wrong');
+        }
     }
     public function listUser()
     {
