@@ -97,15 +97,43 @@ window.addEventListener('resize', function () {
         searchForm.classList.remove('show');
     }
 })
-const switchMode = document.getElementById('switch-mode');
+document.addEventListener('DOMContentLoaded', function () {
+    const switchMode = document.getElementById('switch-mode');
+    const isDarkMode = sessionStorage.getItem('darkMode') === 'true';
+    switchMode.checked = isDarkMode;
+    applyDarkMode(isDarkMode);
 
-switchMode.addEventListener('change', function () {
-    if (this.checked) {
-        document.body.classList.add('dark');
-    } else {
-        document.body.classList.remove('dark');
+    switchMode.addEventListener('change', function () {
+        const isChecked = this.checked;
+        applyDarkMode(isChecked);
+        sessionStorage.setItem('darkMode', isChecked ? 'true' : 'false');
+    });
+
+    function applyDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
     }
-})
+});
+
+function openPage(url) {
+
+    if (timer != null) {
+        clearTimeout(timer);
+    }
+
+    if (url.indexOf("?") == -1) {
+        url = url + "?";
+    }
+
+    var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
+    console.log("")
+    $("#mainContent").load(encodedUrl);
+    $("body").scrollTop(0);
+    history.pushState(null, null, url);
+}
 // tab
 // const activenav = document.querySelector(".activenav");
 

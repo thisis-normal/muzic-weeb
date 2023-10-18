@@ -14,7 +14,7 @@ if (!isset($_SESSION['admin_id'])) {
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
-<body class="dark">
+<body>
     <?php require APPROOT . '/views/admin/navbar.php'; ?>
     <section id="content">
         <nav>
@@ -28,7 +28,7 @@ if (!isset($_SESSION['admin_id'])) {
                     </button>
                 </div>
             </form>
-            <input type="checkbox" id="switch-mode" hidden checked />
+            <input type="checkbox" id="switch-mode" hidden />
             <label for="switch-mode" class="switch-mode"></label>
             <a href="#" class="notification">
                 <i class="bx bxs-bell"></i>

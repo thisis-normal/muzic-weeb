@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Premium Plan</title>
     <style>
@@ -73,8 +72,7 @@
     <h1>Payment</h1>
     <div id="paypal-button-container" style="max-width:1000px;"></div>
     <p id="result-message"></p>
-    <script
-        src="https://www.paypal.com/sdk/js?client-id=ASGrPQD3Kl5Ju4m60cmOUF3srF__aWev3fERnjxYENaMZMQcPfK_SyjRcM6sBqLMnXXfr-YW22Ls-wCM&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ASGrPQD3Kl5Ju4m60cmOUF3srF__aWev3fERnjxYENaMZMQcPfK_SyjRcM6sBqLMnXXfr-YW22Ls-wCM&currency=USD"></script>
     <script>
         paypal.Buttons({
             onClick() {
@@ -87,7 +85,7 @@
                 label: 'paypal',
                 height: 50
             },
-            createOrder: function (data, actions) {
+            createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
@@ -97,9 +95,10 @@
                     }]
                 });
             },
-            onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
                     console.log(details);
+
                     // Succesful capture for dev/demo purpose
                     // console.log('Capture result', details, JSON.stringify(details, null, 2));
                     // const transaction = details.purchase_units[0].payment.captures[0];
