@@ -1,5 +1,7 @@
 <?php
-class User {
+
+class User
+{
     private $db;
 
     public function __construct()
@@ -7,8 +9,19 @@ class User {
         $this->db = new Database;
     }
 
+    public function getAllUser()
+    {
+        $this->db->query("SELECT * FROM users WHERE role = 'user'");
+        if ($this->db->execute()) {
+            return $this->db->resultSet();
+        } else {
+            return false;
+        }
+    }
+
     //Find user by email
-    public function getUserByEmail($email) {
+    public function getUserByEmail($email)
+    {
         $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user'");
         //Bind value
         $this->db->bind(':email', $email);
@@ -20,7 +33,9 @@ class User {
             return false;
         }
     }
-    public function getUserByUsername($username) {
+
+    public function getUserByUsername($username)
+    {
         $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user'");
         //Bind value
         $this->db->bind(':username', $username);
@@ -34,7 +49,8 @@ class User {
     }
 
     //REGISTER FUNCTION
-    public function insertUser($data) {
+    public function insertUser($data)
+    {
         $this->db->query("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         //Bind values
         $this->db->bind(':username', $data['username']);
@@ -48,7 +64,9 @@ class User {
             return false;
         }
     }
-    public function getUserById($id) {
+
+    public function getUserById($id)
+    {
         $this->db->query("SELECT * FROM users WHERE id = :id AND role = 'user'");
         //Bind value
         $this->db->bind(':id', $id);
@@ -56,7 +74,8 @@ class User {
         return $row;
     }
 
-    public function loginEmail($email, $password) {
+    public function loginEmail($email, $password)
+    {
         $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user'");
         //Bind value
         $this->db->bind(':email', $email);
@@ -68,12 +87,14 @@ class User {
             return false;
         }
     }
-    public function loginUsername($username, $password) {
+
+    public function loginUsername($username, $password)
+    {
         $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user'");
         //Bind value
         $this->db->bind(':username', $username);
         $row = $this->db->single();
-        if($row !== false){
+        if ($row !== false) {
             $hashed_password = $row->password;
         } else {
             return false;

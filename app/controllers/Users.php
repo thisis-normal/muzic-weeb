@@ -242,6 +242,7 @@ class Users extends Controller
             'token' => trim($_GET['token']),
             'error' => '',
         ];
+        var_dump($data['email']); die();
         //check if user exists in database
         if (!$this->userModel->getUserByEmail($data['email'])) {
             $data['error'] = 'This link is invalid, are you trying to hack my website???';
@@ -252,6 +253,8 @@ class Users extends Controller
         }
         if (empty($data['error'])) {
 
+        } else {
+            $this->view('users/reset-password', $data);
         }
         return $this->view('users/reset-password', $data);
     }

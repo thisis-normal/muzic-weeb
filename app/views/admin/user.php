@@ -72,8 +72,6 @@ require APPROOT . '/views/admin/index.php';
                 <span class="text">Create User</span>
             </a>
         </div>
-
-
         <div class="table-data">
             <div class="order">
                 <!-- <div class="head">
@@ -83,119 +81,142 @@ require APPROOT . '/views/admin/index.php';
             </div> -->
                 <table>
                     <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Register date</th>
-                            <th>Premium</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Register date</th>
+                        <th>Premium</th>
+                        <th>Role</th>
+                        <th>Action</th>
 
-                        </tr>
+                    </tr>
                     </thead>
-                    <tbody>
+                    <?php foreach ($data['listUser'] as $user) : ?>
+                        <tbody>
                         <tr>
-                            <td>Erik</td>
-                            <td>Chungvvvv@gmail.com</td>
-                            <td>chung</td>
-                            <td>06/04/2002</td>
+                            <td><?= $user->username ?></td>
+                            <td><?= $user->email ?></td>
+                            <td><?= $user->password ?></td>
+                            <td><?= $user->regis_date ?></td>
                             <td>
                                 <div><input type="checkbox" id="ni">
                                     <label for="ni" class="ni"></label>
                                 </div>
                             </td>
-                            <td>user</td>
+                            <td><?= $user->role ?></td>
                             <td>
-                                <a href="" class="delete-user" data-user="Erik"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href="" class="edit-button btnpopup" data-form="form_update_user" data-user="Erik" data-email="Chungvvvv@gmail.com" data-pass="chung" data-role="Admin"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                <a href="<?= URLROOT ?>/user-management/delete-user?username=<?= $user->username ?>"
+                                   class="delete-user" data-user="<?= $user->username ?>"><i class='bx bx-trash'
+                                                                                             style='color:#fb0004'></i></a>
+                                <a href="<?= URLROOT ?>/user-management/update-user?username=<?= $user->username ?>"
+                                   class="edit-button btnpopup" data-form="form_update_user"
+                                   data-user="<?= $user->username ?>" data-email="<?= $user->email ?>"
+                                   data-pass="<?= $user->password ?>" data-role="<?= $user->role ?>"><i
+                                            class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
+                        </tbody>
+                    <?php endforeach; ?>
+                    <tbody>
+                    <tr>
+                        <td>Erik</td>
+                        <td>Chungvvvv@gmail.com</td>
+                        <td>chung</td>
+                        <td>06/04/2002</td>
+                        <td>
+                            <div><input type="checkbox" id="ni">
+                                <label for="ni" class="ni"></label>
+                            </div>
+                        </td>
+                        <td>user</td>
+                        <td>
+                            <a href="" class="delete-user" data-user="Erik"><i class='bx bx-trash'
+                                                                               style='color:#fb0004'></i></a>
+                            <a href="" class="edit-button btnpopup" data-form="form_update_user" data-user="Erik"
+                               data-email="Chungvvvv@gmail.com" data-pass="chung" data-role="Admin"><i
+                                        class='bx bxs-edit' style='color:#0042fb'></i></a>
+                        </td>
+                    </tr>
 
                     </tbody>
                 </table>
             </div>
 
         </div>
-        <!-- form create -->
-
-    <form id="data-form" action="<?= URLROOT ?>/user-management/create-user" method="post">
-        <div class="form_create popup form_create_user">
-            <h1>Create user</h1>
-            <br>
-            <div>
-                <input type="text" id="username" name="username" placeholder="Username" required/>
-                <?php if (!empty($data['username_error'])) : ?>
-                    <!--    <span class="invalid-feedback">--><?php //= $data['username_error'] ?><!--</span>-->
-                    <script>
-                        alert("<?= $data['username_error'] ?>")
-                    </script>
-                <?php endif; ?>
-            </div>
-            <div>
-                <input type="email" id="email" name="email" placeholder="Email" required/>
-                <?php if (!empty($data['email_error'])) : ?>
-                    <span class="invalid-feedback"><?= $data['email_error'] ?></span>
-                <?php endif; ?>
-            </div>
-            <div>
-                <input type="password" id="password" name="password" placeholder="Password" required/>
-                <?php if (!empty($data['password_error'])) : ?>
-                    <span class="invalid-feedback"><?= $data['password_error'] ?></span>
-                <?php endif; ?>
-            </div>
-            <div>
-                <select name="role" id="">
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-            <div>
-
-                <button id="save-button">Create Account</button>
-            </div>
-        </div>
-    </form>
-    <!-- update form -->
-    <form>
-        <div class="form_update popup form_update_user">
-            <h1>Update user</h1>
-            <br>
-            <div>
-                <input type="text" id="username" name="username" placeholder="Username" value="<?= $data['username'] ?>"
-                       required/>
-                <?php if (!empty($data['username_error'])) : ?>
-                    <span class="invalid-feedback"><?= $data['username_error'] ?></span>
-                <?php endif; ?>
-                <script>
-                    alert("<?= $data['username_error'] ?>")
-                </script>
-            </div>
-            <div>
-                <input type="email" id="email" name="email" placeholder="Email" value="<?= $data['email'] ?>" required/>
-                <?php if (!empty($data['email_error'])) : ?>
-                    <span class="invalid-feedback"><?= $data['email_error'] ?></span>
-                <?php endif; ?>
-            </div>
-            <div>
-                <input type="password" id="password" name="password" placeholder="Password"
-                       value="<?= $data['password'] ?>" required/>
-                <?php if (!empty($data['password_error'])) : ?>
-                    <span class="invalid-feedback"><?= $data['password_error'] ?></span>
-                <?php endif; ?>
-            </div>
-            <div>
-                <select name="role" id="role" data-field="role">
-                    <option value="user">User</option>
-                    <option value="dmin">Admin</option>
-                </select>
-            </div>
-            <div>
-
-                    <button id="save-button">Update Account</button>
-
+        <!-- create user form -->
+        <form id="data-form" action="<?= URLROOT ?>/user-management/create-user" method="post">
+            <div class="form_create popup form_create_user">
+                <h1>Create user</h1>
+                <br>
+                <div>
+                    <input type="text" id="username" name="username" placeholder="Username" required/>
+                    <?php if (!empty($data['username_error'])) : ?>
+                        <!--    <span class="invalid-feedback">--><?php //= $data['username_error'] ?><!--</span>-->
+                        <script>
+                            alert("<?= $data['username_error'] ?>")
+                        </script>
+                    <?php endif; ?>
                 </div>
+                <div>
+                    <input type="email" id="email" name="email" placeholder="Email" required/>
+                    <?php if (!empty($data['email_error'])) : ?>
+                        <span class="invalid-feedback"><?= $data['email_error'] ?></span>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <input type="password" id="password" name="password" placeholder="Password" required/>
+                    <?php if (!empty($data['password_error'])) : ?>
+                        <span class="invalid-feedback"><?= $data['password_error'] ?></span>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <select name="role" id="">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div>
 
+                    <button id="save-button">Create Account</button>
+                </div>
+            </div>
+        </form>
+        <!-- update form -->
+        <form action="<?= URLROOT ?>/user-management/update-user" method="post">
+            <div class="form_update popup form_update_user">
+                <h1>Update user</h1>
+                <br>
+                <div>
+                    <input type="text" id="username" name="username" placeholder="Username" required/>
+                    <?php if (!empty($data['username_error'])) : ?>
+                        <span class="invalid-feedback"><?= $data['username_error'] ?></span>
+                        <script>
+                            alert("<?= $data['username_error'] ?>")
+                        </script>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <input type="email" id="email" name="email" placeholder="Email" required/>
+                    <?php if (!empty($data['email_error'])) : ?>
+                        <span class="invalid-feedback"><?= $data['email_error'] ?></span>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <input type="password" id="password" name="password" placeholder="Password" required/>
+                    <?php if (!empty($data['password_error'])) : ?>
+                        <span class="invalid-feedback"><?= $data['password_error'] ?></span>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <select name="role" id="role" data-field="role">
+                        <option value="user">User</option>
+                        <option value="dmin">Admin</option>
+                    </select>
+                </div>
+                <div>
+                    <button id="save-button">Update Account</button>
+                </div>
             </div>
         </form>
     </main>

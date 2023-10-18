@@ -51,21 +51,23 @@ class  UserManagement extends Controller
             if (empty($data['role'])) {
                 $data['role_error'] = 'Please enter role';
             }
+//            var_dump($data); die();
             //make sure errors are empty
             if (empty($data['username_error']) && empty($data['email_error']) && empty($data['password_error']) && empty($data['role_error'])) {
                 //validated
                 //hash password
-                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
                 //register user
                 if ($this->adminModel->createUser($data['username'], $data['email'], $data['password'], $data['role'])) {
-                    flash('register_success', 'You are registered and can log in');
-                    $this->view('admin/user', $data);
+                    flash('register_success', 'User registered');
+                    //pass data to view
+
+                    redirect('admins/user');
                 } else {
                     die('Something went wrong');
                 }
             } else {
-                //load view with errors
-                $this->view('admin/user', $data);
+                redirect('admins/user');
             }
         } else {
             //init data
@@ -80,8 +82,23 @@ class  UserManagement extends Controller
                 'role_error' => '',
             ];
             //load view
-            $this->view('admin/index', $data);
+            $this->view('admin/user', $data);
         }
+    }
+    public function updateUser($username) {
+        var_dump('update user');
+    }
+
+    public function deleteUser($username)
+    {
+        $data = [
+            'username' => trim($_GET['username']),
+            'username_error' => '',
+        ];
+        //validate username
+        $generalObj = new GeneralController;
+        $data['username_error'] = $generalObj->validateUsername($username);
+        var_dump($data['username_error']);
     }
     public function listUser()
     {

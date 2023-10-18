@@ -170,7 +170,7 @@ deleteButtons.forEach(deleteButton => {
     deleteButton.addEventListener('click', (event) => {
         event.preventDefault();
         const userName = deleteButton.getAttribute("data-user");
-
+        const URLROOT = 'http://localhost:2002/muzic-weeb'
         Swal.fire({
             title: `Do you want to delete ${userName}?`,
             icon: 'error',
@@ -179,8 +179,7 @@ deleteButtons.forEach(deleteButton => {
             denyButtonText: `Cancel`,
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '<?= URLROOT ?>/backend'; //php 
-
+                window.location.href = URLROOT + '/user-management/delete-user/?username=' + userName;
             } else if (result.isDenied) {
                 Swal.fire('Deletion canceled', '', 'info')
             }
