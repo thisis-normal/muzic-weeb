@@ -694,6 +694,12 @@ hr {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.limit-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px; /* Điều chỉnh giới hạn chiều rộng */
+}
 
 .form-input-file {
   opacity: 0;

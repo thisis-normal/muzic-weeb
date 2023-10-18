@@ -9,7 +9,7 @@ class  Admins extends Controller
     }
     public function index()
     {
-        $this->view('admin/index'); //load view inside views/admin/index.php
+        $this->view('admin/dashboard'); //load view inside views/admin/index.php
     }
     public function dashboard()
     {
@@ -29,5 +29,13 @@ class  Admins extends Controller
     public function song()
     {
         $this->view('admin/song');
+    }
+    public function genre()
+    {
+        $this->view('admin/genre');
+    }
+    public function songrequest()
+    {
+        $this->view('admin/songrequest');
     }
 }
