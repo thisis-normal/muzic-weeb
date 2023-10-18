@@ -2,13 +2,25 @@
 
 class  Admins extends Controller
 {
+    public function __construct()
+    {
+        $this->adminModel = $this->model('Admin');
+        $this->userModel = $this->model('User');
+    }
     public function index()
     {
         $this->view('admin/dashboard'); //load view inside views/admin/index.php
     }
+    public function dashboard()
+    {
+        $this->view('admin/dashboard');
+    }
     public function user()
     {
-        $this->view('admin/user');
+        $data = [
+            'listUser' => $this->userModel->getAllUser(),
+        ];
+        $this->view('admin/user', $data);
     }
     public function artist()
     {

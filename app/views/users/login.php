@@ -13,6 +13,7 @@
 <form action="<?= URLROOT ?>/users/login" method="post">
     <div class="header">
         <h1 style="color: #1fdf64; text-align: center"><?php flash('register_success') ?></h1>
+        <h1 style="color: #1fdf64; text-align: center"><?php flash('reset_password_success') ?></h1>
     </div>
     <div class="login">
         <h1 class="login_title">Log in to NHAC</h1>
@@ -40,7 +41,7 @@
             <button type="submit">Log In</button>
         </div>
         <div class="footer">
-            <a href="<?=URLROOT?>/users/forgot-password">Forgot your password?</a>
+            <a href="<?= URLROOT ?>/users/forgot-password">Forgot your password?</a>
             <hr/>
             <p>Don't have an account?<a href="<?= URLROOT ?>/users/register">Sign up</a></p>
         </div>

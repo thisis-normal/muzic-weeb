@@ -51,7 +51,7 @@ class Backend extends Controller
                 if ($loggedInAdmin) {
                     //create session
                     $this->createAdminSession($loggedInAdmin);
-                    redirect('admins/index');
+                    redirect('admins/dashboard');
                 } else {
                     $data['password_error'] = 'Password incorrect';
                     $this->view('admin/login', $data);
