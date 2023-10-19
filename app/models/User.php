@@ -74,7 +74,7 @@ class User
         return $row;
     }
 
-    public function loginEmail($email, $password)
+    public function loginByEmail($email, $password)
     {
         $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user'");
         //Bind value
@@ -88,7 +88,7 @@ class User
         }
     }
 
-    public function loginUsername($username, $password)
+    public function loginByUsername($username, $password)
     {
         $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user'");
         //Bind value

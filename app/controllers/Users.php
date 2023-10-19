@@ -136,9 +136,9 @@ class Users extends Controller
                 //validated
                 //Check and set logged-in for both email and username
                 if ($isEmail) {
-                    $loggedInUser = $this->userModel->loginEmail($username_or_email, $password);
+                    $loggedInUser = $this->userModel->loginByEmail($username_or_email, $password);
                 } else {
-                    $loggedInUser = $this->userModel->loginUsername($username_or_email, $password);
+                    $loggedInUser = $this->userModel->loginByUsername($username_or_email, $password);
                 }
                 if ($loggedInUser) {
                     $this->createUserSession($loggedInUser);

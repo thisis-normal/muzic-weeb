@@ -82,6 +82,7 @@ require APPROOT . '/views/admin/index.php';
                 <table>
                     <thead>
                         <tr>
+                            <th>Ordinal</th>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Password</th>
@@ -95,6 +96,7 @@ require APPROOT . '/views/admin/index.php';
                     <?php foreach ($data['listUser'] as $user) : ?>
                         <tbody>
                             <tr>
+                                <td><?= $user->id ?></td>
                                 <td><?= $user->username ?></td>
                                 <td><?= $user->email ?></td>
                                 <td class="limit-text"><?= $user->password ?></td>
@@ -108,7 +110,7 @@ require APPROOT . '/views/admin/index.php';
                                 <td><?= $user->role ?></td>
                                 <td>
                                     <a href="#" class="delete-user" data-delete="<?= $user->username ?>" data-delete-href="<?= URLROOT ?>/user-management/delete-user?username=<?= $user->username ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                    <a href="<?= URLROOT ?>/user-management/update-user?username=<?= $user->username ?>" class="edit-button btnpopup" data-form="form_update_user" data-user="<?= $user->username ?>" data-email="<?= $user->email ?>" data-pass="<?= $user->password ?>" data-role="<?= $user->role ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                    <a href="<?= URLROOT ?>/user-management/update-user?id=<?= $user->id ?>" class="edit-button btnpopup" data-form="form_update_user" data-user="<?= $user->username ?>" data-email="<?= $user->email ?>" data-pass="<?= $user->password ?>" data-role="<?= $user->role ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -126,7 +128,7 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <input type="text" id="username" name="username" placeholder="Username" required />
                     <?php if (!empty($data['username_error'])) : ?>
-                        <!--    <span class="invalid-feedback">--><?php //= $data['username_error'] 
+                        <!--    <span class="invalid-feedback">--><?php //= $data['username_error']
                                                                     ?><!--</span>-->
                         <script>
                             alert("<?= $data['username_error'] ?>")
@@ -164,24 +166,13 @@ require APPROOT . '/views/admin/index.php';
                 <br>
                 <div>
                     <input type="text" id="username" name="username" data-field="user" placeholder="Username" required />
-                    <?php if (!empty($data['username_error'])) : ?>
-                        <span class="invalid-feedback"><?= $data['username_error'] ?></span>
-                        <script>
-                            alert("<?= $data['username_error'] ?>")
-                        </script>
-                    <?php endif; ?>
                 </div>
                 <div>
                     <input type="email" id="email" name="email" data-field="email" placeholder="Email" required />
-                    <?php if (!empty($data['email_error'])) : ?>
-                        <span class="invalid-feedback"><?= $data['email_error'] ?></span>
-                    <?php endif; ?>
                 </div>
                 <div>
                     <input type="text" id="password" name="password" data-field="pass" placeholder="Password" required />
-                    <?php if (!empty($data['password_error'])) : ?>
-                        <span class="invalid-feedback"><?= $data['password_error'] ?></span>
-                    <?php endif; ?>
+                    <input type="hidden" name="id">
                 </div>
                 <div>
                     <select name="role" id="role" data-field="role">

@@ -85,8 +85,48 @@ class  UserManagement extends Controller
             $this->view('admin/user', $data);
         }
     }
-    public function updateUser($username) {
-        var_dump('update user');
+
+    public function updateUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $data = [
+                'id' => 25,
+                'username' => trim($_POST['username']),
+                'email' => trim($_POST['email']),
+                'password' => trim($_POST['password']),
+                'role' => trim($_POST['role']),
+                'username_err' => '',
+                'email_err' => '',
+            ];
+            //check username in db
+            if ($this->userModel->getUserByUsername($data['username'])) {
+                //user found
+                $data['username_err'] = 'Username is already taken';
+            } elseif ($this->adminModel->getAdminByUsername($data['username'])) {
+                //admin found
+                $data['username_err'] = 'Username is already taken';
+            }
+            //check email in db
+            if ($this->userModel->getUserByEmail($data['email'])) {
+                $data['email_err'] = 'Email is already taken';
+            } elseif ($this->adminModel->getAdminByEmail($data['email'])) {
+                $data['email_err'] = 'Email is already taken';
+            }
+            if (empty($data['username_err']) && empty($data['email_err'])) {
+                //hash password
+                $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+                //register user
+                if ($this->adminModel->updateUserById($data['id'], $data['username'], $data['email'], $data['password'], $data['role'])) {
+                    flash('update_success', 'User updated');
+                    //pass data to view
+                    redirect('admins/user');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                redirect('admins/user');
+            }
+        }
     }
 
     public function deleteUser()
@@ -99,6 +139,7 @@ class  UserManagement extends Controller
             die('Something went wrong');
         }
     }
+
     public function listUser()
     {
 //        $users = $this->adminModel->getAllUser();
