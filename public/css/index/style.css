@@ -10,13 +10,14 @@ body {
 .mainindex {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row-reverse;
 }
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 196px;
+  width: 210px;
   background-color: #000000;
   padding: 24px;
 }
@@ -79,24 +80,50 @@ body {
 
 .main-container {
   padding: 8px;
-  margin-left: 245px;
-  margin-top: 78px;
+  /* margin-left: 245px;
+  margin-top: 78px; */
   border-radius: 10px;
   background-color: #000;
   /* overflow-y: auto; */
+  position: fixed;
+  right: 0;
+  left: 258px;
+  top: 78px;
   height: 100vh;
-  max-height: calc(100vh - 56px);
+  max-height: calc(100vh - 170px);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #939393;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #636363;
 }
 #mainContent {
-  /* overflow-y: auto; */
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 100vh;
-  max-height: calc(100vh - 56px);
+  max-height: calc(100vh - 170px);
 }
 .topbar {
   position: fixed;
   top: 0;
 
-  right: 0;
+  left: 258px;
+  right: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -173,6 +200,7 @@ body {
 }
 .spotify-playlists {
   padding: 20px 40px;
+  /* display: flex; */
 }
 .spotify-playlists h2 {
   color: #ffffff;
@@ -183,6 +211,7 @@ body {
   display: flex;
   gap: 38px;
   overflow: hidden;
+  flex-wrap: wrap;
 }
 .spotify-playlists .list .item {
   min-width: 140px;
@@ -623,5 +652,74 @@ i:hover {
 
 .entityInfo .rightSection p {
   color: #939393;
+  /* color: #218838; */
   font-weight: 200;
+}
+/* pay */
+.pay {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  background-color: #181818;
+  border-radius: 10px;
+}
+.price-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-item {
+  min-width: 300px;
+  min-height: 300px;
+  color: #fff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: #e750f5 5px solid;
+}
+.price-item h2 {
+  text-align: center;
+  margin: 24px 0;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-list li {
+  margin-bottom: 12px;
+  margin-left: 48px;
+}
+
+.feature-list strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.pay .btn {
+  margin: 24px 0 0 0;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.pay .btn:hover {
+  background-color: #218838;
 }
