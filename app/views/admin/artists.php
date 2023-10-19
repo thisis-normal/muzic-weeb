@@ -45,43 +45,33 @@ require APPROOT . '/views/admin/index.php';
                             <th>Artist name</th>
                             <th>Biography</th>
                             <th>Image</th>
-
                             <th>Action</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-
                             <td>Erik</td>
                             <td>6/4/2002</td>
-
                             <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
-
                             <td>
                                 <a href="#" class="delete-user" data-delete="Erik" data-delete-href="<?= URLROOT ?>/backend>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
                                 <a href="" class="edit-button btnpopup" data-form="form_update_artist" data-artistname="Erik" data-biography="6/4/2002" data-image="http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
-
         </div>
         <!-- form create -->
-
-        <form>
-
+        <form action="<?=URLROOT?>/artist-management/create-artist" method="post">
             <div class="form_create formAd popup form_create_artist">
                 <h1>Create artist</h1>
                 <br>
                 <div>
-                    <input type="text" id="artistname" placeholder="artistname">
+                    <input type="text" id="artistname" name="artist_name" placeholder="Artist Name">
                 </div>
                 <div>
-                    <textarea name="" id="biography" placeholder="biography" cols="30" rows="10"></textarea>
-
+                    <textarea name="biography" id="biography" placeholder="Your bio here!" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
@@ -90,29 +80,22 @@ require APPROOT . '/views/admin/index.php';
                         <input type="text" class="form-input--file-text" data-field="image" value="Choose file...">
                     </label>
                 </div>
-
                 <div>
-
                     <button id="save-button">artist</button>
                 </div>
-
             </div>
         </form>
         <!-- update form -->
-        <form>
-
+        <form action="<?=URLROOT?>/artist-management/create-artist" method="post">
             <div class="form_update formAd popup form_update_artist">
                 <h1>Update artist</h1>
                 <br>
                 <div>
-                    <input type="text" id="artistname" data-field="artistname" placeholder="artistname">
+                    <input type="text" id="artistname" data-field="artistname" name="artist_name" placeholder="artistname">
                 </div>
                 <div>
                     <textarea name="" id="biography" data-field="biography" placeholder="biography" cols="30" rows="10"></textarea>
-
                 </div>
-
-
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
                         <input class="form-input-file" type="file" id="file" accept="image/*" size="14" />
@@ -120,12 +103,7 @@ require APPROOT . '/views/admin/index.php';
                         <input type="text" class="form-input--file-text" data-field="image">
                     </label>
                 </div>
-
-
-
-
                 <div>
-
                     <button id="save-button">Update artist</button>
                 </div>
 
