@@ -31,11 +31,14 @@ body {
 .sidebar .navigation ul li {
   padding: 10px 0px;
 }
-.sidebar .navigation ul li a {
+.sidebar .navigation ul li p {
   color: #b3b3b3;
   text-decoration: none;
   font-weight: bold;
   font-size: 13px;
+}
+.sidebar .navigation ul li p:hover {
+  cursor: pointer;
 }
 .sidebar .navigation ul li a:hover,
 .sidebar .navigation ul li a:active,
@@ -121,7 +124,8 @@ body {
 .topbar {
   position: fixed;
   top: 0;
-
+  z-index: 999;
+  line-height: 55px;
   left: 258px;
   right: 0px;
   display: flex;
@@ -618,15 +622,9 @@ i:hover {
 }
 /* playlisst */
 .entityInfo {
-  /* background-color: #1db954; */
   padding: 40px 0 10px 0;
   display: inline-block;
   width: 100%;
-  background: linear-gradient(180deg, #8ed2c4 0%, #000 116.9%);
-
-  height: 500px;
-  color: #ffffff;
-  padding: 24px;
 }
 
 .entityInfo .leftSection {
@@ -652,8 +650,118 @@ i:hover {
 
 .entityInfo .rightSection p {
   color: #939393;
-  /* color: #218838; */
   font-weight: 200;
+}
+
+.tracklist {
+  padding: 0;
+}
+
+.tracklistRow {
+  height: 40px;
+  padding: 15px 10px;
+  list-style: none;
+}
+
+.tracklistRow span {
+  color: #939393;
+  font-weight: 200;
+}
+
+.tracklistRow:hover {
+  background-color: #282828;
+}
+
+.tracklistRow .trackCount {
+  width: 8%;
+  float: left;
+}
+
+.tracklistRow .trackCount img {
+  width: 20px;
+  visibility: hidden;
+  position: absolute;
+  cursor: pointer;
+}
+
+.tracklistRow:hover .trackCount img {
+  visibility: visible;
+}
+
+.tracklistRow .trackCount span {
+  visibility: visible;
+}
+
+.tracklistRow:hover .trackCount span {
+  visibility: hidden;
+}
+
+.tracklistRow .trackInfo {
+  width: 75%;
+  float: left;
+}
+
+.tracklistRow .trackInfo span {
+  display: block;
+}
+
+.tracklistRow .trackOptions {
+  width: 5%;
+  float: left;
+  text-align: right;
+}
+
+.tracklistRow .trackOptions img {
+  width: 15px;
+  visibility: hidden;
+}
+
+.tracklistRow:hover .trackOptions img {
+  visibility: visible;
+}
+
+.tracklistRow .trackDuration {
+  width: 12%;
+  float: left;
+  text-align: right;
+}
+
+.tracklistRow .trackInfo .trackName {
+  color: #fff;
+  margin-bottom: 7px;
+}
+
+.artistInfo {
+  text-align: center;
+}
+
+.button {
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 10px;
+  background-color: transparent;
+  font-weight: 500;
+  letter-spacing: 2px;
+  border: 2px solid #fff;
+  border-radius: 500px;
+  padding: 15px;
+  min-width: 130px;
+}
+
+.button.green {
+  background-color: #2ebd59;
+  border-color: #2ebd59;
+}
+
+.borderBottom {
+  border-bottom: 1px solid #939393;
+  margin-bottom: 20px;
+}
+
+.tracklistContainer h2,
+.gridViewContainer h2,
+.artistsContainer h2 {
+  text-align: center;
 }
 /* pay */
 .pay {

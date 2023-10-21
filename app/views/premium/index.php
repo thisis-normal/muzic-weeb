@@ -73,7 +73,7 @@
                     <li><strong>Songs Per Month:</strong> 100</li>
                     <li><strong>Audio Quality:</strong> 128 kbps</li>
                     <li><strong>Ad-free Listening:</strong> No</li>
-                    <li><a href="<?= URLROOT ?>/premium/payment" data-namepr="Basic" data-price="$9.99" class="btn btn-success">Buy Now</a></li>
+                    <li><a href="#" data-namepr="Basic" data-price="$9.99" class="btn btn-success">Buy Now</a></li>
                 </ul>
             </li>
 
@@ -84,7 +84,7 @@
                     <li><strong>Songs Per Month:</strong> Unlimited</li>
                     <li><strong>Audio Quality:</strong> 256 kbps</li>
                     <li><strong>Ad-free Listening:</strong> Yes</li>
-                    <li><a href="<?= URLROOT ?>/premium/payment" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
+                    <li><a href="#" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
                 </ul>
             </li>
 
@@ -95,11 +95,13 @@
                     <li><strong>Songs Per Month:</strong> Unlimited</li>
                     <li><strong>Audio Quality:</strong> Lossless</li>
                     <li><strong>Ad-free Listening:</strong> Yes</li>
-                    <li><a href="<?= URLROOT ?>/premium/payment" data-namepr="Platium" data-price="$29.99" class="btn btn-success">Buy Now</a></li>
+                    <li><a href="#" data-namepr="Platium" data-price="$29.99" class="btn btn-success">Buy Now</a></li>
                 </ul>
             </li>
         </ul>
-
+        <div id="form-container">
+            <!-- Biểu mẫu sẽ được thêm vào đây -->
+        </div>
     </div>
     <div class="bgpop" id="popup"></div>
     <div class="paypal_popup" id="paypal_popup">
@@ -150,11 +152,38 @@
                         return actions.order.capture().then(function(details) {
                             console.log(details);
 
-                            // Succesful capture for dev/demo purpose
-                            // console.log('Capture result', details, JSON.stringify(details, null, 2));
-                            // const transaction = details.purchase_units[0].payment.captures[0];
-                            alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                            // alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                            // alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                            var form = document.createElement('form');
+                            form.setAttribute('id', 'myForm');
+
+                            var nameLabel = document.createElement('label');
+                            nameLabel.textContent = 'Tên:';
+
+                            var nameInput = document.createElement('input');
+                            nameInput.setAttribute('type', 'text');
+                            nameInput.setAttribute('name', 'name');
+
+                            var emailLabel = document.createElement('label');
+                            emailLabel.textContent = 'Email:';
+
+                            var emailInput = document.createElement('input');
+                            emailInput.setAttribute('type', 'text');
+                            emailInput.setAttribute('name', 'email');
+
+                            var submitButton = document.createElement('button');
+                            submitButton.setAttribute('type', 'submit');
+                            submitButton.textContent = 'Gửi';
+
+                            // Thêm các trường vào biểu mẫu
+                            form.appendChild(nameLabel);
+                            form.appendChild(nameInput);
+                            form.appendChild(emailLabel);
+                            form.appendChild(emailInput);
+                            form.appendChild(submitButton);
+
+                            // Thêm biểu mẫu vào phần tử với id "form-container"
+                            var formContainer = document.getElementById('form-container');
+                            formContainer.appendChild(form);
                         });
                     }
                 }).render('#paypal-button-container'); // Display payment options on your web page
@@ -163,6 +192,7 @@
         document.getElementById("popup").addEventListener("click", function() {
             document.getElementById("paypal_popup").style.display = "none";
             document.getElementById("popup").style.display = "none";
+            location.reload();
         })
     </script>
 </body>

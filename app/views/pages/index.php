@@ -1,4 +1,4 @@
-<div class="mainindex">
+<div class="mainindex" id="mainindex">
 
 
     <div class="navbar">

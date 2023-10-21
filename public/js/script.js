@@ -117,34 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-var timer;
-var userLoggedIn;
-
-function openPage(url) {
-    if (timer != null) {
-        clearTimeout(timer);
-    }
-
-    var encodedUrl = encodeURI(url);
-    console.log(encodedUrl);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", encodedUrl, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                // Trang đã được tải thành công, cập nhật lịch sử trình duyệt
-                document.getElementById("mainContent").innerHTML = xhr.responseText;
-                document.body.scrollTop = 0;
-                history.pushState(null, null, url);
-            } else {
-                // Xử lý lỗi tải trang
-                console.log("Error loading page: " + url);
-            }
-        }
-    };
-    xhr.send();
-}
 
 // tab
 // const activenav = document.querySelector(".activenav");
@@ -255,4 +227,38 @@ function loadContent(url, event) {
     };
 
     xhr.send();
+}
+
+var timer;
+var userLoggedIn;
+
+function openPage(url) {
+    if (timer != null) {
+        clearTimeout(timer);
+    }
+
+    var encodedUrl = encodeURI(url);
+    console.log(encodedUrl);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", encodedUrl, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // Trang đã được tải thành công, cập nhật lịch sử trình duyệt
+                document.getElementById("mainindex").innerHTML = xhr.responseText;
+                document.body.scrollTop = 0;
+
+                // Thêm dòng này để cập nhật lịch sử trình duyệt
+                history.pushState(null, null, url);
+            } else {
+                // Xử lý lỗi tải trang
+                console.log("Error loading page: " + url);
+            }
+        }
+    };
+    xhr.send();
+
+    // Thêm dòng này để cập nhật URL hiện tại vào lịch sử trình duyệt
+    history.pushState(null, null, url);
 }
