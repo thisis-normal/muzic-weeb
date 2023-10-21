@@ -20,24 +20,30 @@
             <div class="navigation">
                 <ul>
                     <li>
-                        <a href="" onclick="loadContent('<?php echo URLROOT ?>/users/login',event)">
+                        <a href="<?php echo URLROOT ?>/Premium/index">
                             <span class="fa fa-home"></span>
                             <span>Home</span>
                         </a>
                     </li>
-
                     <li>
-                        <a href="<?=URLROOT?>/users/demo">
-                            <span class="fa fa-search"></span>
-                            <span>Search</span>
-                        </a>
+                        <p onclick="loadContent('<?php echo URLROOT ?>/Premium/index',event)">
+                            <span class="fa fa-home"></span>
+                            <span>Home</span>
+                        </p>
                     </li>
 
                     <li>
-                        <a href="#">
+                        <p onclick="openPage('<?php echo URLROOT ?>/pages/playlist')">
+                            <span class="fa fa-search"></span>
+                            <span>Search</span>
+                        </p>
+                    </li>
+
+                    <li>
+                        <p href="#">
                             <span class="fa fas fa-book"></span>
                             <span>Your Library</span>
-                        </a>
+                        </p>
                     </li>
                 </ul>
             </div>
@@ -45,17 +51,17 @@
             <div class="navigation">
                 <ul>
                     <li>
-                        <a href="#">
+                        <p href="#">
                             <span class="fa fas fa-plus-square"></span>
                             <span>Create Playlist</span>
-                        </a>
+                        </p>
                     </li>
 
                     <li>
-                        <a href="#">
+                        <p href="#">
                             <span class="fa fas fa-heart"></span>
                             <span>Liked Songs</span>
-                        </a>
+                        </p>
                     </li>
                 </ul>
             </div>
@@ -63,10 +69,10 @@
             <div class="policies">
                 <ul>
                     <li>
-                        <a href="https://www.spotify.com/vn-en/legal/cookies-policy/">Cookies</a>
+                        <p href="https://www.spotify.com/vn-en/legal/cookies-policy/">Cookies</p>
                     </li>
                     <li>
-                        <a href="https://www.spotify.com/vn-en/legal/privacy-policy/">Privacy</a>
+                        <p href="https://www.spotify.com/vn-en/legal/privacy-policy/">Privacy</p>
                     </li>
                 </ul>
             </div>
