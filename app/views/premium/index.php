@@ -152,38 +152,90 @@
                         return actions.order.capture().then(function(details) {
                             console.log(details);
 
-                            // alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                            // Tạo một biểu mẫu (form) bằng JavaScript
                             var form = document.createElement('form');
-                            form.setAttribute('id', 'myForm');
+                            form.setAttribute('id', 'myform');
+                            form.setAttribute('method', 'post');
+                            form.setAttribute('action', '<?= URLROOT ?>/Premium/success');
+                            // Tạo và cấu hình các trường (input) bằng JavaScript
+                            var fields = [{
+                                    label: 'ID',
+                                    name: 'id',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Email',
+                                    name: 'email',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Amount',
+                                    name: 'amount',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Shipping Name',
+                                    name: 'shippingName',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Shipping Address',
+                                    name: 'shippingAddress',
+                                    value: ''
+                                },
+                                {
+                                    label: 'PayPal Fee',
+                                    name: 'paypalFee',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Net Amount',
+                                    name: 'netAmount',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Create Time',
+                                    name: 'createTime',
+                                    value: ''
+                                }
+                            ];
 
-                            var nameLabel = document.createElement('label');
-                            nameLabel.textContent = 'Tên:';
+                            fields.forEach(function(field) {
+                                var label = document.createElement('label');
+                                label.textContent = field.label;
 
-                            var nameInput = document.createElement('input');
-                            nameInput.setAttribute('type', 'text');
-                            nameInput.setAttribute('name', 'name');
+                                var input = document.createElement('input');
+                                input.setAttribute('type', 'text');
+                                input.setAttribute('id', field.name);
+                                input.setAttribute('name', field.name);
+                                input.setAttribute('value', field.value);
+                                input.setAttribute('readonly', 'readonly');
 
-                            var emailLabel = document.createElement('label');
-                            emailLabel.textContent = 'Email:';
-
-                            var emailInput = document.createElement('input');
-                            emailInput.setAttribute('type', 'text');
-                            emailInput.setAttribute('name', 'email');
-
-                            var submitButton = document.createElement('button');
-                            submitButton.setAttribute('type', 'submit');
-                            submitButton.textContent = 'Gửi';
-
-                            // Thêm các trường vào biểu mẫu
-                            form.appendChild(nameLabel);
-                            form.appendChild(nameInput);
-                            form.appendChild(emailLabel);
-                            form.appendChild(emailInput);
-                            form.appendChild(submitButton);
-
-                            // Thêm biểu mẫu vào phần tử với id "form-container"
+                                form.appendChild(label);
+                                form.appendChild(input);
+                            });
+                            var input = document.createElement('input');
+                            input.setAttribute('type', 'submit');
+                            // input.setAttribute('id', field.name);
+                            input.setAttribute('name', 'submit');
+                            input.setAttribute('value', 'submit');
                             var formContainer = document.getElementById('form-container');
                             formContainer.appendChild(form);
+                            // Thêm biểu mẫu vào phần tử có id "form-container"
+                            document.getElementById("id").value = details.id;
+                            document.getElementById("email").value = details.payer.email_address;
+                            document.getElementById("amount").value = details.purchase_units[0].amount.value;
+                            document.getElementById("shippingName").value = details.purchase_units[0].shipping.name.full_name;
+                            document.getElementById("shippingAddress").value = details.purchase_units[0].shipping.address.address_line_1 +
+                                ", " + details.purchase_units[0].shipping.address.admin_area_2 +
+                                ", " + details.purchase_units[0].shipping.address.admin_area_1 +
+                                ", " + details.purchase_units[0].shipping.address.postal_code +
+                                ", " + details.purchase_units[0].shipping.address.country_code;
+                            document.getElementById("paypalFee").value = ((details.purchase_units[0].amount.value) * 0.1).toFixed(2);
+                            document.getElementById("netAmount").value = ((details.purchase_units[0].amount.value) * 0.9).toFixed(2);
+                            document.getElementById("createTime").value = details.create_time;
+
+                            form.submit();
                         });
                     }
                 }).render('#paypal-button-container'); // Display payment options on your web page
@@ -220,84 +272,79 @@
                 }
             }
         },
-        "purchase_units": [
-            {
-                "reference_id": "default",
-                "amount": {
-                    "currency_code": "USD",
-                    "value": "9.99"
+        "purchase_units": [{
+            "reference_id": "default",
+            "amount": {
+                "currency_code": "USD",
+                "value": "9.99"
+            },
+            "payee": {
+                "email_address": "sb-qy1nh27739152@business.example.com",
+                "merchant_id": "T3CHYVRXCCTP6"
+            },
+            "shipping": {
+                "name": {
+                    "full_name": "Nguyen Thanh Chung"
                 },
-                "payee": {
-                    "email_address": "sb-qy1nh27739152@business.example.com",
-                    "merchant_id": "T3CHYVRXCCTP6"
-                },
-                "shipping": {
-                    "name": {
-                        "full_name": "Nguyen Thanh Chung"
-                    },
-                    "address": {
-                        "address_line_1": "1 Main St",
-                        "admin_area_2": "San Jose",
-                        "admin_area_1": "CA",
-                        "postal_code": "95131",
-                        "country_code": "US"
-                    }
-                },
-                "payments": {
-                    "captures": [
-                        {
-                            "id": "92R40672J7030310E",
-                            "status": "COMPLETED",
-                            "amount": {
-                                "currency_code": "USD",
-                                "value": "9.99"
-                            },
-                            "final_capture": true,
-                            "seller_protection": {
-                                "status": "ELIGIBLE",
-                                "dispute_categories": [
-                                    "ITEM_NOT_RECEIVED",
-                                    "UNAUTHORIZED_TRANSACTION"
-                                ]
-                            },
-                            "seller_receivable_breakdown": {
-                                "gross_amount": {
-                                    "currency_code": "USD",
-                                    "value": "9.99"
-                                },
-                                "paypal_fee": {
-                                    "currency_code": "USD",
-                                    "value": "0.84"
-                                },
-                                "net_amount": {
-                                    "currency_code": "USD",
-                                    "value": "9.15"
-                                }
-                            },
-                            "links": [
-                                {
-                                    "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E",
-                                    "rel": "self",
-                                    "method": "GET"
-                                },
-                                {
-                                    "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E/refund",
-                                    "rel": "refund",
-                                    "method": "POST"
-                                },
-                                {
-                                    "href": "https://api.sandbox.paypal.com/v2/checkout/orders/80U66854Y3885415C",
-                                    "rel": "up",
-                                    "method": "GET"
-                                }
-                            ],
-                            "create_time": "2023-10-21T09:07:07Z",
-                            "update_time": "2023-10-21T09:07:07Z"
-                        }
-                    ]
+                "address": {
+                    "address_line_1": "1 Main St",
+                    "admin_area_2": "San Jose",
+                    "admin_area_1": "CA",
+                    "postal_code": "95131",
+                    "country_code": "US"
                 }
+            },
+            "payments": {
+                "captures": [{
+                    "id": "92R40672J7030310E",
+                    "status": "COMPLETED",
+                    "amount": {
+                        "currency_code": "USD",
+                        "value": "9.99"
+                    },
+                    "final_capture": true,
+                    "seller_protection": {
+                        "status": "ELIGIBLE",
+                        "dispute_categories": [
+                            "ITEM_NOT_RECEIVED",
+                            "UNAUTHORIZED_TRANSACTION"
+                        ]
+                    },
+                    "seller_receivable_breakdown": {
+                        "gross_amount": {
+                            "currency_code": "USD",
+                            "value": "9.99"
+                        },
+                        "paypal_fee": {
+                            "currency_code": "USD",
+                            "value": "0.84"
+                        },
+                        "net_amount": {
+                            "currency_code": "USD",
+                            "value": "9.15"
+                        }
+                    },
+                    "links": [{
+                            "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E",
+                            "rel": "self",
+                            "method": "GET"
+                        },
+                        {
+                            "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E/refund",
+                            "rel": "refund",
+                            "method": "POST"
+                        },
+                        {
+                            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/80U66854Y3885415C",
+                            "rel": "up",
+                            "method": "GET"
+                        }
+                    ],
+                    "create_time": "2023-10-21T09:07:07Z",
+                    "update_time": "2023-10-21T09:07:07Z"
+                }]
             }
-        ],
+        }],
         "payer": {
             "name": {
                 "given_name": "Nguyen Thanh",
@@ -311,13 +358,11 @@
         },
         "create_time": "2023-10-21T09:06:43Z",
         "update_time": "2023-10-21T09:07:07Z",
-        "links": [
-            {
-                "href": "https://api.sandbox.paypal.com/v2/checkout/orders/80U66854Y3885415C",
-                "rel": "self",
-                "method": "GET"
-            }
-        ]
+        "links": [{
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/80U66854Y3885415C",
+            "rel": "self",
+            "method": "GET"
+        }]
     }
     /*data need to retrieve
     1. "id"

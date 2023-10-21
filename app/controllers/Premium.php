@@ -10,4 +10,8 @@ class Premium extends Controller
     {
         $this->view('premium/payment'); //load view inside views/premium/payment.php
     }
+    public function success()
+    {
+        $this->view('pages/index'); //load view inside views/premium/payment.php
+    }
 }
