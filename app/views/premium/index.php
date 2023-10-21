@@ -168,3 +168,135 @@
 </body>
 
 </html>
+
+
+<script>
+    // create a json object
+    const data = {
+        "id": "80U66854Y3885415C",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+            "paypal": {
+                "email_address": "ntc@personal.example.com",
+                "account_id": "B3223W7UPR6TA",
+                "account_status": "VERIFIED",
+                "name": {
+                    "given_name": "Nguyen Thanh",
+                    "surname": "Chung"
+                },
+                "address": {
+                    "country_code": "US"
+                }
+            }
+        },
+        "purchase_units": [
+            {
+                "reference_id": "default",
+                "amount": {
+                    "currency_code": "USD",
+                    "value": "9.99"
+                },
+                "payee": {
+                    "email_address": "sb-qy1nh27739152@business.example.com",
+                    "merchant_id": "T3CHYVRXCCTP6"
+                },
+                "shipping": {
+                    "name": {
+                        "full_name": "Nguyen Thanh Chung"
+                    },
+                    "address": {
+                        "address_line_1": "1 Main St",
+                        "admin_area_2": "San Jose",
+                        "admin_area_1": "CA",
+                        "postal_code": "95131",
+                        "country_code": "US"
+                    }
+                },
+                "payments": {
+                    "captures": [
+                        {
+                            "id": "92R40672J7030310E",
+                            "status": "COMPLETED",
+                            "amount": {
+                                "currency_code": "USD",
+                                "value": "9.99"
+                            },
+                            "final_capture": true,
+                            "seller_protection": {
+                                "status": "ELIGIBLE",
+                                "dispute_categories": [
+                                    "ITEM_NOT_RECEIVED",
+                                    "UNAUTHORIZED_TRANSACTION"
+                                ]
+                            },
+                            "seller_receivable_breakdown": {
+                                "gross_amount": {
+                                    "currency_code": "USD",
+                                    "value": "9.99"
+                                },
+                                "paypal_fee": {
+                                    "currency_code": "USD",
+                                    "value": "0.84"
+                                },
+                                "net_amount": {
+                                    "currency_code": "USD",
+                                    "value": "9.15"
+                                }
+                            },
+                            "links": [
+                                {
+                                    "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E",
+                                    "rel": "self",
+                                    "method": "GET"
+                                },
+                                {
+                                    "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E/refund",
+                                    "rel": "refund",
+                                    "method": "POST"
+                                },
+                                {
+                                    "href": "https://api.sandbox.paypal.com/v2/checkout/orders/80U66854Y3885415C",
+                                    "rel": "up",
+                                    "method": "GET"
+                                }
+                            ],
+                            "create_time": "2023-10-21T09:07:07Z",
+                            "update_time": "2023-10-21T09:07:07Z"
+                        }
+                    ]
+                }
+            }
+        ],
+        "payer": {
+            "name": {
+                "given_name": "Nguyen Thanh",
+                "surname": "Chung"
+            },
+            "email_address": "ntc@personal.example.com",
+            "payer_id": "B3223W7UPR6TA",
+            "address": {
+                "country_code": "US"
+            }
+        },
+        "create_time": "2023-10-21T09:06:43Z",
+        "update_time": "2023-10-21T09:07:07Z",
+        "links": [
+            {
+                "href": "https://api.sandbox.paypal.com/v2/checkout/orders/80U66854Y3885415C",
+                "rel": "self",
+                "method": "GET"
+            }
+        ]
+    }
+    /*data need to retrieve
+    1. "id"
+    2. email_address
+    3. amount.value
+    4. shipping.name & shipping.address
+    5. paypal_fee.value
+    6. net_amount.value
+    7. create_time
+
+    */
+</script>

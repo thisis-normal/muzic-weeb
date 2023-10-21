@@ -41,64 +41,76 @@ require APPROOT . '/views/admin/index.php';
             </div> -->
                 <table>
                     <thead>
-                        <tr>
-                            <th>Artist name</th>
-                            <th>Biography</th>
-                            <th>Image</th>
-                            <th>Action</th>
-                        </tr>
+                    <tr>
+                        <th>Ordinal</th>
+                        <th>Artist name</th>
+                        <th>Biography</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
                     </thead>
+                    <?php foreach ($data['listArtist'] as $artist) : ?>
                     <tbody>
-                        <tr>
-                            <td>Erik</td>
-                            <td>6/4/2002</td>
-                            <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
-                            <td>
-                                <a href="#" class="delete-user" data-delete="Erik" data-delete-href="<?= URLROOT ?>/backend>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href="" class="edit-button btnpopup" data-form="form_update_artist" data-artistname="Erik" data-biography="6/4/2002" data-image="http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td><?= $artist->artist_id ?></td>
+                        <td><?= $artist->name ?></td>
+                        <td><?= $artist->biography ?></td>
+                        <td class="truncate-text"><?= $artist->image ?></td>
+                        <td>
+                            <a href="#" class="delete-user" data-delete="<?= $artist->artist_name ?>"
+                               data-delete-href="<?= URLROOT ?>/artist-management/delete-artist/<?= $artist->id ?>"><i
+                                        class='bx bx-trash' style='color:#fb0004'></i></a>
+                            <a href="" class="edit-button btnpopup" data-form="form_update_artist"
+                               data-artistname="<?= $artist->name ?>" data-biography="<?= $artist->biography ?>"
+                               data-image="<?= $artist->image ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                        </td>
+                    </tr>
                     </tbody>
+                    <?php endforeach; ?>
                 </table>
             </div>
         </div>
         <!-- form create -->
-        <form action="<?=URLROOT?>/artist-management/create-artist" method="post">
+        <form action="<?= URLROOT ?>/artist-management/create-artist" method="post" enctype="multipart/form-data">
             <div class="form_create formAd popup form_create_artist">
                 <h1>Create artist</h1>
                 <br>
                 <div>
-                    <input type="text" id="artistname" name="artist_name" placeholder="Artist Name">
+                    <input type="text" id="artistname" name="artist_name" placeholder="Artist Name" required>
                 </div>
                 <div>
-                    <textarea name="biography" id="biography" placeholder="Your bio here!" cols="30" rows="10"></textarea>
+                    <textarea name="biography" id="biography" placeholder="Your bio here!" cols="30" rows="10"
+                              required></textarea>
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" accept="image/*" size="14" />
+                        <input class="form-input-file" type="file" id="file" name="image" accept="image/*" size="14"
+                               required/>
                         <span class="form-input--file-button">Image</span>
                         <input type="text" class="form-input--file-text" data-field="image" value="Choose file...">
                     </label>
                 </div>
                 <div>
-                    <button id="save-button">artist</button>
+                    <button id="save-button">Create Artist</button>
                 </div>
             </div>
         </form>
         <!-- update form -->
-        <form action="<?=URLROOT?>/artist-management/create-artist" method="post">
+        <form action="<?= URLROOT ?>/artist-management/create-artist" method="post">
             <div class="form_update formAd popup form_update_artist">
                 <h1>Update artist</h1>
                 <br>
                 <div>
-                    <input type="text" id="artistname" data-field="artistname" name="artist_name" placeholder="artistname">
+                    <input type="text" id="artistname" data-field="artistname" name="artist_name"
+                           placeholder="artistname">
                 </div>
                 <div>
-                    <textarea name="" id="biography" data-field="biography" placeholder="biography" cols="30" rows="10"></textarea>
+                    <textarea name="" id="biography" data-field="biography" placeholder="biography" cols="30"
+                              rows="10"></textarea>
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" accept="image/*" size="14" />
+                        <input class="form-input-file" type="file" id="file" accept="image/*" size="14"/>
                         <span class="form-input--file-button">Image</span>
                         <input type="text" class="form-input--file-text" data-field="image">
                     </label>

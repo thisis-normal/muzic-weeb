@@ -6,6 +6,7 @@ class  Admins extends Controller
     {
         $this->adminModel = $this->model('Admin');
         $this->userModel = $this->model('User');
+        $this->artistModel = $this->model('Artist');
     }
     public function index()
     {
@@ -24,7 +25,10 @@ class  Admins extends Controller
     }
     public function artist()
     {
-        $this->view('admin/artists');
+        $data = [
+            'listArtist' => $this->artistModel->getArtists(),
+        ];
+        $this->view('admin/artists', $data);
     }
     public function song()
     {

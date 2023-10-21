@@ -9,12 +9,12 @@ class Artist
         $this->db = new Database;
     }
 
-    public function createArtist($data)
+    public function createArtist($name, $biography, $imaPath)
     {
-        $this->db->query('INSERT INTO artists (artist_name, biography, image) VALUES(:artist_name, :biography, :image)');
-        $this->db->bind(':artist_name', $data['artist_name']);
-        $this->db->bind(':biography', $data['biography']);
-        $this->db->bind(':image', $data['image']);
+        $this->db->query('INSERT INTO artists (name, biography, image) VALUES(:artist_name, :biography, :image)');
+        $this->db->bind(':artist_name', $name);
+        $this->db->bind(':biography', $biography);
+        $this->db->bind(':image', $imaPath);
         if ($this->db->execute()) {
             return true;
         } else {

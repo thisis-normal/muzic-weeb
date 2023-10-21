@@ -4,3 +4,4 @@
 #ignore all .mp3 files
 *.mp3
 /vendor
+/public/img
