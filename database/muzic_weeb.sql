@@ -53,9 +53,14 @@ CREATE TABLE IF NOT EXISTS `artists` (
   `image` varchar(255) NOT NULL,
   `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`artist_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~0 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~4 rows (approximately)
+INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
+	(11, 'Rachel Newton', 'Voluptatibus impedit', 'WBS.png', NULL),
+	(12, 'Norman Finley', 'Esse aut error qui', '6533903ec6ff7WBS.png', NULL),
+	(13, 'Sơn T&ugrave;ng', 'Nguyễn Thanh T&ugrave;ng, born in 1994, known professionally as Sơn T&ugrave;ng M-TP, is a Vietnamese singer, songwriter, producer, and actor. He is not only known as one of the most successful Vietnamese artists and as the &quot;Prince of V-pop&quot;, but also as the Chairman of three self-created companies: M-TP Entertainment, M-TP Talent and M-TP &amp; Friends. He has received many achievements: a MTV Europe Music Award, an Mnet Asian Music Award, appeared on Forbes Vietnam&#039;s 2018 30 Under 30 list, and is also the first Vietnamese musician to enter the Billboard Social 50. Up until now, he has already released a total of 25 songs, such as &quot;Cơn mưa ngang qua&quot;, &quot;Em của ng&agrave;y h&ocirc;m qua&quot;, &quot; &Acirc;m thầm b&ecirc;n em&quot;, and many more. His single &quot;Chạy ngay đi&quot; was released with a music video featuring Thai actress Davika Hoorne, and with a collaboration with rapper Snoop Dogg, he went on and created the big hit &quot;H&atilde;y trao cho anh&quot;. After releasing &quot;C&oacute; chắc y&ecirc;u l&agrave; đ&acirc;y&quot; in 2020, the song became the 3rd-most-streamed Youtube premiere at the time with 902,000 live viewers. As we all know, music is, without a doubt, the easiest way to connect people. For Sơn T&ugrave;ng M-TP, music is everything he ever wanted to offer to the world around him with all his heart and soul.', 'mmw-4-956.jpg', NULL),
+	(14, 'Phương Mỹ Chi', 'Phuong My Chi was born on January 13, 2003 in a rather crowded family, the whole family had more than 14 people (including My Chi&#039;s parents and eldest sister) living in a small house. Currently, Chi lives in a small alley on Mac Van Street, Ward 12, District 8, Ho Chi Minh City.\r\n\r\nPhuong My Chi is a singer specializing in Southern Vietnamese folk music. My Chi became famous when she participated and won runner-up in the first season of the reality TV show The Voice Kids.', 'pmc.jpg', NULL);
 
 -- Dumping structure for table muzic_weeb.genre
 CREATE TABLE IF NOT EXISTS `genre` (
@@ -106,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `reset_tokens` (
   UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
 
--- Dumping data for table muzic_weeb.reset_tokens: ~13 rows (approximately)
+-- Dumping data for table muzic_weeb.reset_tokens: ~14 rows (approximately)
 INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, `status`) VALUES
 	(4, 'thuonghuunguyen2002@gmail.com', '1ae40e6e0a47d9aa7089b546ba5141ee1dc7a23bbd4ae4ae1a4791eadd703f3baa50e8cb92bef3bd3f1a856cd74ac6d8ca98', '2023-10-17 04:12:04', '2023-10-17 12:12:04', '1'),
 	(5, 'bruh@gooo.com', 'fe5d135cc349c8b32b32b5ab578a1751b77064b185a28e59c815c3d7feb2fd313c8b819b02a5c04d7c4b9374b953465ab63d', '2023-10-17 04:29:35', '2023-10-17 12:29:35', '1'),
@@ -170,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Dumping data for table muzic_weeb.users: ~24 rows (approximately)
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `is_premium`, `role`) VALUES
-	(1, 'secokisi', 'daqaturo@mailinator.com', '$2y$10$3Usvy1rpwu1Qb5yM2zWlaut/r.EuuPArlACFlrR7WqpLmP5hwHLWm', '2023-10-13 02:10:52', 0, 'user'),
+	(1, 'secokisi', 'daqaturo@mailinator.co', '$2y$10$DQVhVsMIrLShuoInrNR6FORNVzZyyjk3TlFo1aGd.i7grdqHw6jYy', '2023-10-21 12:09:20', 0, 'user'),
 	(2, 'hi', 'kalicamailinator.com', '$2y$10$9/EY3HyERbEv4jtegPLVjeEQIIcCRBdGhoYVag73nCRM/VDu35LLW', '2023-10-13 02:29:46', 0, 'user'),
 	(3, 'jyheficy', 'cuxyxohuma@ilinato.rcom', '$2y$10$8oNItZyR0lCx27BJTQb6qOWa5i7keTmhrBgwo1RGFFhMowIcmSClS', '2023-10-13 02:34:32', 0, 'user'),
 	(4, 'tymagysyv', 'vejuxirite@mailinator.com', '$2y$10$Yb91MEuxMIXk4.26hoDNMe20Jwtf576XFnqaWEjGHempa6Lg7Mtve', '2023-10-13 06:45:27', 0, 'user'),

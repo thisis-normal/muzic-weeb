@@ -10,6 +10,7 @@ const DB_NAME = 'muzic_weeb';
 //URL Root
 define("APPROOT", dirname(dirname(__FILE__))); //C:\laragon\www\muzic-weeb\app
 const URLROOT = 'http://localhost:2002/muzic-weeb';
+const IMGROOT = 'http://localhost:2002/muzic-weeb/public/img';
 //Site Name
 const SITENAME = 'PHPMVC';
 

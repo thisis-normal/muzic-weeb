@@ -189,7 +189,7 @@ function handleDeleteUser(userId, userHref) {
         if (result.isConfirmed) {
             window.location.href = userHref;
         } else if (result.isDenied) {
-            Swal.fire('Del  etion canceled', '', 'info');
+            Swal.fire('Deletion canceled', '', 'info');
         }
     });
 }
