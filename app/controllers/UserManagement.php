@@ -90,7 +90,7 @@ class  UserManagement extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = [
-                'id' => 25,
+                'id' => trim($_POST['id']),
                 'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
@@ -98,19 +98,24 @@ class  UserManagement extends Controller
                 'username_err' => '',
                 'email_err' => '',
             ];
-            //check username in db
-            if ($this->userModel->getUserByUsername($data['username'])) {
-                //user found
-                $data['username_err'] = 'Username is already taken';
-            } elseif ($this->adminModel->getAdminByUsername($data['username'])) {
-                //admin found
-                $data['username_err'] = 'Username is already taken';
+            $oldUser = $this->userModel->getUserById($data['id']);
+            if ($data['username'] !== $oldUser->username) {
+                //check username in db
+                if ($this->userModel->getUserByUsername($data['username'])) {
+                    //user found
+                    $data['username_err'] = 'Username is already taken';
+                } elseif ($this->adminModel->getAdminByUsername($data['username'])) {
+                    //admin found
+                    $data['username_err'] = 'Username is already taken';
+                }
             }
-            //check email in db
-            if ($this->userModel->getUserByEmail($data['email'])) {
-                $data['email_err'] = 'Email is already taken';
-            } elseif ($this->adminModel->getAdminByEmail($data['email'])) {
-                $data['email_err'] = 'Email is already taken';
+            if ($data['email'] !== $oldUser->email) {
+                //check email in db
+                if ($this->userModel->getUserByEmail($data['email'])) {
+                    $data['email_err'] = 'Email is already taken';
+                } elseif ($this->adminModel->getAdminByEmail($data['email'])) {
+                    $data['email_err'] = 'Email is already taken';
+                }
             }
             if (empty($data['username_err']) && empty($data['email_err'])) {
                 //hash password

@@ -26,7 +26,7 @@ class  Admins extends Controller
     public function artist()
     {
         $data = [
-            'listArtist' => $this->artistModel->getArtists(),
+            'listArtist' => $this->artistModel->getAllArtists(),
         ];
         $this->view('admin/artists', $data);
     }

@@ -22,7 +22,7 @@ class Artist
         }
     }
 
-    public function getArtists()
+    public function getAllArtists()
     {
         $this->db->query('SELECT * FROM artists');
         $results = $this->db->resultSet();
@@ -31,19 +31,18 @@ class Artist
 
     public function getArtistById($id)
     {
-        $this->db->query('SELECT * FROM artists WHERE id = :id');
+        $this->db->query('SELECT * FROM artists WHERE artist_id = :id');
         $this->db->bind(':id', $id);
-        $row = $this->db->single();
-        return $row;
+        return $this->db->single();
     }
 
-    public function updateArtist($data)
+    public function updateArtist($id, $name, $biography, $image)
     {
-        $this->db->query('UPDATE artists SET artist_name = :artist_name, biography = :biography, image = :image WHERE id = :id');
-        $this->db->bind(':id', $data['id']);
-        $this->db->bind(':artist_name', $data['artist_name']);
-        $this->db->bind(':biography', $data['biography']);
-        $this->db->bind(':image', $data['image']);
+        $this->db->query('UPDATE artists SET name = :artist_name, biography = :biography, image = :image WHERE artist_id = :id');
+        $this->db->bind(':id', $id);
+        $this->db->bind(':artist_name', $name);
+        $this->db->bind(':biography', $biography);
+        $this->db->bind(':image', $image);
         if ($this->db->execute()) {
             return true;
         } else {
@@ -53,7 +52,7 @@ class Artist
 
     public function deleteArtist($id)
     {
-        $this->db->query('DELETE FROM artists WHERE id = :id');
+        $this->db->query('DELETE FROM artists WHERE artist_id = :id');
         $this->db->bind(':id', $id);
         if ($this->db->execute()) {
             return true;

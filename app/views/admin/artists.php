@@ -34,11 +34,6 @@ require APPROOT . '/views/admin/index.php';
 
         <div class="table-data">
             <div class="order">
-                <!-- <div class="head">
-                <h3>Recent Orders</h3>
-                <i class="bx bx-search"></i>
-                <i class="bx bx-filter"></i>
-            </div> -->
                 <table>
                     <thead>
                     <tr>
@@ -55,12 +50,12 @@ require APPROOT . '/views/admin/index.php';
                         <td><?= $artist->artist_id ?></td>
                         <td><?= $artist->name ?></td>
                         <td><?= $artist->biography ?></td>
-                        <td class="truncate-text"><?= $artist->image ?></td>
+                        <td><img src="<?= IMGROOT ?>/<?= $artist->image ?>" alt="" width="200px"></td>
                         <td>
-                            <a href="#" class="delete-user" data-delete="<?= $artist->artist_name ?>"
-                               data-delete-href="<?= URLROOT ?>/artist-management/delete-artist/<?= $artist->id ?>"><i
+                            <a href="#" class="delete-user" data-delete="<?= $artist->name ?>"
+                               data-delete-href="<?= URLROOT ?>/artist-management/delete-artist/?id=<?= $artist->artist_id ?>"><i
                                         class='bx bx-trash' style='color:#fb0004'></i></a>
-                            <a href="" class="edit-button btnpopup" data-form="form_update_artist"
+                            <a href="" class="edit-button btnpopup" data-form="form_update_artist" data-id="<?= $artist->artist_id ?>"
                                data-artistname="<?= $artist->name ?>" data-biography="<?= $artist->biography ?>"
                                data-image="<?= $artist->image ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                         </td>
@@ -96,29 +91,29 @@ require APPROOT . '/views/admin/index.php';
             </div>
         </form>
         <!-- update form -->
-        <form action="<?= URLROOT ?>/artist-management/create-artist" method="post">
+        <form action="<?= URLROOT ?>/artist-management/update-artist" method="post" enctype="multipart/form-data">
             <div class="form_update formAd popup form_update_artist">
                 <h1>Update artist</h1>
                 <br>
                 <div>
                     <input type="text" id="artistname" data-field="artistname" name="artist_name"
-                           placeholder="artistname">
+                           placeholder="Artist's Name">
                 </div>
                 <div>
-                    <textarea name="" id="biography" data-field="biography" placeholder="biography" cols="30"
+                    <textarea name="biography" id="biography" data-field="biography" placeholder="Biography" cols="30"
                               rows="10"></textarea>
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" accept="image/*" size="14"/>
+                        <input class="form-input-file" type="file" name="image" id="file" accept="image/*" size="14"/>
                         <span class="form-input--file-button">Image</span>
                         <input type="text" class="form-input--file-text" data-field="image">
                     </label>
+                    <input type="text" name="id" hidden data-field="id">
                 </div>
                 <div>
                     <button id="save-button">Update artist</button>
                 </div>
-
             </div>
         </form>
     </main>
