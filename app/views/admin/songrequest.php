@@ -63,12 +63,12 @@ require APPROOT . '/views/admin/index.php';
                             <td> </td>
                             <td>Nhạc trẻ</td>
                             <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
-                            <td>Wait</td>
+                            <td>Passive</td>
 
 
                             <td>
-                                <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href=""><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                <!-- <a href=""><i class='bx bx-trash' style='color:#fb0004'></i></a> -->
+                                <a href="" class="edit-button btnpopup" data-form="form_update_songrequest" data-status="Passive"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
 
@@ -77,6 +77,30 @@ require APPROOT . '/views/admin/index.php';
             </div>
 
         </div>
+        <form action="" method="post">
+            <div class="form_update popup form_update_songrequest">
+                <h1>Update Song Request</h1>
+                <br>
+
+                <div class="wrapper" id="status">
+                    <div class="select-btn">
+                        <span data-field="status">Select status</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class='bx bx-search'></i>
+                            <input spellcheck="false" type="text" placeholder="Search" />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+
+                <div>
+                    <button id="save-button">Update Song request</button>
+                </div>
+            </div>
+        </form>
     </main>
 </div>
 </section>

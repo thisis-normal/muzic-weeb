@@ -1,4 +1,74 @@
 //admin
+const wrappers = document.querySelectorAll(".wrapper");
+
+wrappers.forEach((wrapper) => {
+    const selectBtn = wrapper.querySelector(".select-btn");
+    const searchInp = wrapper.querySelector("input");
+    const options = wrapper.querySelector(".options");
+
+    let data;
+    if (wrapper.id === "artist") {
+        data = ["Afghanistan", "Algeria", "Argentina"];
+    } else if (wrapper.id === "genre") {
+        data = ["Pop", "Rock", "Rap"];
+    } else if (wrapper.id === "status") {
+        data = ["Active", "Passive", "Deactive"]
+    }
+    else {
+        data = ["a", "b", "c"];
+    }
+    // Hàm addOptions
+    function addOptions(optionsArray, selectedValue) {
+        options.innerHTML = optionsArray
+            .map((option) => {
+                const isSelected = option === selectedValue ? "selected" : "";
+                return `<li class="${isSelected}">${option}</li>`;
+            })
+            .join("");
+
+        // Đăng ký sự kiện click cho các phần tử <li> trong danh sách tùy chọn
+        const liElements = options.querySelectorAll("li");
+        liElements.forEach((li) => {
+            li.addEventListener("click", (event) => {
+                const selectedLi = event.currentTarget;
+                updateName(selectedLi);
+            });
+        });
+    }
+
+    // Hàm updateName
+    function updateName(selectedLi) {
+        searchInp.value = "";
+        addOptions(data, selectedLi.innerText);
+        wrapper.classList.remove("active");
+        selectBtn.firstElementChild.innerText = selectedLi.innerText;
+    }
+
+    addOptions(data);
+
+    searchInp.addEventListener("keyup", () => {
+        const searchWord = searchInp.value.toLowerCase();
+        const filteredData = data.filter((item) =>
+            item.toLowerCase().startsWith(searchWord)
+        );
+
+        if (filteredData.length > 0) {
+            addOptions(filteredData, selectBtn.firstElementChild.innerText);
+        } else {
+            options.innerHTML = `<p style="margin-top: 10px;">Oops! ${wrapper.id === "artist" ? "Country" : "Genre"
+                } not found</p>`;
+        }
+    });
+
+    selectBtn.addEventListener("click", () => {
+        wrappers.forEach((otherWrapper) => {
+            if (otherWrapper !== wrapper) {
+                otherWrapper.classList.remove("active");
+            }
+        });
+        wrapper.classList.toggle("active");
+    });
+});
 
 const createButtons = document.querySelectorAll(".btn-create");
 const editButtons = document.querySelectorAll(".edit-button");
@@ -38,7 +108,11 @@ editButtons.forEach(editButton => {
                                 break;
                             }
                         }
-                    } else {
+                    }
+                    else if (inputField.tagName === 'SPAN') {
+                        inputField.innerHTML = value;
+                    }
+                    else {
 
                         inputField.value = value;
                     }

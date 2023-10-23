@@ -19,6 +19,12 @@
             </a>
         </li>
         <li>
+            <a href="<?= URLROOT ?>/admins/album" data-tab="album-tab">
+                <i class="bx bxs-category"></i>
+                <span class="text">Album</span>
+            </a>
+        </li>
+        <li>
             <a href="<?= URLROOT ?>/admins/song" data-tab="song-tab">
                 <i class="bx bxs-music"></i>
                 <span class="text">Song</span>

@@ -83,23 +83,23 @@ require APPROOT . '/views/admin/index.php';
                     <thead>
                         <tr>
                             <th>Ordinal</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th align="center">Register date</th>
-                            <th>Premium</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th style="text-align: center !important;">Username</th>
+                            <th style="text-align: center !important;">Email</th>
+                            <th style="text-align: center !important;">Password</th>
+                            <th style="text-align: center !important;">Register date</th>
+                            <th style="text-align: center !important;">Premium</th>
+                            <th style="text-align: center !important;">Role</th>
+                            <th style="text-align: center !important;">Action</th>
 
                         </tr>
                     </thead>
                     <?php foreach ($data['listUser'] as $user) : ?>
                         <tbody>
                             <tr>
-                                <td><?= $user->id ?></td>
-                                <td><?= $user->username ?></td>
-                                <td><?= $user->email ?></td>
-                                <td class="limit-text"><?= $user->password ?></td>
+                                <td style="text-align: center !important;"><?= $user->id ?></td>
+                                <td align="center"><?= $user->username ?></td>
+                                <td align="center"><?= $user->email ?></td>
+                                <td align="center" class="limit-text"><?= $user->password ?></td>
                                 <td align="center"><?= $user->regis_date ?></td>
                                 <td align="center">
                                     <div> <?php
@@ -107,8 +107,8 @@ require APPROOT . '/views/admin/index.php';
                                             ?>
                                     </div>
                                 </td>
-                                <td><?= $user->role ?></td>
-                                <td>
+                                <td align="center"><?= $user->role ?></td>
+                                <td align="center">
                                     <a href="#" class="delete-user" data-delete="<?= $user->username ?>" data-delete-href="<?= URLROOT ?>/user-management/delete-user?username=<?= $user->username ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
                                     <a href="<?= URLROOT ?>/user-management/update-user?id=<?= $user->id ?>" class="edit-button btnpopup" data-form="form_update_user" data-id="<?= $user->id ?>" data-user="<?= $user->username ?>" data-email="<?= $user->email ?>" data-pass="<?= $user->password ?>" data-role="<?= $user->role ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>

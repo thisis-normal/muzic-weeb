@@ -1,14 +1,8 @@
 <?php
 require APPROOT . '/views/admin/index.php';
 /** @var array $data */ ?>
+
 <style>
-    .truncate-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100px;
-        /* Điều chỉnh độ rộng tối đa bạn muốn hiển thị */
-    }
 </style>
 <div id="song-tab" class="tab-content active">
     <main>
@@ -59,13 +53,13 @@ require APPROOT . '/views/admin/index.php';
                             </td>
                             <td>Erik</td>
                             <td>6/4/2002</td>
-                            <td> </td>
+                            <td>ko có </td>
                             <td>Nhạc trẻ</td>
                             <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
 
                             <td>
                                 <a href="#" class="delete-user" data-delete="anh khạc hay em khạc" data-delete-href="<?= URLROOT ?>/backend ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href=""><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="anh khạc hay em khạc" data-album="ko có" data-artist="Erik" data-genre="Nhạc trẻ" data-file="http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
 
@@ -80,65 +74,119 @@ require APPROOT . '/views/admin/index.php';
                 <h1>Create song</h1>
                 <br>
                 <div>
-                    <input type="text" id="songname" name="" placeholder="Songname" required />
+                    <input type="text" id="songname" name="" placeholder="Song title" required />
 
                 </div>
-                <div>
-                    <input type="email" id="email" name="email" placeholder="Email" required />
+                <div class="wrapper" id="album">
+                    <div class="select-btn">
+                        <span>Select Album</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class='bx bx-search'></i>
+                            <input spellcheck="false" type="text" placeholder="Search" />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+                <div class="wrapper" id="artist">
+                    <div class="select-btn">
+                        <span>Select Artist</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class='bx bx-search'></i>
+                            <input spellcheck="false" type="text" placeholder="Search" />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+                <div class="wrapper" id="genre">
+                    <div class="select-btn">
+                        <span>Select Genre</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class='bx bx-search'></i>
+                            <input spellcheck="false" type="text" placeholder="Search" />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+                <div class="form-controlGroup-inputWrapper">
+                    <label class="form-input form-input--file file_update">
+                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />
+                        <span class="form-input--file-button">File</span>
+                        <input type="text" class="form-input--file-text" value="Choose file...">
+                    </label>
+                </div>
 
-                </div>
-                <div>
-                    <input type="password" id="password" name="password" placeholder="Password" required />
-                    <?php if (!empty($data['password_error'])) : ?>
-                        <span class="invalid-feedback"><?= $data['password_error'] ?></span>
-                    <?php endif; ?>
-                </div>
-                <div>
-                    <select name="role" id="">
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
                 <div>
 
-                    <button id="save-button">Create Account</button>
+                    <button id="save-button">Create Song</button>
                 </div>
             </div>
         </form>
         <!-- update form -->
-        <form action="<?= URLROOT ?>/user-management/update-user" method="post">
-            <div class="form_update popup form_update_user">
-                <h1>Update user</h1>
+        <form action="" method="post">
+            <div class="form_update popup form_update_song">
+                <h1>Update Song</h1>
                 <br>
                 <div>
-                    <input type="text" id="username" name="username" data-field="user" placeholder="Username" required />
-                    <?php if (!empty($data['username_error'])) : ?>
-                        <span class="invalid-feedback"><?= $data['username_error'] ?></span>
-                        <script>
-                            alert("<?= $data['username_error'] ?>")
-                        </script>
-                    <?php endif; ?>
+                    <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required />
+
+                </div>
+                <div class="wrapper" id="album">
+                    <div class="select-btn">
+                        <span data-field="album">Select Album</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class='bx bx-search'></i>
+                            <input spellcheck="false" type="text" placeholder="Search" />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+                <div class="wrapper" id="artist">
+                    <div class="select-btn">
+                        <span data-field="artist">Select Artist</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class='bx bx-search'></i>
+                            <input spellcheck="false" type="text" placeholder="Search" />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+                <div class="wrapper" id="genre">
+                    <div class="select-btn">
+                        <span data-field="genre">Select Genre</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <div class="search">
+                            <i class='bx bx-search'></i>
+                            <input spellcheck="false" type="text" placeholder="Search" />
+                        </div>
+                        <ul class="options"></ul>
+                    </div>
+                </div>
+                <div class="form-controlGroup-inputWrapper">
+                    <label class="form-input form-input--file file_update">
+                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />
+                        <span class="form-input--file-button">File</span>
+                        <input type="text" class="form-input--file-text" data-field="file" value="Choose file...">
+                    </label>
                 </div>
                 <div>
-                    <input type="email" id="email" name="email" data-field="email" placeholder="Email" required />
-                    <?php if (!empty($data['email_error'])) : ?>
-                        <span class="invalid-feedback"><?= $data['email_error'] ?></span>
-                    <?php endif; ?>
-                </div>
-                <div>
-                    <input type="text" id="password" name="password" data-field="pass" placeholder="Password" required />
-                    <?php if (!empty($data['password_error'])) : ?>
-                        <span class="invalid-feedback"><?= $data['password_error'] ?></span>
-                    <?php endif; ?>
-                </div>
-                <div>
-                    <select name="role" id="role" data-field="role">
-                        <option value="user">User</option>
-                        <option value="dmin">Admin</option>
-                    </select>
-                </div>
-                <div>
-                    <button id="save-button">Update Account</button>
+                    <button id="save-button">Update Song</button>
                 </div>
             </div>
         </form>
@@ -147,3 +195,6 @@ require APPROOT . '/views/admin/index.php';
 </section>
 </body>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>
+<script>
+
+</script>

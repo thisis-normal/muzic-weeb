@@ -38,6 +38,10 @@ class  Admins extends Controller
     {
         $this->view('admin/genre');
     }
+    public function album()
+    {
+        $this->view('admin/album');
+    }
     public function songrequest()
     {
         $this->view('admin/songrequest');

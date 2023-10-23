@@ -442,19 +442,22 @@ body {
 #content main .table-data .order table th {
   padding-bottom: 12px;
   font-size: 13px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid var(--grey);
   color: var(--dark);
 }
 #content main .table-data .order table td {
   padding: 16px 0;
   color: var(--dark);
+  text-align: center !important;
 }
 #content main .table-data .order table tr td:first-child {
   display: flex;
   align-items: center;
   grid-gap: 12px;
-  padding-left: 6px;
+  /* padding-left: 6px;
+   */
+  justify-content: center;
 }
 #content main .table-data .order table td img {
   width: 36px;
@@ -690,7 +693,7 @@ hr {
 .form-input--file {
   position: relative;
   overflow: hidden;
-  padding-right: 120px;
+  /* padding-right: 120px; */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -767,4 +770,136 @@ hr {
 }
 .invalid-feedback {
   color: red; /* Set the text color to red */
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  /* Điều chỉnh độ rộng tối đa bạn muốn hiển thị */
+}
+
+.form-input--file-text {
+  width: 90% !important;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 50px !important;
+}
+
+.wrapper {
+  width: 300px;
+  /* margin: 85px auto 0; */
+}
+
+.select-btn,
+li {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.select-btn {
+  margin: 8px 0;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 5px;
+  justify-content: space-between;
+  border: 1px solid #636363;
+}
+
+.select-btn i {
+  font-size: 31px;
+  transition: transform 0.3s linear;
+}
+
+.wrapper.active .select-btn i {
+  transform: rotate(-180deg);
+}
+
+.content {
+  z-index: 9999;
+  position: absolute;
+  display: none;
+  padding: 10px;
+  margin-top: 5px;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper.active .content {
+  display: block;
+}
+
+.content .search {
+  position: relative;
+}
+
+.search i {
+  top: 50%;
+  left: 15px;
+  color: #999;
+  font-size: 20px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+.search input {
+  height: 30px;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  border-radius: 5px;
+  padding: 0 20px 0 43px;
+  border: 1px solid #b3b3b3;
+}
+
+.search input:focus {
+  padding-left: 42px;
+  border: 2px solid #4285f4;
+}
+
+.search input::placeholder {
+  color: #bfbfbf;
+}
+
+.content .options {
+  margin-top: 10px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 7px;
+}
+
+.options::-webkit-scrollbar {
+  width: 7px;
+}
+
+.options::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+
+.options::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 25px;
+}
+
+.options::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
+.options li {
+  height: 30px;
+  padding: 0 13px;
+  font-size: 14px;
+}
+
+.options li:hover,
+li.selected {
+  border-radius: 5px;
+  background: #f2f2f2;
 }
