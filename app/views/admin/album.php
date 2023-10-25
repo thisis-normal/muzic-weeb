@@ -117,4 +117,10 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
+<script>
+    const dataForArtist = ["Afghanistan", "Algeria", "Argentina"];
+    const dataForGenre = ["Pop", "Rock", "Rap"];
+    const dataForStatus = ["Active", "Passive", "Deactive"];
+    const dataForDefault = ["a", "b", "c"];
+</script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>
