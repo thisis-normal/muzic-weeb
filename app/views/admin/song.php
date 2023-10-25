@@ -75,7 +75,6 @@ require APPROOT . '/views/admin/index.php';
                 <br>
                 <div>
                     <input type="text" id="songname" name="" placeholder="Song title" required />
-
                 </div>
                 <div class="wrapper" id="album">
                     <div class="select-btn">

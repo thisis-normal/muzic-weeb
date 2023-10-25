@@ -61,12 +61,12 @@ class  UserManagement extends Controller
                 if ($this->adminModel->createUser($data['username'], $data['email'], $data['password'], $data['role'])) {
                     flash('register_success', 'User registered');
                     //pass data to view
-
                     redirect('admins/user');
                 } else {
                     die('Something went wrong');
                 }
             } else {
+                flash('username_error', $data['username_error']);
                 redirect('admins/user');
             }
         } else {
@@ -129,6 +129,7 @@ class  UserManagement extends Controller
                     die('Something went wrong');
                 }
             } else {
+                flash('username_err', $data['username_err']);
                 redirect('admins/user');
             }
         }
@@ -141,16 +142,8 @@ class  UserManagement extends Controller
             flash('delete_success', 'User deleted');
             redirect('admins/user');
         } else {
-            die('Something went wrong');
+            flash('delete_error', 'Something went wrong');
+            redirect('admins/user');
         }
-    }
-
-    public function listUser()
-    {
-//        $users = $this->adminModel->getAllUser();
-//        $data = [
-//            'users' => $users
-//        ];
-//        $this->view('admins/index', $data);
     }
 }
