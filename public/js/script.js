@@ -6,17 +6,6 @@ wrappers.forEach((wrapper) => {
     const searchInp = wrapper.querySelector("input");
     const options = wrapper.querySelector(".options");
 
-    let data;
-    if (wrapper.id === "artist") {
-        data = ["Afghanistan", "Algeria", "Argentina"];
-    } else if (wrapper.id === "genre") {
-        data = ["Pop", "Rock", "Rap"];
-    } else if (wrapper.id === "status") {
-        data = ["Active", "Passive", "Deactive"]
-    }
-    else {
-        data = ["a", "b", "c"];
-    }
     // Hàm addOptions
     function addOptions(optionsArray, selectedValue) {
         options.innerHTML = optionsArray
