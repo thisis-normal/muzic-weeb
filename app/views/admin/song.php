@@ -193,10 +193,19 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
+<?php // New array to hold just name strings
+$artists = [];
+foreach ($data['listArtist'] as $artist) {
+    $artists[] = [
+        'name' => $artist->name,
+        'id' => $artist->artist_id
+    ];
+}
+?>
 <script>
-    const dataForArtist = ["Afghanistan", "Algeria", "Argentina"];
-    const dataForGenre = ["Pop", "Rock", "Rap"];
-    const dataForStatus = ["Active", "Passive", "Deactive"];
-    const dataForDefault = ["a", "b", "c"];
+    const dataForArtist = <?= json_encode($artists) ?>;
+    const dataForGenre = ["Not assign yet"];
+    const dataForStatus = ["Not assign yet"];
+    const dataForDefault = ["Not assign yet"];
 </script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>

@@ -18,11 +18,28 @@ wrappers.forEach((wrapper, index) => {
         data = dataForDefault;
     }
     // Hàm addOptions
+    // function addOptions(optionsArray, selectedValue) {
+    //     options.innerHTML = optionsArray
+    //         .map((option) => {
+    //             const isSelected = option === selectedValue ? "selected" : "";
+    //             return `<li class="${isSelected}">${option}</li>`;
+    //         })
+    //         .join("");
+    //
+    //     // Đăng ký sự kiện click cho các phần tử <li> trong danh sách tùy chọn
+    //     const liElements = options.querySelectorAll("li");
+    //     liElements.forEach((li) => {
+    //         li.addEventListener("click", (event) => {
+    //             const selectedLi = event.currentTarget;
+    //             updateName(selectedLi);
+    //         });
+    //     });
+    // }
     function addOptions(optionsArray, selectedValue) {
         options.innerHTML = optionsArray
             .map((option) => {
-                const isSelected = option === selectedValue ? "selected" : "";
-                return `<li class="${isSelected}">${option}</li>`;
+                const isSelected = option.name === selectedValue ? "selected" : "";
+                return `<li class="${isSelected}" data-artist-id="${option.id}">${option.name}</li>`;
             })
             .join("");
 
@@ -35,14 +52,28 @@ wrappers.forEach((wrapper, index) => {
             });
         });
     }
-
     // Hàm updateName
     function updateName(selectedLi) {
         searchInp.value = "";
+        // Get artist ID
+        const selectedId = selectedLi.getAttribute("data-artist-id");
+        // get artist name
+        const selectedName = selectedLi.innerText;
         addOptions(data, selectedLi.innerText);
         wrapper.classList.remove("active");
         selectBtn.firstElementChild.innerText = selectedLi.innerText;
+        // Update the hidden input field with the selected artist's ID
+        document.getElementById('artistId').value = selectedId;
+        document.getElementById('artistName').value = selectedName;
     }
+
+    // // Hàm updateName
+    // function updateName(selectedLi) {
+    //     searchInp.value = "";
+    //     addOptions(data, selectedLi.innerText);
+    //     wrapper.classList.remove("active");
+    //     selectBtn.firstElementChild.innerText = selectedLi.innerText;
+    // }
 
     addOptions(data);
 
@@ -56,7 +87,7 @@ wrappers.forEach((wrapper, index) => {
             addOptions(filteredData, selectBtn.firstElementChild.innerText);
         } else {
             options.innerHTML = `<p style="margin-top: 10px;">Oops! ${wrapper.id === "artist" ? "Country" : "Genre"
-                } not found</p>`;
+            } not found</p>`;
         }
     });
 
@@ -108,11 +139,9 @@ editButtons.forEach(editButton => {
                                 break;
                             }
                         }
-                    }
-                    else if (inputField.tagName === 'SPAN') {
+                    } else if (inputField.tagName === 'SPAN') {
                         inputField.innerHTML = value;
-                    }
-                    else {
+                    } else {
 
                         inputField.value = value;
                     }

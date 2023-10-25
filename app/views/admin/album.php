@@ -6,6 +6,8 @@ require APPROOT . '/views/admin/index.php';
         <div class="head-title">
             <div class="left">
                 <h1>Dashboard</h1>
+                <h2 style="color: green; text-align: center "><?php flash('register_success'); ?></h2>
+                <h2 style="color: red; text-align: center "><?php flash('register_fail'); ?></h2>
                 <ul class="breadcrumb">
                     <li>
                         <a href="#">Dashboard</a>
@@ -32,39 +34,41 @@ require APPROOT . '/views/admin/index.php';
             </div> -->
                 <table>
                     <thead>
-                        <tr>
-                            <th>album id</th>
-                            <th>album name</th>
-                            <th>Artist</th>
-                            <th>Action</th>
-                        </tr>
+                    <tr>
+                        <th>Album id</th>
+                        <th>Album name</th>
+                        <th>Artist</th>
+                        <th>Action</th>
+                    </tr>
                     </thead>
-                    <tbody>
+                    <?php foreach ($data['listAlbum'] as $album) : ?>
+                        <tbody>
                         <tr>
+                            <td> <?= $album->album_id ?></td>
+                            <td><?= $album->title ?></td>
+                            <td><?= $album->name ?></td>
                             <td>
-                                1
-                            </td>
-                            <td>aaaaaaaaaaaaaaaaaaaaaaa</td>
-                            <td>bla</td>
-                            <td>
-                                <a href="#" class="delete-user" data-delete="aaaaaaaaaaaaaaaaaaaaaaa" data-delete-href="<?= URLROOT ?>/backend"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href="" class="edit-button btnpopup" data-form="form_update_album" data-albumname="aaaaaaaaaaaaaaaaaaaaaaa" data-artist="bla"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                <a href="#" class="delete-user" data-delete="<?= $album->title ?>"
+                                   data-delete-href="<?= URLROOT ?>/backend"><i class='bx bx-trash'
+                                                                                style='color:#fb0004'></i></a>
+                                <a href="" class="edit-button btnpopup" data-form="form_update_album"
+                                   data-albumname="<?= $album->title ?>" data-artist-id="<?= $album->artist_id ?>"><i
+                                            class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
-
-                    </tbody>
+                        </tbody>
+                    <?php endforeach; ?>
                 </table>
             </div>
 
         </div>
-        <!-- create user form -->
-        <form id="data-form" action="" method="post">
+        <!-- create album form -->
+        <form id="data-form" action="<?= URLROOT ?>/album-management/create-album" method="post">
             <div class="form_create popup form_create_album">
                 <h1>Create album</h1>
                 <br>
                 <div>
-                    <input type="text" id="albumname" name="" placeholder="albumname" required />
-
+                    <input type="text" id="albumname" name="album_name" placeholder="Album's Name" required/>
                 </div>
                 <div class="wrapper" id="artist">
                     <div class="select-btn">
@@ -74,26 +78,27 @@ require APPROOT . '/views/admin/index.php';
                     <div class="content">
                         <div class="search">
                             <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
+                            <input spellcheck="false" type="text" placeholder="Search" name="artist"/>
                         </div>
                         <ul class="options"></ul>
                     </div>
                 </div>
-
+                <input type="hidden" id="artistId" name="artist_id" hidden>
+                <input type="hidden" id="artistName"  name="selected_artist" hidden="hidden">
                 <div>
-
                     <button id="save-button">Create album</button>
                 </div>
             </div>
         </form>
+
+
         <!-- update form -->
-        <form action="" method="post">
+        <form action="<?= URLROOT ?>/album-management/update-album" method="post">
             <div class="form_update popup form_update_album">
                 <h1>Update album</h1>
                 <br>
                 <div>
-                    <input type="text" id="" name="" data-field="albumname" placeholder="albumname" required />
-
+                    <input type="text" id="" name="album_name" data-field="albumname" placeholder="albumname" required/>
                 </div>
                 <div class="wrapper" id="artist">
                     <div class="select-btn">
@@ -103,7 +108,7 @@ require APPROOT . '/views/admin/index.php';
                     <div class="content">
                         <div class="search">
                             <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
+                            <input spellcheck="false" type="text" placeholder="Search"/>
                         </div>
                         <ul class="options"></ul>
                     </div>
@@ -117,7 +122,16 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
+<?php // New array to hold just name strings
+$artists = [];
+foreach ($data['listArtist'] as $artist) {
+    $artists[] = [
+        'name' => $artist->name,
+        'id' => $artist->artist_id
+    ];
+}
+?>
 <script>
-    const dataForArtist = ["Afghanistan", "Algeria", "Argentina"];
+    const dataForArtist = <?= json_encode($artists) ?>//;
 </script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>

@@ -30,7 +30,19 @@ class Users extends Controller
         $this->adminModel = $this->model('Admin');
         $this->tokenModel = $this->model('Token');
     }
-
+//    public function index()
+//    {
+//        if (isUserLoggedIn()) {
+//            redirect('pages/index');
+//        } else {
+//            redirect('users/login');
+//        }
+//    }
+    public function before() {
+        if(isUserLoggedIn()) {
+            redirect('pages/index');
+        }
+    }
     public function register()
     {
         //check for post
@@ -154,8 +166,8 @@ class Users extends Controller
         } else {
             //init data
             $data = [
-                'username_or_email' => trim(isset($_POST['username_or_email']) ? $_POST['username_or_email'] : ''),
-                'password' => trim(isset($_POST['password']) ? $_POST['password'] : ''),
+                'username_or_email' => trim($_POST['username_or_email'] ?? ''),
+                'password' => trim($_POST['password'] ?? ''),
                 'username_or_email_error' => '',
                 'password_error' => '',
             ];
