@@ -1,11 +1,22 @@
 //admin
 const wrappers = document.querySelectorAll(".wrapper");
 
-wrappers.forEach((wrapper) => {
+wrappers.forEach((wrapper, index) => {
     const selectBtn = wrapper.querySelector(".select-btn");
     const searchInp = wrapper.querySelector("input");
     const options = wrapper.querySelector(".options");
 
+
+    let data;
+    if (wrapper.id === "artist") {
+        data = dataForArtist;
+    } else if (wrapper.id === "genre") {
+        data = dataForGenre;
+    } else if (wrapper.id === "status") {
+        data = dataForStatus;
+    } else {
+        data = dataForDefault;
+    }
     // Hàm addOptions
     function addOptions(optionsArray, selectedValue) {
         options.innerHTML = optionsArray
@@ -44,7 +55,7 @@ wrappers.forEach((wrapper) => {
         if (filteredData.length > 0) {
             addOptions(filteredData, selectBtn.firstElementChild.innerText);
         } else {
-            options.innerHTML = `<p style="margin-top: 10px;">Oops! ${wrapper.id === "Artist" ? "Country" : "Genre"
+            options.innerHTML = `<p style="margin-top: 10px;">Oops! ${wrapper.id === "artist" ? "Country" : "Genre"
                 } not found</p>`;
         }
     });
