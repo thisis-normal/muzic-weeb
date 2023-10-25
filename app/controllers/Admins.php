@@ -7,6 +7,7 @@ class  Admins extends Controller
         $this->adminModel = $this->model('Admin');
         $this->userModel = $this->model('User');
         $this->artistModel = $this->model('Artist');
+        $this->genreModel = $this->model('Genre');
     }
     public function index()
     {
@@ -32,11 +33,17 @@ class  Admins extends Controller
     }
     public function song()
     {
-        $this->view('admin/song');
+        $data = [
+            'listGenre' => $this->genreModel->getAllGenres(),
+        ];
+        $this->view('admin/song', $data);
     }
     public function genre()
     {
-        $this->view('admin/genre');
+        $data = [
+            'listGenre' => $this->genreModel->getAllGenres(),
+        ];
+        $this->view('admin/genre', $data);
     }
     public function album()
     {

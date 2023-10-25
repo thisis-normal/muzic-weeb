@@ -55,7 +55,7 @@ wrappers.forEach((wrapper) => {
         if (filteredData.length > 0) {
             addOptions(filteredData, selectBtn.firstElementChild.innerText);
         } else {
-            options.innerHTML = `<p style="margin-top: 10px;">Oops! ${wrapper.id === "artist" ? "Country" : "Genre"
+            options.innerHTML = `<p style="margin-top: 10px;">Oops! ${wrapper.id === "Artist" ? "Country" : "Genre"
                 } not found</p>`;
         }
     });

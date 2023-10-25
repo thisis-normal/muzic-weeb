@@ -57,6 +57,7 @@ require APPROOT . '/views/admin/index.php';
         <div class="head-title">
             <div class="left">
                 <h1>Dashboard</h1>
+                <h2 style="color: red; text-align: center "><?php flash('username_error'); ?></h2>
                 <ul class="breadcrumb">
                     <li>
                         <a href="#">Dashboard</a>
@@ -127,13 +128,6 @@ require APPROOT . '/views/admin/index.php';
                 <br>
                 <div>
                     <input type="text" id="username" name="username" placeholder="Username" required />
-                    <?php if (!empty($data['username_error'])) : ?>
-                        <!--    <span class="invalid-feedback">--><?php //= $data['username_error']
-                                                                    ?><!--</span>-->
-                        <script>
-                            alert("<?= $data['username_error'] ?>")
-                        </script>
-                    <?php endif; ?>
                 </div>
                 <div>
                     <input type="email" id="email" name="email" placeholder="Email" required />
