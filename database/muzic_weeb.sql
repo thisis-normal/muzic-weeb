@@ -19,19 +19,25 @@
 CREATE DATABASE IF NOT EXISTS `muzic_weeb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `muzic_weeb`;
 
--- Dumping structure for table muzic_weeb.album
-CREATE TABLE IF NOT EXISTS `album` (
+-- Dumping structure for table muzic_weeb.albums
+CREATE TABLE IF NOT EXISTS `albums` (
   `album_id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `artist_id` int NOT NULL,
   `release_date` date NOT NULL,
-  `cover_image` varchar(255) NOT NULL,
+  `cover_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`album_id`),
   KEY `album_fk0` (`artist_id`),
   CONSTRAINT `album_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.album: ~0 rows (approximately)
+-- Dumping data for table muzic_weeb.albums: ~5 rows (approximately)
+INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_image`) VALUES
+	(1, 'eq2e2q', 11, '2023-10-25', NULL),
+	(2, 'Making My Way', 13, '2023-10-25', NULL),
+	(3, 'Ch&uacute;ng ta của hiện tại', 13, '2023-10-25', NULL),
+	(4, 'Anh kh&ocirc;ng d&ugrave;ng ma to&eacute; đ&acirc;u', 12, '2023-10-25', NULL),
+	(5, 'Vũ Trụ C&ograve; Bay', 14, '2023-10-25', NULL);
 
 -- Dumping structure for table muzic_weeb.album_genre
 CREATE TABLE IF NOT EXISTS `album_genre` (
@@ -39,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `album_genre` (
   `genre_id` int NOT NULL,
   PRIMARY KEY (`album_id`,`genre_id`),
   KEY `album_genre_fk1` (`genre_id`),
-  CONSTRAINT `album_genre_fk0` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`),
-  CONSTRAINT `album_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`genre_id`)
+  CONSTRAINT `album_genre_fk0` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`),
+  CONSTRAINT `album_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.album_genre: ~0 rows (approximately)
@@ -53,23 +59,33 @@ CREATE TABLE IF NOT EXISTS `artists` (
   `image` varchar(255) NOT NULL,
   `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`artist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~4 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~5 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
-	(11, 'Rachel Newton', 'Voluptatibus impedit', 'WBS.png', NULL),
-	(12, 'Norman Finley', 'Esse aut error qui', '6533903ec6ff7WBS.png', NULL),
+	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
+	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
 	(13, 'Sơn T&ugrave;ng', 'Nguyễn Thanh T&ugrave;ng, born in 1994, known professionally as Sơn T&ugrave;ng M-TP, is a Vietnamese singer, songwriter, producer, and actor. He is not only known as one of the most successful Vietnamese artists and as the &quot;Prince of V-pop&quot;, but also as the Chairman of three self-created companies: M-TP Entertainment, M-TP Talent and M-TP &amp; Friends. He has received many achievements: a MTV Europe Music Award, an Mnet Asian Music Award, appeared on Forbes Vietnam&#039;s 2018 30 Under 30 list, and is also the first Vietnamese musician to enter the Billboard Social 50. Up until now, he has already released a total of 25 songs, such as &quot;Cơn mưa ngang qua&quot;, &quot;Em của ng&agrave;y h&ocirc;m qua&quot;, &quot; &Acirc;m thầm b&ecirc;n em&quot;, and many more. His single &quot;Chạy ngay đi&quot; was released with a music video featuring Thai actress Davika Hoorne, and with a collaboration with rapper Snoop Dogg, he went on and created the big hit &quot;H&atilde;y trao cho anh&quot;. After releasing &quot;C&oacute; chắc y&ecirc;u l&agrave; đ&acirc;y&quot; in 2020, the song became the 3rd-most-streamed Youtube premiere at the time with 902,000 live viewers. As we all know, music is, without a doubt, the easiest way to connect people. For Sơn T&ugrave;ng M-TP, music is everything he ever wanted to offer to the world around him with all his heart and soul.', 'mmw-4-956.jpg', NULL),
-	(14, 'Phương Mỹ Chi', 'Phuong My Chi was born on January 13, 2003 in a rather crowded family, the whole family had more than 14 people (including My Chi&#039;s parents and eldest sister) living in a small house. Currently, Chi lives in a small alley on Mac Van Street, Ward 12, District 8, Ho Chi Minh City.\r\n\r\nPhuong My Chi is a singer specializing in Southern Vietnamese folk music. My Chi became famous when she participated and won runner-up in the first season of the reality TV show The Voice Kids.', 'pmc.jpg', NULL);
+	(14, 'Phương Mỹ Chi', 'Phuong My Chi was born on January 13, 2003 in a rather crowded family, the whole family had more than 14 people (including My Chi&#039;s parents and eldest sister) living in a small house. Currently, Chi lives in a small alley on Mac Van Street, Ward 12, District 8, Ho Chi Minh City.\r\n\r\nPhuong My Chi is a singer specializing in Southern Vietnamese folk music. My Chi became famous when she participated and won runner-up in the first season of the reality TV show The Voice Kids.', 'pmc.jpg', NULL),
+	(16, 'Phương Ly', '.................', 'phuongly.jpg', NULL);
 
--- Dumping structure for table muzic_weeb.genre
-CREATE TABLE IF NOT EXISTS `genre` (
+-- Dumping structure for table muzic_weeb.genres
+CREATE TABLE IF NOT EXISTS `genres` (
   `genre_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`genre_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genre: ~0 rows (approximately)
+-- Dumping data for table muzic_weeb.genres: ~8 rows (approximately)
+INSERT INTO `genres` (`genre_id`, `name`) VALUES
+	(1, 'Pop'),
+	(2, 'EDM'),
+	(3, 'Orchestra'),
+	(4, 'Ballad'),
+	(5, 'Folk'),
+	(6, 'Hiphop'),
+	(7, 'Lo-fi'),
+	(8, 'Rap');
 
 -- Dumping structure for table muzic_weeb.playlist
 CREATE TABLE IF NOT EXISTS `playlist` (
@@ -109,9 +125,9 @@ CREATE TABLE IF NOT EXISTS `reset_tokens` (
   `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'valid',
   PRIMARY KEY (`id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
 
--- Dumping data for table muzic_weeb.reset_tokens: ~14 rows (approximately)
+-- Dumping data for table muzic_weeb.reset_tokens: ~16 rows (approximately)
 INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, `status`) VALUES
 	(4, 'thuonghuunguyen2002@gmail.com', '1ae40e6e0a47d9aa7089b546ba5141ee1dc7a23bbd4ae4ae1a4791eadd703f3baa50e8cb92bef3bd3f1a856cd74ac6d8ca98', '2023-10-17 04:12:04', '2023-10-17 12:12:04', '1'),
 	(5, 'bruh@gooo.com', 'fe5d135cc349c8b32b32b5ab578a1751b77064b185a28e59c815c3d7feb2fd313c8b819b02a5c04d7c4b9374b953465ab63d', '2023-10-17 04:29:35', '2023-10-17 12:29:35', '1'),
@@ -123,10 +139,12 @@ INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, 
 	(11, 'thuonghuunguyen2002@gmail.com', '2be4affadb24e4f2f206b1042df500d124913bffd1618f822195e3338ef402f30e100adb4b73d445baa5f49b2506c5532976', '2023-10-17 08:45:25', '2023-10-17 16:45:25', '1'),
 	(12, 'thuonghuunguyen2002@gmail.com', '1ab98f3c4dd9a7a213fd3e07a8a9868ecdcbf567e35dd707e88f5e747ac2876155dbfa0a71903379f72ad894e90134a40df7', '2023-10-17 08:46:34', '2023-10-17 16:46:34', '1'),
 	(13, 'thuonghuunguyen2002@gmail.com', 'f9aef3a347b6d0c76ca58e8107d9641bf9826e27d8cd3a3c52d5330bfa3c17a98ce0e036ac42590a741af9d9f7ebb5eb055e', '2023-10-17 08:52:26', '2023-10-17 16:52:26', '1'),
-	(14, 'thuonghuunguyen2002@gmail.com', 'cb0403b5d923c78c40a04e77fb2640324d1f9f9e201fa764db115b2f9cefd124074a6adfc128c74a16e28060c4e3411bff65', '2023-10-17 08:54:08', '2023-10-17 16:54:08', '1'),
+	(14, 'thuonghuunguyen2002@gmail.com', 'cb0403b5d923c78c40a04e77fb2640324d1f9f9e201fa764db115b2f9cefd124074a6adfc128c74a16e28060c4e3411bff65', '2023-10-25 23:02:43', '2023-10-17 16:54:08', 'expired'),
 	(15, 'thuonghuunguyen2002@gmail.com', 'e0433c8e4b86895b4b58baa85111f79efd0d3d63b3f588b13b5d2189f4f82723b92c6396a27f654665f8f5e9eb5b3ae9df0e', '2023-10-17 09:02:57', '2023-10-17 17:02:57', '1'),
 	(16, 'thuonghuunguyen2002@gmail.com', 'badc92c0d028a1c54920beeba0af7af6881746c4bbc78445ae9b7b4f9256d7136f947a67814013204cedd6086b7adc0a4333', '2023-10-17 10:23:26', '2023-10-17 18:05:40', 'valid'),
-	(17, 'chungvvvv@gmail.com', 'd982f1340db2601a5e8bfdc2b3e922b2bb9cc858db945b875f2abde28e3f8d5f4e89c979cd47b612ccaf7d90f9d01a054195', '2023-10-18 01:56:27', '2023-10-18 09:56:27', 'valid');
+	(17, 'chungvvvv@gmail.com', 'd982f1340db2601a5e8bfdc2b3e922b2bb9cc858db945b875f2abde28e3f8d5f4e89c979cd47b612ccaf7d90f9d01a054195', '2023-10-18 01:56:27', '2023-10-18 09:56:27', 'valid'),
+	(18, 'thuonghuunguyen2002@gmail.com', '65644487bf597b578566cda3fef25b4b0717db4443bfbf3ab15e6c7e9b6a8c7acf240c276a1cac3d279bd463e99dc049cc11', '2023-10-25 23:01:00', '2023-10-26 07:01:00', 'valid'),
+	(19, 'thuonghuunguyen2002@gmail.com', '94e2cfc15632642afc0cde1b5f9ef5c66e94b24a2cd6f9fabc77323531adc27d29e1e50d7a0f70b1b5e64891769cbc9732fb', '2023-10-25 23:03:19', '2023-10-26 07:01:28', 'used');
 
 -- Dumping structure for table muzic_weeb.song
 CREATE TABLE IF NOT EXISTS `song` (
@@ -142,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `song` (
   KEY `song_fk0` (`artist_id`),
   KEY `song_fk1` (`album_id`),
   CONSTRAINT `song_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`),
-  CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`)
+  CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.song: ~0 rows (approximately)
@@ -154,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `song_genre` (
   PRIMARY KEY (`song_id`,`genre_id`),
   KEY `song_genre_fk1` (`genre_id`),
   CONSTRAINT `song_genre_fk0` FOREIGN KEY (`song_id`) REFERENCES `song` (`id`),
-  CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`genre_id`)
+  CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.song_genre: ~0 rows (approximately)
@@ -171,9 +189,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.users: ~24 rows (approximately)
+-- Dumping data for table muzic_weeb.users: ~25 rows (approximately)
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `is_premium`, `role`) VALUES
 	(1, 'secokisi', 'daqaturo@mailinator.co', '$2y$10$DQVhVsMIrLShuoInrNR6FORNVzZyyjk3TlFo1aGd.i7grdqHw6jYy', '2023-10-21 12:09:20', 0, 'user'),
 	(2, 'hi', 'kalicamailinator.com', '$2y$10$9/EY3HyERbEv4jtegPLVjeEQIIcCRBdGhoYVag73nCRM/VDu35LLW', '2023-10-13 02:29:46', 0, 'user'),
@@ -197,8 +215,9 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `is_pr
 	(23, 'syboky', 'tysyxy@mailinator.com', '$2y$10$OzRZ2a9upss04JeadOHSSuSCFUs5vYPbt1ktcPamWEHoCCNi6PvIK', '2023-10-16 01:50:33', 0, 'user'),
 	(24, 'nagiwu', 'hapoxy@mailinator.com', '$2y$10$.XPGynpLoC//MK7JJjEdSuXEesN2XHoxx70EkGAN4tWcBgFIJCRYG', '2023-10-16 01:50:44', 0, 'admin'),
 	(25, 'colase', 'hufigyjux@mailinator.com', '$2y$10$xHxT7/J9BPjY6ZHiUxbvWepRnZAs6epawWXJ66QwBFQMltvp41NRu', '2023-10-16 03:52:06', 0, 'user'),
-	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$d/XDuq8YLX21yGL2L7MkouwHezYfI6YaI6NCieJUR7aiubVOAkVkG', '2023-10-16 07:34:52', 0, 'user'),
-	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', 0, 'user');
+	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$EkZjMMoJa3gujLzFmAL15O2w9aUZIMt24OqwLTVGxwWLokvW5DGQG', '2023-10-25 23:03:19', 0, 'user'),
+	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', 0, 'user'),
+	(28, 'tewufaqy', 'qikiz@mailinator.com', '$2y$10$tQzWSYYUipqNzmYHbfv/m.eYYux0UMyBwJzWEQx5u4llV8jot5nZK', '2023-10-25 23:00:25', 0, 'user');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
