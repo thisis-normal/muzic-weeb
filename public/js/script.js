@@ -87,7 +87,7 @@ wrappers.forEach((wrapper, index) => {
             addOptions(filteredData, selectBtn.firstElementChild.innerText);
         } else {
             options.innerHTML = `<p style="margin-top: 10px;">Oops! ${wrapper.id === "artist" ? "Country" : "Genre"
-            } not found</p>`;
+                } not found</p>`;
         }
     });
 
@@ -142,7 +142,6 @@ editButtons.forEach(editButton => {
                     } else if (inputField.tagName === 'SPAN') {
                         inputField.innerHTML = value;
                     } else {
-
                         inputField.value = value;
                     }
                 }
@@ -349,7 +348,7 @@ function openPage(url) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 // Trang đã được tải thành công, cập nhật lịch sử trình duyệt
-                document.getElementById("mainindex").innerHTML = xhr.responseText;
+                document.getElementById("mainContent").innerHTML = xhr.responseText;
                 document.body.scrollTop = 0;
 
                 // Thêm dòng này để cập nhật lịch sử trình duyệt
@@ -363,5 +362,5 @@ function openPage(url) {
     xhr.send();
 
     // Thêm dòng này để cập nhật URL hiện tại vào lịch sử trình duyệt
-    history.pushState(null, null, url);
+    history.pushState(null, url);
 }

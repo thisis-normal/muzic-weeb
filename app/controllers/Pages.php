@@ -18,6 +18,10 @@ class Pages extends Controller
     {
         $this->view('pages/playlist');
     }
+    public function browse()
+    {
+        $this->view('pages/browse');
+    }
     public function about()
     {
         $data = [
