@@ -34,24 +34,32 @@ require APPROOT . '/views/admin/index.php';
             </div> -->
                 <table>
                     <thead>
-                        <tr>
-                            <th>Album id</th>
-                            <th>Album name</th>
-                            <th>Artist</th>
-                            <th>Action</th>
-                        </tr>
+                    <tr>
+                        <th>Album id</th>
+                        <th>Album name</th>
+                        <th>Artist</th>
+                        <th>Action</th>
+                        <th>Artist ID</TH>
+                    </tr>
                     </thead>
                     <?php foreach ($data['listAlbum'] as $album) : ?>
                         <tbody>
-                            <tr>
-                                <td> <?= $album->album_id ?></td>
-                                <td><?= $album->title ?></td>
-                                <td><?= $album->name ?></td>
-                                <td>
-                                    <a href="#" class="delete-user" data-delete="<?= $album->title ?>" data-delete-href="<?= URLROOT ?>/backend"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                    <a href="" class="edit-button btnpopup" data-form="form_update_album" data-albumname="<?= $album->title ?>" data-artist-id="<?= $album->artist_id ?>" data-artist="<?= $album->artist ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td><?= $album->album_id ?></td>
+                            <td><?= $album->title ?></td>
+                            <td><?= $album->name ?></td>
+                            <td><?= $album->artist_id ?></td>
+                            <td>
+                                <a href="#" class="delete-user" data-delete="<?= $album->title ?>"
+                                   data-delete-href="<?= URLROOT ?>/album-management/delete-album?album_id="><i
+                                            class='bx bx-trash'
+                                            style='color:#fb0004'></i></a>
+                                <a href="" class="edit-button btnpopup" data-form="form_update_album"
+                                   data-albumname="<?= $album->title ?>" data-artist-id="<?= $album->artist_id ?>"
+                                   data-artist="<?= $album->name ?>"><i class='bx bxs-edit'
+                                                                        style='color:#0042fb'></i></a>
+                            </td>
+                        </tr>
                         </tbody>
                     <?php endforeach; ?>
                 </table>
@@ -64,7 +72,7 @@ require APPROOT . '/views/admin/index.php';
                 <h1>Create album</h1>
                 <br>
                 <div>
-                    <input type="text" id="albumname" name="album_name" placeholder="Album's Name" required />
+                    <input type="text" id="albumname" name="album_name" placeholder="Album's Name" required/>
                 </div>
                 <div class="wrapper" id="artist">
                     <div class="select-btn">
@@ -74,7 +82,7 @@ require APPROOT . '/views/admin/index.php';
                     <div class="content">
                         <div class="search">
                             <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" name="artist" />
+                            <input spellcheck="false" type="text" placeholder="Search" name="artist"/>
                         </div>
                         <ul class="options"></ul>
                     </div>
@@ -94,7 +102,7 @@ require APPROOT . '/views/admin/index.php';
                 <h1>Update album</h1>
                 <br>
                 <div>
-                    <input type="text" id="" name="album_name" data-field="albumname" placeholder="albumname" required />
+                    <input type="text" id="" name="album_name" data-field="albumname" placeholder="albumname" required/>
                 </div>
                 <div class="wrapper" id="artist">
                     <div class="select-btn">
@@ -104,15 +112,16 @@ require APPROOT . '/views/admin/index.php';
                     <div class="content">
                         <div class="search">
                             <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
+                            <input spellcheck="false" type="text" placeholder="Search"/>
                         </div>
                         <ul class="options"></ul>
                     </div>
+                    <input type="text" name="artist_id" data-field="artist-id" id="">
+                    <input type="text" name="artist_name" data-field="artist" id="artist">
+                    <div>
+                        <button id="save-button">Update album</button>
+                    </div>
                 </div>
-                <div>
-                    <button id="save-button">Update album</button>
-                </div>
-            </div>
         </form>
     </main>
 </div>

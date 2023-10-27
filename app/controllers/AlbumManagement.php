@@ -44,12 +44,13 @@ class AlbumManagement extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $data = [
-                'id' => trim($_POST['album_id']),
+                'id' => trim($_POST['artist_id']),
                 'album_name' => trim($_POST['album_name']),
-                'artist' => trim($_POST['selected_artist']),
+                'artist' => trim($_POST['artist_name']),
                 'album_name_err' => '',
                 'artist_err' => '',
             ];
+            var_dump($data); die();
             if (empty($data['album_name'])) {
                 $data['album_name_err'] = 'Please enter album name';
             }

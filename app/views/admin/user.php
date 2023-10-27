@@ -171,7 +171,7 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <select name="role" id="role" data-field="role">
                         <option value="user">User</option>
-                        <option value="dmin">Admin</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </div>
                 <div>

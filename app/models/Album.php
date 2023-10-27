@@ -28,7 +28,7 @@ class Album {
     }
     public function getAllAlbumWithArtistName()
     {
-        $this->db->query('SELECT albums.album_id, albums.title, artists.name FROM albums INNER JOIN artists ON albums.artist_id = artists.artist_id');
+        $this->db->query('SELECT albums.album_id, albums.title, artists.name, albums.artist_id FROM albums INNER JOIN artists ON albums.artist_id = artists.artist_id');
         $results = $this->db->resultSet();
         return $results;
     }
