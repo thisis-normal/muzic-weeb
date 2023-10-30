@@ -1,6 +1,7 @@
 <?php
 require APPROOT . '/views/admin/index.php';
 /** @var array $data */ ?>
+
 <div id="user-tab" class="tab-content active">
     <main>
         <div class="head-title">
@@ -51,7 +52,7 @@ require APPROOT . '/views/admin/index.php';
                                 <td><?= $album->artist_id ?></td>
                                 <td>
                                     <a href="#" class="delete-user" data-delete="<?= $album->title ?>" data-delete-href="<?= URLROOT ?>/album-management/delete-album?album_id="><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                    <a href="" class="edit-button btnpopup" data-form="form_update_album" data-albumname="<?= $album->title ?>" data-artistid="<?= $album->artist_id ?>" data-artist="<?= $album->name ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                    <a href="" class="edit-button btnpopup" data-form="form_update_album" data-albumname="<?= $album->title ?>" data-artistid="<?= $album->artist_id ?>" data-artistn="<?= $album->name ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -103,6 +104,13 @@ require APPROOT . '/views/admin/index.php';
                         <span data-field="artist">Select Artist</span>
                         <i class='bx bx-chevron-down'></i>
                     </div>
+
+                    <select id="select-state" data-field="artistn" placeholder="Pick a state...">
+                        <option value="">Select a state...</option>
+                        <option value="AL">Alabama</option>
+
+                    </select>
+
                     <div class="content">
                         <div class="search">
                             <i class='bx bx-search'></i>
@@ -110,8 +118,9 @@ require APPROOT . '/views/admin/index.php';
                         </div>
                         <ul class="options"></ul>
                     </div>
-                    <input type="text" name="artist_id" data-field="artistid" id="">
-                    <input type="text" name="artist_name" data-field="artist" id="artist">
+                    <!-- <input type="text" name="artist_id" data-field="artistid" id="">
+                    <input type="text" name="artist_name" data-field="artistn" id="artist"> -->
+
                     <div>
                         <button id="save-button">Update album</button>
                     </div>
@@ -134,3 +143,11 @@ foreach ($data['listArtist'] as $artist) {
     const dataForArtist = <?= json_encode($artists) ?> //;
 </script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>
+<script>
+    $(document).ready(function() {
+        $('select').selectize({
+            sortField: 'text',
+            maxOptions: 5
+        });
+    });
+</script>
