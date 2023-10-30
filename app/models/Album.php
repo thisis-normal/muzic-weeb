@@ -1,5 +1,7 @@
 <?php
-class Album {
+
+class Album
+{
     private $db;
 
     public function __construct()
@@ -7,7 +9,7 @@ class Album {
         $this->db = new Database;
     }
 
-    public function createAlbum($id , $name)
+    public function createAlbum($id, $name)
     {
         $this->db->query('INSERT INTO albums (artist_id, title, release_date) VALUES (:artist_id, :title, :release_date)');
         $this->db->bind(':artist_id', $id);
@@ -26,9 +28,10 @@ class Album {
         $results = $this->db->resultSet();
         return $results;
     }
+
     public function getAllAlbumWithArtistName()
     {
-        $this->db->query('SELECT albums.album_id, albums.title, artists.name, albums.artist_id FROM albums INNER JOIN artists ON albums.artist_id = artists.artist_id');
+        $this->db->query('SELECT albums.album_id, albums.title, artists.name, albums.artist_id FROM albums INNER JOIN artists ON albums.artist_id = artists.artist_id order by albums.album_id');
         $results = $this->db->resultSet();
         return $results;
     }
@@ -40,12 +43,12 @@ class Album {
         return $this->db->single();
     }
 
-    public function updateAlbum($id, $name, $artist)
+    public function updateAlbum($id, $title, $artist_id)
     {
-        $this->db->query('UPDATE albums SET name = :album_name, artist_id = :artist_id WHERE album_id = :id');
+        $this->db->query('UPDATE albums SET title = :title, artist_id = :artist_id WHERE album_id = :id');
         $this->db->bind(':id', $id);
-        $this->db->bind(':album_name', $name);
-        $this->db->bind(':artist_id', $artist);
+        $this->db->bind(':title', $title);
+        $this->db->bind(':artist_id', $artist_id);
         if ($this->db->execute()) {
             return true;
         } else {
