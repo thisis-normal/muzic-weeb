@@ -8,11 +8,7 @@ class Pages extends Controller
 
     public function index()
     {
-        $data = [
-            'title' => 'Welcome',
-            'description' => 'This is the MVC PHP framework',
-        ];
-        $this->view('pages/index', $data);
+            $this->view('pages/index');
     }
     public function playlist()
     {

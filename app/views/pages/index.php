@@ -1,18 +1,6 @@
 <?php require APPROOT . '/views/include/header.php';
 require APPROOT . '/views/include/navbar.php';
 require APPROOT . '/views/include/footer.php'; ?>
-<?php
-
-if (isUserLoggedIn()) {
-    // $userLoggedIn = new User($con, $_GET['userLoggedIn']);
-} else {
-    echo "Username variable was not passed into page. Check the openPage JS function";
-    exit();
-}
-$currentPage = 'index'; // Đánh dấu trang hiện tại là 'index'
-var_dump($currentPage);
-exit
-?>
 
 </div>
 <div class="main-container">

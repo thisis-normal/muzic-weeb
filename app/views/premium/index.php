@@ -112,8 +112,6 @@
         <p id="result-message"></p>
     </div>
     <script src="https://www.paypal.com/sdk/js?client-id=ASGrPQD3Kl5Ju4m60cmOUF3srF__aWev3fERnjxYENaMZMQcPfK_SyjRcM6sBqLMnXXfr-YW22Ls-wCM&currency=USD"></script>
-
-
     <script>
         const btns = document.querySelectorAll(".btn");
         btns.forEach(btn => {
@@ -129,7 +127,6 @@
                 console.log(pricex);
                 paypal.Buttons({
                     onClick() {
-
                     },
                     style: {
                         layout: 'vertical',
@@ -234,7 +231,6 @@
                             document.getElementById("paypalFee").value = ((details.purchase_units[0].amount.value) * 0.1).toFixed(2);
                             document.getElementById("netAmount").value = ((details.purchase_units[0].amount.value) * 0.9).toFixed(2);
                             document.getElementById("createTime").value = details.create_time;
-
                             form.submit();
                         });
                     }

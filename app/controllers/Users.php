@@ -30,21 +30,12 @@ class Users extends Controller
         $this->adminModel = $this->model('Admin');
         $this->tokenModel = $this->model('Token');
     }
-//    public function index()
-//    {
-//        if (isUserLoggedIn()) {
-//            redirect('pages/index');
-//        } else {
-//            redirect('users/login');
-//        }
-//    }
-    public function before() {
-        if(isUserLoggedIn()) {
-            redirect('pages/index');
-        }
-    }
     public function register()
     {
+        //check if logged in
+        if (isUserLoggedIn()) {
+            redirect('pages/index');
+        }
         //check for post
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //process form
@@ -107,6 +98,10 @@ class Users extends Controller
 
     public function login()
     {
+        //check if logged in
+        if (isUserLoggedIn()) {
+            redirect('pages/index');
+        }
         //check for post
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //process form
@@ -230,7 +225,7 @@ class Users extends Controller
                     flash('sent_password_reset', 'Please check your email to reset password');
                     $this->view('users/forgot-password', $data);
                 } catch (Exception $e) {
-                    //show an js alert
+                    //show a js alert
                     echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
                 }
             } else {

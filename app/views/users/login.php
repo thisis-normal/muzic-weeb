@@ -16,7 +16,7 @@
         <h1 style="color: #1fdf64; text-align: center"><?php flash('reset_password_success') ?></h1>
     </div>
     <div class="login">
-        <h1 class="login_title">Log in to NHAC</h1>
+        <h1 class="login_title">Log in to Muzic Weeb</h1>
         <div class="form">
             <div class="formusername flex">
                 <label for="txtusername">Email or username</label>
