@@ -737,6 +737,7 @@ hr {
 .form_update input,
 .form_update select,
 .form_update button,
+.selectize-control,
 .formAd input,
 .formAd select,
 .formAd button {
@@ -779,7 +780,15 @@ hr {
   max-width: 100px;
   /* Điều chỉnh độ rộng tối đa bạn muốn hiển thị */
 }
+.selectize-input {
+  border: none !important;
+}
+.selectize-input.focus {
+  border-color: none !important;
+  outline: none !important;
 
+  box-shadow: none !important;
+}
 .form-input--file-text {
   width: 90% !important;
   cursor: pointer;

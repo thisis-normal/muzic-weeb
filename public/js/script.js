@@ -132,10 +132,21 @@ editButtons.forEach(editButton => {
                 const inputField = formUpdate.querySelector(`[data-field="${key}"]`);
                 if (inputField) {
                     if (inputField.tagName === 'SELECT') {
-                        const selectOptions = inputField.options;
-                        for (let i = 0; i < selectOptions.length; i++) {
-                            if (selectOptions[i].value === value) {
-                                selectOptions[i].selected = true;
+                        // var selectize = inputField[0].selectize;
+                        // selectize.setValue(value);
+                        // Tìm tùy chọn trong trường SELECT dựa trên giá trị
+                        // const selectOptions = inputField.option;
+                        $(document).ready(function () {
+                            // alert(value);
+                            var selectize = $(inputField)[0].selectize;
+                            var newValue = value;
+                            selectize.setValue(newValue);
+
+                        });
+
+                        for (var i = 0; i < inputField.options.length; i++) {
+                            if (inputField.options[i].value === value) {
+                                inputField.selectedIndex = i;
                                 break;
                             }
                         }
@@ -149,6 +160,7 @@ editButtons.forEach(editButton => {
         }
     });
 });
+
 
 
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
