@@ -79,6 +79,5 @@ class AlbumManagement extends Controller
         } else {
             die('Something went wrong');
         }
-
     }
 }

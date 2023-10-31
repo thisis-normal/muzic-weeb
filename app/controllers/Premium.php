@@ -17,6 +17,7 @@ class Premium extends Controller
         //get data from payment form
         $data = [
             'orderID' => $_POST['id'], //id from payment form
+            'user_id' => $_SESSION['user_id'],
             'name' => $_POST['shippingName'],
             'email' => $_POST['email'],
             'address' => $_POST['shippingAddress'],
