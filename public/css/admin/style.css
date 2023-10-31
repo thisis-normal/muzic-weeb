@@ -737,7 +737,6 @@ hr {
 .form_update input,
 .form_update select,
 .form_update button,
-.selectize-control,
 .formAd input,
 .formAd select,
 .formAd button {
@@ -749,6 +748,11 @@ hr {
   font-size: 14px;
   padding: 4px 12px;
   margin: 8px 0;
+}
+.selectize-control {
+  width: 300px;
+  height: 40px;
+  margin: 12px 0;
 }
 .formAd textarea {
   width: 300px;
@@ -781,13 +785,13 @@ hr {
   /* Điều chỉnh độ rộng tối đa bạn muốn hiển thị */
 }
 .selectize-input {
-  border: none !important;
+  border: none;
 }
 .selectize-input.focus {
-  border-color: none !important;
-  outline: none !important;
+  border-color: none;
+  outline: none;
 
-  box-shadow: none !important;
+  box-shadow: none;
 }
 .form-input--file-text {
   width: 90% !important;

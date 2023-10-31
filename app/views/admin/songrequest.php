@@ -82,18 +82,16 @@ require APPROOT . '/views/admin/index.php';
                 <h1>Update Song Request</h1>
                 <br>
 
-                <div class="wrapper" id="status">
-                    <div class="select-btn">
-                        <span data-field="status">Select status</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+                <div>
+                    <select id="select-state" data-field="status" name="">
+
+
+                        <option value="1">1</option>
+                        <option value="1">1</option>
+                        <option value="1">1</option>
+
+
+                    </select>
                 </div>
 
                 <div>
@@ -106,6 +104,14 @@ require APPROOT . '/views/admin/index.php';
 </section>
 </body>
 <script>
+    $(document).ready(function() {
+        $('select').selectize({
+            // sortField: 'text',
+            maxOptions: 5
+        });
+
+    });
+
     const dataForArtist = ["Afghanistan", "Algeria", "Argentina"];
     const dataForGenre = ["Pop", "Rock", "Rap"];
     const dataForStatus = ["Active", "Passive", "Deactive"];

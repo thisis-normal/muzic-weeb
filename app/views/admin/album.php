@@ -67,18 +67,14 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <input type="text" id="albumname" name="album_name" placeholder="Album's Name" required />
                 </div>
-                <div class="wrapper" id="artist">
-                    <div class="select-btn">
-                        <span>Select Artist</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" name="artist" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+                <div>
+                    <select id="select-state" name="artist_id" placeholder="Artist">
+                        <option value=""></option>
+                        <?php foreach ($data['listArtist'] as $artist) : ?>
+                            <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
+
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <input type="hidden" id="artistId" name="artist_id" hidden>
                 <input type="hidden" id="artistName" name="selected_artist" hidden="hidden">

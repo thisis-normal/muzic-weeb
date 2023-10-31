@@ -76,44 +76,32 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <input type="text" id="songname" name="" placeholder="Song title" required />
                 </div>
-                <div class="wrapper" id="album">
-                    <div class="select-btn">
-                        <span>Select Album</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+                <div>
+                    <select id="select-state" name="">
+
+                        <option value="1">1</option>
+                        <option value="2">1</option>
+                        <option value="3">1</option>
+                        <option value="4">1</option>
+                    </select>
                 </div>
-                <div class="wrapper" id="artist">
-                    <div class="select-btn">
-                        <span>Select Artist</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+                <div>
+                    <select id="select-state" name="">
+
+                        <option value="1">1</option>
+                        <option value="2">1</option>
+                        <option value="3">1</option>
+                        <option value="4">1</option>
+                    </select>
                 </div>
-                <div class="wrapper" id="genre">
-                    <div class="select-btn">
-                        <span>Select Genre</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+                <div>
+                    <select id="select-state" name="">
+
+                        <option value="1">1</option>
+                        <option value="2">1</option>
+                        <option value="3">1</option>
+                        <option value="4">1</option>
+                    </select>
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
@@ -138,45 +126,35 @@ require APPROOT . '/views/admin/index.php';
                     <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required />
 
                 </div>
-                <div class="wrapper" id="album">
-                    <div class="select-btn">
-                        <span data-field="album">Select Album</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+
+                <div>
+                    <select id="select-state" data-field="album" name="">
+
+                        <option value="1">1</option>
+                        <option value="2">1</option>
+                        <option value="3">1</option>
+                        <option value="4">1</option>
+                    </select>
                 </div>
-                <div class="wrapper" id="artist">
-                    <div class="select-btn">
-                        <span data-field="artist">Select Artist</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+                <div>
+                    <select id="select-state" data-field="artist" name="">
+
+                        <option value="1">1</option>
+                        <option value="2">1</option>
+                        <option value="3">1</option>
+                        <option value="4">1</option>
+                    </select>
                 </div>
-                <div class="wrapper" id="genre">
-                    <div class="select-btn">
-                        <span data-field="genre">Select Genre</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <div class="content">
-                        <div class="search">
-                            <i class='bx bx-search'></i>
-                            <input spellcheck="false" type="text" placeholder="Search" />
-                        </div>
-                        <ul class="options"></ul>
-                    </div>
+                <div>
+                    <select id="select-state" data-field="genre" name="">
+                        <option value="">genre</option>
+                        <option value="1">1</option>
+                        <option value="2">1</option>
+                        <option value="3">1</option>
+                        <option value="4">1</option>
+                    </select>
                 </div>
+
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
                         <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />
@@ -203,6 +181,14 @@ foreach ($data['listArtist'] as $artist) {
 }
 ?>
 <script>
+    $(document).ready(function() {
+        $('select').selectize({
+            // sortField: 'text',
+            maxOptions: 5
+        });
+
+    });
+
     const dataForArtist = <?= json_encode($artists) ?>;
     const dataForGenre = ["Not assign yet"];
     const dataForStatus = ["Not assign yet"];
