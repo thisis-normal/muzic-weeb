@@ -51,7 +51,7 @@ require APPROOT . '/views/admin/index.php';
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Recent Orders</h3>
+                    <h3>Recent Songs</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>

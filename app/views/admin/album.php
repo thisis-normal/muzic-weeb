@@ -93,20 +93,15 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <input type="text" id="" name="album_name" data-field="albumname" placeholder="albumname" required />
                 </div>
-
-
-
                 <div>
                     <select id="select-state" data-field="artistid" name="artist_id" placeholder="Pick a state...">
 
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
-
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <!-- <input type="text" name="album_id" data-field="albumid" id=""> -->
-                <!--                    <input type="text" name="artist_name" data-field="artistn" id="artist"> -->
+                 <input type="hidden" name="album_id" data-field="albumid" id="">
                 <div>
                     <button id="save-button">Update album</button>
                 </div>

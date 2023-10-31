@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/index/style.css">
 
@@ -61,195 +62,208 @@
 </head>
 
 <body>
-    <div class="pay">
-        <!--    create a table that contains the premium plan-->
-        <h2 class="tt">Pricing Plans</h2>
-        <ul class="price-list">
-            <li class="price-item">
-                <h2>Basic</h2>
-                <ul class="feature-list">
-                    <li><strong>Monthly Price:</strong> $9.99</li>
-                    <li><strong>Songs Per Month:</strong> 100</li>
-                    <li><strong>Audio Quality:</strong> 128 kbps</li>
-                    <li><strong>Ad-free Listening:</strong> No</li>
+<div class="pay">
+    <!--    create a table that contains the premium plan-->
+    <h2 class="tt">Pricing Plans</h2>
+    <ul class="price-list">
+        <li class="price-item">
+            <h2>Basic</h2>
+            <ul class="feature-list">
+                <li><strong>Monthly Price:</strong> $9.99</li>
+                <li><strong>Songs Per Month:</strong> 100</li>
+                <li><strong>Audio Quality:</strong> 128 kbps</li>
+                <li><strong>Ad-free Listening:</strong> No</li>
+                <?php if (isUserLoggedIn()) { ?>
                     <li><a href="#" data-namepr="Basic" data-price="$9.99" class="btn btn-success">Buy Now</a></li>
-                </ul>
-            </li>
+                <?php } else { ?>
+                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
+                            buy</a></li>
+                <?php } ?>
+            </ul>
+        </li>
 
-            <li class="price-item">
-                <h2>Premium</h2>
-                <ul class="feature-list">
-                    <li><strong>Monthly Price:</strong> $19.99</li>
-                    <li><strong>Songs Per Month:</strong> Unlimited</li>
-                    <li><strong>Audio Quality:</strong> 256 kbps</li>
-                    <li><strong>Ad-free Listening:</strong> Yes</li>
-                    <?php if (isUserLoggedIn()) { ?>
-                        <li><a href="#" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
-                    <?php } else { ?>
-                        <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to buy</a></li>
-                    <?php } ?>
-                </ul>
-            </li>
+        <li class="price-item">
+            <h2>Premium</h2>
+            <ul class="feature-list">
+                <li><strong>Monthly Price:</strong> $19.99</li>
+                <li><strong>Songs Per Month:</strong> Unlimited</li>
+                <li><strong>Audio Quality:</strong> 256 kbps</li>
+                <li><strong>Ad-free Listening:</strong> Yes</li>
+                <?php if (isUserLoggedIn()) { ?>
+                    <li><a href="#" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
+                <?php } else { ?>
+                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
+                            buy</a></li>
+                <?php } ?>
+            </ul>
+        </li>
 
-            <li class="price-item">
-                <h2>Platinum</h2>
-                <ul class="feature-list">
-                    <li><strong>Monthly Price:</strong> $29.99</li>
-                    <li><strong>Songs Per Month:</strong> Unlimited</li>
-                    <li><strong>Audio Quality:</strong> Lossless</li>
-                    <li><strong>Ad-free Listening:</strong> Yes</li>
+        <li class="price-item">
+            <h2>Platinum</h2>
+            <ul class="feature-list">
+                <li><strong>Monthly Price:</strong> $29.99</li>
+                <li><strong>Songs Per Month:</strong> Unlimited</li>
+                <li><strong>Audio Quality:</strong> Lossless</li>
+                <li><strong>Ad-free Listening:</strong> Yes</li>
+                <?php if (isUserLoggedIn()) { ?>
                     <li><a href="#" data-namepr="Platium" data-price="$29.99" class="btn btn-success">Buy Now</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div id="form-container">
-            <!-- Biểu mẫu sẽ được thêm vào đây -->
-        </div>
+                <?php } else { ?>
+                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
+                            buy</a></li>
+                <?php } ?>
+
+            </ul>
+        </li>
+    </ul>
+    <div id="form-container">
+        <!-- Biểu mẫu sẽ được thêm vào đây -->
     </div>
+</div>
 
-    <div class="bgpop" id="popup"></div>
-    <div class="paypal_popup" id="paypal_popup">
-        <h2 id="paypal-popup-title"></h2>
-        <div class="payprice" id="payprice"></div>
+<div class="bgpop" id="popup"></div>
+<div class="paypal_popup" id="paypal_popup">
+    <h2 id="paypal-popup-title"></h2>
+    <div class="payprice" id="payprice"></div>
 
-        <div id="paypal-button-container" style="max-width:300px;"></div>
-        <p id="result-message"></p>
-    </div>
+    <div id="paypal-button-container" style="max-width:300px;"></div>
+    <p id="result-message"></p>
+</div>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=ASGrPQD3Kl5Ju4m60cmOUF3srF__aWev3fERnjxYENaMZMQcPfK_SyjRcM6sBqLMnXXfr-YW22Ls-wCM&currency=USD"></script>
-    <script>
-        const btns = document.querySelectorAll(".btn");
-        btns.forEach(btn => {
-            btn.addEventListener("click", function(event) {
-                if (btn.innerHTML === "Buy Now") {
-                    event.preventDefault();
-                    let price = btn.getAttribute("data-price");
-                    let namepr = btn.getAttribute("data-namepr");
-                    document.getElementById("paypal-popup-title").textContent = namepr;
-                    document.getElementById("payprice").textContent = price;
-                    document.getElementById("paypal_popup").style.display = "block";
-                    document.getElementById("popup").style.display = "block";
-                    const pricex = document.getElementById("payprice").textContent.replace("$", "");
-                    console.log(pricex);
-                    paypal.Buttons({
-                        onClick() {},
-                        style: {
-                            layout: 'vertical',
-                            color: 'gold',
-                            shape: 'pill',
-                            label: 'paypal',
-                            height: 50
-                        },
-                        createOrder: function(data, actions) {
-                            return actions.order.create({
-                                purchase_units: [{
-                                    amount: {
-                                        value: `${pricex}`,
-                                        currency_code: 'USD'
-                                    }
-                                }]
-                            });
-                        },
-                        onApprove: function(data, actions) {
-                            return actions.order.capture().then(function(details) {
-                                console.log(details);
+<script src="https://www.paypal.com/sdk/js?client-id=ASGrPQD3Kl5Ju4m60cmOUF3srF__aWev3fERnjxYENaMZMQcPfK_SyjRcM6sBqLMnXXfr-YW22Ls-wCM&currency=USD"></script>
+<script>
+    const btns = document.querySelectorAll(".btn");
+    btns.forEach(btn => {
+        btn.addEventListener("click", function (event) {
+            if (btn.innerHTML === "Buy Now") {
+                event.preventDefault();
+                let price = btn.getAttribute("data-price");
+                let namepr = btn.getAttribute("data-namepr");
+                document.getElementById("paypal-popup-title").textContent = namepr;
+                document.getElementById("payprice").textContent = price;
+                document.getElementById("paypal_popup").style.display = "block";
+                document.getElementById("popup").style.display = "block";
+                const pricex = document.getElementById("payprice").textContent.replace("$", "");
+                console.log(pricex);
+                paypal.Buttons({
+                    onClick() {
+                    },
+                    style: {
+                        layout: 'vertical',
+                        color: 'gold',
+                        shape: 'pill',
+                        label: 'paypal',
+                        height: 50
+                    },
+                    createOrder: function (data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: `${pricex}`,
+                                    currency_code: 'USD'
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function (data, actions) {
+                        return actions.order.capture().then(function (details) {
+                            console.log(details);
 
-                                // Tạo một biểu mẫu (form) bằng JavaScript
-                                var form = document.createElement('form');
-                                form.setAttribute('id', 'myform');
-                                form.setAttribute('method', 'post');
-                                form.setAttribute('action', '<?= URLROOT ?>/Premium/success');
-                                // Tạo và cấu hình các trường (input) bằng JavaScript
-                                var fields = [{
-                                        label: 'ID',
-                                        name: 'id',
-                                        value: ''
-                                    },
-                                    {
-                                        label: 'Email',
-                                        name: 'email',
-                                        value: ''
-                                    },
-                                    {
-                                        label: 'Amount',
-                                        name: 'amount',
-                                        value: ''
-                                    },
-                                    {
-                                        label: 'Shipping Name',
-                                        name: 'shippingName',
-                                        value: ''
-                                    },
-                                    {
-                                        label: 'Shipping Address',
-                                        name: 'shippingAddress',
-                                        value: ''
-                                    },
-                                    {
-                                        label: 'PayPal Fee',
-                                        name: 'paypalFee',
-                                        value: ''
-                                    },
-                                    {
-                                        label: 'Net Amount',
-                                        name: 'netAmount',
-                                        value: ''
-                                    },
-                                    {
-                                        label: 'Create Time',
-                                        name: 'createTime',
-                                        value: ''
-                                    }
-                                ];
+                            // Tạo một biểu mẫu (form) bằng JavaScript
+                            var form = document.createElement('form');
+                            form.setAttribute('id', 'myform');
+                            form.setAttribute('method', 'post');
+                            form.setAttribute('action', '<?= URLROOT ?>/Premium/success');
+                            // Tạo và cấu hình các trường (input) bằng JavaScript
+                            var fields = [{
+                                label: 'ID',
+                                name: 'id',
+                                value: ''
+                            },
+                                {
+                                    label: 'Email',
+                                    name: 'email',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Amount',
+                                    name: 'amount',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Shipping Name',
+                                    name: 'shippingName',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Shipping Address',
+                                    name: 'shippingAddress',
+                                    value: ''
+                                },
+                                {
+                                    label: 'PayPal Fee',
+                                    name: 'paypalFee',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Net Amount',
+                                    name: 'netAmount',
+                                    value: ''
+                                },
+                                {
+                                    label: 'Create Time',
+                                    name: 'createTime',
+                                    value: ''
+                                }
+                            ];
 
-                                fields.forEach(function(field) {
-                                    var label = document.createElement('label');
-                                    label.textContent = field.label;
+                            fields.forEach(function (field) {
+                                var label = document.createElement('label');
+                                label.textContent = field.label;
 
-                                    var input = document.createElement('input');
-                                    input.setAttribute('type', 'text');
-                                    input.setAttribute('id', field.name);
-                                    input.setAttribute('name', field.name);
-                                    input.setAttribute('value', field.value);
-                                    input.setAttribute('readonly', 'readonly');
-
-                                    form.appendChild(label);
-                                    form.appendChild(input);
-                                });
                                 var input = document.createElement('input');
-                                input.setAttribute('type', 'submit');
-                                // input.setAttribute('id', field.name);
-                                input.setAttribute('name', 'submit');
-                                input.setAttribute('value', 'submit');
-                                var formContainer = document.getElementById('form-container');
-                                formContainer.appendChild(form);
-                                // Thêm biểu mẫu vào phần tử có id "form-container"
-                                document.getElementById("id").value = details.id;
-                                document.getElementById("email").value = details.payer.email_address;
-                                document.getElementById("amount").value = details.purchase_units[0].amount.value;
-                                document.getElementById("shippingName").value = details.purchase_units[0].shipping.name.full_name;
-                                document.getElementById("shippingAddress").value = details.purchase_units[0].shipping.address.address_line_1 +
-                                    ", " + details.purchase_units[0].shipping.address.admin_area_2 +
-                                    ", " + details.purchase_units[0].shipping.address.admin_area_1 +
-                                    ", " + details.purchase_units[0].shipping.address.postal_code +
-                                    ", " + details.purchase_units[0].shipping.address.country_code;
-                                document.getElementById("paypalFee").value = ((details.purchase_units[0].amount.value) * 0.1).toFixed(2);
-                                document.getElementById("netAmount").value = ((details.purchase_units[0].amount.value) * 0.9).toFixed(2);
-                                document.getElementById("createTime").value = details.create_time;
-                                form.submit();
-                            });
-                        }
-                    }).render('#paypal-button-container'); // Display payment options on your web page
-                }
+                                input.setAttribute('type', 'text');
+                                input.setAttribute('id', field.name);
+                                input.setAttribute('name', field.name);
+                                input.setAttribute('value', field.value);
+                                input.setAttribute('readonly', 'readonly');
 
-            });
-        })
-        document.getElementById("popup").addEventListener("click", function() {
-            document.getElementById("paypal_popup").style.display = "none";
-            document.getElementById("popup").style.display = "none";
-            location.reload();
-        })
-    </script>
+                                form.appendChild(label);
+                                form.appendChild(input);
+                            });
+                            var input = document.createElement('input');
+                            input.setAttribute('type', 'submit');
+                            // input.setAttribute('id', field.name);
+                            input.setAttribute('name', 'submit');
+                            input.setAttribute('value', 'submit');
+                            var formContainer = document.getElementById('form-container');
+                            formContainer.appendChild(form);
+                            // Thêm biểu mẫu vào phần tử có id "form-container"
+                            document.getElementById("id").value = details.id;
+                            document.getElementById("email").value = details.payer.email_address;
+                            document.getElementById("amount").value = details.purchase_units[0].amount.value;
+                            document.getElementById("shippingName").value = details.purchase_units[0].shipping.name.full_name;
+                            document.getElementById("shippingAddress").value = details.purchase_units[0].shipping.address.address_line_1 +
+                                ", " + details.purchase_units[0].shipping.address.admin_area_2 +
+                                ", " + details.purchase_units[0].shipping.address.admin_area_1 +
+                                ", " + details.purchase_units[0].shipping.address.postal_code +
+                                ", " + details.purchase_units[0].shipping.address.country_code;
+                            document.getElementById("paypalFee").value = ((details.purchase_units[0].amount.value) * 0.1).toFixed(2);
+                            document.getElementById("netAmount").value = ((details.purchase_units[0].amount.value) * 0.9).toFixed(2);
+                            document.getElementById("createTime").value = details.create_time;
+                            form.submit();
+                        });
+                    }
+                }).render('#paypal-button-container'); // Display payment options on your web page
+            }
+
+        });
+    })
+    document.getElementById("popup").addEventListener("click", function () {
+        document.getElementById("paypal_popup").style.display = "none";
+        document.getElementById("popup").style.display = "none";
+        location.reload();
+    })
+</script>
 </body>
 
 </html>
@@ -328,10 +342,10 @@
                         }
                     },
                     "links": [{
-                            "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E",
-                            "rel": "self",
-                            "method": "GET"
-                        },
+                        "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E",
+                        "rel": "self",
+                        "method": "GET"
+                    },
                         {
                             "href": "https://api.sandbox.paypal.com/v2/payments/captures/92R40672J7030310E/refund",
                             "rel": "refund",

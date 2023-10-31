@@ -35,33 +35,38 @@ require APPROOT . '/views/admin/index.php';
             </div> -->
                 <table>
                     <thead>
-                        <tr>
-                            <th>Song title</th>
-                            <th>Artist</th>
-                            <th>Release date</th>
-                            <th>Album</th>
-                            <th>Genre</th>
-                            <th>File path</th>
-                            <th>Action</th>
+                    <tr>
+                        <th>Song title</th>
+                        <th>Artist</th>
+                        <th>Release date</th>
+                        <th>Album</th>
+                        <th>Genre</th>
+                        <th>File path</th>
+                        <th>Action</th>
 
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                anh khạc hay em khạc
-                            </td>
-                            <td>Erik</td>
-                            <td>6/4/2002</td>
-                            <td>ko có </td>
-                            <td>Nhạc trẻ</td>
-                            <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
+                    <tr>
+                        <td>
+                            anh khạc hay em khạc
+                        </td>
+                        <td>Erik</td>
+                        <td>6/4/2002</td>
+                        <td>ko có</td>
+                        <td>Nhạc trẻ</td>
+                        <td class="truncate-text">http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc</td>
 
-                            <td>
-                                <a href="#" class="delete-user" data-delete="anh khạc hay em khạc" data-delete-href="<?= URLROOT ?>/backend ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="anh khạc hay em khạc" data-album="ko có" data-artist="Erik" data-genre="Nhạc trẻ" data-file="http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
-                            </td>
-                        </tr>
+                        <td>
+                            <a href="#" class="delete-user" data-delete="anh khạc hay em khạc"
+                               data-delete-href="<?= URLROOT ?>/backend ?>"><i class='bx bx-trash'
+                                                                               style='color:#fb0004'></i></a>
+                            <a href="" class="edit-button btnpopup" data-form="form_update_song"
+                               data-songtitle="anh khạc hay em khạc" data-album="ko có" data-artist="Erik"
+                               data-genre="Nhạc trẻ" data-file="http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc"><i
+                                        class='bx bxs-edit' style='color:#0042fb'></i></a>
+                        </td>
+                    </tr>
 
                     </tbody>
                 </table>
@@ -74,38 +79,36 @@ require APPROOT . '/views/admin/index.php';
                 <h1>Create song</h1>
                 <br>
                 <div>
-                    <input type="text" id="songname" name="" placeholder="Song title" required />
+                    <input type="text" id="songname" name="" placeholder="Song title" required/>
                 </div>
                 <div>
-                    <select id="select-state" name="" placeholder="Artist">
+                    <select id="select-state" name="artist_id" placeholder="Artist">
                         <option value=""></option>
-                        <option value="1">1</option>
-                        <option value="2">1</option>
-                        <option value="3">1</option>
-                        <option value="4">1</option>
+                        <?php foreach ($data['listArtist'] as $artist) : ?>
+                            <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div>
                     <select id="select-state" name="" placeholder="Album">
-
                         <option value=""></option>
-                        <option value="2">1</option>
-                        <option value="3">1</option>
-                        <option value="4">1</option>
+                        <?php foreach ($data['listAlbum'] as $album) : ?>
+                            <option value="<?= $album->album_id ?>"><?= $album->title ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div>
                     <select id="select-state" name="" placeholder="Genre">
-
                         <option value=""></option>
-                        <option value="2">1</option>
-                        <option value="3">1</option>
-                        <option value="4">1</option>
+                        <?php foreach ($data['listGenre'] as $genre) : ?>
+                            <option value="<?= $genre->genre_id ?>"><?= $genre->name ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />
+                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg"
+                               size="14" required/>
                         <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" value="Choose file...">
                     </label>
@@ -123,7 +126,7 @@ require APPROOT . '/views/admin/index.php';
                 <h1>Update Song</h1>
                 <br>
                 <div>
-                    <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required />
+                    <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required/>
 
                 </div>
 
@@ -157,7 +160,8 @@ require APPROOT . '/views/admin/index.php';
 
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />
+                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg"
+                               size="14" required/>
                         <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" data-field="file" value="Choose file...">
                     </label>
@@ -181,7 +185,7 @@ foreach ($data['listArtist'] as $artist) {
 }
 ?>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('select').selectize({
             // sortField: 'text',
             maxOptions: 5
