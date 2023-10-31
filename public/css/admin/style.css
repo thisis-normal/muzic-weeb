@@ -754,6 +754,11 @@ hr {
   height: 40px;
   margin: 12px 0;
 }
+
+.selectize-input {
+  min-height: 40px !important;
+  line-height: 40px !important;
+}
 .formAd textarea {
   width: 300px;
 

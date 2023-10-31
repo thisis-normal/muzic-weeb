@@ -77,8 +77,8 @@ require APPROOT . '/views/admin/index.php';
                     <input type="text" id="songname" name="" placeholder="Song title" required />
                 </div>
                 <div>
-                    <select id="select-state" name="">
-
+                    <select id="select-state" name="" placeholder="Artist">
+                        <option value=""></option>
                         <option value="1">1</option>
                         <option value="2">1</option>
                         <option value="3">1</option>
@@ -86,18 +86,18 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <select id="select-state" name="">
+                    <select id="select-state" name="" placeholder="Album">
 
-                        <option value="1">1</option>
+                        <option value=""></option>
                         <option value="2">1</option>
                         <option value="3">1</option>
                         <option value="4">1</option>
                     </select>
                 </div>
                 <div>
-                    <select id="select-state" name="">
+                    <select id="select-state" name="" placeholder="Genre">
 
-                        <option value="1">1</option>
+                        <option value=""></option>
                         <option value="2">1</option>
                         <option value="3">1</option>
                         <option value="4">1</option>
