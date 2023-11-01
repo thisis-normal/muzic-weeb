@@ -1,6 +1,6 @@
-<?php require APPROOT . '/views/include/header.php';
-require APPROOT . '/views/include/navbar.php';
-require APPROOT . '/views/include/footer.php'; ?>
+<?php require APPROOT . '/views/include/includeFiles.php';
+
+?>
 
 </div>
 <div class="main-container">
