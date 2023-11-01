@@ -72,12 +72,9 @@ require APPROOT . '/views/admin/index.php';
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
-
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <input type="hidden" id="artistId" name="artist_id" hidden>
-                <input type="hidden" id="artistName" name="selected_artist" hidden="hidden">
                 <div>
                     <button id="save-button">Create album</button>
                 </div>

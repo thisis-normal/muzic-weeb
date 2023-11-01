@@ -74,15 +74,15 @@ require APPROOT . '/views/admin/index.php';
 
         </div>
         <!-- create -->
-        <form id="data-form" action="" method="post">
+        <form id="data-form" action="<?=URLROOT?>/song-management/create-song" method="post" enctype="multipart/form-data">
             <div class="form_create formAd popup form_create_song">
                 <h1>Create song</h1>
                 <br>
                 <div>
-                    <input type="text" id="songname" name="" placeholder="Song title" required/>
+                    <input type="text" id="songname" name="song_name" placeholder="Song title" required/>
                 </div>
                 <div>
-                    <select id="select-state" name="artist_id" placeholder="Artist">
+                    <select id="select-state" name="artist_id" placeholder="Artist" required>
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
@@ -90,7 +90,7 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <select id="select-state" name="" placeholder="Album">
+                    <select id="select-state" name="album_id" placeholder="Album">
                         <option value=""></option>
                         <?php foreach ($data['listAlbum'] as $album) : ?>
                             <option value="<?= $album->album_id ?>"><?= $album->title ?></option>
@@ -98,24 +98,23 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <select id="select-state" name="" placeholder="Genre">
+                    <select id="select-state" name="genre_id" placeholder="Genre" required>
                         <option value=""></option>
                         <?php foreach ($data['listGenre'] as $genre) : ?>
                             <option value="<?= $genre->genre_id ?>"><?= $genre->name ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <br>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg"
+                        <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg"
                                size="14" required/>
                         <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" value="Choose file...">
                     </label>
                 </div>
-
                 <div>
-
                     <button id="save-button">Create Song</button>
                 </div>
             </div>
