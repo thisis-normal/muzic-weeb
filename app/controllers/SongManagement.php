@@ -5,7 +5,9 @@ class SongManagement extends Controller
     public function __construct()
     {
         $this->songModel = $this->model('Song');
+        $this->genreModel = $this->model('Genre');
     }
+
     public function createSong()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -14,10 +16,11 @@ class SongManagement extends Controller
                 'song_name' => trim($_POST['song_name']),
                 'album_id' => trim($_POST['album_id']),
                 'artist_id' => trim($_POST['artist_id']),
-                'genre_id' => trim($_POST['genre_id']),
+                'genre_id_array' => $_POST['genre_id'],
                 'file' => $_FILES['song'],
                 'file_err' => ''
             ];
+//            var_dump($data['genre_id_array']); die();
             $data['file_err'] = $this->validateSong($data['file']);
             if (empty($data['file_err'])) {
                 $fileName = $data['file']['name'];
@@ -31,7 +34,11 @@ class SongManagement extends Controller
                 }
                 // Move uploaded file
                 if (move_uploaded_file($data['file']['tmp_name'], $destination)) {
-                    if ($this->songModel->createSong($data['song_name'], $data['album_id'], $data['artist_id'], $data['genre_id'], $fileName)) {
+                    $song_id = $this->songModel->createSong($data['song_name'], $data['album_id'], $data['artist_id'], $fileName);
+                    if ($song_id) {
+                        foreach ($data['genre_id_array'] as $genre_id) {
+                            $this->genreModel->insertGenreSong($song_id, $genre_id);
+                        }
                         flash('song_message', 'Song created');
                         redirect('admins/song');
                     } else {
@@ -39,7 +46,8 @@ class SongManagement extends Controller
                     }
                 }
             } else {
-                var_dump($data['file_err']); die();
+                var_dump($data['file_err']);
+                die();
             }
         }
     }

@@ -36,6 +36,7 @@ require APPROOT . '/views/admin/index.php';
                 <table>
                     <thead>
                         <tr>
+<!--                            <th>Ordinal</th>-->
                             <th>Song title</th>
                             <th>Artist</th>
                             <th>Release date</th>
@@ -43,9 +44,25 @@ require APPROOT . '/views/admin/index.php';
                             <th>Genre</th>
                             <th>File path</th>
                             <th>Action</th>
-
                         </tr>
                     </thead>
+                    <?php foreach ($data['listSong'] as $song) : ?>
+                        <tbody>
+                            <tr>
+<!--                                <td>--><?php //= $song->id ?><!--</td>-->
+                                <td><?= $song->title ?></td>
+                                <td><?= $song->artist_name ?></td>
+                                <td><?= $song->release_date ?></td>
+                                <td><?= $song->album_title ?></td>
+                                <td><?= $song->genre_name ?></td>
+                                <td class="truncate-text"><?= $song->file_path ?></td>
+                                <td>
+                                    <a href="#" class="delete-user" data-delete="<?= $song->title ?>" data-delete-href="<?= URLROOT ?>/song-management/delete-song/?id=<?= $song->song_id ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                    <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="<?= $song->title ?>" data-album="<?= $song->title ?>" data-artist="<?= $song->name ?>" data-genre="<?= $song->name ?>" data-file="<?= $song->file_path ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    <?php endforeach; ?>
                     <tbody>
                         <tr>
                             <td>
@@ -62,7 +79,6 @@ require APPROOT . '/views/admin/index.php';
                                 <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="anh khạc hay em khạc" data-album="ko có" data-artist="Erik" data-genre="Nhạc trẻ" data-file="http://cvcvbnvcxcvbcvxbnvbvzvxbcxvzcvxbc"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -77,7 +93,7 @@ require APPROOT . '/views/admin/index.php';
                     <input type="text" id="songname" name="song_name" placeholder="Song title" required />
                 </div>
                 <div>
-                    <select id="select-state" name="artist_id" placeholder="Artist" required>
+                    <select id="select-state" name="artist_id" placeholder="Artist">
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
@@ -93,15 +109,22 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <input type="text" id="input-tags" value="awesome,neasted,beast" />
+                    <select multiple id="select-state" name="genre_id[]" placeholder="Genre">
+                        <option value=""></option>
+                        <?php foreach ($data['listGenre'] as $genre) : ?>
+                            <option value="<?= $genre->genre_id ?>"><?= $genre->name ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div>
                     <input type="date" name="" id="">
                 </div>
                 <br>
+                <br>
+                <br>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg" size="14" required />
+                        <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg" size="14" />
                         <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" value="Choose file...">
                     </label>
@@ -123,7 +146,6 @@ require APPROOT . '/views/admin/index.php';
 
                 <div>
                     <select id="select-state" data-field="album" name="">
-
                         <option value="1">1</option>
                         <option value="2">1</option>
                         <option value="3">1</option>
@@ -167,36 +189,27 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
-<?php // New array to hold just name strings
-$artists = [];
-foreach ($data['listArtist'] as $artist) {
-    $artists[] = [
-        'name' => $artist->name,
-        'id' => $artist->artist_id
-    ];
-}
-?>
 <script>
     $(document).ready(function() {
         $('select').selectize({
-            // sortField: 'text',
+            sortField: 'text',
             maxOptions: 5
         });
-        $("#input-tags").selectize({
-            delimiter: ",",
-            persist: false,
-            create: function(input) {
-                return {
-                    value: input,
-                    text: input,
-                };
-            },
+        $('#select-tools').selectize({
+            maxItems: null,
+            valueField: 'id',
+            labelField: 'title',
+            searchField: 'title',
+            options: [
+                <?php foreach ($data['listGenre'] as $genre) : ?>
+                {
+                    id: <?= $genre->genre_id ?>, title: '<?= $genre->name ?>'
+                },
+                <?php endforeach; ?>
+                { id: 0, title: 'Add new genre'}
+            ],
+            create: false
         });
     });
-
-    const dataForArtist = <?= json_encode($artists) ?>;
-    const dataForGenre = ["Not assign yet"];
-    const dataForStatus = ["Not assign yet"];
-    const dataForDefault = ["Not assign yet"];
 </script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>
