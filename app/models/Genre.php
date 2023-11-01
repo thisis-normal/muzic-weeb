@@ -1,6 +1,8 @@
 <?php
 class Genre {
     private $db;
+    public $genre_id;
+    public $song_id;
     public function __construct()
     {
         $this->db = new Database;
@@ -13,6 +15,21 @@ class Genre {
         } else {
             return false;
         }
+    }
+    public function insertGenreSong($song_id, $genre_id) {
+        $this->db->query("INSERT INTO genre_song (song_id, genre_id ) VALUES (:song_id, :genre_id)");
+        $this->db->bind(':song_id', $song_id);
+        $this->db->bind(':genre_id', $genre_id);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getAllGenreSong() {
+        $this->db->query("SELECT * FROM genre_song");
+        $result = $this->db->resultSet();
+        return $result;
     }
     public function getAllGenres () {
         $this->db->query("SELECT * FROM genres");

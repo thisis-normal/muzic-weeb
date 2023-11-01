@@ -9,6 +9,7 @@ class  Admins extends Controller
         $this->artistModel = $this->model('Artist');
         $this->genreModel = $this->model('Genre');
         $this->albumModel = $this->model('Album');
+        $this->songModel = $this->model('Song');
     }
     public function index()
     {
@@ -35,10 +36,12 @@ class  Admins extends Controller
     public function song()
     {
         $data = [
-            'listAlbum' => $this->albumModel->getAllAlbumWithArtistName(),
             'listArtist' => $this->artistModel->getAllArtists(),
+            'listAlbum' => $this->albumModel->getAllAlbumWithArtistName(),
             'listGenre' => $this->genreModel->getAllGenres(),
+            'listSong' => $this->songModel->getSongs(),
         ];
+//        var_dump($data['listSong']); die();
         $this->view('admin/song', $data);
     }
     public function genre()
