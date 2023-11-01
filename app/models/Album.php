@@ -9,10 +9,10 @@ class Album
         $this->db = new Database;
     }
 
-    public function createAlbum($id, $name)
+    public function createAlbum($artist_id, $name)
     {
         $this->db->query('INSERT INTO albums (artist_id, title, release_date) VALUES (:artist_id, :title, :release_date)');
-        $this->db->bind(':artist_id', $id);
+        $this->db->bind(':artist_id', $artist_id);
         $this->db->bind(':title', $name);
         $this->db->bind(':release_date', date("Y-m-d"));
         if ($this->db->execute()) {
