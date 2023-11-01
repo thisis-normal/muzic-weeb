@@ -17,7 +17,7 @@
         <?php else : ?>
 
             <div class="music-player" id="music-player">
-                <audio id="audio-player" src="<?php echo URLROOT ?>/public/songs/onlyc.mp3"></audio>
+                <audio id="audio-player" src="<?php echo URLROOT ?>/public/songs/chieckhanphieu.mp3"></audio>
                 <div class="song-bar">
                     <div class="song-infos">
                         <div class="image-container">

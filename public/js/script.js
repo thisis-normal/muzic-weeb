@@ -363,8 +363,9 @@ function openPage(url) {
                 document.getElementById("mainContent").innerHTML = xhr.responseText;
                 document.body.scrollTop = 0;
 
-                // Thêm dòng này để cập nhật lịch sử trình duyệt
-                history.pushState(null, null, url);
+                // Đặt thông tin trạng thái
+                var newState = { url: url };
+                history.pushState(newState, null, url);
             } else {
                 // Xử lý lỗi tải trang
                 console.log("Error loading page: " + url);
@@ -374,5 +375,6 @@ function openPage(url) {
     xhr.send();
 
     // Thêm dòng này để cập nhật URL hiện tại vào lịch sử trình duyệt
-    history.pushState(null, url);
+    var newState = { url: url };
+    history.pushState(newState, url);
 }

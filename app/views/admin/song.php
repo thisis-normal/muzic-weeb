@@ -95,6 +95,9 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <input type="text" id="input-tags" value="awesome,neasted,beast" />
                 </div>
+                <div>
+                    <input type="date" name="" id="">
+                </div>
                 <br>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
@@ -145,7 +148,9 @@ require APPROOT . '/views/admin/index.php';
                         <option value="4">1</option>
                     </select>
                 </div>
-
+                <div>
+                    <input type="date" name="" id="">
+                </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
                         <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />

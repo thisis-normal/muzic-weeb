@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/index/style.css">
@@ -31,9 +30,9 @@
     </div> -->
         <div class="user">
             <!--        <img src="--><?php //echo URLROOT 
-            ?><!--/public/img/avt.jpg" alt="Avatar">-->
+                                        ?><!--/public/img/avt.jpg" alt="Avatar">-->
             <!--        <span class="username">--><?php //echo $_SESSION['username'] 
-            ?><!--</span>-->
+                                                    ?><!--</span>-->
             <!-- <i class="fas fa-chevron-down"></i> -->
         </div>
         <!--        check session-->
@@ -69,7 +68,7 @@
                         <div class="home_user" id="home_user">
                             <i class="fa fa-user" style="color: #ffffff"></i>
                         </div>
-                        <div class="home_username"><?= $_SESSION['user_name'] ?></div>
+                        <!-- <div class="home_username"><?= $_SESSION['user_name'] ?></div> -->
                     </label>
 
                     <div class="home_info-popup">
