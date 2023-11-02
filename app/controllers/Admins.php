@@ -42,6 +42,19 @@ class  Admins extends Controller
             'listSong' => $this->songModel->getSongs(),
         ];
 //        var_dump($data['listSong']); die();
+
+//        echo '<table>';
+//        foreach ($groupedSongs as $song) {
+//            echo '<tr>';
+//            echo '<td>' . $song['title'] . '</td>';
+//            echo '<td>' . $song['file_path'] . '</td>';
+//            echo '<td>' . implode(', ', $song['genres']) . '</td>';
+//            echo '<td>' . $song['album_title'] . '</td>';
+//            echo '<td>' . $song['artist_name'] . '</td>';
+//            echo '</tr>';
+//        }
+//        echo '</table>';
+//        var_dump($data['listSong']); die();
         $this->view('admin/song', $data);
     }
     public function genre()

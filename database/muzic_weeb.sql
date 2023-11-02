@@ -29,15 +29,18 @@ CREATE TABLE IF NOT EXISTS `albums` (
   PRIMARY KEY (`album_id`),
   KEY `album_fk0` (`artist_id`),
   CONSTRAINT `album_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.albums: ~5 rows (approximately)
+-- Dumping data for table muzic_weeb.albums: ~7 rows (approximately)
 INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_image`) VALUES
-	(1, 'eq2e2q', 11, '2023-10-25', NULL),
 	(2, 'Making My Way', 13, '2023-10-25', NULL),
 	(3, 'Ch&uacute;ng ta của hiện tại', 13, '2023-10-25', NULL),
 	(4, 'Anh kh&ocirc;ng d&ugrave;ng ma to&eacute; đ&acirc;u', 12, '2023-10-25', NULL),
-	(5, 'Vũ Trụ C&ograve; Bay', 14, '2023-10-25', NULL);
+	(5, 'Vũ Trụ C&ograve; Bay', 14, '2023-10-25', NULL),
+	(6, 'Đo&aacute;n xem', 14, '2023-10-30', NULL),
+	(7, 'Haru Haru', 12, '2023-10-30', NULL),
+	(8, 'Losing Interestss', 17, '2023-10-31', NULL),
+	(10, 'Time', 18, '2023-11-02', NULL);
 
 -- Dumping structure for table muzic_weeb.album_genre
 CREATE TABLE IF NOT EXISTS `album_genre` (
@@ -59,15 +62,17 @@ CREATE TABLE IF NOT EXISTS `artists` (
   `image` varchar(255) NOT NULL,
   `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`artist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~5 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~6 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
 	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
 	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
 	(13, 'Sơn T&ugrave;ng', 'Nguyễn Thanh T&ugrave;ng, born in 1994, known professionally as Sơn T&ugrave;ng M-TP, is a Vietnamese singer, songwriter, producer, and actor. He is not only known as one of the most successful Vietnamese artists and as the &quot;Prince of V-pop&quot;, but also as the Chairman of three self-created companies: M-TP Entertainment, M-TP Talent and M-TP &amp; Friends. He has received many achievements: a MTV Europe Music Award, an Mnet Asian Music Award, appeared on Forbes Vietnam&#039;s 2018 30 Under 30 list, and is also the first Vietnamese musician to enter the Billboard Social 50. Up until now, he has already released a total of 25 songs, such as &quot;Cơn mưa ngang qua&quot;, &quot;Em của ng&agrave;y h&ocirc;m qua&quot;, &quot; &Acirc;m thầm b&ecirc;n em&quot;, and many more. His single &quot;Chạy ngay đi&quot; was released with a music video featuring Thai actress Davika Hoorne, and with a collaboration with rapper Snoop Dogg, he went on and created the big hit &quot;H&atilde;y trao cho anh&quot;. After releasing &quot;C&oacute; chắc y&ecirc;u l&agrave; đ&acirc;y&quot; in 2020, the song became the 3rd-most-streamed Youtube premiere at the time with 902,000 live viewers. As we all know, music is, without a doubt, the easiest way to connect people. For Sơn T&ugrave;ng M-TP, music is everything he ever wanted to offer to the world around him with all his heart and soul.', 'mmw-4-956.jpg', NULL),
 	(14, 'Phương Mỹ Chi', 'Phuong My Chi was born on January 13, 2003 in a rather crowded family, the whole family had more than 14 people (including My Chi&#039;s parents and eldest sister) living in a small house. Currently, Chi lives in a small alley on Mac Van Street, Ward 12, District 8, Ho Chi Minh City.\r\n\r\nPhuong My Chi is a singer specializing in Southern Vietnamese folk music. My Chi became famous when she participated and won runner-up in the first season of the reality TV show The Voice Kids.', 'pmc.jpg', NULL),
-	(16, 'Phương Ly', '.................', 'phuongly.jpg', NULL);
+	(16, 'Phương Ly', '.................', 'phuongly.jpg', NULL),
+	(17, 'Stract', 'Steven Grant Lee Jr. (born March 22, 1999), known professionally as Stract (an acronym for Seeking To Reveal A Closer Truth), is an American rapper, singer, songwriter, and record producer from Los Angeles, California. The lofi hip-hop artist surfaced in July of 2018 with  collaboration &quot;.&quot; This was followed by the release of his debut album &quot;&quot; (released February 14, 2019), an 11-track LP featuring appearances from a diverse range of collaborators such as , , and Numbers Game. Months after his debut, Stract returned in July of 2019 with yet another  collaboration, &quot;,&quot; which became his breakthrough, eventually landing him a contract with CORBAL Records in April of 2020', 'channels4_profile.jpg', NULL),
+	(18, 'Hans Zimmer', 'Hans Florian Zimmer; born 12 September 1957) is a German film score composer and music producer. He has won two Oscars and four Grammys, and has been nominated for three Emmys and a Tony. Zimmer was also named on the list of Top 100 Living Geniuses, published by The Daily Telegraph in 2007', 'hanz.png', NULL);
 
 -- Dumping structure for table muzic_weeb.genres
 CREATE TABLE IF NOT EXISTS `genres` (
@@ -86,6 +91,33 @@ INSERT INTO `genres` (`genre_id`, `name`) VALUES
 	(6, 'Hiphop'),
 	(7, 'Lo-fi'),
 	(8, 'Rap');
+
+-- Dumping structure for table muzic_weeb.genre_song
+CREATE TABLE IF NOT EXISTS `genre_song` (
+  `song_id` int NOT NULL,
+  `genre_id` int NOT NULL,
+  PRIMARY KEY (`song_id`,`genre_id`),
+  KEY `song_genre_fk1` (`genre_id`),
+  CONSTRAINT `song_genre_fk0` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`),
+  CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table muzic_weeb.genre_song: ~11 rows (approximately)
+INSERT INTO `genre_song` (`song_id`, `genre_id`) VALUES
+	(5, 2),
+	(6, 2),
+	(5, 3),
+	(7, 3),
+	(5, 4),
+	(8, 4),
+	(5, 5),
+	(8, 5),
+	(10, 5),
+	(8, 6),
+	(10, 6),
+	(6, 7),
+	(8, 7),
+	(10, 7);
 
 -- Dumping structure for table muzic_weeb.playlist
 CREATE TABLE IF NOT EXISTS `playlist` (
@@ -110,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `playlist_song` (
   KEY `playlist_song_fk0` (`playlist_id`),
   KEY `playlist_song_fk1` (`song_id`),
   CONSTRAINT `playlist_song_fk0` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`playlist_id`),
-  CONSTRAINT `playlist_song_fk1` FOREIGN KEY (`song_id`) REFERENCES `song` (`id`)
+  CONSTRAINT `playlist_song_fk1` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.playlist_song: ~0 rows (approximately)
@@ -144,10 +176,10 @@ INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, 
 	(16, 'thuonghuunguyen2002@gmail.com', 'badc92c0d028a1c54920beeba0af7af6881746c4bbc78445ae9b7b4f9256d7136f947a67814013204cedd6086b7adc0a4333', '2023-10-17 10:23:26', '2023-10-17 18:05:40', 'valid'),
 	(17, 'chungvvvv@gmail.com', 'd982f1340db2601a5e8bfdc2b3e922b2bb9cc858db945b875f2abde28e3f8d5f4e89c979cd47b612ccaf7d90f9d01a054195', '2023-10-18 01:56:27', '2023-10-18 09:56:27', 'valid'),
 	(18, 'thuonghuunguyen2002@gmail.com', '65644487bf597b578566cda3fef25b4b0717db4443bfbf3ab15e6c7e9b6a8c7acf240c276a1cac3d279bd463e99dc049cc11', '2023-10-25 23:01:00', '2023-10-26 07:01:00', 'valid'),
-	(19, 'thuonghuunguyen2002@gmail.com', '94e2cfc15632642afc0cde1b5f9ef5c66e94b24a2cd6f9fabc77323531adc27d29e1e50d7a0f70b1b5e64891769cbc9732fb', '2023-10-25 23:03:19', '2023-10-26 07:01:28', 'used');
+	(19, 'thuonghuunguyen2002@gmail.com', '94e2cfc15632642afc0cde1b5f9ef5c66e94b24a2cd6f9fabc77323531adc27d29e1e50d7a0f70b1b5e64891769cbc9732fb', '2023-10-30 03:32:38', '2023-10-26 07:01:28', 'expired');
 
--- Dumping structure for table muzic_weeb.song
-CREATE TABLE IF NOT EXISTS `song` (
+-- Dumping structure for table muzic_weeb.songs
+CREATE TABLE IF NOT EXISTS `songs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `artist_id` int NOT NULL,
   `title` varchar(255) DEFAULT NULL,
@@ -161,21 +193,15 @@ CREATE TABLE IF NOT EXISTS `song` (
   KEY `song_fk1` (`album_id`),
   CONSTRAINT `song_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`),
   CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.song: ~0 rows (approximately)
-
--- Dumping structure for table muzic_weeb.song_genre
-CREATE TABLE IF NOT EXISTS `song_genre` (
-  `song_id` int NOT NULL,
-  `genre_id` int NOT NULL,
-  PRIMARY KEY (`song_id`,`genre_id`),
-  KEY `song_genre_fk1` (`genre_id`),
-  CONSTRAINT `song_genre_fk0` FOREIGN KEY (`song_id`) REFERENCES `song` (`id`),
-  CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Dumping data for table muzic_weeb.song_genre: ~0 rows (approximately)
+-- Dumping data for table muzic_weeb.songs: ~5 rows (approximately)
+INSERT INTO `songs` (`id`, `artist_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`) VALUES
+	(5, 12, 'Lmao', '2020-05-20', 2, '2023-11-02 03:09:11', 'damvinhung.mp3', 'Approved'),
+	(6, 14, 'Song 1', '2023-08-02', 4, '2023-11-02 03:08:57', '65422203460a7soobin.mp3', 'Approved'),
+	(7, 18, 'Time', '2023-12-02', 10, '2023-11-02 03:08:53', 'Time.mp3', 'Approved'),
+	(8, 12, 'DDD', '2023-11-02', 4, '2023-11-02 03:08:51', '6543066525909damvinhung.mp3', 'Approved'),
+	(10, 12, 'aaa', '2023-10-31', 4, '2023-11-02 02:40:26', '65430c1a9712cTime.mp3', 'Approved');
 
 -- Dumping structure for table muzic_weeb.users
 CREATE TABLE IF NOT EXISTS `users` (
