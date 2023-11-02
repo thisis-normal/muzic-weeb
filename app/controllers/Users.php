@@ -215,7 +215,7 @@ class Users extends Controller
                     // Content
                     $mail->isHTML(true);                                        // Set email format to HTML
                     $mail->Subject = 'Reset Password';
-                    $mail->Body = '<h2>We received a request to reset your Muzic Weeb account password.</h2>
+                    $mail->Body = '<h2 style="color: black">We received a request to reset your Muzic Weeb account password.</h2>
                      <p>Click the button below to reset your password:</p>
                     <h3><a href="' . URLROOT . '/users/reset-password?email=' . $data['email'] . '&token=' . $token . '">Reset Password</a></h3>
                     <p>If you didn’t submit a request to reset your password, contact our team immediately at support@ulsait.com</p>

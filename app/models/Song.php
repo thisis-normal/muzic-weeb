@@ -1,17 +1,21 @@
 <?php
-class Song {
+
+class Song
+{
     private $db;
+
     public function __construct()
     {
         $this->db = new Database;
     }
+
     public function getSongs()
-    {   //DATE_FORMAT(your_date_column, '%d/%m/%Y')
+    {
         $this->db->query('SELECT songs.title, DATE_FORMAT(songs.release_date, "%d/%m/%Y") AS formatted_date, songs.status, songs.file_path, songs.id, albums.title as album_title, artists.name as artist_name, genres.name as genre_name FROM songs INNER JOIN albums ON songs.album_id = albums.album_id INNER JOIN artists ON songs.artist_id = artists.artist_id INNER JOIN genre_song ON songs.id = genre_song.song_id INNER JOIN genres ON genre_song.genre_id = genres.genre_id');
-//        $this->db->query('SELECT songs.title, genres.name as genre_name FROM songs INNER JOIN genre_song ON songs.id = genre_song.song_id INNER JOIN genres ON genre_song.genre_id = genres.genre_id');
         $results = $this->db->resultSet();
         return $results;
     }
+
     public function getSongById($id)
     {
         $this->db->query('SELECT * FROM songs WHERE song_id = :id');
@@ -19,7 +23,8 @@ class Song {
         $row = $this->db->single();
         return $row;
     }
-    public function createSong($song_name,$release_date, $album_id, $artist_id, $file, $status = 'Approved')
+
+    public function createSong($song_name, $release_date, $album_id, $artist_id, $file, $status = 'Approved')
     {
         $this->db->query('INSERT INTO songs (artist_id, title,release_date, album_id, file_path, status) VALUES (:artist_id, :song_name, :release_date, :album_id, :file, :status)');
         $this->db->bind(':artist_id', $artist_id);
@@ -35,7 +40,9 @@ class Song {
             return false;
         }
     }
-    public function deleteSong($id) {
+
+    public function deleteSong($id)
+    {
         //delete genre_song first
         $this->db->query('DELETE FROM genre_song WHERE song_id = :id');
         $this->db->bind(':id', $id);
