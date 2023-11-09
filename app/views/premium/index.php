@@ -174,11 +174,12 @@
                             form.setAttribute('method', 'post');
                             form.setAttribute('action', '<?= URLROOT ?>/Premium/success');
                             // Tạo và cấu hình các trường (input) bằng JavaScript
-                            var fields = [{
-                                label: 'ID',
-                                name: 'id',
-                                value: ''
-                            },
+                            var fields = [
+                                {
+                                    label: 'ID',
+                                    name: 'id',
+                                    value: ''
+                                },
                                 {
                                     label: 'Email',
                                     name: 'email',
@@ -219,14 +220,12 @@
                             fields.forEach(function (field) {
                                 var label = document.createElement('label');
                                 label.textContent = field.label;
-
                                 var input = document.createElement('input');
                                 input.setAttribute('type', 'text');
                                 input.setAttribute('id', field.name);
                                 input.setAttribute('name', field.name);
                                 input.setAttribute('value', field.value);
                                 input.setAttribute('readonly', 'readonly');
-
                                 form.appendChild(label);
                                 form.appendChild(input);
                             });

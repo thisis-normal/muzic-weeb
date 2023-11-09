@@ -76,7 +76,7 @@ require APPROOT . '/views/admin/index.php';
                                 <td class="truncate-text"><?= $song->file_path ?></td>
                                 <td>
                                     <a href="#" class="delete-user" data-delete="<?= $song->title ?>" data-delete-href="<?= URLROOT ?>/song-management/delete-song/?id=<?= $song->id ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                    <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="<?= $song->title ?>" data-album="<?= $song->album_title ?>"  data-artist="<?= $song->artist_name ?>" data-genre="<?= implode(', ', $song->genres) ?>" data-file="<?= $song->file_path ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                    <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="<?= $song->title ?>" data-album="<?= $song->album_title ?>" data-artist="<?= $song->artist_name ?>" data-genre="<?= implode(', ', $song->genres) ?>" data-file="<?= $song->file_path ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
                             </tr>
                         </tbody>
