@@ -35,7 +35,7 @@
                         </li>
 
                         <li>
-                            <p onclick="openPage('<?php echo URLROOT ?>/pages/playlist')">
+                            <p onclick="openPage('<?php echo URLROOT ?>/pages/search')">
                                 <span class="fa fa-search"></span>
                                 <span>Search</span>
                             </p>

@@ -8,7 +8,7 @@ class Pages extends Controller
 
     public function index()
     {
-            $this->view('pages/index');
+        $this->view('pages/index');
     }
     public function playlist()
     {
@@ -17,6 +17,10 @@ class Pages extends Controller
     public function browse()
     {
         $this->view('pages/browse');
+    }
+    public function search()
+    {
+        $this->view('pages/search');
     }
     public function about()
     {

@@ -17,10 +17,13 @@
                 </div>
 
                 <div class="rightSection">
-                    <h2>a</h2>
-                    <p>By a</p>
-                    <p> songs</p>
-                    <button class="button">DELETE PLAYLIST</button>
+                    <p class="playlist">Playlist</p>
+                    <p class="playlistTitle">Daily mix 4</p>
+                    <p class="playlistArtist"> Artist,ccc</p>
+                    <p class="playlistDetail">
+                        <span>50 songs</span>
+                        <span>about 1 hr 45 min</span>
+                    </p>
 
                 </div>
 
@@ -37,19 +40,21 @@
                 <tbody>
                     <tr class='tracklistRow'>
                         <td class=''>
-                            1
+                            <span class="itemnum">1</span>
+                            <span class="itemplay"><i class="fa fas fa-play" style="color: #ffffff;"></i></span>
                         </td>
-                        <td class='trackCount'>
-                            <img class='play' width="40px" src='https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0'>
+                        <td class='trackTitle'>
+                            <img class='play' width="40px" height="40px" src='https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0'>
                             <div class="">
-                                <span class='trackName'>ANh khasc hay em khasc</span>
-                                <span class='artistName'>abc</span>
+                                <span class='trackName'><a href="">ANh khasc hay em khasc</a></span>
+                                <span class='artistName'><a href="">abc</a>,<a href="">bcs</a></span>
                             </div>
                         </td>
-                        <td class='trackInfo'>
+                        <td class='trackAlbum'>
+                            <a href="">album</a>
                         </td>
                         <td class='trackDuration'>
-                            <span class='duration'>cccc</span>
+                            <span class='duration'>03:02</span>
                         </td>
                     </tr>
                 </tbody>
