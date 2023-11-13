@@ -139,6 +139,7 @@ editButtons.forEach(editButton => {
                         $(document).ready(function () {
                             // alert(value);
                             var selectize = $(inputField)[0].selectize;
+                            console.log(selectize);
                             var newValue = value;
                             selectize.setValue(newValue);
 

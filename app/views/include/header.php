@@ -23,6 +23,13 @@
             <button type="button" class="fa fas fa-chevron-left"></button>
             <button type="button" class="fa fas fa-chevron-right"></button>
         </div>
+        <div class="searchBox">
+            <form action="">
+                <i class="fa fas fa-search"></i>
+                <input class="searchInput" type="search" name="" placeholder="What do you want to listen to?">
+
+            </form>
+        </div>
         <!-- <i class="fas fa-magnifying-glass"></i>
     <i class="fa-magnifying-glass" style="color: #ffffff;"></i> -->
         <!-- <div class="search">

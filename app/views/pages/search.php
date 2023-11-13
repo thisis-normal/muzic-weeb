@@ -1,19 +1,31 @@
-<div class="mainindex">
-    <div class="navbar">
-        <?php require APPROOT . '/views/include/navbar.php'; ?>
-    </div>
+<?php require APPROOT . '/views/include/includeFiles.php';
 
-    <div class="header">
+?>
 
-        <?php require APPROOT . '/views/include/header.php'; ?>
-    </div>
-    <div class="main-container">
-        <div id="mainContent">
-
+</div>
+<div class="main-container">
+    <div id="mainContent">
+        <div class="browseAll">
+            <h2>Browse All</h2>
+            <div class="browseItems">
+                <div class="browseItem">
+                    <p>Podcast</p>
+                </div>
+                <div class="browseItem">
+                    <p>Podcast</p>
+                </div>
+                <div class="browseItem">
+                    <p>Podcast</p>
+                </div>
+                <div class="browseItem">
+                    <p>Podcast</p>
+                </div>
+                <div class="browseItem">
+                    <p>Podcast</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="footer">
+</div>
 
-        <?php require APPROOT . '/views/include/footer.php'; ?>
-    </div>
 </div>

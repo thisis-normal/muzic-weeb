@@ -37,16 +37,16 @@ require APPROOT . '/views/admin/index.php';
             </div> -->
                 <table>
                     <thead>
-                    <tr>
-                        <th>Ordinal</th>
-                        <th>Song title</th>
-                        <th>Artist</th>
-                        <th>Release date</th>
-                        <th>Album</th>
-                        <th>Genre</th>
-                        <th>File path</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th>Ordinal</th>
+                            <th>Song title</th>
+                            <th>Artist</th>
+                            <th>Release date</th>
+                            <th>Album</th>
+                            <th>Genre</th>
+                            <th>File path</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                     <?php
                     // Initialize an empty array to store grouped songs
@@ -66,25 +66,19 @@ require APPROOT . '/views/admin/index.php';
                     ?>
                     <?php foreach ($groupedSongs as $song) : ?>
                         <tbody>
-                        <tr>
-                            <td><?= $song->id ?></td>
-                            <td><?= $song->title ?></td>
-                            <td><?= $song->artist_name ?></td>
-                            <td><?= $song->formatted_date ?></td>
-                            <td><?= $song->album_title ?></td>
-                            <td><?= implode(', ', $song->genres) ?></td>
-                            <td class="truncate-text"><?= $song->file_path ?></td>
-                            <td>
-                                <a href="#" class="delete-user" data-delete="<?= $song->title ?>"
-                                   data-delete-href="<?= URLROOT ?>/song-management/delete-song/?id=<?= $song->id ?>"><i
-                                            class='bx bx-trash' style='color:#fb0004'></i></a>
-                                <a href="" class="edit-button btnpopup" data-form="form_update_song"
-                                   data-songtitle="<?= $song->title ?>" data-album="<?= $song->album_title ?>"
-                                   data-artist="<?= $song->artist_name ?>"
-                                   data-genre="<?= implode(', ', $song->genres) ?>"
-                                   data-file="<?= $song->file_path ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $song->id ?></td>
+                                <td><?= $song->title ?></td>
+                                <td><?= $song->artist_name ?></td>
+                                <td><?= $song->formatted_date ?></td>
+                                <td><?= $song->album_title ?></td>
+                                <td><?= implode(', ', $song->genres) ?></td>
+                                <td class="truncate-text"><?= $song->file_path ?></td>
+                                <td>
+                                    <a href="#" class="delete-user" data-delete="<?= $song->title ?>" data-delete-href="<?= URLROOT ?>/song-management/delete-song/?id=<?= $song->id ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
+                                    <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="<?= $song->title ?>" data-album="<?= $song->album_title ?>" data-artist="<?= $song->artist_name ?>" data-genre="<?= implode(', ', $song->genres) ?>" data-file="<?= $song->file_path ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                </td>
+                            </tr>
                         </tbody>
                     <?php endforeach; ?>
                 </table>
@@ -92,13 +86,12 @@ require APPROOT . '/views/admin/index.php';
 
         </div>
         <!-- create -->
-        <form id="data-form" action="<?= URLROOT ?>/song-management/create-song" method="post"
-              enctype="multipart/form-data">
+        <form id="data-form" action="<?= URLROOT ?>/song-management/create-song" method="post" enctype="multipart/form-data">
             <div class="form_create formAd popup form_create_song">
                 <h1>Create song</h1>
                 <br>
                 <div>
-                    <input type="text" id="songname" name="song_name" placeholder="Song title" required/>
+                    <input type="text" id="songname" name="song_name" placeholder="Song title" required />
                 </div>
                 <div>
                     <select id="select-state" name="artist_id" placeholder="Artist">
@@ -132,8 +125,7 @@ require APPROOT . '/views/admin/index.php';
                 <br>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg"
-                               size="14"/>
+                        <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg" size="14" />
                         <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" value="Choose file...">
                     </label>
@@ -149,7 +141,7 @@ require APPROOT . '/views/admin/index.php';
                 <h1>Update Song</h1>
                 <br>
                 <div>
-                    <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required/>
+                    <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required />
                 </div>
                 <div>
                     <select id="select-state" data-field="artist" name="">
@@ -180,8 +172,7 @@ require APPROOT . '/views/admin/index.php';
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg"
-                               size="14" required/>
+                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />
                         <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" data-field="file" value="Choose file...">
                     </label>
@@ -196,7 +187,7 @@ require APPROOT . '/views/admin/index.php';
 </section>
 </body>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('select').selectize({
             sortField: 'text',
             maxOptions: 5
@@ -207,12 +198,14 @@ require APPROOT . '/views/admin/index.php';
             labelField: 'title',
             searchField: 'title',
             options: [
-                <?php foreach ($data['listGenre'] as $genre) : ?>
-                {
-                    id: <?= $genre->genre_id ?>, title: '<?= $genre->name ?>'
-                },
-                <?php endforeach; ?>
-                {id: 0, title: 'Add new genre'}
+                <?php foreach ($data['listGenre'] as $genre) : ?> {
+                        id: <?= $genre->genre_id ?>,
+                        title: '<?= $genre->name ?>'
+                    },
+                <?php endforeach; ?> {
+                    id: 0,
+                    title: 'Add new genre'
+                }
             ],
             create: false
         });
