@@ -46,13 +46,13 @@ class Premium extends Controller
         $data['expiry_date'] = date('Y-m-d H:i:s', strtotime($data['paymentDate'] . ' + 1 month'));
         //validate
         if (empty($data['orderID']) || empty($data['user_id']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['payment_method']) || empty($data['payment_status']) || empty($data['payment_date'])) {
-            die('Something missing!');
+//            die('Something missing!');
         }
 //        var_dump($this->model('Payment')->addPayment($data)); die();
         //add payment to database
         if ($this->paymentModel->addPayment($data)) {
             //update user's plan
-            $this->userModel->updateUserPlan($data['user_id'], $data['plan']);
+//            $this->userModel->updateUserPlan($data['user_id'], $data['plan']);
             //send email
             $this->sendEmail($data);
             //redirect to success page
@@ -151,7 +151,11 @@ class Premium extends Controller
 //            echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
 //        }
 //    }
-    public function sendEmail($data)
+public function test() {
+    $emailTemplate = file_get_contents(APPROOT . '/views/email_template/confirm_email.htm');
+    var_dump($emailTemplate); die();
+}
+    public function sendEmail($data): void
     {
         //send email
         $mail = new PHPMailer(true);
@@ -166,12 +170,21 @@ class Premium extends Controller
             $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
             $mail->Port = 587;                                          // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above+
             // Load your HTML email template
-            $emailTemplate = file_get_contents(__DIR__ . '/../../views/confirm_email.htm');
+            $emailTemplate = file_get_contents(APPROOT . '/views/email_template/confirm_email.htm');
             // Replace placeholders with actual values;
-
+            $emailTemplate = str_replace('[guest_name]', $_SESSION['user_name'], $emailTemplate);
+            $emailTemplate = str_replace('[order_number]', $data['orderID'], $emailTemplate);
+            $emailTemplate = str_replace('[full_name]', $data['name'], $emailTemplate);
+            $emailTemplate = str_replace('[email]', $data['email'], $emailTemplate);
+            $emailTemplate = str_replace('[address]', $data['address'], $emailTemplate);
+            $emailTemplate = str_replace('[plan]', $data['plan'], $emailTemplate);
+            $emailTemplate = str_replace('[payment_method]', $data['paymentMethod'], $emailTemplate);
+            $emailTemplate = str_replace('[payment_status]', $data['paymentStatus'], $emailTemplate);
+            $emailTemplate = str_replace('[payment_date]', $data['paymentDate'], $emailTemplate);
+            $emailTemplate = str_replace('[expiry_date]', $data['expiry_date'], $emailTemplate);
             //Recipients
             $mail->setFrom('normal2002.dev@gmail.com', 'Admin');
-            $mail->addAddress('thuonghuunguyen2002@gmail.com');                                  // Add a recipient
+            $mail->addAddress('nguyenthanhchung.06042002@gmail.com');        // Add a recipient
             // Content
             $mail->isHTML(true);                                        // Set email format to HTML
             $mail->Subject = 'Transaction successful';

@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `artists` (
   PRIMARY KEY (`artist_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~6 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~5 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
 	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
 	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `genre_song` (
   CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genre_song: ~11 rows (approximately)
+-- Dumping data for table muzic_weeb.genre_song: ~14 rows (approximately)
 INSERT INTO `genre_song` (`song_id`, `genre_id`) VALUES
 	(5, 2),
 	(6, 2),
@@ -118,6 +118,39 @@ INSERT INTO `genre_song` (`song_id`, `genre_id`) VALUES
 	(6, 7),
 	(8, 7),
 	(10, 7);
+
+-- Dumping structure for table muzic_weeb.payments
+CREATE TABLE IF NOT EXISTS `payments` (
+  `payment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `fullname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `email` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `paypal_fee` double DEFAULT NULL,
+  `net_amount` double DEFAULT NULL,
+  `payment_method` varchar(50) DEFAULT 'Paypal',
+  `payment_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `payment_date` datetime DEFAULT NULL,
+  `expiry_date` datetime NOT NULL,
+  `plan` varchar(50) NOT NULL DEFAULT 'Basic',
+  `status` varchar(50) DEFAULT 'Active',
+  PRIMARY KEY (`payment_id`) USING BTREE,
+  UNIQUE KEY `paymentID` (`payment_id`) USING BTREE,
+  KEY `FK_payment_user` (`user_id`),
+  CONSTRAINT `FK_payment_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store data after paying using paypal API';
+
+-- Dumping data for table muzic_weeb.payments: ~9 rows (approximately)
+INSERT INTO `payments` (`payment_id`, `user_id`, `fullname`, `email`, `address`, `paypal_fee`, `net_amount`, `payment_method`, `payment_status`, `payment_date`, `expiry_date`, `plan`, `status`) VALUES
+	('0TJ73371MP053520R', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-03 09:07:12', '2023-12-03 09:07:12', 'Premium', 'Active'),
+	('11J73051R04224929', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-02 15:03:22', '2023-12-02 15:03:22', 'Premium', 'Active'),
+	('23J54684DB911071L', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-02 14:25:35', '2023-12-02 14:25:35', 'Premium', 'Active'),
+	('44W834388F7933530', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-02 14:59:43', '2023-12-02 14:59:43', 'Premium', 'Active'),
+	('4SL587226L123391R', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-03 08:52:29', '2023-12-03 08:52:29', 'Premium', 'Active'),
+	('64U33759A7005401V', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-03 08:52:49', '2023-12-03 08:52:49', 'Premium', 'Active'),
+	('7HS16272F5286492H', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-03 08:58:23', '2023-12-03 08:58:23', 'Premium', 'Active'),
+	('8H741607Y6622391M', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-03 09:08:22', '2023-12-03 09:08:22', 'Premium', 'Active'),
+	('9Y343967AV103471Y', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-03 08:57:55', '2023-12-03 08:57:55', 'Premium', 'Active');
 
 -- Dumping structure for table muzic_weeb.playlist
 CREATE TABLE IF NOT EXISTS `playlist` (
@@ -157,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `reset_tokens` (
   `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'valid',
   PRIMARY KEY (`id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
 
 -- Dumping data for table muzic_weeb.reset_tokens: ~16 rows (approximately)
 INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, `status`) VALUES
@@ -176,7 +209,9 @@ INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, 
 	(16, 'thuonghuunguyen2002@gmail.com', 'badc92c0d028a1c54920beeba0af7af6881746c4bbc78445ae9b7b4f9256d7136f947a67814013204cedd6086b7adc0a4333', '2023-10-17 10:23:26', '2023-10-17 18:05:40', 'valid'),
 	(17, 'chungvvvv@gmail.com', 'd982f1340db2601a5e8bfdc2b3e922b2bb9cc858db945b875f2abde28e3f8d5f4e89c979cd47b612ccaf7d90f9d01a054195', '2023-10-18 01:56:27', '2023-10-18 09:56:27', 'valid'),
 	(18, 'thuonghuunguyen2002@gmail.com', '65644487bf597b578566cda3fef25b4b0717db4443bfbf3ab15e6c7e9b6a8c7acf240c276a1cac3d279bd463e99dc049cc11', '2023-10-25 23:01:00', '2023-10-26 07:01:00', 'valid'),
-	(19, 'thuonghuunguyen2002@gmail.com', '94e2cfc15632642afc0cde1b5f9ef5c66e94b24a2cd6f9fabc77323531adc27d29e1e50d7a0f70b1b5e64891769cbc9732fb', '2023-10-30 03:32:38', '2023-10-26 07:01:28', 'expired');
+	(19, 'thuonghuunguyen2002@gmail.com', '94e2cfc15632642afc0cde1b5f9ef5c66e94b24a2cd6f9fabc77323531adc27d29e1e50d7a0f70b1b5e64891769cbc9732fb', '2023-10-30 03:32:38', '2023-10-26 07:01:28', 'expired'),
+	(20, 'thuonghuunguyen2002@gmail.com', '7883dfa9b704a44c40627cfe1ef9e9fb59a33e74a919bcbbd23c745ad9d5e0aec5e146e88223843e1b2f7872395072e70df0', '2023-11-02 07:45:17', '2023-11-02 15:45:17', 'valid'),
+	(21, 'thuonghuunguyen2002@gmail.com', 'c5891089c40ddfc9e879efb29f56a7a133a191ecbe1d3387cde780c418b983e79c2b07d1f3a00afde342453e685d676c8ff5', '2023-11-02 07:45:20', '2023-11-02 15:45:20', 'valid');
 
 -- Dumping structure for table muzic_weeb.songs
 CREATE TABLE IF NOT EXISTS `songs` (
@@ -195,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `songs` (
   CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.songs: ~5 rows (approximately)
+-- Dumping data for table muzic_weeb.songs: ~4 rows (approximately)
 INSERT INTO `songs` (`id`, `artist_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`) VALUES
 	(5, 12, 'Lmao', '2020-05-20', 2, '2023-11-02 03:09:11', 'damvinhung.mp3', 'Approved'),
 	(6, 14, 'Song 1', '2023-08-02', 4, '2023-11-02 03:08:57', '65422203460a7soobin.mp3', 'Approved'),

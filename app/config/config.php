@@ -8,7 +8,7 @@ const DB_NAME = 'muzic_weeb';
 //echo dirname(dirname(__FILE__));
 
 //URL Root
-define("APPROOT", dirname(dirname(__FILE__))); //C:\laragon\www\muzic-weeb\app
+define("APPROOT", dirname(__FILE__, 2)); //C:\laragon\www\muzic-weeb\app
 const URLROOT = 'http://localhost:2002/muzic-weeb';
 const IMGROOT = 'http://localhost:2002/muzic-weeb/public/img';
 //Site Name
