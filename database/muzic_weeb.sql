@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `albums` (
   PRIMARY KEY (`album_id`),
   KEY `album_fk0` (`artist_id`),
   CONSTRAINT `album_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.albums: ~7 rows (approximately)
+-- Dumping data for table muzic_weeb.albums: ~9 rows (approximately)
 INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_image`) VALUES
 	(2, 'Making My Way', 13, '2023-10-25', NULL),
 	(3, 'Ch&uacute;ng ta của hiện tại', 13, '2023-10-25', NULL),
@@ -40,7 +40,8 @@ INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_i
 	(6, 'Đo&aacute;n xem', 14, '2023-10-30', NULL),
 	(7, 'Haru Haru', 12, '2023-10-30', NULL),
 	(8, 'Losing Interestss', 17, '2023-10-31', NULL),
-	(10, 'Time', 18, '2023-11-02', NULL);
+	(10, 'Time', 18, '2023-11-02', NULL),
+	(11, 'Domino', 13, '2023-11-13', NULL);
 
 -- Dumping structure for table muzic_weeb.album_genre
 CREATE TABLE IF NOT EXISTS `album_genre` (
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `artists` (
   PRIMARY KEY (`artist_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~5 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~7 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
 	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
 	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
@@ -79,9 +80,9 @@ CREATE TABLE IF NOT EXISTS `genres` (
   `genre_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`genre_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genres: ~8 rows (approximately)
+-- Dumping data for table muzic_weeb.genres: ~9 rows (approximately)
 INSERT INTO `genres` (`genre_id`, `name`) VALUES
 	(1, 'Pop'),
 	(2, 'EDM'),
@@ -90,7 +91,8 @@ INSERT INTO `genres` (`genre_id`, `name`) VALUES
 	(5, 'Folk'),
 	(6, 'Hiphop'),
 	(7, 'Lo-fi'),
-	(8, 'Rap');
+	(8, 'Rap'),
+	(9, 'Genre2');
 
 -- Dumping structure for table muzic_weeb.genre_song
 CREATE TABLE IF NOT EXISTS `genre_song` (
@@ -102,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `genre_song` (
   CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genre_song: ~14 rows (approximately)
+-- Dumping data for table muzic_weeb.genre_song: ~13 rows (approximately)
 INSERT INTO `genre_song` (`song_id`, `genre_id`) VALUES
 	(5, 2),
 	(6, 2),
@@ -112,12 +114,11 @@ INSERT INTO `genre_song` (`song_id`, `genre_id`) VALUES
 	(8, 4),
 	(5, 5),
 	(8, 5),
-	(10, 5),
+	(11, 5),
 	(8, 6),
-	(10, 6),
 	(6, 7),
 	(8, 7),
-	(10, 7);
+	(11, 9);
 
 -- Dumping structure for table muzic_weeb.payments
 CREATE TABLE IF NOT EXISTS `payments` (
@@ -140,31 +141,36 @@ CREATE TABLE IF NOT EXISTS `payments` (
   CONSTRAINT `FK_payment_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store data after paying using paypal API';
 
--- Dumping data for table muzic_weeb.payments: ~9 rows (approximately)
+-- Dumping data for table muzic_weeb.payments: ~12 rows (approximately)
 INSERT INTO `payments` (`payment_id`, `user_id`, `fullname`, `email`, `address`, `paypal_fee`, `net_amount`, `payment_method`, `payment_status`, `payment_date`, `expiry_date`, `plan`, `status`) VALUES
+	('0KJ801808L189420V', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 3, 26.99, 'Paypal', 'Completed', '2023-11-14 08:06:47', '2023-12-14 08:06:47', 'Premium', 'Active'),
 	('0TJ73371MP053520R', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-03 09:07:12', '2023-12-03 09:07:12', 'Premium', 'Active'),
 	('11J73051R04224929', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-02 15:03:22', '2023-12-02 15:03:22', 'Premium', 'Active'),
 	('23J54684DB911071L', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-02 14:25:35', '2023-12-02 14:25:35', 'Premium', 'Active'),
 	('44W834388F7933530', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-02 14:59:43', '2023-12-02 14:59:43', 'Premium', 'Active'),
 	('4SL587226L123391R', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-03 08:52:29', '2023-12-03 08:52:29', 'Premium', 'Active'),
 	('64U33759A7005401V', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-03 08:52:49', '2023-12-03 08:52:49', 'Premium', 'Active'),
+	('7ES64703961151256', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 3, 26.99, 'Paypal', 'Completed', '2023-11-14 08:15:45', '2023-12-14 08:15:45', 'Premium', 'Active'),
 	('7HS16272F5286492H', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-03 08:58:23', '2023-12-03 08:58:23', 'Premium', 'Active'),
 	('8H741607Y6622391M', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-03 09:08:22', '2023-12-03 09:08:22', 'Premium', 'Active'),
+	('8MB72279JL7443054', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 3, 26.99, 'Paypal', 'Completed', '2023-11-14 08:12:39', '2023-12-14 08:12:39', 'Premium', 'Active'),
 	('9Y343967AV103471Y', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-11-03 08:57:55', '2023-12-03 08:57:55', 'Premium', 'Active');
 
--- Dumping structure for table muzic_weeb.playlist
-CREATE TABLE IF NOT EXISTS `playlist` (
+-- Dumping structure for table muzic_weeb.playlists
+CREATE TABLE IF NOT EXISTS `playlists` (
   `playlist_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`playlist_id`),
   KEY `playlist_fk0` (`user_id`),
   CONSTRAINT `playlist_fk0` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.playlist: ~0 rows (approximately)
+-- Dumping data for table muzic_weeb.playlists: ~1 rows (approximately)
+INSERT INTO `playlists` (`playlist_id`, `user_id`, `title`, `description`, `created_at`) VALUES
+	(1, 26, 'This is ULSA IT!', 'The biggest playlist ever!!!', '2023-11-14 04:04:14');
 
 -- Dumping structure for table muzic_weeb.playlist_song
 CREATE TABLE IF NOT EXISTS `playlist_song` (
@@ -174,11 +180,16 @@ CREATE TABLE IF NOT EXISTS `playlist_song` (
   PRIMARY KEY (`playlist_song_id`),
   KEY `playlist_song_fk0` (`playlist_id`),
   KEY `playlist_song_fk1` (`song_id`),
-  CONSTRAINT `playlist_song_fk0` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`playlist_id`),
-  CONSTRAINT `playlist_song_fk1` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `playlist_song_fk0` FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`playlist_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `playlist_song_fk1` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.playlist_song: ~0 rows (approximately)
+-- Dumping data for table muzic_weeb.playlist_song: ~4 rows (approximately)
+INSERT INTO `playlist_song` (`playlist_song_id`, `playlist_id`, `song_id`) VALUES
+	(1, 1, 5),
+	(2, 1, 6),
+	(3, 1, 7),
+	(4, 1, 8);
 
 -- Dumping structure for table muzic_weeb.reset_tokens
 CREATE TABLE IF NOT EXISTS `reset_tokens` (
@@ -192,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `reset_tokens` (
   UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
 
--- Dumping data for table muzic_weeb.reset_tokens: ~16 rows (approximately)
+-- Dumping data for table muzic_weeb.reset_tokens: ~18 rows (approximately)
 INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, `status`) VALUES
 	(4, 'thuonghuunguyen2002@gmail.com', '1ae40e6e0a47d9aa7089b546ba5141ee1dc7a23bbd4ae4ae1a4791eadd703f3baa50e8cb92bef3bd3f1a856cd74ac6d8ca98', '2023-10-17 04:12:04', '2023-10-17 12:12:04', '1'),
 	(5, 'bruh@gooo.com', 'fe5d135cc349c8b32b32b5ab578a1751b77064b185a28e59c815c3d7feb2fd313c8b819b02a5c04d7c4b9374b953465ab63d', '2023-10-17 04:29:35', '2023-10-17 12:29:35', '1'),
@@ -228,15 +239,15 @@ CREATE TABLE IF NOT EXISTS `songs` (
   KEY `song_fk1` (`album_id`),
   CONSTRAINT `song_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`),
   CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.songs: ~4 rows (approximately)
+-- Dumping data for table muzic_weeb.songs: ~5 rows (approximately)
 INSERT INTO `songs` (`id`, `artist_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`) VALUES
 	(5, 12, 'Lmao', '2020-05-20', 2, '2023-11-02 03:09:11', 'damvinhung.mp3', 'Approved'),
 	(6, 14, 'Song 1', '2023-08-02', 4, '2023-11-02 03:08:57', '65422203460a7soobin.mp3', 'Approved'),
 	(7, 18, 'Time', '2023-12-02', 10, '2023-11-02 03:08:53', 'Time.mp3', 'Approved'),
 	(8, 12, 'DDD', '2023-11-02', 4, '2023-11-02 03:08:51', '6543066525909damvinhung.mp3', 'Approved'),
-	(10, 12, 'aaa', '2023-10-31', 4, '2023-11-02 02:40:26', '65430c1a9712cTime.mp3', 'Approved');
+	(11, 13, 'Song demo', '2023-11-16', 6, '2023-11-14 03:29:29', 'demo.mp3', 'Approved');
 
 -- Dumping structure for table muzic_weeb.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -250,15 +261,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.users: ~25 rows (approximately)
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `is_premium`, `role`) VALUES
-	(1, 'secokisi', 'daqaturo@mailinator.co', '$2y$10$DQVhVsMIrLShuoInrNR6FORNVzZyyjk3TlFo1aGd.i7grdqHw6jYy', '2023-10-21 12:09:20', 0, 'user'),
-	(2, 'hi', 'kalicamailinator.com', '$2y$10$9/EY3HyERbEv4jtegPLVjeEQIIcCRBdGhoYVag73nCRM/VDu35LLW', '2023-10-13 02:29:46', 0, 'user'),
-	(3, 'jyheficy', 'cuxyxohuma@ilinato.rcom', '$2y$10$8oNItZyR0lCx27BJTQb6qOWa5i7keTmhrBgwo1RGFFhMowIcmSClS', '2023-10-13 02:34:32', 0, 'user'),
+	(1, 'secokisi', 'daqaturo@mailinator.co', '$2y$10$d0EO1MIM4Z3UkORODrOuKeVmUHC1mpAAeOt1QlmBCAo7Ehml1mGrC', '2023-11-14 07:11:43', 0, 'admin'),
+	(2, 'hi', 'kali@camailinator.com', '$2y$10$vtkYnTDvQ.z4v/TyBCiFcuWqRNY8mif2MAsxL1/3QJxqsTYORDf/2', '2023-11-14 07:23:05', 0, 'artist'),
+	(3, 'jyheficy', 'cuxyxohuma@ilinato.rcom', '$2y$10$dnIV2MpLFsiogTQfA52JC.Tq6vTE4bq0nSnpqE7dIM26uVoojD/wC', '2023-11-14 06:51:07', 0, 'user'),
 	(4, 'tymagysyv', 'vejuxirite@mailinator.com', '$2y$10$Yb91MEuxMIXk4.26hoDNMe20Jwtf576XFnqaWEjGHempa6Lg7Mtve', '2023-10-13 06:45:27', 0, 'user'),
-	(5, 'notyk', 'tikyc@mailinator.com', '$2y$10$pYdBaSPrMFeAgp3N97o92u2Bd6N9pVHw1HB4U0/2lI92NqPvzY0w2', '2023-10-13 06:46:28', 0, 'user'),
+	(5, 'tikyc', 'tikyc@mailinator.com', '$2y$10$GJU5inJjxgWhljsi5AeJwuYLHQU239sbR9R0nrRndaPyG87wIFs.6', '2023-11-14 07:10:24', 0, 'admin'),
 	(6, 'fonyji', 'letozaku@mailinator.com', '$2y$10$iTplO5ySJDp/rth1/TXy5OSb08icFtY3vU3LvGqQMftc0T6HFSXDe', '2023-10-13 06:47:12', 0, 'user'),
 	(8, 'bruh', 'bruh@gmail.com', '$2y$10$vhxMymqb80XUllk.NjFMHeKwf9/S74B0BKN1P0qL0l1dfn27gbqV6', '2023-10-13 06:48:03', 0, 'user'),
 	(9, 'koryw', 'hihymirubo@mailinator.com', '$2y$10$0p6aY6eftrOBRR9iEqbAt.ARSiWvy/Nv.3k8mQG706vDpVm6FYt.W', '2023-10-12 23:56:02', 0, 'user'),
@@ -276,9 +287,9 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `is_pr
 	(23, 'syboky', 'tysyxy@mailinator.com', '$2y$10$OzRZ2a9upss04JeadOHSSuSCFUs5vYPbt1ktcPamWEHoCCNi6PvIK', '2023-10-16 01:50:33', 0, 'user'),
 	(24, 'nagiwu', 'hapoxy@mailinator.com', '$2y$10$.XPGynpLoC//MK7JJjEdSuXEesN2XHoxx70EkGAN4tWcBgFIJCRYG', '2023-10-16 01:50:44', 0, 'admin'),
 	(25, 'colase', 'hufigyjux@mailinator.com', '$2y$10$xHxT7/J9BPjY6ZHiUxbvWepRnZAs6epawWXJ66QwBFQMltvp41NRu', '2023-10-16 03:52:06', 0, 'user'),
-	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$EkZjMMoJa3gujLzFmAL15O2w9aUZIMt24OqwLTVGxwWLokvW5DGQG', '2023-10-25 23:03:19', 0, 'user'),
+	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$I2kGPY2AtpxbGvDeSMyyyOnCN632vHNsSw1u05Rhyzq6FiDnwwqNq', '2023-11-14 08:02:21', 0, 'artist'),
 	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', 0, 'user'),
-	(28, 'tewufaqy', 'qikiz@mailinator.com', '$2y$10$tQzWSYYUipqNzmYHbfv/m.eYYux0UMyBwJzWEQx5u4llV8jot5nZK', '2023-10-25 23:00:25', 0, 'user');
+	(30, 'domejywuki111', 'rawi@mailinator.com', '$2y$10$.1C6b1oXeHz.Z.zCdSLi3evxK1u6lr16bJMURQpNyBthKrbfBaFIu', '2023-11-14 07:02:36', 0, 'artist');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
