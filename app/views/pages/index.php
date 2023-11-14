@@ -54,7 +54,7 @@
         </div>
 
         <div class="spotify-playlists">
-            <h2>Category1</h2>
+            <h2>My playlist</h2>
             <div class="list">
 
                 <div class="item">
@@ -96,10 +96,8 @@
         </div>
 
         <div class="spotify-playlists">
-            <h2>category2</h2>
+            <h2>Wanna try something new?</h2>
             <div class="list">
-
-
                 <div class="item">
                     <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
                     <div class="play">

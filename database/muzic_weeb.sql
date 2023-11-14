@@ -287,7 +287,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `is_pr
 	(23, 'syboky', 'tysyxy@mailinator.com', '$2y$10$OzRZ2a9upss04JeadOHSSuSCFUs5vYPbt1ktcPamWEHoCCNi6PvIK', '2023-10-16 01:50:33', 0, 'user'),
 	(24, 'nagiwu', 'hapoxy@mailinator.com', '$2y$10$.XPGynpLoC//MK7JJjEdSuXEesN2XHoxx70EkGAN4tWcBgFIJCRYG', '2023-10-16 01:50:44', 0, 'admin'),
 	(25, 'colase', 'hufigyjux@mailinator.com', '$2y$10$xHxT7/J9BPjY6ZHiUxbvWepRnZAs6epawWXJ66QwBFQMltvp41NRu', '2023-10-16 03:52:06', 0, 'user'),
-	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$I2kGPY2AtpxbGvDeSMyyyOnCN632vHNsSw1u05Rhyzq6FiDnwwqNq', '2023-11-14 08:02:21', 0, 'artist'),
+	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$f.tc56N8tdxaapk42r2KF.sO1i790Nhsj9h3wZoBF2f.Bwh6VAzka', '2023-11-14 11:38:21', 0, 'user'),
 	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', 0, 'user'),
 	(30, 'domejywuki111', 'rawi@mailinator.com', '$2y$10$.1C6b1oXeHz.Z.zCdSLi3evxK1u6lr16bJMURQpNyBthKrbfBaFIu', '2023-11-14 07:02:36', 0, 'artist');
 

@@ -5,10 +5,17 @@ class  Playlists extends Controller {
         $this->playlistModel = $this->model('Playlist');
     }
     public function detail() {
+        $id = $_GET['id'];
+        if (!isset($id) || $id == '') {
+            header('Location: ' . URLROOT . '/pages/index');
+        }
         $data = [
-            'playlist' => $this->playlistModel->getPlaylistByID($_GET['id']),
+            'totalSong' => $this->playlistModel->getTotalSongs($id),
+            'playlist' => $this->playlistModel->getPlaylistByID($id),
         ];
-        var_dump($data); die();
+//        print_r($data);
+//        echo "<br>";
+//        die();
         $this->view('pages/playlist', $data);
     }
 

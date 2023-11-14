@@ -26,20 +26,28 @@ class Playlist
             return false;
         }
     }
-
-    public function getPlaylistByUserID($user_id)
+    public function getTotalSongs($playlist_id)
     {
-        $this->db->query('SELECT * FROM playlists WHERE user_id = :user_id');
-        $this->db->bind(':user_id', $user_id);
-        $result = $this->db->resultSet();
+        $this->db->query('SELECT COUNT(*) as total_songs FROM playlist_song WHERE playlist_id = :playlist_id');
+        $this->db->bind(':playlist_id', $playlist_id);
+        $result = $this->db->single()->total_songs;
         return $result;
     }
-
-    public function getPlaylistByID($playlist_id)
+    public function getPlaylistByUserID($id)
     {
-        $this->db->query('SELECT * FROM playlists WHERE playlist_id = :playlist_id');
-        $this->db->bind(':playlist_id', $playlist_id);
-        $result = $this->db->single();
+    }
+
+    public function getPlaylistByID($playlistId)
+    {
+        $this->db->query('SELECT  playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name
+        FROM playlists 
+        INNER JOIN playlist_song ON playlists.playlist_id = playlist_song.playlist_id
+        INNER JOIN songs ON playlist_song.song_id = songs.id 
+        INNER JOIN albums ON songs.album_id = albums.album_id
+        INNER JOIN artists ON songs.artist_id = artists.artist_id
+        WHERE playlists.playlist_id = :playlist_id ');
+        $this->db->bind(':playlist_id', $playlistId);
+        $result = $this->db->resultSet();
         return $result;
     }
 
