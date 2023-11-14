@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link class="logo" rel="shortcut icon" href="https://user-images.githubusercontent.com/73392859/275700777-0e4f5ba8-7ac9-4826-904a-06cade4a593b.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>

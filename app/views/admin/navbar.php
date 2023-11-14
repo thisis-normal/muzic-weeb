@@ -3,6 +3,8 @@
         <i class="bx bxs-smile"></i>
         <span class="text">
             Hello <?= $_SESSION['admin_name'] ?>
+            <br>
+            Role: <?= $_SESSION['admin_role'] ?>
         </span>
     </a>
     <ul class="side-menu top">

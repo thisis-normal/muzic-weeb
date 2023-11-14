@@ -14,6 +14,7 @@ class Premium extends Controller
         $this->paymentModel = $this->model('Payment');
         $this->userModel = $this->model('User');
     }
+
     public function index()
     {
         $this->view('premium/index'); //load view inside views/premium/index.php
@@ -151,10 +152,13 @@ class Premium extends Controller
 //            echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
 //        }
 //    }
-public function test() {
-    $emailTemplate = file_get_contents(APPROOT . '/views/email_template/confirm_email.htm');
-    var_dump($emailTemplate); die();
-}
+    public function test()
+    {
+        $emailTemplate = file_get_contents(APPROOT . '/views/email_template/confirm_email.htm');
+        var_dump($emailTemplate);
+        die();
+    }
+
     public function sendEmail($data): void
     {
         //send email
@@ -184,7 +188,7 @@ public function test() {
             $emailTemplate = str_replace('[expiry_date]', $data['expiry_date'], $emailTemplate);
             //Recipients
             $mail->setFrom('normal2002.dev@gmail.com', 'Admin');
-            $mail->addAddress('nguyenthanhchung.06042002@gmail.com');        // Add a recipient
+            $mail->addAddress('thuonghuunguyen2002@gmail.com        ');        // Add a recipient
             // Content
             $mail->isHTML(true);                                        // Set email format to HTML
             $mail->Subject = 'Transaction successful';

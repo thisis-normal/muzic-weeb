@@ -23,27 +23,26 @@ require APPROOT . '/views/admin/index.php';
             <span class="text">Download PDF</span>
         </a> -->
         </div>
-
         <ul class="box-info">
             <li>
                 <i class="bx bxs-music"></i>
                 <span class="text">
-                    <h3>1020</h3>
+                    <h3><?= $data['totalSong'] ?></h3>
                     <p>Song</p>
                 </span>
             </li>
             <li>
                 <i class="bx bxs-group"></i>
                 <span class="text">
-                    <h3>2834</h3>
-                    <p>Visitors</p>
+                    <h3><?= $data['totalUser'] ?></h3>
+                    <p>User</p>
                 </span>
             </li>
             <li>
                 <i class="bx bxs-dollar-circle"></i>
                 <span class="text">
-                    <h3>2543</h3>
-                    <p>Total Pre</p>
+                    <h3><?= round($data['revenue'],2);?></h3>
+                    <p>Total Revenue</p>
                 </span>
             </li>
         </ul>

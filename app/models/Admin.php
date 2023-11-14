@@ -33,8 +33,20 @@ class Admin
             return false;
         }
     }
+    public function getArtistByUsername($username) {
+        $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'artist'");
+        //Bind value
+        $this->db->bind(':username', $username);
+        $row = $this->db->single();
+        //Check row
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function login($username, $password) {
-        $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'admin'");
+        $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'admin' or username = :username AND role = 'artist'");
         //Bind value
         $this->db->bind(':username', $username);
         $row = $this->db->single();

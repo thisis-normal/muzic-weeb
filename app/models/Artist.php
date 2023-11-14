@@ -28,7 +28,6 @@ class Artist
         $results = $this->db->resultSet();
         return $results;
     }
-
     public function getArtistById($id)
     {
         $this->db->query('SELECT * FROM artists WHERE artist_id = :id');

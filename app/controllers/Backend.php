@@ -9,6 +9,7 @@ class Backend extends Controller
     public function __construct()
     {
         $this->adminModel = $this->model('Admin');
+        $this->artistModel = $this->model('Artist');
     }
 
     public function index()
@@ -36,7 +37,7 @@ class Backend extends Controller
             //validate username
             $data['username_error'] = $generalObj->validateUsername($data['username']);
             //check username
-            if (!$this->adminModel->getAdminByUsername($data['username'])) {
+            if (!$this->adminModel->getAdminByUsername($data['username']) && !$this->adminModel->getArtistByUsername($data['username'])) {
                 //user not found
                 $data['username_error'] = 'No user found';
             }
@@ -83,6 +84,7 @@ class Backend extends Controller
         $_SESSION['admin_id'] = $user->id;
         $_SESSION['admin_name'] = $user->username;
         $_SESSION['admin_email'] = $user->email;
+        $_SESSION['admin_role'] = $user->role;
         //redirect to dashboard
         redirect('admin/index');
     }

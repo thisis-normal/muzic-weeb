@@ -66,7 +66,7 @@ class  UserManagement extends Controller
                     die('Something went wrong');
                 }
             } else {
-                flash('username_error', $data['username_error']);
+                flash('username_err', $data['username_error']);
                 redirect('admins/user');
             }
         } else {
@@ -98,7 +98,10 @@ class  UserManagement extends Controller
                 'username_err' => '',
                 'email_err' => '',
             ];
-            $oldUser = $this->userModel->getUserById($data['id']);
+            $oldUser = $this->userModel->getAllUserById($data['id']);
+//            var_dump($data);
+//            var_dump($oldUser);
+//            var_dump($data['username'] !== $oldUser->username); die();
             if ($data['username'] !== $oldUser->username) {
                 //check username in db
                 if ($this->userModel->getUserByUsername($data['username'])) {

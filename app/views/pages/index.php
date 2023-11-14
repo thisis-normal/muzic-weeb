@@ -33,13 +33,13 @@
                     <p>New Music from Lil Baby, Juice WRLD an...</p>
                 </div>
 
-                <div class="item">
-                    <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
+                <div class="item" onclick="openPage('<?php echo URLROOT ?>/playlists/detail?id=1')">
+                    <img src="https://user-images.githubusercontent.com/73392859/275700777-0e4f5ba8-7ac9-4826-904a-06cade4a593b.png" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
-                    <h4>All out 2010s</h4>
-                    <p>The biggest spmgs pf tje 2010s. Cover:...</p>
+                    <h4>This is ULSA IT!</h4>
+                    <p>The biggest playlist ever!!!</p>
                 </div>
 
                 <div class="item">

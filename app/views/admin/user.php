@@ -57,7 +57,10 @@ require APPROOT . '/views/admin/index.php';
         <div class="head-title">
             <div class="left">
                 <h1>Dashboard</h1>
-                <h2 style="color: red; text-align: center "><?php flash('username_error'); ?></h2>
+                <h2 style="color: #11ff00; text-align: center "><?php flash('register_success'); ?></h2>
+                <h2 style="color: #11ff00; text-align: center "><?php flash('update_success'); ?></h2>
+                <h2 style="color: red; text-align: center "><?php flash('delete_success'); ?></h2>
+                <h2 style="color: red; text-align: center "><?php flash('username_err'); ?></h2>
                 <ul class="breadcrumb">
                     <li>
                         <a href="#">Dashboard</a>
@@ -111,8 +114,9 @@ require APPROOT . '/views/admin/index.php';
                                 <td align="center"><?= $user->role ?></td>
                                 <td align="center">
                                     <a href="#" class="delete-user" data-delete="<?= $user->username ?>" data-delete-href="<?= URLROOT ?>/user-management/delete-user?username=<?= $user->username ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                    <a href="<?= URLROOT ?>/user-management/update-user?id=<?= $user->id ?>" class="edit-button btnpopup" data-form="form_update_user" data-id="<?= $user->id ?>" data-user="<?= $user->username ?>" data-email="<?= $user->email ?>" data-pass="<?= $user->password ?>" data-role="<?= $user->role ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                    <a href="<?= URLROOT ?>/user-management/update-user?id=<?= $user->id ?>" class="edit-button btnpopup" data-form="form_update_user" data-id="<?= $user->id ?>" data-user="<?= $user->username ?>" data-email="<?= $user->email ?>" data-role="<?= $user->role ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
+<!--                                data-pass="--><?php //= $user->password ?><!--"-->
                             </tr>
                         </tbody>
                     <?php endforeach; ?>
@@ -145,6 +149,7 @@ require APPROOT . '/views/admin/index.php';
                     <select name="role" id="">
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
+                        <option value="artist">Artist</option>
                     </select>
                 </div>
                 <div>
@@ -172,6 +177,7 @@ require APPROOT . '/views/admin/index.php';
                     <select name="role" id="role" data-field="role">
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
+                        <option value="artist">Artist</option>
                     </select>
                 </div>
                 <div>

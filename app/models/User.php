@@ -18,6 +18,14 @@ class User
             return false;
         }
     }
+    public function getTotalUser() {
+        $this->db->query("SELECT COUNT(*) FROM users WHERE role = 'user'");
+        if ($this->db->execute()) {
+            return $this->db->resultSet()[0]->{"COUNT(*)"};
+        } else {
+            return false;
+        }
+    }
 
     //Find user by email
     public function getUserByEmail($email)
@@ -65,9 +73,9 @@ class User
         }
     }
 
-    public function getUserById($id)
+    public function getAllUserById($id)
     {
-        $this->db->query("SELECT * FROM users WHERE id = :id AND role = 'user'");
+        $this->db->query("SELECT * FROM users WHERE id = :id");
         //Bind value
         $this->db->bind(':id', $id);
         $row = $this->db->single();
@@ -128,4 +136,5 @@ class User
             return false;
         }
     }
+
 }

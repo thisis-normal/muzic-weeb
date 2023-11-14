@@ -10,14 +10,25 @@ class  Admins extends Controller
         $this->genreModel = $this->model('Genre');
         $this->albumModel = $this->model('Album');
         $this->songModel = $this->model('Song');
+        $this->paymentModel = $this->model('Payment');
     }
     public function index()
     {
-        $this->view('admin/dashboard'); //load view inside views/admin/index.php
+        $data = [
+            'totalUser' => $this->userModel->getTotalUser(),
+            'totalSong' => $this->songModel->getTotalSong(),
+            'revenue' =>$this->paymentModel->getRevenue(),
+        ];
+        $this->view('admin/dashboard',$data);
     }
     public function dashboard()
     {
-        $this->view('admin/dashboard');
+        $data = [
+            'totalUser' => $this->userModel->getTotalUser(),
+            'totalSong' => $this->songModel->getTotalSong(),
+            'revenue' =>$this->paymentModel->getRevenue(),
+        ];
+        $this->view('admin/dashboard',$data);
     }
     public function user()
     {
@@ -41,20 +52,6 @@ class  Admins extends Controller
             'listGenre' => $this->genreModel->getAllGenres(),
             'listSong' => $this->songModel->getSongs(),
         ];
-//        var_dump($data['listSong']); die();
-
-//        echo '<table>';
-//        foreach ($groupedSongs as $song) {
-//            echo '<tr>';
-//            echo '<td>' . $song['title'] . '</td>';
-//            echo '<td>' . $song['file_path'] . '</td>';
-//            echo '<td>' . implode(', ', $song['genres']) . '</td>';
-//            echo '<td>' . $song['album_title'] . '</td>';
-//            echo '<td>' . $song['artist_name'] . '</td>';
-//            echo '</tr>';
-//        }
-//        echo '</table>';
-//        var_dump($data['listSong']); die();
         $this->view('admin/song', $data);
     }
     public function genre()

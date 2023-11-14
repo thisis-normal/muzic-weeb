@@ -15,6 +15,12 @@ class Song
         $results = $this->db->resultSet();
         return $results;
     }
+    public function getTotalSong()
+    {
+        $this->db->query('SELECT COUNT(*) AS total_song FROM songs');
+        $result = $this->db->single()->total_song;
+        return $result;
+    }
 
     public function getSongById($id)
     {

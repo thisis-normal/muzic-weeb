@@ -31,4 +31,24 @@ class Payment {
             return false;
         }
     }
+    public function getSalaryByMonth($month, $year)
+    {
+        $this->db->query('SELECT * FROM payments WHERE MONTH(payment_date) = :month AND YEAR(payment_date) = :year');
+        $this->db->bind(':month', $month);
+        $this->db->bind(':year', $year);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+    public function getAllSalary()
+    {
+        $this->db->query('SELECT * FROM payments');
+        $result = $this->db->resultSet();
+        return $result;
+    }
+    public function getRevenue()
+    {
+        $this->db->query('SELECT SUM(net_amount) AS revenue FROM payments WHERE payment_status = "Completed"');
+        $result = $this->db->single()->revenue;
+        return $result;
+    }
 }
