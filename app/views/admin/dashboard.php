@@ -1,7 +1,7 @@
 <?php
 require APPROOT . '/views/admin/index.php';
 /** @var array $data */ ?>
-
+<script src="<?= URLROOT ?>/public/js/script.js"></script>
 
 <div id="dashboard-tab" class="tab-content active">
     <main>
@@ -41,7 +41,7 @@ require APPROOT . '/views/admin/index.php';
             <li>
                 <i class="bx bxs-dollar-circle"></i>
                 <span class="text">
-                    <h3><?= round($data['revenue'],2);?></h3>
+                    <h3><?= round($data['revenue'], 2); ?></h3>
                     <p>Total Revenue</p>
                 </span>
             </li>
@@ -140,4 +140,3 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
-<script src="<?= URLROOT ?>/public/js/script.js"></script>

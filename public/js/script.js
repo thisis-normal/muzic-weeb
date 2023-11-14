@@ -1,4 +1,35 @@
-//admin
+// //admin
+// window.addEventListener("popstate", function (event) {
+//     // Xử lý khi người dùng ấn "Back" trên trình duyệt
+//     // Ví dụ: Gọi hàm openPage() với trang được lưu trong history
+//     if (event.state && event.state.url) {
+//         openPage(window.history.go(-1));
+//     }
+// });
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const switchMode = document.getElementById('switch-mode');
+    const isDarkMode = sessionStorage.getItem('darkMode') === 'true';
+    switchMode.checked = isDarkMode;
+    applyDarkMode(isDarkMode);
+    switchMode.addEventListener('change', function () {
+
+        const isChecked = this.checked;
+        applyDarkMode(isChecked);
+        sessionStorage.setItem('darkMode', isChecked ? 'true' : 'false');
+    });
+
+    function applyDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    }
+});
+
 const wrappers = document.querySelectorAll(".wrapper");
 
 wrappers.forEach((wrapper, index) => {
@@ -212,26 +243,7 @@ window.addEventListener('resize', function () {
         searchForm.classList.remove('show');
     }
 })
-document.addEventListener('DOMContentLoaded', function () {
-    const switchMode = document.getElementById('switch-mode');
-    const isDarkMode = sessionStorage.getItem('darkMode') === 'true';
-    switchMode.checked = isDarkMode;
-    applyDarkMode(isDarkMode);
 
-    switchMode.addEventListener('change', function () {
-        const isChecked = this.checked;
-        applyDarkMode(isChecked);
-        sessionStorage.setItem('darkMode', isChecked ? 'true' : 'false');
-    });
-
-    function applyDarkMode(isDark) {
-        if (isDark) {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
-        }
-    }
-});
 
 // tab
 // const activenav = document.querySelector(".activenav");
