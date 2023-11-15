@@ -170,7 +170,7 @@ require APPROOT . '/views/admin/index.php';
                     <input type="email" id="email" name="email" data-field="email" placeholder="Email" required />
                 </div>
                 <div>
-                    <input type="text" id="password" name="password" data-field="pass" placeholder="Password" required />
+                    <input type="text" id="password" name="password" data-field="pass" placeholder="Password" />
                     <input type="text" name="id" hidden data-field="id">
                 </div>
                 <div>

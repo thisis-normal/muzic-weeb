@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   CONSTRAINT `album_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.albums: ~9 rows (approximately)
+-- Dumping data for table muzic_weeb.albums: ~7 rows (approximately)
 INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_image`) VALUES
 	(2, 'Making My Way', 13, '2023-10-25', NULL),
 	(3, 'Ch&uacute;ng ta của hiện tại', 13, '2023-10-25', NULL),
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `artists` (
   PRIMARY KEY (`artist_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~7 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~5 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
 	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
 	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `genres` (
   PRIMARY KEY (`genre_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genres: ~9 rows (approximately)
+-- Dumping data for table muzic_weeb.genres: ~8 rows (approximately)
 INSERT INTO `genres` (`genre_id`, `name`) VALUES
 	(1, 'Pop'),
 	(2, 'EDM'),
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `genre_song` (
   CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genre_song: ~13 rows (approximately)
+-- Dumping data for table muzic_weeb.genre_song: ~11 rows (approximately)
 INSERT INTO `genre_song` (`song_id`, `genre_id`) VALUES
 	(5, 2),
 	(6, 2),
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `reset_tokens` (
   UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
 
--- Dumping data for table muzic_weeb.reset_tokens: ~18 rows (approximately)
+-- Dumping data for table muzic_weeb.reset_tokens: ~16 rows (approximately)
 INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, `status`) VALUES
 	(4, 'thuonghuunguyen2002@gmail.com', '1ae40e6e0a47d9aa7089b546ba5141ee1dc7a23bbd4ae4ae1a4791eadd703f3baa50e8cb92bef3bd3f1a856cd74ac6d8ca98', '2023-10-17 04:12:04', '2023-10-17 12:12:04', '1'),
 	(5, 'bruh@gooo.com', 'fe5d135cc349c8b32b32b5ab578a1751b77064b185a28e59c815c3d7feb2fd313c8b819b02a5c04d7c4b9374b953465ab63d', '2023-10-17 04:29:35', '2023-10-17 12:29:35', '1'),
@@ -249,13 +249,25 @@ INSERT INTO `songs` (`id`, `artist_id`, `title`, `release_date`, `album_id`, `re
 	(8, 12, 'DDD', '2023-11-02', 4, '2023-11-02 03:08:51', '6543066525909damvinhung.mp3', 'Approved'),
 	(11, 13, 'Song demo', '2023-11-16', 6, '2023-11-14 03:29:29', 'demo.mp3', 'Approved');
 
+-- Dumping structure for table muzic_weeb.subscription_plans
+CREATE TABLE IF NOT EXISTS `subscription_plans` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `duration` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table muzic_weeb.subscription_plans: ~0 rows (approximately)
+
 -- Dumping structure for table muzic_weeb.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
   `email` varchar(40) NOT NULL,
   `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `regis_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `regis_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_premium` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0: Basic plan (Free & Default)\r\n1: Ads-free\r\n2: Ads-free + Upload Music',
   `role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`) USING BTREE,
@@ -263,33 +275,32 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.users: ~25 rows (approximately)
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `is_premium`, `role`) VALUES
-	(1, 'secokisi', 'daqaturo@mailinator.co', '$2y$10$d0EO1MIM4Z3UkORODrOuKeVmUHC1mpAAeOt1QlmBCAo7Ehml1mGrC', '2023-11-14 07:11:43', 0, 'admin'),
-	(2, 'hi', 'kali@camailinator.com', '$2y$10$vtkYnTDvQ.z4v/TyBCiFcuWqRNY8mif2MAsxL1/3QJxqsTYORDf/2', '2023-11-14 07:23:05', 0, 'artist'),
-	(3, 'jyheficy', 'cuxyxohuma@ilinato.rcom', '$2y$10$dnIV2MpLFsiogTQfA52JC.Tq6vTE4bq0nSnpqE7dIM26uVoojD/wC', '2023-11-14 06:51:07', 0, 'user'),
-	(4, 'tymagysyv', 'vejuxirite@mailinator.com', '$2y$10$Yb91MEuxMIXk4.26hoDNMe20Jwtf576XFnqaWEjGHempa6Lg7Mtve', '2023-10-13 06:45:27', 0, 'user'),
-	(5, 'tikyc', 'tikyc@mailinator.com', '$2y$10$GJU5inJjxgWhljsi5AeJwuYLHQU239sbR9R0nrRndaPyG87wIFs.6', '2023-11-14 07:10:24', 0, 'admin'),
-	(6, 'fonyji', 'letozaku@mailinator.com', '$2y$10$iTplO5ySJDp/rth1/TXy5OSb08icFtY3vU3LvGqQMftc0T6HFSXDe', '2023-10-13 06:47:12', 0, 'user'),
-	(8, 'bruh', 'bruh@gmail.com', '$2y$10$vhxMymqb80XUllk.NjFMHeKwf9/S74B0BKN1P0qL0l1dfn27gbqV6', '2023-10-13 06:48:03', 0, 'user'),
-	(9, 'koryw', 'hihymirubo@mailinator.com', '$2y$10$0p6aY6eftrOBRR9iEqbAt.ARSiWvy/Nv.3k8mQG706vDpVm6FYt.W', '2023-10-12 23:56:02', 0, 'user'),
-	(10, 'kivebe', 'werugar@mailinator.com', '$2y$10$iq9LEFIJIeCxIhBwPFHR8.v33yMR/vusKgYILx6YdoVKkn4PflhKe', '2023-10-13 00:01:36', 0, 'user'),
-	(11, 'cojeladu', 'qatykuwoz@mailinator.com', '$2y$10$E1m8f6/XW9XvDFQ2xNm7xuimQsw12roGS7itexoztP.7Qz0pPjDD6', '2023-10-13 07:02:37', 0, 'user'),
-	(13, 'lmao', 'lmao@lmao.com', '$2y$10$dp/FmFd4XlNDiwzHXo0bE.ixEVR29e3RxhZXDNKvPSIgzLElTGwTK', '2023-10-13 07:42:47', 0, 'user'),
-	(14, 'lmao1', 'lmao@laom.com', '$2y$10$MUJfUjE9LrCEobrpP2OcKecMdEVytOI9SJKiTthZAHDTqnpWUe9eC', '2023-10-13 07:54:56', 0, 'user'),
-	(15, 'rygaxuwak', 'pixiw@mailinator.com', '$2y$10$WGpmWf/RpSe0/ql0N8SmNOeiHxi3hrLLIghVEkSSkrUXZYsexCdSi', '2023-10-13 08:03:19', 0, 'user'),
-	(16, 'hutikypamu', 'degety@mailinator.com', '$2y$10$lfanQ0uL/JtaOjxlS2Dih.y.5wc4icRtiB2r88IvHNyMzCjoXhxGW', '2023-10-13 08:03:36', 0, 'user'),
-	(17, 'admin', 'samepass@admin.com', '$2y$10$lVnb2d1Z6j2p4/MVQehSheYaKrlXFpinWE.2wRUhgHs0x4UaX6Vlm', '2023-10-13 08:56:08', 0, 'admin'),
-	(18, 'togaxy', 'bokapexek@mailinator.com', '$2y$10$x3q6P3q5Dj.UZVh3AGPxdOnlutnnqy7M54bJUU6qikVZT3IoWIIk6', '2023-10-13 09:00:41', 0, 'user'),
-	(19, 'gyxil', 'dikugagon@mailinator.com', '$2y$10$tpKb.kMZOSPvfsGiLhuwl..v/MaRSr0gd3geHssqYShmpnRAzDZWq', '2023-10-13 09:01:20', 0, 'user'),
-	(20, 'xitudip', 'hoxyxym@mailinator.com', '$2y$10$UCLybPnuCIwU8leFn253gO.azGnpp/chZ1gpGFmCMWbcokEQLEZHq', '2023-10-13 09:05:21', 0, 'user'),
-	(22, 'mabujylos', 'guquw@mailinator.com', '$2y$10$rwQ2cPQM5.7EAsNebwT2guxhEZfahgUTrzCIkexjg0U60GQEhlboa', '2023-10-16 01:43:04', 0, 'user'),
-	(23, 'syboky', 'tysyxy@mailinator.com', '$2y$10$OzRZ2a9upss04JeadOHSSuSCFUs5vYPbt1ktcPamWEHoCCNi6PvIK', '2023-10-16 01:50:33', 0, 'user'),
-	(24, 'nagiwu', 'hapoxy@mailinator.com', '$2y$10$.XPGynpLoC//MK7JJjEdSuXEesN2XHoxx70EkGAN4tWcBgFIJCRYG', '2023-10-16 01:50:44', 0, 'admin'),
-	(25, 'colase', 'hufigyjux@mailinator.com', '$2y$10$xHxT7/J9BPjY6ZHiUxbvWepRnZAs6epawWXJ66QwBFQMltvp41NRu', '2023-10-16 03:52:06', 0, 'user'),
-	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$f.tc56N8tdxaapk42r2KF.sO1i790Nhsj9h3wZoBF2f.Bwh6VAzka', '2023-11-14 11:38:21', 0, 'user'),
-	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', 0, 'user'),
-	(30, 'domejywuki111', 'rawi@mailinator.com', '$2y$10$.1C6b1oXeHz.Z.zCdSLi3evxK1u6lr16bJMURQpNyBthKrbfBaFIu', '2023-11-14 07:02:36', 0, 'artist');
+-- Dumping data for table muzic_weeb.users: ~24 rows (approximately)
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `updated_at`, `is_premium`, `role`) VALUES
+	(1, 'thisisnormal', 'daqaturo@mailinator.co', '$2y$10$p6AZpDKWDVf2S2/8Kb5Iiu1TbjVim5HJdKsjZmZH/2fgg5LK71POq', '2023-11-14 07:11:43', '2023-11-15 08:16:15', 0, 'admin'),
+	(2, 'hi', 'kali@camailinator.com', '$2y$10$vtkYnTDvQ.z4v/TyBCiFcuWqRNY8mif2MAsxL1/3QJxqsTYORDf/2', '2023-11-14 07:23:05', '2023-11-15 08:15:50', 0, 'artist'),
+	(3, 'jyheficy', 'cuxyxohuma@ilinato.rcom', '$2y$10$dnIV2MpLFsiogTQfA52JC.Tq6vTE4bq0nSnpqE7dIM26uVoojD/wC', '2023-11-14 06:51:07', '2023-11-15 08:15:50', 0, 'user'),
+	(4, 'tymagysyv', 'vejuxirite@mailinator.com', '$2y$10$Yb91MEuxMIXk4.26hoDNMe20Jwtf576XFnqaWEjGHempa6Lg7Mtve', '2023-10-13 06:45:27', '2023-11-15 08:15:50', 0, 'user'),
+	(5, 'tikyc', 'tikyc@mailinator.com', '$2y$10$GJU5inJjxgWhljsi5AeJwuYLHQU239sbR9R0nrRndaPyG87wIFs.6', '2023-11-14 07:10:24', '2023-11-15 08:15:50', 0, 'admin'),
+	(6, 'fonyji', 'letozaku@mailinator.com', '$2y$10$iTplO5ySJDp/rth1/TXy5OSb08icFtY3vU3LvGqQMftc0T6HFSXDe', '2023-10-13 06:47:12', '2023-11-15 08:15:50', 0, 'user'),
+	(8, 'bruh', 'bruh@gmail.commm', '$2y$10$DGxo47/yWixj4KD1T6ZNGO1TLL/rM1LilvtsBU6i3mKcj/pabxVva', '2023-11-15 07:22:45', '2023-11-15 08:15:50', 0, 'user'),
+	(9, 'koryw', 'hihymirubo@mailinator.com', '$2y$10$0p6aY6eftrOBRR9iEqbAt.ARSiWvy/Nv.3k8mQG706vDpVm6FYt.W', '2023-10-12 23:56:02', '2023-11-15 08:15:50', 0, 'user'),
+	(10, 'kivebe', 'werugar@mailinator.com', '$2y$10$iq9LEFIJIeCxIhBwPFHR8.v33yMR/vusKgYILx6YdoVKkn4PflhKe', '2023-10-13 00:01:36', '2023-11-15 08:15:50', 0, 'user'),
+	(11, 'cojeladu', 'qatykuwoz@mailinator.com', '$2y$10$E1m8f6/XW9XvDFQ2xNm7xuimQsw12roGS7itexoztP.7Qz0pPjDD6', '2023-10-13 07:02:37', '2023-11-15 08:15:50', 0, 'user'),
+	(13, 'lmao', 'lmao@lmao.com', '$2y$10$dp/FmFd4XlNDiwzHXo0bE.ixEVR29e3RxhZXDNKvPSIgzLElTGwTK', '2023-10-13 07:42:47', '2023-11-15 08:15:50', 0, 'user'),
+	(14, 'lmao1', 'lmao@laom.com', '$2y$10$MUJfUjE9LrCEobrpP2OcKecMdEVytOI9SJKiTthZAHDTqnpWUe9eC', '2023-10-13 07:54:56', '2023-11-15 08:15:50', 0, 'user'),
+	(15, 'rygaxuwak', 'pixiw@mailinator.com', '$2y$10$WGpmWf/RpSe0/ql0N8SmNOeiHxi3hrLLIghVEkSSkrUXZYsexCdSi', '2023-10-13 08:03:19', '2023-11-15 08:15:50', 0, 'user'),
+	(16, 'hutikypamu', 'degety@mailinator.com', '$2y$10$lfanQ0uL/JtaOjxlS2Dih.y.5wc4icRtiB2r88IvHNyMzCjoXhxGW', '2023-10-13 08:03:36', '2023-11-15 08:15:50', 0, 'user'),
+	(17, 'admin', 'samepass@admin.com', '$2y$10$lVnb2d1Z6j2p4/MVQehSheYaKrlXFpinWE.2wRUhgHs0x4UaX6Vlm', '2023-10-13 08:56:08', '2023-11-15 08:15:50', 0, 'admin'),
+	(18, 'togaxy', 'bokapexek@mailinator.com', '$2y$10$x3q6P3q5Dj.UZVh3AGPxdOnlutnnqy7M54bJUU6qikVZT3IoWIIk6', '2023-10-13 09:00:41', '2023-11-15 08:15:50', 0, 'user'),
+	(19, 'gyxil', 'dikugagon@mailinator.com', '$2y$10$tpKb.kMZOSPvfsGiLhuwl..v/MaRSr0gd3geHssqYShmpnRAzDZWq', '2023-10-13 09:01:20', '2023-11-15 08:15:50', 0, 'user'),
+	(20, 'xitudip', 'hoxyxym@mailinator.com', '$2y$10$UCLybPnuCIwU8leFn253gO.azGnpp/chZ1gpGFmCMWbcokEQLEZHq', '2023-10-13 09:05:21', '2023-11-15 08:15:50', 0, 'user'),
+	(22, 'mabujylos', 'guquw@mailinator.com', '$2y$10$rwQ2cPQM5.7EAsNebwT2guxhEZfahgUTrzCIkexjg0U60GQEhlboa', '2023-10-16 01:43:04', '2023-11-15 08:15:50', 0, 'user'),
+	(23, 'syboky', 'tysyxy@mailinator.com', '$2y$10$OzRZ2a9upss04JeadOHSSuSCFUs5vYPbt1ktcPamWEHoCCNi6PvIK', '2023-10-16 01:50:33', '2023-11-15 08:15:50', 0, 'user'),
+	(24, 'nagiwu', 'hapoxy@mailinator.com', '$2y$10$.XPGynpLoC//MK7JJjEdSuXEesN2XHoxx70EkGAN4tWcBgFIJCRYG', '2023-10-16 01:50:44', '2023-11-15 08:15:50', 0, 'admin'),
+	(25, 'colase', 'hufigyjux@mailinator.com', '$2y$10$xHxT7/J9BPjY6ZHiUxbvWepRnZAs6epawWXJ66QwBFQMltvp41NRu', '2023-10-16 03:52:06', '2023-11-15 08:15:50', 0, 'user'),
+	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$agT/psVLJuv07NJx5fmMfObxLHUHKIH/yhPpbXdsRc5L4c68dGGvy', '2023-11-15 01:35:13', '2023-11-15 08:15:50', 0, 'artist'),
+	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', '2023-11-15 08:15:50', 0, 'user');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

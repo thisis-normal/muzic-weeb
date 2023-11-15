@@ -99,9 +99,6 @@ class  UserManagement extends Controller
                 'email_err' => '',
             ];
             $oldUser = $this->userModel->getAllUserById($data['id']);
-//            var_dump($data);
-//            var_dump($oldUser);
-//            var_dump($data['username'] !== $oldUser->username); die();
             if ($data['username'] !== $oldUser->username) {
                 //check username in db
                 if ($this->userModel->getUserByUsername($data['username'])) {
@@ -121,10 +118,8 @@ class  UserManagement extends Controller
                 }
             }
             if (empty($data['username_err']) && empty($data['email_err'])) {
-                //hash password
-                $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
-                //register user
-                if ($this->adminModel->updateUserById($data['id'], $data['username'], $data['email'], $data['password'], $data['role'])) {
+                //update user
+                if ($this->adminModel->updateUserById($data)) {
                     flash('update_success', 'User updated');
                     //pass data to view
                     redirect('admins/user');

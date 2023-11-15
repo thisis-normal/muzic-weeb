@@ -84,7 +84,7 @@ class User
 
     public function loginByEmail($email, $password)
     {
-        $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user'");
+        $this->db->query("SELECT * FROM users WHERE email = :email AND role = 'user' OR  email = :email AND role = 'artist'");
         //Bind value
         $this->db->bind(':email', $email);
         $row = $this->db->single();
@@ -98,12 +98,14 @@ class User
 
     public function loginByUsername($username, $password)
     {
-        $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user'");
+        $this->db->query("SELECT * FROM users WHERE username = :username AND role = 'user' OR  username = :username AND role = 'artist'");
         //Bind value
         $this->db->bind(':username', $username);
         $row = $this->db->single();
         if ($row !== false) {
             $hashed_password = $row->password;
+//            var_dump($row);
+//            var_dump($hashed_password);die();
         } else {
             return false;
         }

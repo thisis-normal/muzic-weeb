@@ -54,12 +54,16 @@ class Users extends Controller
                 $data['email_error'] = 'Email is already taken';
             } elseif ($this->adminModel->getAdminByEmail($data['email'])) {
                 $data['email_error'] = 'Email is already taken';
+            } elseif ($this->adminModel->getArtistByEmail($data['email'])) {
+                $data['email_error'] = 'Email is already taken';
             }
             //validate username
             $data['username_error'] = $generalObj->validateUsername($data['username']);
             if ($this->userModel->getUserByUsername($data['username'])) {
                 $data['username_error'] = 'Username is already taken';
             } elseif ($this->adminModel->getAdminByUsername($data['username'])) {
+                $data['username_error'] = 'Username is already taken';
+            } elseif ($this->adminModel->getArtistByUsername($data['username'])) {
                 $data['username_error'] = 'Username is already taken';
             }
             //validate password
@@ -129,12 +133,12 @@ class Users extends Controller
             if (filter_var($username_or_email, FILTER_VALIDATE_EMAIL)) {
                 $isEmail = true;
                 //search by email
-                if (!$this->userModel->getUserByEmail($username_or_email)) {
+                if (!$this->userModel->getUserByEmail($username_or_email) && !$this->adminModel->getArtistByEmail($username_or_email)) {
                     $data['username_or_email_error'] = 'No user found';
                 }
             } else {
                 //search by username
-                if (!$this->userModel->getUserByUsername($username_or_email)) {
+                if (!$this->userModel->getUserByUsername($username_or_email) && !$this->adminModel->getArtistByUsername($username_or_email)) {
                     $data['username_or_email_error'] = 'No user found';
                 }
             }
