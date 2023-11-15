@@ -43,7 +43,7 @@
                         <img class='play' width="40px" height="40px"
                              src='https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0'>
                         <div class="">
-                            <span class='trackName'><a href="">ANh khasc hay em khasc</a></span>
+                            <span class='trackName'><a href="">Anh khac hay em khac</a></span>
                             <span class='artistName'><a href="">abc</a>,<a href="">bcs</a></span>
                         </div>
                     </td>

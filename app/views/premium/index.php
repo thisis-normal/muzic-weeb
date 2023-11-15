@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <link class="logo" rel="shortcut icon"
+          href="https://user-images.githubusercontent.com/73392859/275700777-0e4f5ba8-7ac9-4826-904a-06cade4a593b.png"
+          type="image/x-icon"/>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -67,28 +70,43 @@
     <h2 class="tt">Pricing Plans</h2>
     <ul class="price-list">
         <li class="price-item">
-            <h2>Basic</h2>
+            <h2>Free plan</h2>
             <ul class="feature-list">
                 <li><strong>Monthly Price:</strong> $9.99</li>
-                <li><strong>Songs Per Month:</strong> 100</li>
-                <li><strong>Audio Quality:</strong> 128 kbps</li>
                 <li><strong>Ad-free Listening:</strong> No</li>
+                <li><strong>Download music:</strong> No</li>
+
                 <?php if (isUserLoggedIn()) { ?>
-                    <li><a href="#" data-namepr="Basic" data-price="$9.99" class="btn btn-success">Buy Now</a></li>
+                    <li><a href="#" data-namepr="Basic" data-price="$9.99" class="btn btn-secondary">Your current plan</a></li>
                 <?php } else { ?>
-                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
+                    <li style="color: rgba(85,84,84,0.22)"><a href="<?= URLROOT ?>/users/login" class="btn btn-secondary">Login to
                             buy</a></li>
                 <?php } ?>
             </ul>
         </li>
 
         <li class="price-item">
-            <h2>Premium</h2>
+            <h2>Premium month</h2>
             <ul class="feature-list">
                 <li><strong>Monthly Price:</strong> $19.99</li>
-                <li><strong>Songs Per Month:</strong> Unlimited</li>
-                <li><strong>Audio Quality:</strong> 256 kbps</li>
                 <li><strong>Ad-free Listening:</strong> Yes</li>
+                <li><strong>Download music:</strong>Yes</li>
+                <li><strong>Download music:</strong>Yes</li>
+                <?php if (isUserLoggedIn()) { ?>
+                    <li><a href="#" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
+                <?php } else { ?>
+                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
+                            buy</a></li>
+                <?php } ?>
+            </ul>
+        </li>
+        <li class="price-item">
+            <h2>Premium year</h2>
+            <ul class="feature-list">
+                <li><strong>Monthly Price:</strong> $19.99</li>
+                <li><strong>Ad-free Listening:</strong> Yes</li>
+                <li><strong>Download music:</strong>Yes</li>
+                <li><strong>Download music:</strong>Yes</li>
                 <?php if (isUserLoggedIn()) { ?>
                     <li><a href="#" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
                 <?php } else { ?>
@@ -99,7 +117,7 @@
         </li>
 
         <li class="price-item">
-            <h2>Platinum</h2>
+            <h2>Artist only</h2>
             <ul class="feature-list">
                 <li><strong>Monthly Price:</strong> $29.99</li>
                 <li><strong>Songs Per Month:</strong> Unlimited</li>
