@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 //require __DIR__ . '/../../vendor/PHPMailer/phpmailer/src/PHPMailer.php';
 //require __DIR__ . '/../../vendor/PHPMailer/phpmailer/src/SMTP.php';
 // Require the autoloader from Composer
-require __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once 'GeneralController.php';
 // Initialize data with empty error messages
 $data = [

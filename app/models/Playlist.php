@@ -39,7 +39,7 @@ class Playlist
 
     public function getPlaylistByID($playlistId)
     {
-        $this->db->query('SELECT  playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name
+        $this->db->query('SELECT playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name, songs.duration as song_duration
         FROM playlists 
         INNER JOIN playlist_song ON playlists.playlist_id = playlist_song.playlist_id
         INNER JOIN songs ON playlist_song.song_id = songs.id 

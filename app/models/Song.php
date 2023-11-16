@@ -30,15 +30,24 @@ class Song
         return $row;
     }
 
-    public function createSong($song_name, $release_date, $album_id, $artist_id, $file, $status = 'Approved')
+    public function createSong($data)
     {
-        $this->db->query('INSERT INTO songs (artist_id, title,release_date, album_id, file_path, status) VALUES (:artist_id, :song_name, :release_date, :album_id, :file, :status)');
-        $this->db->bind(':artist_id', $artist_id);
-        $this->db->bind(':song_name', $song_name);
-        $this->db->bind(':release_date', $release_date);
-        $this->db->bind(':album_id', $album_id);
-        $this->db->bind(':file', $file);
-        $this->db->bind(':status', $status);
+//        $this->db->query('INSERT INTO songs (artist_id, title,release_date, album_id, file_path, status, duration) VALUES (:artist_id, :song_name, :release_date, :album_id, :file, :status, :duration)');
+//        $this->db->bind(':artist_id', $artist_id);
+//        $this->db->bind(':song_name', $song_name);
+//        $this->db->bind(':release_date', $release_date);
+//        $this->db->bind(':album_id', $album_id);
+//        $this->db->bind(':file', $file);
+//        $this->db->bind(':status', $status);
+//        $this->db->bind(':duration', $duration);
+        $this->db->query('INSERT INTO songs (artist_id, title,release_date, album_id, file_path, status, duration) VALUES (:artist_id, :song_name, :release_date, :album_id, :file, :status, :duration)');
+        $this->db->bind(':artist_id', $data['artist_id']);
+        $this->db->bind(':song_name', $data['song_name']);
+        $this->db->bind(':release_date', $data['release_date']);
+        $this->db->bind(':album_id', $data['album_id']);
+        $this->db->bind(':file', $data['fileName']);
+        $this->db->bind(':status', $data['status']);
+        $this->db->bind(':duration', $data['duration']);
         if ($this->db->execute()) {
             //get song id that just created
             return $this->db->lastInsertId();

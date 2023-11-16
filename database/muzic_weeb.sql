@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `genres` (
   PRIMARY KEY (`genre_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genres: ~8 rows (approximately)
+-- Dumping data for table muzic_weeb.genres: ~9 rows (approximately)
 INSERT INTO `genres` (`genre_id`, `name`) VALUES
 	(1, 'Pop'),
 	(2, 'EDM'),
@@ -104,21 +104,27 @@ CREATE TABLE IF NOT EXISTS `genre_song` (
   CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genre_song: ~11 rows (approximately)
+-- Dumping data for table muzic_weeb.genre_song: ~13 rows (approximately)
 INSERT INTO `genre_song` (`song_id`, `genre_id`) VALUES
 	(5, 2),
 	(6, 2),
+	(14, 2),
 	(5, 3),
 	(7, 3),
 	(5, 4),
 	(8, 4),
+	(13, 4),
+	(14, 4),
+	(15, 4),
 	(5, 5),
 	(8, 5),
 	(11, 5),
+	(15, 5),
 	(8, 6),
 	(6, 7),
 	(8, 7),
-	(11, 9);
+	(11, 9),
+	(15, 9);
 
 -- Dumping structure for table muzic_weeb.payments
 CREATE TABLE IF NOT EXISTS `payments` (
@@ -182,14 +188,17 @@ CREATE TABLE IF NOT EXISTS `playlist_song` (
   KEY `playlist_song_fk1` (`song_id`),
   CONSTRAINT `playlist_song_fk0` FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`playlist_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `playlist_song_fk1` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.playlist_song: ~4 rows (approximately)
+-- Dumping data for table muzic_weeb.playlist_song: ~7 rows (approximately)
 INSERT INTO `playlist_song` (`playlist_song_id`, `playlist_id`, `song_id`) VALUES
 	(1, 1, 5),
 	(2, 1, 6),
 	(3, 1, 7),
-	(4, 1, 8);
+	(4, 1, 8),
+	(5, 1, 13),
+	(8, 1, 14),
+	(9, 1, 15);
 
 -- Dumping structure for table muzic_weeb.reset_tokens
 CREATE TABLE IF NOT EXISTS `reset_tokens` (
@@ -234,20 +243,24 @@ CREATE TABLE IF NOT EXISTS `songs` (
   `request_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `file_path` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `duration` int DEFAULT NULL COMMENT 'Song''s duration, count as second',
   PRIMARY KEY (`id`),
   KEY `song_fk0` (`artist_id`),
   KEY `song_fk1` (`album_id`),
   CONSTRAINT `song_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`),
   CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.songs: ~5 rows (approximately)
-INSERT INTO `songs` (`id`, `artist_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`) VALUES
-	(5, 12, 'Lmao', '2020-05-20', 2, '2023-11-02 03:09:11', 'damvinhung.mp3', 'Approved'),
-	(6, 14, 'Song 1', '2023-08-02', 4, '2023-11-02 03:08:57', '65422203460a7soobin.mp3', 'Approved'),
-	(7, 18, 'Time', '2023-12-02', 10, '2023-11-02 03:08:53', 'Time.mp3', 'Approved'),
-	(8, 12, 'DDD', '2023-11-02', 4, '2023-11-02 03:08:51', '6543066525909damvinhung.mp3', 'Approved'),
-	(11, 13, 'Song demo', '2023-11-16', 6, '2023-11-14 03:29:29', 'demo.mp3', 'Approved');
+-- Dumping data for table muzic_weeb.songs: ~8 rows (approximately)
+INSERT INTO `songs` (`id`, `artist_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`, `duration`) VALUES
+	(5, 12, 'Lmao', '2020-05-20', 2, '2023-11-16 08:30:26', 'damvinhung.mp3', 'Approved', 312),
+	(6, 14, 'Song 1', '2023-08-02', 4, '2023-11-16 08:30:36', '65422203460a7soobin.mp3', 'Approved', 273),
+	(7, 18, 'Time', '2023-12-02', 10, '2023-11-16 08:39:46', 'Time.mp3', 'Approved', 276),
+	(8, 12, 'DDD', '2023-11-02', 4, '2023-11-16 08:30:29', '6543066525909damvinhung.mp3', 'Approved', 312),
+	(11, 13, 'Song demo', '2023-11-16', 6, '2023-11-16 08:30:41', 'demo.mp3', 'Approved', 140),
+	(13, 12, 'Demo', '2023-11-27', 4, '2023-11-16 07:52:20', '6555ca339ce70soobin.mp3', 'Approved', 273),
+	(14, 12, 'Demo 1', '2023-11-01', 6, '2023-11-16 08:24:27', 'muile.mp3', 'Approved', 264),
+	(15, 18, 'Time (again)', '2023-11-09', 4, '2023-11-16 08:39:40', '6555d54b9ee38Time.mp3', 'Approved', 276);
 
 -- Dumping structure for table muzic_weeb.subscription_plans
 CREATE TABLE IF NOT EXISTS `subscription_plans` (
