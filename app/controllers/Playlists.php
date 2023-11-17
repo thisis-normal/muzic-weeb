@@ -13,7 +13,7 @@ class  Playlists extends Controller {
             'totalSong' => $this->playlistModel->getTotalSongs($id),
             'playlist' => $this->playlistModel->getPlaylistByID($id),
         ];
-//        print_r($data);
+//        var_dump($data['playlist']);
 //        echo "<br>";
 //        die();
         $this->view('pages/playlist', $data);

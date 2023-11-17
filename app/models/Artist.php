@@ -35,6 +35,7 @@ class Artist
         return $this->db->single();
     }
 
+
     public function updateArtist($id, $name, $biography, $image)
     {
         $this->db->query('UPDATE artists SET name = :artist_name, biography = :biography, image = :image WHERE artist_id = :id');

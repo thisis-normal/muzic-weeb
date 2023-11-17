@@ -21,8 +21,26 @@
                         } ?> and more
                     </p>
                     <p class="playlistDetail">
-                        <span><?= $data['totalSong'] ?> songs</span>
-                        <span>about 1 hr 45 min</span>
+                        <span><?= $data['totalSong'] ?> songs, </span>
+                        <span>
+                            about
+                            <?php
+                            //calculate total duration
+                            $totalDuration = 0;
+                            foreach ($data['playlist'] as $songList) {
+                                $totalDuration += $songList->song_duration;
+                            }
+                            //seperate duration to hour, minute and second
+                            $hour = substr(gmdate('H:i:s', $totalDuration), 0, 2);
+                            $minute = substr(gmdate('H:i:s', $totalDuration), 3, 2);
+                            $second = substr(gmdate('H:i:s', $totalDuration), 6, 2);
+                            if ($hour != 0) {
+                                echo $hour . ' hr ' . $minute . ' min ' . $second . ' sec';
+                            } else {
+                                echo $minute . ' min ' . $second . ' sec';
+                            }
+                            ?>
+                        </span>
                     </p>
                 </div>
             </div>
@@ -33,28 +51,8 @@
                     <th>Album</th>
                     <th>Duration</th>
                 </thead>
-                <tbody>
-                    <tr class='tracklistRow'>
-                        <td class=''>
-                            <span class="itemnum">1</span>
-                            <span class="itemplay"><i class="fa fas fa-play" style="color: #ffffff;"></i></span>
-                        </td>
-                        <td class='trackTitle'>
-                            <img class='play' width="40px" height="40px" src='https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0'>
-                            <div class="">
-                                <span class='trackName'><a href="">ANh khasc hay em khasc</a></span>
-                                <span class='artistName'><a href="">abc</a>,<a href="">bcs</a></span>
-                            </div>
-                        </td>
-                        <td class='trackAlbum'>
-                            <a href="">album</a>
-                        </td>
-                        <td class='trackDuration'>
-                            <span class='duration'>03:02</span>
-                        </td>
-                    </tr>
-                </tbody>
-                <?= $i = 1;
+
+                <?= $index = 1;
                 $songIds = array(); // Tạo một mảng mới để chứa các song_id
 
                 ?>
@@ -62,7 +60,7 @@
                     <tbody>
                         <tr class='tracklistRow'>
                             <td class='' onclick="setTrack('<?= $songList->song_id ?>', tempPlaylist, true)">
-                                <span class="itemnum"><?= $i++ ?></span>
+                                <span class="itemnum"><?= $index++ ?></span>
                                 <span class="itemplay"><i class="fa fas fa-play" style="color: #ffffff;"></i></span>
                             </td>
                             <td class='trackTitle'>
@@ -77,14 +75,21 @@
                                 <a href=""><?= $songList->album_title ?></a>
                             </td>
                             <td class='trackDuration'>
-                                <span class='duration'>03:02</span>
+                                <span class='duration'>
+                                    <?php
+                                    //seperate duration to minute and second
+                                    $minute = substr(gmdate('H:i:s', $songList->song_duration), 3, 2);
+                                    $second = substr(gmdate('H:i:s', $songList->song_duration), 6, 2);
+                                    echo $minute . ':' . $second;
+                                    ?>
+                                </span>
                             </td>
                         </tr>
                     </tbody>
                 <?php
                     $songIds[] = $songList->song_id;
                 endforeach;
-                unset($i); ?>
+                unset($index); ?>
             </table>
         </div>
     </div>
@@ -94,5 +99,4 @@
         tempPlaylist = JSON.parse(tempSongIds);
     </script>
 </div>
-
 </div>

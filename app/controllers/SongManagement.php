@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/../../vendor/autoload.php';
 class SongManagement extends Controller
 {
     public function __construct()
@@ -19,23 +19,30 @@ class SongManagement extends Controller
                 'genre_id_array' => $_POST['genre_id'],
                 'release_date' => trim($_POST['release_date']),
                 'file' => $_FILES['song'],
+                'fileName' => '',
+                'duration' => '',
+                'status' => '',
                 'file_err' => ''
             ];
 //            var_dump($data); die();
             $data['file_err'] = $this->validateSong($data['file']);
             if (empty($data['file_err'])) {
-                $fileName = $data['file']['name'];
+                $data['fileName'] = $data['file']['name'];
                 //destination folder
-                $destination = '../public/songs/' . $fileName;
+                $destination = '../public/songs/' . $data['fileName'];
                 // Avoid overwriting existing files
-                if (file_exists('../public/songs/' . $fileName)) {
-                    $fileName = uniqid() . $fileName;
+                if (file_exists('../public/songs/' . $data['fileName'])) {
+                    $data['fileName'] = uniqid() . $data['fileName'];
                     // Re-build destination with new filename
-                    $destination = '../public/songs/' . $fileName;
+                    $destination = '../public/songs/' . $data['fileName'];
                 }
                 // Move uploaded file
                 if (move_uploaded_file($data['file']['tmp_name'], $destination)) {
-                    $song_id = $this->songModel->createSong($data['song_name'],$data['release_date'], $data['album_id'], $data['artist_id'], $fileName);
+                    //get song duration
+                    $data['duration'] = $this->getSongDuration($data['fileName']);
+                    //set status
+                    $data['status'] = 'Approved';
+                    $song_id = $this->songModel->createSong($data);
                     if ($song_id) {
                         foreach ($data['genre_id_array'] as $genre_id) {
                             $this->genreModel->insertGenreSong($song_id, $genre_id);
@@ -79,5 +86,22 @@ class SongManagement extends Controller
             return 'Song size is too large';
         }
         return '';
+    }
+
+    public function getSongDuration($fileName)
+    {
+        // Create FFProbe instance
+        $ffprobe = FFMpeg\FFProbe::create([
+            'ffmpeg.binaries' => PROJECT_ROOT . '/ffmpeg/bin/ffmpeg.exe',
+            'ffprobe.binaries' => PROJECT_ROOT . '/ffmpeg/bin/ffprobe.exe',
+            'timeout' => 3600, // The timeout for the underlying process
+            'ffmpeg.threads' => 12,   // The number of threads that FFMpeg should use
+        ]);
+        // Probe the MP3 file
+        $metadata = $ffprobe->format('../public/songs/' . $fileName);
+        // Get the duration
+        $duration = $metadata->get('duration');
+        //change duration to minute
+        return (int) round($duration);
     }
 }
