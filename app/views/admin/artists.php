@@ -112,4 +112,20 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
+<script>
+    if (document.querySelector('.admin_role').textContent.trim() === "artist") {
+
+        var del = document.querySelectorAll("#artists-tab .delete-user");
+        var cre = document.querySelectorAll("#artists-tab .btn-create");
+
+        del.forEach(function(element) {
+            element.style.display = 'none';
+        });
+
+        cre.forEach(function(element) {
+            element.style.display = 'none';
+        });
+
+    }
+</script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>

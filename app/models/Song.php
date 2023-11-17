@@ -24,7 +24,7 @@ class Song
 
     public function getSongById($id)
     {
-        $this->db->query('SELECT * FROM songs WHERE song_id = :id');
+        $this->db->query('SELECT * FROM songs WHERE id = :id');
         $this->db->bind(':id', $id);
         $row = $this->db->single();
         return $row;

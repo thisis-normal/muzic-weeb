@@ -9,7 +9,8 @@
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/index/style.css">
     <script src="<?php echo URLROOT ?>/public/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 </head>
@@ -73,10 +74,10 @@
                 <div class="home_info">
                     <input type="checkbox" id="popupToggle">
                     <label for="popupToggle">
-                        <div class="home_user" id="home_user">
+                        <div class="home_user" id="home_user" title="<?= $_SESSION['user_name'] ?>">
                             <i class="fa fa-user" style="color: #ffffff"></i>
                         </div>
-                        <!-- <div class="home_username"><?= $_SESSION['user_name'] ?></div> -->
+                        <!-- <div class="home_username"></div> -->
                     </label>
 
                     <div class="home_info-popup">

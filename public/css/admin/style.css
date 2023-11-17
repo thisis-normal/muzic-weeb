@@ -758,6 +758,9 @@ hr {
 .selectize-input {
   min-height: 40px !important;
   line-height: 40px !important;
+
+  max-height: 55px !important;
+  overflow-y: auto !important;
 }
 .formAd textarea {
   width: 300px;

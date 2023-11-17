@@ -17,7 +17,7 @@
         <?php else : ?>
 
             <div class="music-player" id="music-player">
-                <audio id="audio-player" src="<?php echo URLROOT ?>/public/songs/chieckhanphieu.mp3"></audio>
+                <!-- <audio id="audio-player" src="<?php echo URLROOT ?>/public/songs/chieckhanphieu.mp3"></audio> -->
                 <div class="song-bar">
                     <div class="song-infos">
                         <div class="image-container">
@@ -25,31 +25,31 @@
                         </div>
                         <div class="song-description">
                             <p class="title">
-                                Người đáng thương là anh
+
                             </p>
-                            <p class="artist">Only C</p>
+                            <p class="artist"></p>
                         </div>
                     </div>
-                    <div class="icons">
+                    <!-- <div class="icons">
                         <i class="far fa-heart"></i>
-                        <!-- <i class="fas fa-compress"></i> -->
-                    </div>
+                        <i class="fas fa-compress"></i>
+                    </div> -->
                 </div>
                 <div class="progress-controller">
                     <div class="control-buttons">
-                        <i class="fas fa-random"></i>
-                        <i class="fas fa-step-backward"></i>
-                        <i class="play-pause fas fa-play"></i>
-                        <i class="fas fa-step-forward"></i>
-                        <i class="fas fa-undo-alt"></i>
+                        <i class="fas fa-random" id="shuffle" onclick="setShuffle()"></i>
+                        <i class="fas fa-step-backward" title="Pre" onclick="prevSong()"></i>
+                        <i class="play-pause fas fa-play" title="Play button" onclick="playSong()"></i>
+                        <i class="fas fa-step-forward" title="Next" onclick="nextSong()"></i>
+                        <i class="fas fa-undo-alt" id="repeat" title="Repeat button" onclick="setRepeat()"></i>
                     </div>
                     <div class="progress-container">
 
-                        <span class="current-time">0:00</span>
+                        <span class="current-time">-:-</span>
                         <div class="progress-bar">
                             <div class="progress"></div>
                         </div>
-                        <span class="total-time">0:00</span>
+                        <span class="total-time">-:-</span>
 
                     </div>
                 </div>
@@ -58,9 +58,12 @@
                     <i class="fas fa-desktop"></i>
                     <div class="volume-bar">
 
-                        <i class="fas fa-volume-down"></i>
-                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                        <i class="fas fa-volume-up" onclick="setMute()"></i>
+                        <div class="progress-bar">
 
+                            <div class="progress"></div>
+
+                        </div>
                     </div>
                 </div>
 
@@ -70,101 +73,211 @@
             </html>
             <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
             <script>
-                const musicPlayers = document.querySelectorAll(".music-player");
-                musicPlayers.forEach((musicPlayer) => {
+                $(document).ready(function() {
+                    // console.log(newPlaylist)
+                    audioElement = new Audio();
+                    // audioElement.setTrack('<?php echo URLROOT ?>/public/songs/chieckhanphieu.mp3');
+                    // audioElement.play()
+
+                    updateVolumeProgressBar(audioElement.audio);
 
 
-                    const audioPlayer = musicPlayer.querySelector("#audio-player");
-                    const progressBar = musicPlayer.querySelector(".progress");
-                    const progressContainer = musicPlayer.querySelector(".progress-bar");
-                    const currentTime = musicPlayer.querySelector(".current-time");
-                    const totalTime = musicPlayer.querySelector(".total-time");
-                    updateTotalAndCurrentTime();
-                    // Cập nhật thời gian hiện tại
-                    function updateCurrentTime() {
-                        const currentMinutes = Math.floor(audioPlayer.currentTime / 60);
-                        const currentSeconds = Math.floor(audioPlayer.currentTime % 60);
-                        const formattedCurrentTime = `${currentMinutes}:${currentSeconds < 10 ? "0" : ""}${currentSeconds}`;
-                        currentTime.textContent = formattedCurrentTime;
-                    }
-
-                    // Cập nhật tổng thời gian và thời gian hiện tại
-                    function updateTotalAndCurrentTime() {
-                        const totalMinutes = Math.floor(audioPlayer.duration / 60);
-                        const totalSeconds = Math.floor(audioPlayer.duration % 60);
-                        const formattedTotalTime = `${totalMinutes}:${totalSeconds}`;
-
-                        totalTime.textContent = formattedTotalTime;
-                        updateCurrentTime();
-                    }
-
-                    // Cập nhật thanh chạy khi kéo
-                    function updateProgressBar(e) {
-                        const width = progressContainer.clientWidth;
-                        const clickX = e.offsetX;
-                        const duration = audioPlayer.duration;
-
-                        audioPlayer.currentTime = (clickX / width) * duration;
-                    }
-
-                    // Sự kiện khi audioPlayer thay đổi thời gian
-                    audioPlayer.addEventListener("timeupdate", () => {
-                        const {
-                            currentTime,
-                            duration
-                        } = audioPlayer;
-                        const progressPercentage = (currentTime / duration) * 100;
-                        progressBar.style.width = `${progressPercentage}%`;
-                        updateCurrentTime();
+                    $("#music-player").on("mousedown touchstart mousemove touchmove", function(e) {
+                        e.preventDefault();
                     });
 
-                    // Sự kiện khi người dùng kéo thanh chạy
-                    progressContainer.addEventListener("click", updateProgressBar);
 
-                    // Sự kiện khi audioPlayer đã tải xong metadata
-                    audioPlayer.addEventListener("loadedmetadata", () => {
-                        updateTotalAndCurrentTime();
+                    $(".progress-container .progress-bar").mousedown(function() {
+                        mouseDown = true;
                     });
 
-                    // Sự kiện khi nút play/pause được nhấn
-                    const playPauseButton = musicPlayer.querySelector(".play-pause");
-                    playPauseButton.addEventListener("click", () => {
-                        if (audioPlayer.paused) {
-                            audioPlayer.play();
-                            playPauseButton.classList.remove("fas", "fa-play");
-                            playPauseButton.classList.add("fas", "fa-pause");
-                        } else {
-                            audioPlayer.pause();
-                            playPauseButton.classList.remove("fas", "fa-pause");
-                            playPauseButton.classList.add("fas", "fa-play");
+                    $(".progress-container .progress-bar").mousemove(function(e) {
+                        if (mouseDown == true) {
+                            //Set time of song, depending on position of mouse
+                            timeFromOffset(e, this);
                         }
                     });
 
-
-                    const volumeSlider = musicPlayer.querySelector('.volume-bar input[type="range"]');
-                    const volumeIcon = musicPlayer.querySelector('.volume-bar i');
-
-                    // Đặt giá trị mặc định của âm lượng
-                    audioPlayer.volume = 1;
-
-                    // Xử lý sự kiện khi thanh trượt âm lượng thay đổi
-                    volumeSlider.addEventListener('input', () => {
-                        const volume = parseFloat(volumeSlider.value);
-                        audioPlayer.volume = volume;
-                        updateVolumeIcon(volume);
+                    $(".progress-container .progress-bar").mouseup(function(e) {
+                        timeFromOffset(e, this);
                     });
 
-                    function updateVolumeIcon(volume) {
-                        if (volume === 0) {
-                            volumeIcon.classList.remove('fas', 'fa-volume-down', 'fas', 'fa-volume-up');
-                            volumeIcon.classList.add('fas', 'fa-volume-off');
-                        } else if (volume < 0.5) {
-                            volumeIcon.classList.remove('fas', 'fa-volume-off', 'fas', 'fa-volume-up');
-                            volumeIcon.classList.add('fas', 'fa-volume-down');
-                        } else if (volume > 0.5) {
-                            volumeIcon.classList.remove('fas', 'fa-volume-down', 'fas', 'fa-volume-off');
-                            volumeIcon.classList.add('fas', 'fa-volume-up');
+
+                    $(".volume-bar .progress-bar").mousedown(function() {
+                        mouseDown = true;
+                    });
+
+                    $(".volume-bar .progress-bar").mousemove(function(e) {
+                        if (mouseDown == true) {
+
+                            var percentage = e.offsetX / $(this).width();
+
+                            if (percentage >= 0 && percentage <= 1) {
+                                audioElement.audio.volume = percentage;
+                            }
                         }
-                    }
+                    });
+
+                    $(".volume-bar .progress-bar").mouseup(function(e) {
+                        var percentage = e.offsetX / $(this).width();
+
+                        if (percentage >= 0 && percentage <= 1) {
+                            audioElement.audio.volume = percentage;
+                        }
+                    });
+
+                    $(document).mouseup(function() {
+                        mouseDown = false;
+                    });
+
+
+
+
                 });
+
+                function timeFromOffset(mouse, progressBar) {
+                    var percentage = mouse.offsetX / $(progressBar).width() * 100;
+                    var seconds = audioElement.audio.duration * (percentage / 100);
+                    audioElement.setTime(seconds);
+                }
+                // play
+                function playSong() {
+                    // console.log(4);
+                    // if (audioElement.audio.currentTime == 0) {
+                    //     $.post("includes/handlers/ajax/updatePlays.php", {
+                    //         songId: audioElement.currentlyPlaying.id
+                    //     });
+                    // }
+
+                    $(".play-pause").removeClass("fa-play");
+                    $(".play-pause").addClass("fa-pause");
+                    $(".play-pause").attr("onclick", "pauseSong()");
+                    audioElement.play();
+                }
+                //pause
+                function pauseSong() {
+                    $(".play-pause").addClass("fa-play");
+                    $(".play-pause").removeClass("fa-pause");
+                    $(".play-pause").attr("onclick", "playSong()");
+                    audioElement.pause();
+                }
+                // pre
+                function prevSong() {
+                    if (audioElement.audio.currentTime >= 3 || currentIndex == 0) {
+                        audioElement.setTime(0);
+                    } else {
+                        currentIndex = currentIndex - 1;
+                        setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
+                    }
+                }
+                // next
+                function nextSong() {
+                    if (repeat == true) {
+                        audioElement.setTime(0);
+                        playSong();
+                        return;
+                    }
+
+                    if (currentIndex == currentPlaylist.length - 1) {
+                        currentIndex = 0;
+                    } else {
+                        currentIndex++;
+                    }
+
+                    var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
+                    setTrack(trackToPlay, currentPlaylist, true);
+                }
+                // setmute
+                function setMute() {
+                    var volumeIcon = $(".volume-bar i");
+                    audioElement.audio.muted = !audioElement.audio.muted;
+
+                    if (audioElement.audio.muted) {
+                        volumeIcon.removeClass('fa-volume-up').addClass('fa-volume-mute');
+                    } else {
+                        volumeIcon.removeClass('fa-volume-mute').addClass('fa-volume-up');
+                    }
+                }
+
+                //repeat
+                function setRepeat() {
+                    repeat = !repeat;
+                    var active = repeat ? "#1DB954" : "#999999";
+                    $("#repeat").css("color", active);
+                }
+                //shuffle
+                function setShuffle() {
+                    shuffle = !shuffle;
+                    var active = shuffle ? "#1DB954" : "#999999";
+                    $("#shuffle").css("color", active);
+
+                    if (shuffle == true) {
+                        //Randomize playlist
+                        shuffleArray(shufflePlaylist);
+                        currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
+                    } else {
+                        //shuffle has been deactivated
+                        //go back to regular playlist
+                        currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
+                    }
+
+                }
+
+                function shuffleArray(a) {
+                    var j, x, i;
+                    for (i = a.length; i; i--) {
+                        j = Math.floor(Math.random() * i);
+                        x = a[i - 1];
+                        a[i - 1] = a[j];
+                        a[j] = x;
+                    }
+                }
+                //settrack
+                function setTrack(trackId, newPlaylist, play) {
+
+                    if (newPlaylist != currentPlaylist) {
+                        currentPlaylist = newPlaylist;
+                        shufflePlaylist = currentPlaylist.slice();
+                        // shuffleArray(shufflePlaylist);
+                    }
+
+                    // if (shuffle == true) {
+                    //     currentIndex = shufflePlaylist.indexOf(trackId);
+                    // } else {
+                    //     currentIndex = currentPlaylist.indexOf(trackId);
+                    // }
+                    // pauseSong();
+
+                    $.post("<?php echo URLROOT ?>/Songs/getSongJson/", {
+                        songId: trackId
+                    }, function(data) {
+                        var track = data;
+                        console.log(track.title)
+                        $(".song-description .title").text(track.title);
+
+                        // Yêu cầu thông tin về nghệ sĩ
+                        $.post("<?php echo URLROOT ?>/Songs/getArtistJson/", {
+                            artistId: track.artist_id
+                        }, function(artistData) {
+                            var artist = artistData;
+                            $(".song-infos .artist").text(artist.name);
+                            // $(".song-infos .artist").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
+                        });
+
+
+                        // Cập nhật audioElement và phát nhạc nếu cần
+                        audioElement.setTrack(track);
+
+                        if (play == true) {
+                            playSong();
+                        }
+                    });
+
+                }
+
+                // function playSong() {
+
+                //     audioElement.play();
+                // }
             </script>
+            <script src="<?php echo URLROOT ?>/public/js/jsfront.js"></script>

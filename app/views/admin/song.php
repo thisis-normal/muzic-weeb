@@ -94,7 +94,7 @@ require APPROOT . '/views/admin/index.php';
                     <input type="text" id="songname" name="song_name" placeholder="Song title" required />
                 </div>
                 <div>
-                    <select id="select-state" name="artist_id" placeholder="Artist">
+                    <select multiple id="select-state" name="artist_id" placeholder="Artist">
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
@@ -120,9 +120,7 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <input type="date" name="release_date" id="">
                 </div>
-                <br>
-                <br>
-                <br>
+
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
                         <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg" size="14" />
@@ -144,7 +142,7 @@ require APPROOT . '/views/admin/index.php';
                     <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required />
                 </div>
                 <div>
-                    <select id="select-state" data-field="artist" name="">
+                    <select multiple id="select-state" data-field="artist" name="">
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
@@ -211,4 +209,5 @@ require APPROOT . '/views/admin/index.php';
         });
     });
 </script>
+
 <script src="<?= URLROOT ?>/public/js/script.js"></script>

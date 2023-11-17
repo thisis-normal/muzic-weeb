@@ -4,7 +4,7 @@
         <span class="text">
             Hello <?= $_SESSION['admin_name'] ?>
             <br>
-            Role: <?= $_SESSION['admin_role'] ?>
+            <p class="admin_role"><?= $_SESSION['admin_role'] ?></p>
         </span>
     </a>
     <ul class="side-menu top">
@@ -66,3 +66,21 @@
         </li>
     </ul>
 </section>
+<script>
+    if (document.querySelector('.admin_role').textContent.trim() === "artist") {
+        // Lấy tất cả các thẻ li
+        var listItems = document.querySelectorAll('.side-menu.top li');
+        listItems.forEach(function(li, index) {
+            if (index !== 3 && index !== 5) {
+                li.style.display = 'none';
+            }
+        });
+        listItems.forEach(function(li, index) {
+            if (index === 0) {
+                li.click();
+            }
+        });
+
+
+    }
+</script>

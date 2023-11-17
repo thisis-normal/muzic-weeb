@@ -603,7 +603,7 @@ i:hover {
   height: 100%;
   width: 0%;
   border-radius: 10px;
-  background-color: var(--secondary-color);
+  background-color: #fff;
 }
 .progress-bar:hover .progress {
   background-color: var(--green-color);
@@ -632,10 +632,29 @@ i:hover {
   gap: 0.7em;
 }
 .volume-bar .progress-bar {
-  width: 6em;
+  width: 8em;
+}
+.volume-bar .progress-bar .progress {
+  position: relative;
+  z-index: 99;
+  height: 100%;
+  width: 0%;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.volume-bar .progress-bar:hover .progress {
+  background-color: var(--green-color);
 }
 .volume-bar .progress-bar:hover .progress::after {
+  content: "";
+  position: absolute;
   --size: 0.8em;
+  width: var(--size);
+  height: var(--size);
+  right: 0;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  transform: translate(50%, calc(2px - 50%));
 }
 .invalid-feedback {
   color: red; /* Set the text color to red */
@@ -859,7 +878,9 @@ i:hover {
 .itemplay {
   display: none;
   font-size: 10px;
+  cursor: pointer;
 }
+
 .tracklistRow:hover .itemplay {
   display: block;
 }
