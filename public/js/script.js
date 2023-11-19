@@ -9,6 +9,7 @@
 
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
     const switchMode = document.getElementById('switch-mode');
     const isDarkMode = sessionStorage.getItem('darkMode') === 'true';
@@ -159,32 +160,50 @@ editButtons.forEach(editButton => {
         for (let key in dataAttributes) {
             if (dataAttributes.hasOwnProperty(key)) {
                 const value = dataAttributes[key];
-                console.log(value);
+                // console.log(value);
                 const inputField = formUpdate.querySelector(`[data-field="${key}"]`);
+
                 if (inputField) {
                     if (inputField.tagName === 'SELECT') {
-                        // var selectize = inputField[0].selectize;
-                        // selectize.setValue(value);
-                        // Tìm tùy chọn trong trường SELECT dựa trên giá trị
-                        // const selectOptions = inputField.option;
-                        $(document).ready(function () {
-                            // alert(value);
+                        if (inputField.classList.contains("selectize")) {
+                            var arr = value.split(",");
                             var selectize = $(inputField)[0].selectize;
-                            console.log(selectize);
-                            var newValue = value;
-                            selectize.setValue(newValue);
 
-                        });
+                            let options = selectize.options;
+                            Object.values(options).forEach(function (option) {
+                                var optionText = option.text;
+                                arr.forEach(function (item) {
+                                    if (item.trim() === optionText) {
+                                        selectize.addItem(option.value); // Chọn option nếu thỏa mãn điều kiện
+                                    }
+                                });
+                            });
 
-                        for (var i = 0; i < inputField.options.length; i++) {
-                            if (inputField.options[i].value === value) {
-                                inputField.selectedIndex = i;
-                                break;
-                            }
                         }
+                        else {
+
+                            var selectize = $(inputField)[0].selectize;
+                            let options = selectize.options;
+                            Object.values(options).forEach(function (option) {
+                                var optionText = option.text;
+                                if (value.trim() === optionText) {
+                                    selectize.addItem(option.value); // Chọn option nếu thỏa mãn điều kiện
+                                }
+                            });
+                        }
+
+
+
                     } else if (inputField.tagName === 'SPAN') {
                         inputField.innerHTML = value;
-                    } else {
+                    }
+                    else if (inputField.tagName === 'INPUT' && inputField.type === 'date') {
+                        const parts = value.split("/");
+                        const formattedDate = `${parts[2]}-${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}`;
+                        console.log(formattedDate)
+                        $(inputField).val(formattedDate) // Gán giá trị cho input có kiểu date
+                    }
+                    else {
                         inputField.value = value;
                     }
                 }
@@ -332,6 +351,28 @@ deleteButtons.forEach(deleteButton => {
 });
 
 //frontend
+function displayAd() {
+    var ads = document.getElementById("ads");
+    ads.style.display = "block";
+    pauseSong();
+    setTimeout(function () {
+        ads.style.display = "none";
+        playSong();
+    }, 5000); // Hides the ad after 5 seconds
+}
+
+function scheduleAd() {
+    // Thời gian giữa mỗi lần hiển thị banner quảng cáo (20-30 phút)
+    const adInterval = Math.floor(Math.random() * (30 - 20 + 1) + 20) * 60 * 1000; // Chuyển đổi sang mili giây
+
+    setTimeout(function () {
+        displayAd();
+        setTimeout(scheduleAd, adInterval);
+    }, adInterval);
+}
+
+
+
 
 function loadContent(url, event) {
     // alert("lll");
