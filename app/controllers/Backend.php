@@ -52,6 +52,11 @@ class Backend extends Controller
                 if ($loggedInAdmin) {
                     //create session
                     $this->createAdminSession($loggedInAdmin);
+                    if ($_SESSION['admin_role'] == 'admin') {
+                        redirect('admins/index');
+                    } else {
+                        redirect('artists/index');
+                    }
                     redirect('admins/dashboard');
                 } else {
                     $data['password_error'] = 'Password incorrect';
