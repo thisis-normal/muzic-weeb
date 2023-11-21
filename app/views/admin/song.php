@@ -76,7 +76,7 @@ require APPROOT . '/views/admin/index.php';
                                 <td class="truncate-text"><?= $song->file_path ?></td>
                                 <td>
                                     <a href="#" class="delete-user" data-delete="<?= $song->title ?>" data-delete-href="<?= URLROOT ?>/song-management/delete-song/?id=<?= $song->id ?>"><i class='bx bx-trash' style='color:#fb0004'></i></a>
-                                    <a href="" class="edit-button btnpopup" data-form="form_update_song" data-songtitle="<?= $song->title ?>" data-album="<?= $song->album_title ?>" data-artist="<?= $song->artist_name ?>" data-genre="<?= implode(', ', $song->genres) ?>" data-file="<?= $song->file_path ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                    <a href="" class="edit-button btnpopup" data-form="form_update_song" data-date="<?= $song->formatted_date ?>" data-songtitle="<?= $song->title ?>" data-albuma="<?= $song->album_title ?>" data-artist="<?= $song->artist_name ?>" data-genre="<?= implode(', ', $song->genres) ?>" data-file="<?= $song->file_path ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -124,7 +124,7 @@ require APPROOT . '/views/admin/index.php';
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
                         <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg" size="14" />
-                        <span class="form-input--file-button">File</span>
+                        <span class="form-input--file-button">File</span>0
                         <input type="text" class="form-input--file-text" value="Choose file...">
                     </label>
                 </div>
@@ -142,7 +142,7 @@ require APPROOT . '/views/admin/index.php';
                     <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required />
                 </div>
                 <div>
-                    <select multiple id="select-state" data-field="artist" name="">
+                    <select multiple id="select-state" class="selectize" data-field="artist" name="" placeholder="Artist">
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
@@ -150,7 +150,7 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <select id="select-state" data-field="album" name="" placeholder="Album">
+                    <select id="select-state" data-field="albuma" name="" placeholder="Album">
                         <option value=""></option>
                         <?php foreach ($data['listAlbum'] as $album) : ?>
                             <option value="<?= $album->album_id ?>"><?= $album->title ?></option>
@@ -158,7 +158,7 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <select multiple id="select-state" data-field="genre" name="genre_id[]" placeholder="Genre">
+                    <select multiple id="select-state" class="selectize" data-field="genre" name="genre_id[]" placeholder="Genre">
                         <option value=""></option>
                         <?php foreach ($data['listGenre'] as $genre) : ?>
                             <option value="<?= $genre->genre_id ?>"><?= $genre->name ?></option>
@@ -166,7 +166,7 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <input type="date" name="" id="">
+                    <input type="date" data-field="date" value="06/20/2020" name="" id="">
                 </div>
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
@@ -184,6 +184,7 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
+<script src="<?= URLROOT ?>/public/js/script.js"></script>
 <script>
     $(document).ready(function() {
         $('select').selectize({
@@ -209,5 +210,3 @@ require APPROOT . '/views/admin/index.php';
         });
     });
 </script>
-
-<script src="<?= URLROOT ?>/public/js/script.js"></script>

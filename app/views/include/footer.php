@@ -238,15 +238,15 @@
                     if (newPlaylist != currentPlaylist) {
                         currentPlaylist = newPlaylist;
                         shufflePlaylist = currentPlaylist.slice();
-                        // shuffleArray(shufflePlaylist);
+                        shuffleArray(shufflePlaylist);
                     }
 
-                    // if (shuffle == true) {
-                    //     currentIndex = shufflePlaylist.indexOf(trackId);
-                    // } else {
-                    //     currentIndex = currentPlaylist.indexOf(trackId);
-                    // }
-                    // pauseSong();
+                    if (shuffle == true) {
+                        currentIndex = shufflePlaylist.indexOf(trackId);
+                    } else {
+                        currentIndex = currentPlaylist.indexOf(trackId);
+                    }
+                    pauseSong();
 
                     $.post("<?php echo URLROOT ?>/Songs/getSongJson/", {
                         songId: trackId

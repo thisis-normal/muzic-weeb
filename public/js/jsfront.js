@@ -9,6 +9,10 @@ var shuffle = false;
 var userLoggedIn;
 var timer;
 var musicFolder = 'http://localhost:2002/muzic-weeb/public/songs/';
+
+// scheduleAd();
+
+
 function formatTime(seconds) {
     var time = Math.round(seconds);
     var minutes = Math.floor(time / 60); //Rounds down
