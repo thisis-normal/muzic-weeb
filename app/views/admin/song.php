@@ -133,16 +133,16 @@ require APPROOT . '/views/admin/index.php';
                 </div>
             </div>
         </form>
-        <!-- update form -->
-        <form action="" method="post">
+        <!-- update form  -->
+        <form action="<?= URLROOT ?>/song-management/update-song" method="post" enctype="multipart/form-data" >
             <div class="form_update popup form_update_song">
                 <h1>Update Song</h1>
                 <br>
                 <div>
-                    <input type="text" id="songname" name="" data-field="songtitle" placeholder="Song title" required />
+                    <input type="text" id="songname" name="song_name" data-field="songtitle" placeholder="Song title" />
                 </div>
                 <div>
-                    <select multiple id="select-state" class="selectize" data-field="artist" name="" placeholder="Artist">
+                    <select multiple id="select-state" class="selectize" data-field="artist" name="artist_id[]" placeholder="Artist">
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
@@ -150,7 +150,7 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <select id="select-state" data-field="albuma" name="" placeholder="Album">
+                    <select id="select-state" data-field="albuma" name="album_id" placeholder="Album">
                         <option value=""></option>
                         <?php foreach ($data['listAlbum'] as $album) : ?>
                             <option value="<?= $album->album_id ?>"><?= $album->title ?></option>
@@ -166,11 +166,12 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <input type="date" data-field="date" value="06/20/2020" name="" id="">
+                    <input type="date" data-field="date" value="" name="release_date" id="">
                 </div>
+                <input type="text" name="id" hidden data-field="id">
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
-                        <input class="form-input-file" type="file" id="file" name="" accept=" .mp3, .wav, .ogg" size="14" required />
+                        <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg" size="14" />
                         <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" data-field="file" value="Choose file...">
                     </label>
