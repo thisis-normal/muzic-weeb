@@ -15,7 +15,7 @@ class SongManagement extends Controller
             $data = [
                 'song_name' => trim($_POST['song_name']),
                 'album_id' => trim($_POST['album_id']),
-                'artist_id' => trim($_POST['artist_id']),
+                'artist_id_array' => $_POST['artist_id'],
                 'genre_id_array' => $_POST['genre_id'],
                 'release_date' => trim($_POST['release_date']),
                 'file' => $_FILES['song'],
@@ -24,7 +24,7 @@ class SongManagement extends Controller
                 'status' => '',
                 'file_err' => ''
             ];
-//            var_dump($data); die();
+            var_dump($data); die();
             $data['file_err'] = $this->validateSong($data['file']);
             if (empty($data['file_err'])) {
                 $data['fileName'] = $data['file']['name'];
@@ -58,6 +58,26 @@ class SongManagement extends Controller
                 redirect('admins/song');
             }
         }
+    }
+    public function updateSong() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $data = [
+                'id' => trim($_POST['id']),
+                'song_name' => trim($_POST['song_name']),
+                'artist_id' => ($_POST['artist_id']),
+                'album_id' => trim($_POST['album_id']),
+                'genre_id_array' => $_POST['genre_id'],
+                'release_date' => trim($_POST['release_date']),
+                'file' => $_FILES['song'],
+                'fileName' => '',
+                'duration' => '',
+                'status' => '',
+                'file_err' => ''
+            ];
+            var_dump($data); die();
+        }
+
     }
 
     public function deleteSong(): void
