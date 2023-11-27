@@ -28,7 +28,7 @@ class Playlist
     }
     public function getTotalSongs($playlist_id)
     {
-        $this->db->query('SELECT COUNT(*) as total_songs FROM playlist_song WHERE playlist_id = :playlist_id');
+        $this->db->query('SELECT COUNT(*) as total_songs FROM lnk_playlist_song WHERE playlist_id = :playlist_id');
         $this->db->bind(':playlist_id', $playlist_id);
         $result = $this->db->single()->total_songs;
         return $result;
@@ -39,10 +39,10 @@ class Playlist
 
     public function getPlaylistByID($playlistId)
     {
-        $this->db->query('SELECT playlist_song.song_id AS song_id, playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
+        $this->db->query('SELECT lnk_playlist_song.song_id AS song_id, playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
         FROM playlists 
-        INNER JOIN playlist_song ON playlists.playlist_id = playlist_song.playlist_id
-        INNER JOIN songs ON playlist_song.song_id = songs.id 
+        INNER JOIN lnk_playlist_song ON playlists.playlist_id = lnk_playlist_song.playlist_id
+        INNER JOIN songs ON lnk_playlist_song.song_id = songs.id 
         INNER JOIN albums ON songs.album_id = albums.album_id
         INNER JOIN artists ON songs.artist_id = artists.artist_id
         WHERE playlists.playlist_id = :playlist_id ');

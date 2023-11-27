@@ -8,7 +8,7 @@ class SongManagement extends Controller
         $this->genreModel = $this->model('Genre');
     }
 
-    public function createSong()
+    public function createSong(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -60,7 +60,7 @@ class SongManagement extends Controller
         }
     }
 
-    public function deleteSong()
+    public function deleteSong(): void
     {
         $id = trim($_GET['id']);
         if ($this->songModel->deleteSong($id)) {
@@ -71,7 +71,7 @@ class SongManagement extends Controller
         }
     }
 
-    public function validateSong($song)
+    public function validateSong($song): string
     {
         if (empty($song)) {
             return 'Please enter song name';
@@ -88,7 +88,7 @@ class SongManagement extends Controller
         return '';
     }
 
-    public function getSongDuration($fileName)
+    public function getSongDuration($fileName): int
     {
         // Create FFProbe instance
         $ffprobe = FFMpeg\FFProbe::create([
