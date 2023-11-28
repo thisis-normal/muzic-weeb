@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
+
+/**
+ * @property mixed $songModel
+ * @property mixed $genreModel
+ */
 class SongManagement extends Controller
 {
     public function __construct()
@@ -8,14 +13,14 @@ class SongManagement extends Controller
         $this->genreModel = $this->model('Genre');
     }
 
-    public function createSong()
+    public function createSong(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $data = [
                 'song_name' => trim($_POST['song_name']),
                 'album_id' => trim($_POST['album_id']),
-                'artist_id' => trim($_POST['artist_id']),
+                'artist_id_array' => $_POST['artist_id'],
                 'genre_id_array' => $_POST['genre_id'],
                 'release_date' => trim($_POST['release_date']),
                 'file' => $_FILES['song'],
@@ -24,7 +29,7 @@ class SongManagement extends Controller
                 'status' => '',
                 'file_err' => ''
             ];
-//            var_dump($data); die();
+            var_dump($data); die();
             $data['file_err'] = $this->validateSong($data['file']);
             if (empty($data['file_err'])) {
                 $data['fileName'] = $data['file']['name'];
@@ -59,8 +64,28 @@ class SongManagement extends Controller
             }
         }
     }
+    public function updateSong() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $data = [
+                'id' => trim($_POST['id']),
+                'song_name' => trim($_POST['song_name']),
+                'artist_id' => ($_POST['artist_id']),
+                'album_id' => trim($_POST['album_id']),
+                'genre_id_array' => $_POST['genre_id'],
+                'release_date' => trim($_POST['release_date']),
+                'file' => $_FILES['song'],
+                'fileName' => '',
+                'duration' => '',
+                'status' => '',
+                'file_err' => ''
+            ];
+            var_dump($data); die();
+        }
 
-    public function deleteSong()
+    }
+
+    public function deleteSong(): void
     {
         $id = trim($_GET['id']);
         if ($this->songModel->deleteSong($id)) {
@@ -71,7 +96,7 @@ class SongManagement extends Controller
         }
     }
 
-    public function validateSong($song)
+    public function validateSong($song): string
     {
         if (empty($song)) {
             return 'Please enter song name';
@@ -88,7 +113,7 @@ class SongManagement extends Controller
         return '';
     }
 
-    public function getSongDuration($fileName)
+    public function getSongDuration($fileName): int
     {
         // Create FFProbe instance
         $ffprobe = FFMpeg\FFProbe::create([

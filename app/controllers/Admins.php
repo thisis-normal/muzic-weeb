@@ -52,6 +52,7 @@ class  Admins extends Controller
             'listGenre' => $this->genreModel->getAllGenres(),
             'listSong' => $this->songModel->getSongs(),
         ];
+//        var_dump($data['listSong']); die;
         $this->view('admin/song', $data);
     }
     public function genre()
