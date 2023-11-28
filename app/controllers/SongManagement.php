@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
+
+/**
+ * @property mixed $songModel
+ * @property mixed $genreModel
+ */
 class SongManagement extends Controller
 {
     public function __construct()

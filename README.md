@@ -8,7 +8,7 @@
 
 ### Cách chạy chương trình: 
 - Clone repository này: ``` git clone git@github.com:thisis-normal/muzic-weeb.git ```
-- Update composer: ``` composer update ```
+- Install composer pakage: ``` composer install ```
 - Tải [ffmpeg essentials build](https://github.com/GyanD/codexffmpeg/releases) về và set ở thư mục gốc (Ghi đè vào folder ffmpeg đã có trên git)
 
 ### Các tính năng nổi bật:

@@ -63,6 +63,21 @@ require APPROOT . '/views/admin/index.php';
                         // Add the current genre to the genres array
                         $groupedSongs[$songId]->genres[] = $row->genre_name;
                     }
+                    // Initialize an empty array to store artists list
+                    $groupedArtists = [];
+                    foreach ($data['listSong'] as $row) {
+                        $songId = $row->id;
+                        // Check if the song ID is already in the grouped array
+                        if (!isset($groupedArtists[$songId])) {
+                            // If not, initialize it with the current row
+                            $groupedArtists[$songId] = $row;
+                            // Create a genres array to store genre names
+                            $groupedArtists[$songId]->genres = [];
+                        }
+                        // Add the current genre to the genres array
+                        $groupedSongs[$songId]->genres[] = $row->genre_name;
+                    }
+//                    var_dump($groupedSongs); die();
                     ?>
                     <?php foreach ($groupedSongs as $song) : ?>
                         <tbody>
@@ -94,7 +109,7 @@ require APPROOT . '/views/admin/index.php';
                     <input type="text" id="songname" name="song_name" placeholder="Song title" required />
                 </div>
                 <div>
-                    <select multiple id="select-state" name="artist_id" placeholder="Artist">
+                    <select multiple id="select-state" name="artist_id[]" placeholder="Artist">
                         <option value=""></option>
                         <?php foreach ($data['listArtist'] as $artist) : ?>
                             <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
