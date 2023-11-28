@@ -54,6 +54,7 @@
                     </div>
                 </div>
                 <div class="other-features">
+                    <i class="fas fa-music" title="Lyrics" id="lyrics"></i>
                     <i class="fas fa-list-ul"></i>
                     <i class="fas fa-desktop"></i>
                     <div class="volume-bar">
@@ -252,7 +253,8 @@
                         songId: trackId
                     }, function(data) {
                         var track = data;
-                        console.log(track.title)
+                        sessionStorage.removeItem('trackTitle');
+                        sessionStorage.setItem('trackTitle', track.title);
                         $(".song-description .title").text(track.title);
 
                         // Yêu cầu thông tin về nghệ sĩ
@@ -260,6 +262,9 @@
                             artistId: track.artist_id
                         }, function(artistData) {
                             var artist = artistData;
+                            sessionStorage.removeItem('artistName');
+                            sessionStorage.setItem('artistName', artist.name);
+
                             $(".song-infos .artist").text(artist.name);
                             // $(".song-infos .artist").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
                         });
@@ -279,5 +284,28 @@
 
                 //     audioElement.play();
                 // }
+                const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
+                const apiKey = 'cce7b9ae5726c860082e6932e6b5e37f';
+
+                function getLyrics(trackName, artistName) {
+                    fetch(`${corsAnywhere}https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${trackName}&q_artist=${artistName}&apikey=${apiKey}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const lyricsBody = data.message.body.lyrics.lyrics_body;
+                            const cleanLyrics = lyricsBody.replace(/\*{7}.*/, '');
+                            const cleanLyricst = cleanLyrics.replace(/\(\d+\)/, '');
+                            const Lyrics = cleanLyricst.replace(/\n/g, '<br>');
+
+                            localStorage.removeItem('lyricsContent');
+                            localStorage.setItem('lyricsContent', Lyrics);
+                            openPage('<?php echo URLROOT ?>/lyrics/detail');
+                        });
+                }
+                $("#lyrics").click(function() {
+                    const trackName = sessionStorage.getItem('trackTitle'); // Thay đổi giá trị theo nhu cầu
+                    const artistName = sessionStorage.getItem('artistName');; // Thay đổi giá trị theo nhu cầu
+
+                    getLyrics(trackName, artistName);
+                });
             </script>
             <script src="<?php echo URLROOT ?>/public/js/jsfront.js"></script>

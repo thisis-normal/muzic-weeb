@@ -416,6 +416,7 @@ function openPage(url) {
                 // Trang đã được tải thành công, cập nhật lịch sử trình duyệt
                 document.getElementById("mainContent").innerHTML = xhr.responseText;
                 document.body.scrollTop = 0;
+                executeLyricsJS();
 
                 // Đặt thông tin trạng thái
                 var newState = { url: url };
@@ -431,4 +432,21 @@ function openPage(url) {
     // Thêm dòng này để cập nhật URL hiện tại vào lịch sử trình duyệt
     var newState = { url: url };
     history.pushState(newState, url);
+
 }
+function executeLyricsJS() {
+
+
+    // Mã JavaScript bạn muốn thực thi sau 2 giây ở đây
+    const storedLyrics = localStorage.getItem('lyricsContent');
+    if (storedLyrics) {
+        const mainContent = document.getElementById('track_lyrics');
+        mainContent.innerHTML = storedLyrics;
+    }
+    else {
+        const mainContent = document.getElementById('track_lyrics');
+        mainContent.innerHTML = "Bài hát này chưa có lyrics. Chúng tôi sẽ cập nhập sớm nhất có thể !!";
+    }
+
+}
+

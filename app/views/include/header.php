@@ -11,7 +11,7 @@
     <script src="<?php echo URLROOT ?>/public/js/script.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
 
 </head>
 
