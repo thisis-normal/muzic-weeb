@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
   CONSTRAINT `album_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.albums: ~7 rows (approximately)
+-- Dumping data for table muzic_weeb.albums: ~6 rows (approximately)
 INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_image`) VALUES
 	(2, 'Making My Way', 13, '2023-10-25', NULL),
 	(3, 'Ch&uacute;ng ta của hiện tại', 13, '2023-10-25', NULL),
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `artists` (
   PRIMARY KEY (`artist_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~5 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~7 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
 	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
 	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `genres` (
   PRIMARY KEY (`genre_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genres: ~8 rows (approximately)
+-- Dumping data for table muzic_weeb.genres: ~9 rows (approximately)
 INSERT INTO `genres` (`genre_id`, `name`) VALUES
 	(1, 'Pop'),
 	(2, 'EDM'),
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `lnk_artist_song` (
   `artist_id` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`,`artist_id`,`song_id`) USING BTREE,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.lnk_artist_song: ~5 rows (approximately)
 INSERT INTO `lnk_artist_song` (`id`, `song_id`, `artist_id`) VALUES
@@ -109,7 +109,15 @@ INSERT INTO `lnk_artist_song` (`id`, `song_id`, `artist_id`) VALUES
 	(2, 1, 2),
 	(3, 5, 12),
 	(4, 6, 14),
-	(5, 7, 18);
+	(5, 7, 18),
+	(6, 8, 12),
+	(7, 11, 13),
+	(8, 13, 12),
+	(9, 14, 12),
+	(10, 15, 18),
+	(11, 16, 18),
+	(12, 17, 12),
+	(13, 16, 12);
 
 -- Dumping structure for table muzic_weeb.lnk_genre_song
 CREATE TABLE IF NOT EXISTS `lnk_genre_song` (
@@ -123,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `lnk_genre_song` (
   CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.lnk_genre_song: ~17 rows (approximately)
+-- Dumping data for table muzic_weeb.lnk_genre_song: ~21 rows (approximately)
 INSERT INTO `lnk_genre_song` (`id`, `song_id`, `genre_id`) VALUES
 	(1, 5, 2),
 	(2, 5, 3),
@@ -217,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `playlists` (
   CONSTRAINT `playlist_fk0` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.playlists: ~1 rows (approximately)
+-- Dumping data for table muzic_weeb.playlists: ~0 rows (approximately)
 INSERT INTO `playlists` (`playlist_id`, `user_id`, `title`, `description`, `created_at`) VALUES
 	(1, 26, 'This is ULSA IT!', 'The biggest playlist ever!!!', '2023-11-14 04:04:14');
 
@@ -233,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `reset_tokens` (
   UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store token everytime user forget their fucking password';
 
--- Dumping data for table muzic_weeb.reset_tokens: ~16 rows (approximately)
+-- Dumping data for table muzic_weeb.reset_tokens: ~0 rows (approximately)
 INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, `status`) VALUES
 	(4, 'thuonghuunguyen2002@gmail.com', '1ae40e6e0a47d9aa7089b546ba5141ee1dc7a23bbd4ae4ae1a4791eadd703f3baa50e8cb92bef3bd3f1a856cd74ac6d8ca98', '2023-10-17 04:12:04', '2023-10-17 12:12:04', '1'),
 	(5, 'bruh@gooo.com', 'fe5d135cc349c8b32b32b5ab578a1751b77064b185a28e59c815c3d7feb2fd313c8b819b02a5c04d7c4b9374b953465ab63d', '2023-10-17 04:29:35', '2023-10-17 12:29:35', '1'),
@@ -259,7 +267,7 @@ INSERT INTO `reset_tokens` (`id`, `email`, `token`, `created_at`, `expired_at`, 
 -- Dumping structure for table muzic_weeb.songs
 CREATE TABLE IF NOT EXISTS `songs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `artist_id` int NOT NULL,
+  `artist_id` int DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `release_date` date DEFAULT NULL,
   `album_id` int DEFAULT NULL,
@@ -274,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `songs` (
   CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.songs: ~10 rows (approximately)
+-- Dumping data for table muzic_weeb.songs: ~0 rows (approximately)
 INSERT INTO `songs` (`id`, `artist_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`, `duration`) VALUES
 	(5, 12, 'Lmao', '2020-05-20', 2, '2023-11-16 08:30:26', 'damvinhung.mp3', 'Approved', 312),
 	(6, 14, 'Song 1', '2023-08-02', 4, '2023-11-16 08:30:36', '65422203460a7soobin.mp3', 'Approved', 273),
