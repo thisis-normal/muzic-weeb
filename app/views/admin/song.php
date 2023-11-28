@@ -118,7 +118,7 @@ require APPROOT . '/views/admin/index.php';
                     </select>
                 </div>
                 <div>
-                    <input type="date" name="release_date" id="">
+                    <input type="date" name="release_date" id="" required>
                 </div>
 
                 <div class="form-controlGroup-inputWrapper">

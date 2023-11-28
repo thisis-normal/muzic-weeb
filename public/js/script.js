@@ -199,7 +199,7 @@ editButtons.forEach(editButton => {
                     }
                     else if (inputField.tagName === 'INPUT' && inputField.type === 'date') {
                         const parts = value.split("/");
-                        const formattedDate = `${parts[2]}-${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}`;
+                        const formattedDate = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
                         console.log(formattedDate)
                         $(inputField).val(formattedDate) // Gán giá trị cho input có kiểu date
                     }

@@ -14,7 +14,7 @@
 <form action="<?= URLROOT ?>/users/register" method="post">
     <div class="header"></div>
     <div class="signup">
-        <h1 class="signup_title">Sign up to NHAC</h1>
+        <h1 class="signup_title">Sign up to muzic-weeb</h1>
 
         <div class="form">
             <div class="formusername flex">

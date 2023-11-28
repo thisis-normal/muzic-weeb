@@ -8,3 +8,6 @@
 /ffmpeg/bin
 /ffmpeg/doc
 /ffmpeg/presets
+/ffmpeg/*.exe
+/ffmpeg/LICENSE
+/ffmpeg/README.txt
