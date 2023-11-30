@@ -25,10 +25,10 @@
             <button type="button" class="fa fas fa-chevron-left"></button>
             <button type="button" class="fa fas fa-chevron-right"></button>
         </div>
-        <div class="searchBox">
+        <div class="searchBox" id="searchBox">
             <form action="">
                 <i class="fa fas fa-search"></i>
-                <input class="searchInput" type="search" name="" placeholder="What do you want to listen to?">
+                <input class="searchInput" id="searchInput" type="search" name="" placeholder="What do you want to listen to?">
 
             </form>
         </div>
@@ -67,7 +67,7 @@
                 if ($_SESSION['license'] == 1) {
                     echo '<a href="#">Premium Plan</a>';
                 } else {
-                    echo '<a href="#"><button type="button">Explore premium</button></a>';
+                    echo '<a href="' . URLROOT . '/Premium/index"><button type="button">Explore premium</button></a>';
                 }
                 ?>
                 <!-- <li class="divider">|</li> -->

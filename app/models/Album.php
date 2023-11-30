@@ -66,4 +66,12 @@ class Album
             return false;
         }
     }
+    public function searchAlbums($search)
+    {
+        $this->db->query('SELECT * FROM albums WHERE title LIKE :search');
+        $this->db->bind(':search', '%' . $search . '%');
+
+        $results = $this->db->resultSet();
+        return $results;
+    }
 }

@@ -399,7 +399,6 @@ function loadContent(url, event) {
 
 var timer;
 var userLoggedIn;
-
 function openPage(url) {
     if (timer != null) {
         clearTimeout(timer);
@@ -416,8 +415,16 @@ function openPage(url) {
                 // Trang đã được tải thành công, cập nhật lịch sử trình duyệt
                 document.getElementById("mainContent").innerHTML = xhr.responseText;
                 document.body.scrollTop = 0;
-                executeLyricsJS();
-
+                if (url.includes('http://localhost:2002/muzic-weeb/lyrics/detail')) {
+                    executeLyricsJS();
+                }
+                if (url.includes('http://localhost:2002/muzic-weeb/pages/search') || url.includes('http://localhost:2002/muzic-weeb/search/result')) {
+                    setRandomBackgroundColor();
+                    $("#searchBox").css("display", "block");
+                }
+                else {
+                    $("#searchBox").css("display", "none");
+                }
                 // Đặt thông tin trạng thái
                 var newState = { url: url };
                 history.pushState(newState, null, url);
@@ -434,6 +441,8 @@ function openPage(url) {
     history.pushState(newState, url);
 
 }
+
+
 function executeLyricsJS() {
 
 
@@ -449,4 +458,26 @@ function executeLyricsJS() {
     }
 
 }
+function setRandomBackgroundColor() {
+    const browseItems = document.querySelectorAll('.browseItem');
+
+    browseItems.forEach(item => {
+        const randomColor = getRandomColor();
+        item.style.backgroundColor = randomColor;
+    });
+}
+
+function getRandomColor() {
+    const brightness = 200; // Adjust the brightness for lighter colors
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b}, ${brightness})`;
+}
+
+
+
+
+
+
 

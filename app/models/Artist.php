@@ -60,4 +60,12 @@ class Artist
             return false;
         }
     }
+    public function searchArtists($search)
+    {
+        $this->db->query('SELECT * FROM artists WHERE name LIKE :search');
+        $this->db->bind(':search', '%' . $search . '%');
+
+        $results = $this->db->resultSet();
+        return $results;
+    }
 }

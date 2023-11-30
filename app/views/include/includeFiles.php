@@ -3,6 +3,7 @@ if (!empty($_SERVER['HTTP_REFERER'])) {
 
     $referer = $_SERVER['HTTP_REFERER'];
     $currentURL = $_SERVER['REQUEST_URI'];
+
     if (strpos($referer, $currentURL) !== false) {
         require APPROOT . '/views/include/header.php';
         require APPROOT . '/views/include/ads.php';

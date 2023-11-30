@@ -288,23 +288,28 @@
                 const apiKey = 'cce7b9ae5726c860082e6932e6b5e37f';
 
                 function getLyrics(trackName, artistName) {
-                    fetch(`${corsAnywhere}https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${trackName}&q_artist=${artistName}&apikey=${apiKey}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            const lyricsBody = data.message.body.lyrics.lyrics_body;
-                            const cleanLyrics = lyricsBody.replace(/\*{7}.*/, '');
-                            const cleanLyricst = cleanLyrics.replace(/\(\d+\)/, '');
-                            const Lyrics = cleanLyricst.replace(/\n/g, '<br>');
+                    try {
+                        fetch(`${corsAnywhere}https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${trackName}&q_artist=${artistName}&apikey=${apiKey}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const lyricsBody = data.message.body.lyrics.lyrics_body;
+                                // const cleanLyrics = lyricsBody.replace(/\*{7}.*/, '');
+                                const cleanLyricst = lyricsBody.replace(/\(\d+\)/, '');
+                                const Lyrics = cleanLyricst.replace(/\n/g, '<br>');
 
-                            localStorage.removeItem('lyricsContent');
-                            localStorage.setItem('lyricsContent', Lyrics);
-                            openPage('<?php echo URLROOT ?>/lyrics/detail');
-                        });
+                                localStorage.removeItem('lyricsContent');
+                                localStorage.setItem('lyricsContent', Lyrics);
+                                openPage('<?php echo URLROOT ?>/lyrics/detail');
+                            });
+                    } catch (error) {
+                        alert()
+                    }
+
                 }
                 $("#lyrics").click(function() {
+
                     const trackName = sessionStorage.getItem('trackTitle'); // Thay đổi giá trị theo nhu cầu
                     const artistName = sessionStorage.getItem('artistName');; // Thay đổi giá trị theo nhu cầu
-
                     getLyrics(trackName, artistName);
                 });
             </script>

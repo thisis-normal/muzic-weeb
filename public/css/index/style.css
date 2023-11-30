@@ -81,7 +81,7 @@ body {
   text-decoration: underline;
 }
 .searchBox {
-  /* display: none; */
+  display: none;
   padding-left: 12px;
   width: 400px;
   height: 50px;

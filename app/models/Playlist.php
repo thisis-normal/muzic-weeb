@@ -59,4 +59,12 @@ class Playlist
         $result = $this->db->single();
         return $result;
     }
+    public function searchPlaylists($search)
+    {
+        $this->db->query('SELECT * FROM playlists WHERE title LIKE :search');
+        $this->db->bind(':search', '%' . $search . '%');
+
+        $results = $this->db->resultSet();
+        return $results;
+    }
 }

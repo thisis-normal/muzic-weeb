@@ -14,21 +14,21 @@
         <div class="nav">
             <div class="sidebar">
                 <div class="logo">
-                    <a href="<?=URLROOT?>">
+                    <a href="<?= URLROOT ?>">
                         <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Logo" />
                     </a>
                 </div>
 
                 <div class="navigation">
                     <ul>
-                        <li>
-                            <a href="<?php echo URLROOT ?>/Premium/index">
+                        <!-- <li>
+                            <a href="">
                                 <span class="fa fa-home"></span>
                                 <span>Home</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
-                            <p onclick="loadContent('<?php echo URLROOT ?>/Premium/index',event)">
+                            <p onclick="openPage('<?php echo URLROOT ?>')">
                                 <span class="fa fa-home"></span>
                                 <span>Home</span>
                             </p>
@@ -50,7 +50,7 @@
                     </ul>
                 </div>
 
-                <div class="navigation">
+                <!-- <div class="navigation">
                     <ul>
                         <li>
                             <p href="#">
@@ -66,7 +66,7 @@
                             </p>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
                 <div class="policies">
                     <ul>
