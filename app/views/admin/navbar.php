@@ -27,6 +27,18 @@
             </a>
         </li>
         <li>
+            <a href="<?= URLROOT ?>/admins/playlist" data-tab="playlist-tab">
+                <i class='bx bx-slideshow'></i>
+                <span class="text">Playlist</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?= URLROOT ?>/admins/premium" data-tab="premium-tab">
+                <i class='bx bxs-diamond'></i>
+                <span class="text">Premium</span>
+            </a>
+        </li>
+        <li>
             <a href="<?= URLROOT ?>/admins/song" data-tab="song-tab">
                 <i class="bx bxs-music"></i>
                 <span class="text">Song</span>

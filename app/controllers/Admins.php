@@ -17,18 +17,18 @@ class  Admins extends Controller
         $data = [
             'totalUser' => $this->userModel->getTotalUser(),
             'totalSong' => $this->songModel->getTotalSong(),
-            'revenue' =>$this->paymentModel->getRevenue(),
+            'revenue' => $this->paymentModel->getRevenue(),
         ];
-        $this->view('admin/dashboard',$data);
+        $this->view('admin/dashboard', $data);
     }
     public function dashboard()
     {
         $data = [
             'totalUser' => $this->userModel->getTotalUser(),
             'totalSong' => $this->songModel->getTotalSong(),
-            'revenue' =>$this->paymentModel->getRevenue(),
+            'revenue' => $this->paymentModel->getRevenue(),
         ];
-        $this->view('admin/dashboard',$data);
+        $this->view('admin/dashboard', $data);
     }
     public function user()
     {
@@ -52,7 +52,7 @@ class  Admins extends Controller
             'listGenre' => $this->genreModel->getAllGenres(),
             'listSong' => $this->songModel->getSongs(),
         ];
-//        var_dump($data['listSong']); die;
+        //        var_dump($data['listSong']); die;
         $this->view('admin/song', $data);
     }
     public function genre()
@@ -68,11 +68,19 @@ class  Admins extends Controller
             'listArtist' => $this->artistModel->getAllArtists(),
             'listAlbum' => $this->albumModel->getAllAlbumWithArtistName(),
         ];
-//        var_dump($data['listAlbum']); die();
+        //        var_dump($data['listAlbum']); die();
         $this->view('admin/album', $data);
     }
     public function songrequest()
     {
         $this->view('admin/songrequest');
+    }
+    public function playlist()
+    {
+        $this->view('admin/playlist');
+    }
+    public function premium()
+    {
+        $this->view('admin/premium');
     }
 }
