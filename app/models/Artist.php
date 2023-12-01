@@ -62,7 +62,7 @@ class Artist
     }
     public function searchArtists($search)
     {
-        $this->db->query('SELECT * FROM artists WHERE name LIKE :search');
+        $this->db->query('SELECT * FROM artists WHERE name LIKE :search LIMIT 5');
         $this->db->bind(':search', '%' . $search . '%');
 
         $results = $this->db->resultSet();
