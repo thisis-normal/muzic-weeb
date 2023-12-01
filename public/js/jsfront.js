@@ -56,6 +56,7 @@ function Audio() {
     this.audio.addEventListener("timeupdate", function () {
         if (this.duration) {
             updateTimeProgressBar(this);
+            sessionStorage.setItem("currentTime", this.duration);
         }
     });
 

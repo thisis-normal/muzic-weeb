@@ -34,7 +34,9 @@
 
         searchInput.addEventListener("keyup", function(event) {
             const searchTerm = event.target.value;
-
+console.log(
+    searchTerm
+)
             if (searchTerm.length > 0) {
                 openPage(`http://localhost:2002/muzic-weeb/search/result?search=${searchTerm}`)
             } else {

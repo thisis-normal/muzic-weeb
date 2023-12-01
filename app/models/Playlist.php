@@ -61,7 +61,12 @@ class Playlist
     }
     public function searchPlaylists($search)
     {
-        $this->db->query('SELECT * FROM playlists WHERE title LIKE :search');
+        $this->db->query('SELECT lnk_playlist_song.song_id AS song_id, playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration, playlists.description AS playlist_description
+        FROM playlists 
+        INNER JOIN lnk_playlist_song ON playlists.playlist_id = lnk_playlist_song.playlist_id
+        INNER JOIN songs ON lnk_playlist_song.song_id = songs.id 
+        INNER JOIN albums ON songs.album_id = albums.album_id
+        INNER JOIN artists ON songs.artist_id = artists.artist_id WHERE songs.title LIKE :search LIMIT 5');
         $this->db->bind(':search', '%' . $search . '%');
 
         $results = $this->db->resultSet();

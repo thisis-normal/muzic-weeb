@@ -68,7 +68,7 @@ class Album
     }
     public function searchAlbums($search)
     {
-        $this->db->query('SELECT * FROM albums WHERE title LIKE :search');
+        $this->db->query('SELECT * FROM albums WHERE title LIKE :search LIMIT 5');
         $this->db->bind(':search', '%' . $search . '%');
 
         $results = $this->db->resultSet();

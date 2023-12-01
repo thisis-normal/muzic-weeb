@@ -268,9 +268,9 @@
                             $(".song-infos .artist").text(artist.name);
                             // $(".song-infos .artist").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
                         });
-
-
                         // Cập nhật audioElement và phát nhạc nếu cần
+                        sessionStorage.removeItem('track');
+                        sessionStorage.setItem('track', JSON.stringify(track));
                         audioElement.setTrack(track);
 
                         if (play == true) {
@@ -279,11 +279,20 @@
                     });
 
                 }
+window.onload = function() {
+    // audioElement = new Audio();
+    $(".song-description .title").text(sessionStorage.getItem('trackTitle'));
+    $(".song-infos .artist").text(sessionStorage.getItem('artistName'));
+    audioElement.setTrack(JSON.parse(sessionStorage.getItem('track')));
+    updateTimeProgressBar(audioElement.audio);
+    if (play == true) {
+        playSong();
+    }
+    else {
+        pauseSong();
+    }
 
-                // function playSong() {
-
-                //     audioElement.play();
-                // }
+}
                 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
                 const apiKey = 'cce7b9ae5726c860082e6932e6b5e37f';
 
