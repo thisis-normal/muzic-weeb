@@ -29,7 +29,9 @@ class SongManagement extends Controller
                 'status' => '',
                 'file_err' => ''
             ];
-            var_dump($data); die();
+            //fix artist_id_array at index 0 because I didn't fix the query yet!
+            $data['artist_id'] = $_POST['artist_id'][0];
+//            var_dump($data); die();
             $data['file_err'] = $this->validateSong($data['file']);
             if (empty($data['file_err'])) {
                 $data['fileName'] = $data['file']['name'];

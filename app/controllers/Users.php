@@ -186,10 +186,9 @@ class Users extends Controller
             //validate email
             $generalObj = new GeneralController();
             $data['email_error'] = $generalObj->validateEmail($data['email']);
-            if (!$this->userModel->getUserByEmail($data['email'])) {
+            if (!$this->userModel->getUserByEmail($data['email']) && !$this->adminModel->getArtistByEmail($data['email'])) {
                 $data['email_error'] = 'Email is not registered';
             }
-//                var_dump($data['email_error']); die();
             //make sure errors are empty
             if (empty($data['email_error'])) {
                 //validated
@@ -255,7 +254,7 @@ class Users extends Controller
                 'errorURL' => '',
             ];
             //check if user exists in database
-            if (!$this->userModel->getUserByEmail($data['email'])) {
+            if (!$this->userModel->getUserByEmail($data['email']) && !$this->adminModel->getArtistByEmail($data['email'])) {
                 $data['errorURL'] = 'This link is invalid, are you trying to hack my website???';
             } elseif (!$this->tokenModel->validateEmailToken($data['email'], $data['token'])) {
                 $data['errorURL'] = 'This link is invalid, are you trying to hack my website???';

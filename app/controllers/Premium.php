@@ -46,10 +46,9 @@ class Premium extends Controller
         $data['paymentDate'] = $this->changeTimeZone($data['paymentDate'], 'Asia/Ho_Chi_Minh');
         $data['expiry_date'] = date('Y-m-d H:i:s', strtotime($data['paymentDate'] . ' + 1 month'));
         //validate
-        if (empty($data['orderID']) || empty($data['user_id']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['payment_method']) || empty($data['payment_status']) || empty($data['payment_date'])) {
-//            die('Something missing!');
+        if (empty($data['orderID']) || empty($data['user_id']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
+            die('Something missing!');
         }
-//        var_dump($this->model('Payment')->addPayment($data)); die();
         //add payment to database
         if ($this->paymentModel->addPayment($data)) {
             //update user's plan
@@ -69,94 +68,6 @@ class Premium extends Controller
         $datetime = new DateTime($isoDatetime);
         $datetime->setTimezone(new DateTimeZone($newTimeZone));
         return $datetime->format('Y-m-d H:i:s');
-    }
-
-//    public function sendEmail($data)
-//    {
-//        //send email
-//        $mail = new PHPMailer(true);
-//        try {
-//            //Server settings
-//            $mail->SMTPDebug = 0;                                       // Enable verbose debug output
-//            $mail->isSMTP();                                            // Send using SMTP
-//            $mail->Host = 'smtp.gmail.com';                             // Set the SMTP server to send through
-//            $mail->SMTPAuth = true;                                     // Enable SMTP authentication
-//            $mail->Username = 'normal2002.dev@gmail.com';               // SMTP username
-//            $mail->Password = 'fwcmyyxeepdteraz';                     // SMTP password
-//            $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-//            $mail->Port = 587;                                          // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-//            $signImg = 'https://user-images.githubusercontent.com/73392859/275767611-5cc355c2-542e-4151-8200-af4d9ac38da5.png';
-//            //Recipients
-//            $mail->setFrom('normal2002.dev@gmail.com', 'Admin');
-//            $mail->addAddress('thuonghuunguyen2002@gmail.com');                                  // Add a recipient
-//            // Content
-//            $mail->isHTML(true);                                        // Set email format to HTML
-//            $mail->Subject = 'Transaction successful';
-//            $mail->Body = '<h1>We have received your payment</h1>
-//                            <h2>Thank you for using our service</h2>
-//                            <h2>Here is your payment information:</h2>
-//                            <h3>
-//                            <table>
-//                                <tr>
-//                                    <td>Order ID:</td>
-//                                    <td>' . $data['orderID'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Fullname:</td>
-//                                    <td>' . $data['name'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Email:</td>
-//                                    <td>' . $data['email'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Address:</td>
-//                                    <td>' . $data['address'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Plan:</td>
-//                                    <td>' . $data['plan'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Paypal fee:</td>
-//                                    <td>' . $data['paypalFee'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Net amount:</td>
-//                                    <td>' . $data['netAmount'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Payment method:</td>
-//                                    <td>' . $data['paymentMethod'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Payment status:</td>
-//                                    <td>' . $data['paymentStatus'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Payment date:</td>
-//                                    <td>' . $data['paymentDate'] . '</td>
-//                                </tr>
-//                                <tr>
-//                                    <td>Expiry date:</td>
-//                                    <td>' . $data['expiry_date'] . '</td>
-//                                </tr>
-//                            </table>
-//                            </h3>
-//                            <h4><p>If you have any question, contact our team at support@ulsait.com</p></h4>
-//                            <img src="' . $signImg . '" alt="email_signature">';
-//            $mail->send();
-//            flash('transaction_success', 'Transaction successful');
-//        } catch (Exception $e) {
-//            //show a js alert
-//            echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
-//        }
-//    }
-    public function test()
-    {
-        $emailTemplate = file_get_contents(APPROOT . '/views/email_template/confirm_email.htm');
-        var_dump($emailTemplate);
-        die();
     }
 
     public function sendEmail($data): void
@@ -188,7 +99,7 @@ class Premium extends Controller
             $emailTemplate = str_replace('[expiry_date]', $data['expiry_date'], $emailTemplate);
             //Recipients
             $mail->setFrom('normal2002.dev@gmail.com', 'Admin');
-            $mail->addAddress('thuonghuunguyen2002@gmail.com        ');        // Add a recipient
+            $mail->addAddress('thuonghuunguyen2002@gmail.com');        // Add a recipient
             // Content
             $mail->isHTML(true);                                        // Set email format to HTML
             $mail->Subject = 'Transaction successful';
