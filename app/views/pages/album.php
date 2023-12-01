@@ -37,7 +37,7 @@
                             <span class="itemplay"><i class="fa fas fa-play" style="color: #ffffff;"></i></span>
                         </td>
                         <td class='trackTitle'>
-                            <img class='play' width="40px" height="40px" src='https://user-images.githubusercontent.com/73392859/280170359-da6bac70-46d3-4782-b4bf-5eb031e1818f.png'>
+                            <img class='play' width="40px" height="40px" src='<?= URLROOT ?> /public/img/music-note.png'>
                             <div class="">
                                 <span class='trackName'><a href="">Song Title 1</a></span>
                                 <span class='artistName'><a href="">Artist 1</a></span>

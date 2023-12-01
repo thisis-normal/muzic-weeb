@@ -20,7 +20,8 @@ class Pages extends Controller
     }
     public function search()
     {
-        $this->view('pages/search');
+        $data = $this->model('Genre')->getAllGenres();
+        $this->view('pages/search', $data);
     }
     public function about()
     {

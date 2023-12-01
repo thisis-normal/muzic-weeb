@@ -13,10 +13,10 @@
     <div class="navbar">
         <div class="nav">
             <div class="sidebar">
-                <div class="logo">
-                    <a href="<?= URLROOT ?>">
-                        <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Logo" />
-                    </a>
+                <div class="logo" onclick="openPage('<?php echo URLROOT ?>')">
+
+                    <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Logo" />
+
                 </div>
 
                 <div class="navigation">

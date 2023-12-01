@@ -8,41 +8,22 @@
         <div class="browseAll">
             <h2>Browse All</h2>
             <div class="browseItems">
-                <div class="browseItem">
-                    <p>Podcast</p>
-                </div>
-                <div class="browseItem">
-                    <p>Podcast</p>
-                </div>
-                <div class="browseItem">
-                    <p>Podcast</p>
-                </div>
-                <div class="browseItem">
-                    <p>Podcast</p>
-                </div>
-                <div class="browseItem">
-                    <p>Podcast</p>
-                </div>
+                <?php foreach ($data as $genre) : ?>
+                    <div class="browseItem" onclick="openPage('<?php echo URLROOT ?>/genres/detail')">
+                        <p><?= $genre->name ?></p>
+                    </div>
+                <?php
+                endforeach;
+                ?>
             </div>
         </div>
     </div>
     <script>
         setRandomBackgroundColor();
         $("#searchBox").css("display", "block");
-        const searchInput = document.getElementById("searchInput");
-        // const searchResults = document.getElementById("searchResults");
 
-        searchInput.addEventListener("keyup", function(event) {
-            const searchTerm = event.target.value;
-console.log(
-    searchTerm
-)
-            if (searchTerm.length > 0) {
-                openPage(`http://localhost:2002/muzic-weeb/search/result?search=${searchTerm}`)
-            } else {
-                // searchResults.innerHTML = '';
-            }
-        });
+        // Gọi hàm handleSearchInput để thực thi
+        handleSearchInput();
     </script>
 </div>
 

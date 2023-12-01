@@ -236,10 +236,13 @@ body {
 }
 .spotify-playlists .list {
   display: flex;
-  gap: 38px;
+  gap: 32px;
   overflow: hidden;
   flex-wrap: wrap;
 }
+/* input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+} */
 .spotify-playlists .list .item {
   min-width: 140px;
   /*width: 180px;*/
@@ -255,15 +258,15 @@ body {
   background-color: #252525;
 }
 .spotify-playlists .list .item img {
-  width: 150px;
-  height: 150px;
-object-fit: cover;
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
   border-radius: 6px;
   margin-bottom: 10px;
   box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
 .spotify-playlists .list .item .play,
-.topresults .play{
+.topresults .play {
   position: relative;
 }
 .topresults img {
@@ -274,7 +277,7 @@ object-fit: cover;
   margin-bottom: 10px;
   box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
-.topresults{
+.topresults {
   color: #fff;
   width: 100%;
   height: 200px;
@@ -283,7 +286,7 @@ object-fit: cover;
   padding: 24px;
   box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
-.topresults .play .fa{
+.topresults .play .fa {
   position: absolute;
   right: 10px;
   bottom: -50px;
@@ -293,7 +296,7 @@ object-fit: cover;
   opacity: 0;
   transition: all ease 0.4s;
 }
-.spotify-playlists .list .item .play .fa{
+.spotify-playlists .list .item .play .fa {
   position: absolute;
   right: 10px;
   top: -60px;
@@ -303,13 +306,13 @@ object-fit: cover;
   opacity: 0;
   transition: all ease 0.4s;
 }
-.spotify-playlists .list .item:hover .play .fa ,
-.topresults:hover .play .fa{
+.spotify-playlists .list .item:hover .play .fa,
+.topresults:hover .play .fa {
   opacity: 1;
   transform: translateY(-20px);
 }
 .spotify-playlists .list .item h4,
-.topresults h4{
+.topresults h4 {
   color: #ffffff;
   font-size: 14px;
   margin-bottom: 10px;
@@ -319,7 +322,7 @@ object-fit: cover;
   width: 140px;
 }
 .spotify-playlists .list .item p,
-.topresults p{
+.topresults p {
   color: #989898;
   font-size: 12px;
   line-height: 20px;

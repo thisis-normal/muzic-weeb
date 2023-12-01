@@ -399,6 +399,8 @@ function loadContent(url, event) {
 
 var timer;
 var userLoggedIn;
+var searchInputHandled = false;
+var searchInputClose = false;
 function openPage(url) {
     if (timer != null) {
         clearTimeout(timer);
@@ -406,7 +408,6 @@ function openPage(url) {
 
     var encodedUrl = encodeURI(url);
     console.log(encodedUrl);
-
     var xhr = new XMLHttpRequest();
     xhr.open("GET", encodedUrl, true);
     xhr.onreadystatechange = function () {
@@ -418,9 +419,27 @@ function openPage(url) {
                 if (url.includes('http://localhost:2002/muzic-weeb/lyrics/detail')) {
                     executeLyricsJS();
                 }
+                if (!searchInputHandled && url.includes('http://localhost:2002/muzic-weeb/pages/search')) {
+                    handleSearchInput();
+                    searchInputHandled = true; // Đánh dấu rằng đã xử lý
+                }
+                // if (!searchInputClose && url.includes('http://localhost:2002/muzic-weeb/search/result')) {
+                //     $(document).ready(function () {
+                //         $('input[type="search"]').on('search', function (event) {
+                //             if (event.target === this) {
+
+                //                 searchInputClose = true; // Đánh dấu rằng đã xử lý
+                //                 openPage(`http://localhost:2002/muzic-weeb/pages/search`);
+                //             }
+                //         });
+                //     });
+                // }
                 if (url.includes('http://localhost:2002/muzic-weeb/pages/search') || url.includes('http://localhost:2002/muzic-weeb/search/result')) {
                     setRandomBackgroundColor();
                     $("#searchBox").css("display", "block");
+
+
+
                 }
                 else {
                     $("#searchBox").css("display", "none");
@@ -474,6 +493,22 @@ function getRandomColor() {
     const b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b}, ${brightness})`;
 }
+
+
+function handleSearchInput() {
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("keyup", function (event) {
+        const searchTerm = event.target.value;
+        if (searchTerm.length > 0) {
+            openPage(`http://localhost:2002/muzic-weeb/search/result?search=${searchTerm}`);
+        } else {
+            openPage(`http://localhost:2002/muzic-weeb/pages/search`);
+        }
+        localStorage.clear("searchText");
+        localStorage.setItem("searchText", searchTerm);
+    });
+}
+
 
 
 

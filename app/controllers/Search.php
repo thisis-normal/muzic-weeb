@@ -9,7 +9,9 @@ class  Search extends Controller
     }
     public function result()
     {
+
         $search = $_GET['search'];
+
         $playlists = $this->playlistModel->searchPlaylists($search);
         $artists = $this->artistModel->searchArtists($search);
         $albums = $this->albumModel->searchAlbums($search);

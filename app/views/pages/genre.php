@@ -12,8 +12,8 @@
                     </div>
                 </div>
                 <div class="rightSection">
-                    <p class="playlist">Artist</p>
-                    <p class="playlistTitle">Artist name</p>
+                    <p class="playlist">Genre</p>
+                    <p class="playlistTitle">Genre name</p>
                     <!-- <p class="playlistArtist">
                         Artist 1, Artist 2, Artist 3, and more
                     </p> -->
