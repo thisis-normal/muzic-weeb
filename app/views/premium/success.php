@@ -8,6 +8,6 @@
     <title>Transaction Success</title>
 </head>
 <body>
-<h1>Transaction Success</h1>
+<h1><?php flash('transaction_success'); ?></h1>
 </body>
 </html>
