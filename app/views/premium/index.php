@@ -71,8 +71,8 @@
             foreach ($data['subscription_plans'] as $subscription_plans) {
             ?>
                 <li class="price-item">
-                    <input type="text" id="id_plan_front" value="<?= $subscription_plans->id ?>">
-                    <input type="text" id="period_plan_front" value="<?= $subscription_plans->period ?>">
+                    <input type="text" id="id_plan_front" hidden value="<?= $subscription_plans->id ?>">
+                    <input type="text" id="period_plan_front" hidden value="<?= $subscription_plans->period ?>">
 
                     <h2><?= $subscription_plans->name ?></h2>
                     <ul class="feature-list">
