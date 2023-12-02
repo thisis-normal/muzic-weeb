@@ -50,61 +50,11 @@ require APPROOT . '/views/admin/index.php';
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Recent Songs</h3>
-                    <i class="bx bx-search"></i>
-                    <i class="bx bx-filter"></i>
+                    <h3>Statistics</h3>
+                    <!-- <i class="bx bx-search"></i>
+                    <i class="bx bx-filter"></i> -->
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Date Order</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <img src="img/people.png" />
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png" />
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png" />
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status process">Process</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png" />
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="img/people.png" />
-                                <p>John Doe</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <canvas id="myChart" width="400" height="200"></canvas>
             </div>
             <!-- <div class="todo">
             <div class="head">
@@ -140,3 +90,58 @@ require APPROOT . '/views/admin/index.php';
 </div>
 </section>
 </body>
+<!--  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Biểu đồ đường</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script>
+        function drawChart(xValues, yValues) {
+            const ctx = document.getElementById('myChart').getContext('2        d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Số người',
+                        data: yValues,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Thời gian'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Số người'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Thời gian và số người (ví dụ)
+        const timeValues = [1, 2, 3, 4, 5]; // Giả sử thời gian từ 1 đến 5
+        const peopleValues = [10, 15, 20, 18, 25]; // Số người tương ứng
+
+        // Vẽ biểu đồ với dữ liệu từ hai tham số
+        drawChart(timeValues, peopleValues);
+    </script>
+</body>
+
+</html>
