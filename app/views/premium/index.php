@@ -69,69 +69,34 @@
     <!--    create a table that contains the premium plan-->
     <h2 class="tt">Pricing Plans</h2>
     <ul class="price-list">
-        <li class="price-item">
-            <h2>Free plan</h2>
-            <ul class="feature-list">
-                <li><strong>Monthly Price:</strong> $9.99</li>
-                <li><strong>Ad-free Listening:</strong> No</li>
-                <li><strong>Download music:</strong> No</li>
-
-                <?php if (isUserLoggedIn()) { ?>
-                    <li><a href="#" data-namepr="Basic" data-price="$9.99" class="btn btn-secondary">Your current plan</a></li>
-                <?php } else { ?>
-                    <li style="color: rgba(85,84,84,0.22)"><a href="<?= URLROOT ?>/users/login" class="btn btn-secondary">Login to
-                            buy</a></li>
-                <?php } ?>
-            </ul>
-        </li>
-
-        <li class="price-item">
-            <h2>Premium month</h2>
-            <ul class="feature-list">
-                <li><strong>Monthly Price:</strong> $19.99</li>
-                <li><strong>Ad-free Listening:</strong> Yes</li>
-                <li><strong>Download music:</strong>Yes</li>
-                <li><strong>Download music:</strong>Yes</li>
-                <?php if (isUserLoggedIn()) { ?>
-                    <li><a href="#" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
-                <?php } else { ?>
-                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
-                            buy</a></li>
-                <?php } ?>
-            </ul>
-        </li>
-        <li class="price-item">
-            <h2>Premium year</h2>
-            <ul class="feature-list">
-                <li><strong>Monthly Price:</strong> $19.99</li>
-                <li><strong>Ad-free Listening:</strong> Yes</li>
-                <li><strong>Download music:</strong>Yes</li>
-                <li><strong>Download music:</strong>Yes</li>
-                <?php if (isUserLoggedIn()) { ?>
-                    <li><a href="#" data-namepr="Premium" data-price="$19.99" class="btn btn-success">Buy Now</a></li>
-                <?php } else { ?>
-                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
-                            buy</a></li>
-                <?php } ?>
-            </ul>
-        </li>
-
-        <li class="price-item">
-            <h2>Artist only</h2>
-            <ul class="feature-list">
-                <li><strong>Monthly Price:</strong> $29.99</li>
-                <li><strong>Songs Per Month:</strong> Unlimited</li>
-                <li><strong>Audio Quality:</strong> Lossless</li>
-                <li><strong>Ad-free Listening:</strong> Yes</li>
-                <?php if (isUserLoggedIn()) { ?>
-                    <li><a href="#" data-namepr="Platium" data-price="$29.99" class="btn btn-success">Buy Now</a></li>
-                <?php } else { ?>
-                    <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
-                            buy</a></li>
-                <?php } ?>
-
-            </ul>
-        </li>
+        <?php
+        /** @var array $data */
+        foreach ($data['subscription_plans'] as $subscription_plans) {
+            ?>
+            <li class="price-item">
+                <h2><?= $subscription_plans->name ?></h2>
+                <ul class="feature-list">
+                    <li><strong>Price:</strong>
+                        $<?= $subscription_plans->price ?>
+                        <?php
+                        //show original price if that subscription plan has discount
+                        if ($subscription_plans->discount != 0) { ?>
+                            <span style='color: red'><s> $<?= (int)($subscription_plans->price + $subscription_plans->price * $subscription_plans->discount / 100) ?></s></span>
+                        <?php } ?>
+                    </li>
+                    <li><strong>Period:</strong><?= $subscription_plans->period ?></li>
+                    <li><strong>Ad-free Listening:</strong> <?= $subscription_plans->ads_disable ?></li>
+                    <li><strong>Download music:</strong><?= $subscription_plans->download_music ?></li>
+                    <?php if (isUserLoggedIn()) { ?>
+                        <li><a href="#" data-namepr="<?= $subscription_plans->name ?>"
+                               data-price="$<?= $subscription_plans->price ?>" class="btn btn-success">Buy Now</a></li>
+                    <?php } else { ?>
+                        <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
+                                buy</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+        <?php } ?>
     </ul>
     <div id="form-container">
         <!-- Biểu mẫu sẽ được thêm vào đây -->
@@ -190,7 +155,7 @@
                             var form = document.createElement('form');
                             form.setAttribute('id', 'myform');
                             form.setAttribute('method', 'post');
-                            form.setAttribute('action', '<?= URLROOT ?>/Premium/success');
+                            form.setAttribute('action', '<?= URLROOT ?>/premium/success');
                             // Tạo và cấu hình các trường (input) bằng JavaScript
                             var fields = [
                                 {

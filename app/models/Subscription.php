@@ -10,7 +10,7 @@ class Subscription
     }
     public function getAllSubscriptionPlan()
     {
-        $this->db->query('SELECT * FROM subscription_plans');
+        $this->db->query('SELECT * FROM subscription_plans ORDER BY price ASC');
         $results = $this->db->resultSet();
         return $results;
     }

@@ -12,6 +12,7 @@ class  Admins extends Controller
         $this->songModel = $this->model('Song');
         $this->paymentModel = $this->model('Payment');
     }
+
     public function index()
     {
         $data = [
@@ -21,6 +22,7 @@ class  Admins extends Controller
         ];
         $this->view('admin/dashboard', $data);
     }
+
     public function dashboard()
     {
         $data = [
@@ -30,6 +32,7 @@ class  Admins extends Controller
         ];
         $this->view('admin/dashboard', $data);
     }
+
     public function user()
     {
         $data = [
@@ -37,6 +40,7 @@ class  Admins extends Controller
         ];
         $this->view('admin/user', $data);
     }
+
     public function artist()
     {
         $data = [
@@ -44,17 +48,27 @@ class  Admins extends Controller
         ];
         $this->view('admin/artists', $data);
     }
+
     public function song()
     {
-        $data = [
-            'listArtist' => $this->artistModel->getAllArtists(),
-            'listAlbum' => $this->albumModel->getAllAlbumWithArtistName(),
-            'listGenre' => $this->genreModel->getAllGenres(),
-            'listSong' => $this->songModel->getSongs(),
-        ];
-        //        var_dump($data['listSong']); die;
+        if ($_SESSION['admin_role'] == 'artist') {
+            $data = [
+                'listArtist' => $this->artistModel->getAllArtists(),
+                'listAlbum' => $this->albumModel->getAllAlbumWithArtistName(),
+                'listGenre' => $this->genreModel->getAllGenres(),
+                'listSong' => $this->songModel->getSongsByUploaderId($_SESSION['admin_id']),
+            ];
+        } elseif ($_SESSION['admin_role'] == 'admin') {
+            $data = [
+                'listArtist' => $this->artistModel->getAllArtists(),
+                'listAlbum' => $this->albumModel->getAllAlbumWithArtistName(),
+                'listGenre' => $this->genreModel->getAllGenres(),
+                'listSong' => $this->songModel->getSongs(),
+            ];
+        }
         $this->view('admin/song', $data);
     }
+
     public function genre()
     {
         $data = [
@@ -62,6 +76,7 @@ class  Admins extends Controller
         ];
         $this->view('admin/genre', $data);
     }
+
     public function album()
     {
         $data = [
@@ -71,14 +86,17 @@ class  Admins extends Controller
         //        var_dump($data['listAlbum']); die();
         $this->view('admin/album', $data);
     }
+
     public function songrequest()
     {
         $this->view('admin/songrequest');
     }
+
     public function playlist()
     {
         $this->view('admin/playlist');
     }
+
     public function premium()
     {
         $this->view('admin/premium');

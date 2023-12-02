@@ -153,6 +153,7 @@ class Users extends Controller
                 }
                 if ($loggedInUser) {
                     $this->createUserSession($loggedInUser);
+                    flash('isPremium', 'Welcome back, ');
                     redirect('pages/index');
                 } else {
                     $data['password_error'] = 'Password incorrect';

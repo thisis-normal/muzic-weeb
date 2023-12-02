@@ -29,32 +29,20 @@
             <i class="fa fas fa-search"></i>
             <input class="searchInput" id="searchInput" type="search" name="" placeholder="What do you want to listen to?">
         </div>
-        <!-- <i class="fas fa-magnifying-glass"></i>
-    <i class="fa-magnifying-glass" style="color: #ffffff;"></i> -->
-        <!-- <div class="search">
-        <input type="text">
-    </div> -->
-        <div class="user">
-            <!--        <img src="--><?php //echo URLROOT 
-                                        ?><!--/public/img/avt.jpg" alt="Avatar">-->
-            <!--        <span class="username">--><?php //echo $_SESSION['username'] 
-                                                    ?><!--</span>-->
-            <!-- <i class="fas fa-chevron-down"></i> -->
-        </div>
-        <!--        check session-->
+        <!--        check user session-->
         <?php if (!isUserLoggedIn()) : ?>
             <div class="navbar">
                 <ul>
                     <li>
-                        <a href="#">Premium</a>
+                        <a href="<?= URLROOT  ?>/premium/index">Premium</a>
                     </li>
 
                     <li class="divider">|</li>
                     <li>
-                        <a href="<?php echo URLROOT ?>/users/register">Sign Up</a>
+                        <a href="<?= URLROOT ?>/users/register">Sign Up</a>
                     </li>
                 </ul>
-                <a href="<?php echo URLROOT ?>/users/login">
+                <a href="<?= URLROOT ?>/users/login">
                     <button type="button">Log In</button>
                 </a>
             </div>
@@ -62,26 +50,24 @@
             <div class="navbar">
                 <?php
                 if ($_SESSION['license'] == 1) {
-                    echo '<a href="#">Premium Plan</a>';
-                } else {
-                    echo '<a href="' . URLROOT . '/Premium/index"><button type="button">Explore premium</button></a>';
+                    ?>
+                    <span style="color: #1db954">Welcome back, <?= $_SESSION['user_name'] ?></span>
+                <?php } else {
+                    echo '<a href="' . URLROOT . '/premium/index"><button type="button">Explore premium</button></a>';
                 }
                 ?>
-                <!-- <li class="divider">|</li> -->
                 <div class="home_info">
                     <input type="checkbox" id="popupToggle">
                     <label for="popupToggle">
                         <div class="home_user" id="home_user" title="<?= $_SESSION['user_name'] ?>">
                             <i class="fa fa-user" style="color: #ffffff"></i>
                         </div>
-                        <!-- <div class="home_username"></div> -->
                     </label>
-
                     <div class="home_info-popup">
                         <ul>
                             <li>Account</li>
-                            <li><a href="<?= URLROOT ?>/Premium/index">Upgrade to Premium</a></li>
-                            <li class="borderli"><a href="<?php echo URLROOT ?>/users/logout">
+                            <li><a href="<?= URLROOT ?>/premium/index">Upgrade to Premium</a></li>
+                            <li class="borderli"><a href="<?= URLROOT ?>/users/logout">
                                     Log Out
                                 </a></li>
                         </ul>

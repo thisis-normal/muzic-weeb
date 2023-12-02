@@ -13,11 +13,16 @@ class Premium extends Controller
     {
         $this->paymentModel = $this->model('Payment');
         $this->userModel = $this->model('User');
+        $this->subscriptionModel = $this->model('Subscription');
     }
 
     public function index()
     {
-        $this->view('premium/index'); //load view inside views/premium/index.php
+        $data = [
+            'subscription_plans' => $this->subscriptionModel->getAllSubscriptionPlan()
+        ];
+//        var_dump($data); die();
+        $this->view('premium/index', $data);
     }
 
     public function payment()
@@ -43,8 +48,10 @@ class Premium extends Controller
             'expiry_date' => '',
             'status' => 'Active'
         ];
+//        var_dump($data); die();
         $data['paymentDate'] = $this->changeTimeZone($data['paymentDate'], 'Asia/Ho_Chi_Minh');
         $data['expiry_date'] = date('Y-m-d H:i:s', strtotime($data['paymentDate'] . ' + 1 month'));
+        var_dump($data); die();
         //validate
         if (empty($data['orderID']) || empty($data['user_id']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
             die('Something missing!');

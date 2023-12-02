@@ -19,7 +19,7 @@ class SongManagement extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $data = [
                 'song_name' => trim($_POST['song_name']),
-                'album_id' => trim($_POST['album_id']),
+                'album_id' => trim($_POST['album_id'] ?? null),
                 'artist_id_array' => $_POST['artist_id'],
                 'genre_id_array' => $_POST['genre_id'],
                 'release_date' => trim($_POST['release_date']),
@@ -31,7 +31,6 @@ class SongManagement extends Controller
             ];
             //fix artist_id_array at index 0 because I didn't fix the query yet!
             $data['artist_id'] = $_POST['artist_id'][0];
-//            var_dump($data); die();
             $data['file_err'] = $this->validateSong($data['file']);
             if (empty($data['file_err'])) {
                 $data['fileName'] = $data['file']['name'];

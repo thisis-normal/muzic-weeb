@@ -11,16 +11,29 @@ class Song
 
     public function getSongs()
     {
+        $this->db->query('SELECT songs.title, DATE_FORMAT(songs.release_date, "%d/%m/%Y") AS formatted_date, songs.status, songs.file_path, songs.id, albums.title as album_title, artists.name as artist_name, genres.name as genre_name 
+        FROM songs INNER JOIN albums ON songs.album_id = albums.album_id 
+        INNER JOIN artists ON songs.artist_id = artists.artist_id 
+        INNER JOIN lnk_genre_song ON songs.id = lnk_genre_song.song_id 
+        INNER JOIN genres ON lnk_genre_song.genre_id = genres.genre_id');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+    public function getSongsByUploaderId($id)
+    {
         $this->db->query('SELECT DISTINCT songs.title, DATE_FORMAT(songs.release_date, "%d/%m/%Y") AS formatted_date, songs.status, songs.file_path, songs.id, albums.title as album_title, artists.name as artist_name, genres.name as genre_name 
         FROM songs 
         INNER JOIN albums ON songs.album_id = albums.album_id
         INNER JOIN lnk_artist_song ON songs.artist_id = lnk_artist_song.artist_id 
         INNER JOIN artists ON lnk_artist_song.artist_id = artists.artist_id
         INNER JOIN lnk_genre_song ON songs.id = lnk_genre_song.song_id 
-        INNER JOIN genres ON lnk_genre_song.genre_id = genres.genre_id');
+        INNER JOIN genres ON lnk_genre_song.genre_id = genres.genre_id
+        WHERE songs.uploader_id = :id');
+        $this->db->bind(':id', $id);
         $results = $this->db->resultSet();
         return $results;
     }
+
     public function getTotalSong()
     {
         $this->db->query('SELECT COUNT(*) AS total_song FROM songs');
@@ -38,8 +51,9 @@ class Song
 
     public function createSong($data)
     {
-        $this->db->query('INSERT INTO songs (artist_id, title,release_date, album_id, file_path, status, duration) VALUES (:artist_id, :song_name, :release_date, :album_id, :file, :status, :duration)');
+        $this->db->query('INSERT INTO songs (artist_id, uploader_id, title,release_date, album_id, file_path, status, duration) VALUES (:artist_id, :uploader_id, :song_name, :release_date, :album_id, :file, :status, :duration)');
         $this->db->bind(':artist_id', $data['artist_id']);
+        $this->db->bind(':uploader_id', $_SESSION['admin_id']);
         $this->db->bind(':song_name', $data['song_name']);
         $this->db->bind(':release_date', $data['release_date']);
         $this->db->bind(':album_id', $data['album_id']);
