@@ -15,7 +15,7 @@
             <div class="sidebar">
                 <div class="logo" onclick="openPage('<?php echo URLROOT ?>')">
 
-                    <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Logo" />
+                    <h2 style="color: #fff; text-align: center; ">Weeb-Muzic</h2>
 
                 </div>
 
