@@ -51,7 +51,8 @@ class Premium extends Controller
 //        var_dump($data); die();
         $data['paymentDate'] = $this->changeTimeZone($data['paymentDate'], 'Asia/Ho_Chi_Minh');
         $data['expiry_date'] = date('Y-m-d H:i:s', strtotime($data['paymentDate'] . ' + 1 month'));
-        var_dump($data); die();
+        var_dump($data);
+        die();
         //validate
         if (empty($data['orderID']) || empty($data['user_id']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
             die('Something missing!');
@@ -117,5 +118,10 @@ class Premium extends Controller
             //show a js alert
             echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
         }
+    }
+
+    public function test()
+    {
+
     }
 }

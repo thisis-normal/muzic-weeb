@@ -312,7 +312,7 @@ class Users extends Controller
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->username;
         $_SESSION['user_email'] = $user->email;
-        $_SESSION['license'] = $user->is_premium;
+        $_SESSION['license'] = $user->subscription_id;
         $_SESSION['user_role'] = $user->role;
         //redirect to dashboard
         redirect('pages/index');
