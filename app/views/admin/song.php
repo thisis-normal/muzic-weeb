@@ -77,7 +77,7 @@ require APPROOT . '/views/admin/index.php';
                         // Add the current genre to the genres array
                         $groupedSongs[$songId]->genres[] = $row->genre_name;
                     }
-//                    var_dump($groupedSongs); die();
+                    //                    var_dump($groupedSongs); die();
                     ?>
                     <?php foreach ($groupedSongs as $song) : ?>
                         <tbody>
@@ -112,16 +112,20 @@ require APPROOT . '/views/admin/index.php';
                     <select multiple id="select-state" name="artist_id[]" placeholder="Artist">
                         <?php if ($_SESSION['admin_role'] == 'artist') : ?>
                             <option value="<?= $_SESSION['admin_id'] ?>"><?= $_SESSION['admin_name'] ?></option>
-                        <?php else: ?>
+                        <?php else : ?>
                             <option value=""></option>
                             <?php foreach ($data['listArtist'] as $artist) : ?>
                                 <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
                             <?php endforeach; ?>
                         <?php endif; ?>
-<!--                        <option value=""></option>-->
-<!--                        --><?php //foreach ($data['listArtist'] as $artist) : ?>
-<!--                            <option value="--><?php //= $artist->artist_id ?><!--">--><?php //= $artist->name ?><!--</option>-->
-<!--                        --><?php //endforeach; ?>
+                        <!--                        <option value=""></option>-->
+                        <!--                        --><?php //foreach ($data['listArtist'] as $artist) : 
+                                                        ?>
+                        <!--                            <option value="--><?php //= $artist->artist_id 
+                                                                            ?><!--">--><?php //= $artist->name 
+                                                                                                                    ?><!--</option>-->
+                        <!--                        --><?php //endforeach; 
+                                                        ?>
                     </select>
                 </div>
                 <div>
@@ -147,7 +151,7 @@ require APPROOT . '/views/admin/index.php';
                 <div class="form-controlGroup-inputWrapper">
                     <label class="form-input form-input--file file_update">
                         <input class="form-input-file" type="file" id="file" name="song" accept=" .mp3, .wav, .ogg" size="14" />
-                        <span class="form-input--file-button">File</span>0
+                        <span class="form-input--file-button">File</span>
                         <input type="text" class="form-input--file-text" value="Choose file...">
                     </label>
                 </div>
@@ -157,7 +161,7 @@ require APPROOT . '/views/admin/index.php';
             </div>
         </form>
         <!-- update form  -->
-        <form action="<?= URLROOT ?>/song-management/update-song" method="post" enctype="multipart/form-data" >
+        <form action="<?= URLROOT ?>/song-management/update-song" method="post" enctype="multipart/form-data">
             <div class="form_update popup form_update_song">
                 <h1>Update Song</h1>
                 <br>
