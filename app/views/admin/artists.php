@@ -44,7 +44,8 @@ require APPROOT . '/views/admin/index.php';
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <?php foreach ($data['listArtist'] as $artist) : ?>
+                    <tbody>
+                        <?php foreach ($data['listArtist'] as $artist) : ?>
                             <tr>
                                 <td><?= $artist->artist_id ?></td>
                                 <td><?= $artist->name ?></td>
@@ -55,8 +56,8 @@ require APPROOT . '/views/admin/index.php';
                                     <a href="" class="edit-button btnpopup" data-form="form_update_artist" data-id="<?= $artist->artist_id ?>" data-artistname="<?= $artist->name ?>" data-biography="<?= $artist->biography ?>" data-image="<?= $artist->image ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
                             </tr>
-                        </tbody>
-                    <?php endforeach; ?>
+                    </tbody>
+                <?php endforeach; ?>
                 </table>
             </div>
         </div>
@@ -117,16 +118,18 @@ require APPROOT . '/views/admin/index.php';
         var del = document.querySelectorAll("#artists-tab .delete-user");
         var cre = document.querySelectorAll("#artists-tab .btn-create");
         var table = document.querySelectorAll("#table_artist tbody tr");
-        if (table.length >= 1) {
+        console.log(table.length);
+        if (table.length > 0) {
 
-            del.forEach(function(element) {
+            cre.forEach(function(element) {
                 element.style.display = 'none';
             });
         }
-
-        cre.forEach(function(element) {
+        del.forEach(function(element) {
             element.style.display = 'none';
         });
+
+
 
     }
 </script>
