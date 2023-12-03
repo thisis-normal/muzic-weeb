@@ -62,12 +62,14 @@ class Database
     public function bind($param, $value)
     {
         if (is_array($value)) {
+            //bind values for array
             foreach ($value as $key => $v) {
                 $type = $this->determineType($v);
-                // Bind value
-                $this->stmt->bindValue(":{$param}[{$key}]", $v, $type);
+                // Bind array values to query
+                $this->stmt->bindValue(":{$param}{$key}", $v, $type);
             }
         } else {
+            //bind value for single value
             $type = $this->determineType($value);
             // Bind value
             $this->stmt->bindValue($param, $value, $type);
@@ -103,5 +105,25 @@ class Database
     public function lastInsertId()
     {
         return $this->dbHandle->lastInsertId();
+    }
+    public function bind1($param, $value, $type = null)
+    {
+        if (is_null($type)) {
+            // Set type
+            switch (true) {
+                case is_int($value):
+                    $type = PDO::PARAM_INT;
+                    break;
+                case is_bool($value):
+                    $type = PDO::PARAM_BOOL;
+                    break;
+                case is_null($value):
+                    $type = PDO::PARAM_NULL;
+                    break;
+                default:
+                    $type = PDO::PARAM_STR;
+            }
+        }
+        $this->stmt->bindValue($param, $value, $type);
     }
 }
