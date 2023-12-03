@@ -450,7 +450,16 @@ function openPage(url) {
     history.pushState(newState, url);
 
 }
+window.onpopstate = function (event) {
+    if (event.state) {
 
+        console.log('Navigated to: ', event.state.page);
+        // Perform actions based on the state, if needed
+    } else {
+        console.log('Initial page load');
+        // Perform actions for the initial page load
+    }
+};
 
 function executeLyricsJS() {
 

@@ -21,7 +21,7 @@
                 <div class="song-bar">
                     <div class="song-infos">
                         <div class="image-container">
-                            <img src="https://user-images.githubusercontent.com/73392859/275700777-0e4f5ba8-7ac9-4826-904a-06cade4a593b.png" alt="" />
+                            <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" alt="" />
                         </div>
                         <div class="song-description">
                             <p class="title">
@@ -153,6 +153,7 @@
                     $(".play-pause").removeClass("fa-play");
                     $(".play-pause").addClass("fa-pause");
                     $(".play-pause").attr("onclick", "pauseSong()");
+
                     audioElement.play();
                 }
                 //pause
@@ -236,6 +237,7 @@
                 //settrack
                 function setTrack(trackId, newPlaylist, play) {
 
+
                     if (newPlaylist != currentPlaylist) {
                         currentPlaylist = newPlaylist;
                         shufflePlaylist = currentPlaylist.slice();
@@ -258,7 +260,7 @@
                         $(".song-description .title").text(track.title);
 
                         // Yêu cầu thông tin về nghệ sĩ
-                        $.post("<?php echo URLROOT ?>/songs/getArtistJson/", {
+                        $.post("<?php echo URLROOT ?>/Songs/getArtistJson/", {
                             artistId: track.artist_id
                         }, function(artistData) {
                             var artist = artistData;
@@ -269,8 +271,8 @@
                             // $(".song-infos .artist").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
                         });
                         // Cập nhật audioElement và phát nhạc nếu cần
-                        sessionStorage.removeItem('track');
-                        sessionStorage.setItem('track', JSON.stringify(track));
+
+
                         audioElement.setTrack(track);
 
                         if (play == true) {
@@ -280,7 +282,7 @@
 
                 }
 
-                var end = $(".progress-container .total-time").text();
+
 
                 window.onload = function() {
                     audioElement = new Audio();
@@ -289,14 +291,13 @@
                     audioElement.setTrack(JSON.parse(sessionStorage.getItem('track')));
                     $(".progress-container .current-time").text(sessionStorage.getItem("start"));
                     $(".progress-container .total-time").text(sessionStorage.getItem("end"));
-
-
                     $(".progress-container .progress").css("width", sessionStorage.getItem("dur") + "%");
-                    if (play == true) {
-                        playSong();
-                    } else {
-                        pauseSong();
-                    }
+                    // if (play == true) {
+                    //     audioElement.currentTime = sessionStorage.getItem("start");
+                    //     playSong();
+                    // } else {
+                    //     pauseSong();
+                    // }
 
                 }
                 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
@@ -309,17 +310,25 @@
                         fetch(`${corsAnywhere}https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${trackName}&q_artist=${artistName}&apikey=${apiKey}`)
                             .then(response => response.json())
                             .then(data => {
-                                const lyricsBody = data.message.body.lyrics.lyrics_body;
-                                // const cleanLyrics = lyricsBody.replace(/\*{7}.*/, '');
-                                const cleanLyricst = lyricsBody.replace(/\(\d+\)/, '');
-                                const Lyrics = cleanLyricst.replace(/\n/g, '<br>');
+                                const status = data.message.header.status_code;
+                                if (status === 202) {
+                                    const lyricsBody = data.message.body.lyrics.lyrics_body;
+                                    // const cleanLyrics = lyricsBody.replace(/\*{7}.*/, '');
+                                    const cleanLyricst = lyricsBody.replace(/\(\d+\)/, '');
+                                    const Lyrics = cleanLyricst.replace(/\n/g, '<br>');
+                                    localStorage.removeItem('lyricsContent');
+                                    localStorage.setItem('lyricsContent', Lyrics);
+                                    openPage('<?php echo URLROOT ?>/lyrics/detail');
+                                } else {
 
-                                localStorage.removeItem('lyricsContent');
-                                localStorage.setItem('lyricsContent', Lyrics);
-                                openPage('<?php echo URLROOT ?>/lyrics/detail');
+                                    const Lyrics = "";
+                                    localStorage.removeItem('lyricsContent');
+                                    localStorage.setItem('lyricsContent', Lyrics);
+                                    openPage('<?php echo URLROOT ?>/lyrics/detail');
+                                }
                             });
                     } catch (error) {
-                        alert()
+                        alert(5)
                     }
 
                 }
