@@ -45,7 +45,7 @@
             </a>
         </li>
         <li>
-            <a href="<?= URLROOT ?>/admins/songrequest" data-tab="songrequest-tab">
+            <a href="<?= URLROOT ?>/admins/song-request" data-tab="songrequest-tab">
                 <i class="bx bx-music"></i>
                 <span class="text">Song request</span>
             </a>

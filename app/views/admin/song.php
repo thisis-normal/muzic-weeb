@@ -77,7 +77,6 @@ require APPROOT . '/views/admin/index.php';
                         // Add the current genre to the genres array
                         $groupedSongs[$songId]->genres[] = $row->genre_name;
                     }
-                    //                    var_dump($groupedSongs); die();
                     ?>
                     <?php foreach ($groupedSongs as $song) : ?>
                         <tbody>
