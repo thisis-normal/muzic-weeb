@@ -46,8 +46,13 @@ class SongManagement extends Controller
                 if (move_uploaded_file($data['file']['tmp_name'], $destination)) {
                     //get song duration
                     $data['duration'] = $this->getSongDuration($data['fileName']);
-                    //set status
-                    $data['status'] = 'Approved';
+                    //set status based on role of user in session
+                    if ($_SESSION['admin_role'] == 'admin') {
+                        $data['status'] = 'Approved';
+                    } else {
+                        //artist
+                        $data['status'] = 'Pending';
+                    }
                     $song_id = $this->songModel->createSong($data);
                     if ($song_id) {
                         foreach ($data['genre_id_array'] as $genre_id) {

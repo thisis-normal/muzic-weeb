@@ -50,9 +50,7 @@ require APPROOT . '/views/admin/index.php';
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Statistics</h3>
-                    <!-- <i class="bx bx-search"></i>
-                    <i class="bx bx-filter"></i> -->
+                    <h3>Statistics & Analytics</h3>
                 </div>
                 <div style="display: flex;">
                     <div style="width: 50%;">
@@ -200,19 +198,17 @@ require APPROOT . '/views/admin/index.php';
         });
     }
 
-    // Thời gian và số người cho nhóm 1 và nhóm 2 (ví dụ)
+    // data for bar chart
     const timeValues = ['A', 'B', 'C', 'D', 'E', 'C', 'D', 'E', 'C', 'D', 'E', 'C', 'D', 'E']; // Giả sử các nhóm A, B, C, D, E
     const group1Values = [10, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25]; // Số người cho nhóm 1
     const group2Values = [12, 17, 22, 20, 28, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25]; // Số người cho nhóm 2
-
-    // Vẽ biểu đồ cột kép với dữ liệu từ ba tham số
+    // Draw bar chart
     drawChart(timeValues, group1Values, group2Values);
 
-
+    //Data for line chart
     const timeValues1 = [1, 2, 3, 4, 5]; // Giả sử thời gian từ 1 đến 5
     const peopleValues1 = [10, 15, 20, 18, 25]; // Số người tương ứng
-
-
+    //Draw line chart
     drawChart1(timeValues1, peopleValues1);
     const form = document.getElementById('myForm');
     const select1 = document.getElementById('select1');

@@ -314,8 +314,7 @@ class Users extends Controller
         $_SESSION['user_email'] = $user->email;
         $_SESSION['license'] = $user->subscription_id;
         $_SESSION['user_role'] = $user->role;
-        //redirect to dashboard
-        redirect('pages/index');
+        $_SESSION['user_is_artist'] = $user->artist_id;
     }
 
     public function logout()
