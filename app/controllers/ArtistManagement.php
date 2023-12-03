@@ -5,6 +5,7 @@ class ArtistManagement extends Controller
     public function __construct()
     {
         $this->artistModel = $this->model('Artist');
+        $this->userModel = $this->model('User');
     }
 
     public function createArtist()
@@ -29,8 +30,15 @@ class ArtistManagement extends Controller
                     $destination = '../public/img/' . $fileName;
                 }
                 // Move uploaded file
-                if(move_uploaded_file($data['image']['tmp_name'], $destination)) {
+                if (move_uploaded_file($data['image']['tmp_name'], $destination)) {
                     if ($this->artistModel->createArtist($data['artist_name'], $data['biography'], $fileName)) {
+                        //link artist_id to user if $_SESSION['admin_role'] is artist
+                        if ($_SESSION['admin_role'] == 'artist') {
+                            $artist_id = $this->artistModel->getLatestArtist()->artist_id;
+                            if (!$this->userModel->linkArtistToUser($_SESSION['admin_id'], $artist_id)) {
+                                die('Something went wrong');
+                            }
+                        }
                         flash('artist_message', 'Artist created');
                         redirect('admins/artist');
                     } else {
@@ -44,7 +52,9 @@ class ArtistManagement extends Controller
             $this->view('admin/artists');
         }
     }
-    public function updateArtist() {
+
+    public function updateArtist()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $data = [
@@ -69,7 +79,7 @@ class ArtistManagement extends Controller
                         $destination = '../public/img/' . $fileName;
                     }
                     // Move uploaded file
-                    if(move_uploaded_file($data['image']['tmp_name'], $destination)) {
+                    if (move_uploaded_file($data['image']['tmp_name'], $destination)) {
                         if ($this->artistModel->updateArtist($data['id'], $data['artist_name'], $data['biography'], $fileName)) {
                             flash('artist_message', 'Artist updated');
                             redirect('admins/artist');
@@ -92,7 +102,9 @@ class ArtistManagement extends Controller
 
         }
     }
-    public function deleteArtist(){
+
+    public function deleteArtist()
+    {
         $id = trim($_GET['id']);
         if ($this->artistModel->deleteArtist($id)) {
             redirect('admins/artist');

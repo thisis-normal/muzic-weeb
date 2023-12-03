@@ -110,21 +110,13 @@ require APPROOT . '/views/admin/index.php';
                 <div>
                     <select multiple id="select-state" name="artist_id[]" placeholder="Artist">
                         <?php if ($_SESSION['admin_role'] == 'artist') : ?>
-                            <option value="<?= $_SESSION['admin_id'] ?>"><?= $_SESSION['admin_name'] ?></option>
+                            <option value="<?= $_SESSION['lnk_admin_artist_id'] ?>"><?= $_SESSION['admin_name'] ?></option>
                         <?php else : ?>
                             <option value=""></option>
                             <?php foreach ($data['listArtist'] as $artist) : ?>
                                 <option value="<?= $artist->artist_id ?>"><?= $artist->name ?></option>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                        <!--                        <option value=""></option>-->
-                        <!--                        --><?php //foreach ($data['listArtist'] as $artist) : 
-                                                        ?>
-                        <!--                            <option value="--><?php //= $artist->artist_id 
-                                                                            ?><!--">--><?php //= $artist->name 
-                                                                                                                    ?><!--</option>-->
-                        <!--                        --><?php //endforeach; 
-                                                        ?>
                     </select>
                 </div>
                 <div>

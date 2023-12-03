@@ -55,18 +55,26 @@ require APPROOT . '/views/admin/index.php';
                 <div style="display: flex;">
                     <div style="width: 50%;">
                         <form action="" method="post" id="myForm">
-                            <select name="" id="select1">
-                                <option value="month">Month</option>
-                                <option value="quarter">Quarter</option>
-                                <option value="year">Year</option>
+                            <select name="line_chart_timeframe" id="select1">
+                                <option value="">Select Timeframe</option>
+                                <option value="month">This month</option>
+                                <option value="1stQuarter">1st Quarter</option>
+                                <option value="2ndQuarter">2nd Quarter</option>
+                                <option value="3rdQuarter">3rd Quarter</option>
+                                <option value="4thQuarter">4th Quarter</option>
+                                <option value="year">This year</option>
                             </select>
                             <canvas id="myChart1" width="400" height="200"></canvas>
                     </div>
                     <div style="width: 50%;">
-                        <select name="" id="select2">
-                            <option value="month">Month</option>
-                            <option value="quarter">Quarter</option>
-                            <option value="year">Year</option>
+                        <select name="bar_chart_timeframe" id="select2">
+                            <option value="">Select Timeframe</option>
+                            <option value="month">This month</option>
+                            <option value="1stQuarter">1st Quarter</option>
+                            <option value="2ndQuarter">2nd Quarter</option>
+                            <option value="3rdQuarter">3rd Quarter</option>
+                            <option value="4thQuarter">4th Quarter</option>
+                            <option value="year">This year</option>
                         </select>
                         <canvas id="myChart2" width="400" height="200"></canvas>
                         <input type="submit" value="submit">

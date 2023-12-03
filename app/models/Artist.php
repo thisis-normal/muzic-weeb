@@ -39,6 +39,11 @@ class Artist
         $this->db->bind(':user_id', $id);
         return $this->db->resultSet();
     }
+    public function getLatestArtist()
+    {
+        $this->db->query('SELECT * FROM artists ORDER BY artist_id DESC LIMIT 1');
+        return $this->db->single();
+    }
 
 
     public function updateArtist($id, $name, $biography, $image)

@@ -148,5 +148,16 @@ class User
             return false;
         }
     }
-
+    public function linkArtistToUser($userID, $artistID) {
+        $this->db->query("UPDATE users SET artist_id = :artist_id WHERE id = :user_id");
+        //Bind values
+        $this->db->bind(':user_id', $userID);
+        $this->db->bind(':artist_id', $artistID);
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

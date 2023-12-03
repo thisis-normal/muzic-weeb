@@ -95,6 +95,7 @@ class Backend extends Controller
         $_SESSION['admin_name'] = $user->username;
         $_SESSION['admin_email'] = $user->email;
         $_SESSION['admin_role'] = $user->role;
+        $_SESSION['lnk_admin_artist_id'] = $user->artist_id;
     }
 
     public function logout()
