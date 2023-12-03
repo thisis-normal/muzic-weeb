@@ -12,7 +12,7 @@ class Payment {
         $this->db->query('INSERT INTO payments (payment_id, user_id, fullname, email, address, paypal_fee, net_amount, payment_method, payment_status) VALUES (:orderID, :user_id, :name, :email, :address,:paypal_fee, :net_amount, :payment_method, :payment_status)');
         //bind values
         $this->db->bind(':orderID', $data['orderID']);
-        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':user_id', $data['userID']);
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':address', $data['address']);
