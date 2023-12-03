@@ -9,8 +9,7 @@
         </div>
     </div>
     <script>
-        var tempSongIds = '["1", "2", "3"]';
-        tempPlaylist = JSON.parse(tempSongIds);
+        getLyrics(localStorage.getItem('trackTitle'), localStorage.getItem('artistName'));
     </script>
 </div>
 </div>

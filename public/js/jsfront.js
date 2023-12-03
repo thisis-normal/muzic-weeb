@@ -72,8 +72,12 @@ function Audio() {
     });
 
     this.setTrack = function (track) {
-        if (sessionStorage.getItem("id_track") != track.id) {
-            sessionStorage.clear();
+
+        if (sessionStorage.getItem("id_track") !== track.id) {
+            sessionStorage.removeItem("track")
+            sessionStorage.removeItem("start")
+            sessionStorage.removeItem("end")
+            sessionStorage.removeItem("dur")
         }
         sessionStorage.setItem('track', JSON.stringify(track));
         sessionStorage.setItem("id_track", track.id);
@@ -86,9 +90,7 @@ function Audio() {
     }
 
     this.play = function () {
-        if (sessionStorage.getItem("start")) {
-            this.audio.currentTime = timeToSeconds(sessionStorage.getItem("start"))
-        }
+
         this.audio.play();
     }
 
