@@ -40,11 +40,19 @@ class  Admins extends Controller
         ];
         $this->view('admin/user', $data);
     }
+
     public function artist()
     {
-        $data = [
-            'listArtist' => $this->artistModel->getAllArtists(),
-        ];
+        if ($_SESSION['admin_role'] == 'artist') {
+            $data = [
+                'listArtist' => $this->artistModel->getArtistByUserId($_SESSION['admin_id']),
+            ];
+        } elseif ($_SESSION['admin_role'] == 'admin') {
+            $data = [
+                'listArtist' => $this->artistModel->getAllArtists(),
+            ];
+        }
+//        var_dump($data['listArtist']); die();
         $this->view('admin/artists', $data);
     }
 

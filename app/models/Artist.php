@@ -25,14 +25,19 @@ class Artist
     public function getAllArtists()
     {
         $this->db->query('SELECT * FROM artists');
-        $results = $this->db->resultSet();
-        return $results;
+        return $this->db->resultSet();
     }
     public function getArtistById($id)
     {
         $this->db->query('SELECT * FROM artists WHERE artist_id = :id');
         $this->db->bind(':id', $id);
         return $this->db->single();
+    }
+    public function getArtistByUserId($id)
+    {
+        $this->db->query('SELECT * FROM artists INNER JOIN users ON users.artist_id = artists.artist_id WHERE users.id = :user_id');
+        $this->db->bind(':user_id', $id);
+        return $this->db->resultSet();
     }
 
 

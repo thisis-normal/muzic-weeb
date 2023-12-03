@@ -45,7 +45,6 @@ require APPROOT . '/views/admin/index.php';
                         </tr>
                     </thead>
                     <?php foreach ($data['listArtist'] as $artist) : ?>
-                        <tbody>
                             <tr>
                                 <td><?= $artist->artist_id ?></td>
                                 <td><?= $artist->name ?></td>
