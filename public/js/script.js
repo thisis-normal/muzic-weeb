@@ -401,11 +401,13 @@ var timer;
 var userLoggedIn;
 var searchInputHandled = false;
 var searchInputClose = false;
+var urlOld;
 function openPage(url) {
     if (timer != null) {
         clearTimeout(timer);
     }
-
+    urlOld = document.URL;
+    sessionStorage.setItem("urlOld", urlOld);
     var encodedUrl = encodeURI(url);
     console.log(encodedUrl);
     var xhr = new XMLHttpRequest();
@@ -423,28 +425,16 @@ function openPage(url) {
                     handleSearchInput();
                     searchInputHandled = true; // Đánh dấu rằng đã xử lý
                 }
-                // if (!searchInputClose && url.includes('http://localhost:2002/muzic-weeb/search/result')) {
-                //     $(document).ready(function () {
-                //         $('input[type="search"]').on('search', function (event) {
-                //             if (event.target === this) {
 
-                //                 searchInputClose = true; // Đánh dấu rằng đã xử lý
-                //                 openPage(`http://localhost:2002/muzic-weeb/pages/search`);
-                //             }
-                //         });
-                //     });
-                // }
                 if (url.includes('http://localhost:2002/muzic-weeb/pages/search') || url.includes('http://localhost:2002/muzic-weeb/search/result')) {
                     setRandomBackgroundColor();
                     $("#searchBox").css("display", "block");
-
-
 
                 }
                 else {
                     $("#searchBox").css("display", "none");
                 }
-                // Đặt thông tin trạng thái
+
                 var newState = { url: url };
                 history.pushState(newState, null, url);
             } else {

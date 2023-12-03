@@ -56,7 +56,11 @@ function Audio() {
     this.audio.addEventListener("timeupdate", function () {
         if (this.duration) {
             updateTimeProgressBar(this);
-            sessionStorage.setItem("currentTime", this.duration);
+            sessionStorage.setItem("start", $(".progress-container .current-time").text());
+            sessionStorage.setItem("end", $(".progress-container .total-time").text());
+            sessionStorage.setItem("dur", $(".progress-container .current-time").text() / $(".progress-container .total-time").text() * 100);
+            // sessionStorage.setItem("dur", $(".progress-container .total-time").text());
+            // sessionStorage.setItem("currentTime", this.duration);
         }
     });
 

@@ -279,25 +279,33 @@
                     });
 
                 }
-window.onload = function() {
-    // audioElement = new Audio();
-    $(".song-description .title").text(sessionStorage.getItem('trackTitle'));
-    $(".song-infos .artist").text(sessionStorage.getItem('artistName'));
-    audioElement.setTrack(JSON.parse(sessionStorage.getItem('track')));
-    updateTimeProgressBar(audioElement.audio);
-    if (play == true) {
-        playSong();
-    }
-    else {
-        pauseSong();
-    }
 
-}
+                var end = $(".progress-container .total-time").text();
+
+                window.onload = function() {
+                    audioElement = new Audio();
+                    $(".song-description .title").text(sessionStorage.getItem('trackTitle'));
+                    $(".song-infos .artist").text(sessionStorage.getItem('artistName'));
+                    audioElement.setTrack(JSON.parse(sessionStorage.getItem('track')));
+                    $(".progress-container .current-time").text(sessionStorage.getItem("start"));
+                    $(".progress-container .total-time").text(sessionStorage.getItem("end"));
+
+
+                    $(".progress-container .progress").css("width", sessionStorage.getItem("dur") + "%");
+                    if (play == true) {
+                        playSong();
+                    } else {
+                        pauseSong();
+                    }
+
+                }
                 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
                 const apiKey = 'cce7b9ae5726c860082e6932e6b5e37f';
 
+
                 function getLyrics(trackName, artistName) {
                     try {
+
                         fetch(`${corsAnywhere}https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${trackName}&q_artist=${artistName}&apikey=${apiKey}`)
                             .then(response => response.json())
                             .then(data => {

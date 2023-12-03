@@ -12,7 +12,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/playwright@1.15.1/lib/playwright.min.js"></script> -->
 </head>
 
 </div>
@@ -50,7 +50,7 @@
             <div class="navbar">
                 <?php
                 if ($_SESSION['license'] != 0) {
-                    ?>
+                ?>
                     <span style="color: #1db954">Welcome back, <?= $_SESSION['user_name'] ?></span>
                 <?php } else {
                     echo '<a href="' . URLROOT . '/premium/index"><button type="button">Explore premium</button></a>';
