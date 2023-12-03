@@ -87,7 +87,7 @@
                         <li><strong>Ad-free Listening:</strong> <?= $subscription_plans->ads_disable ?></li>
                         <li><strong>Download music:</strong><?= $subscription_plans->download_music ?></li>
                         <?php if (isUserLoggedIn()) { ?>
-                            <li><a href="#" data-namepr="<?= $subscription_plans->name ?>" data-price="$<?= $subscription_plans->price ?>" data-planid="<?= $subscription_plans->id ?>" data-period="<?= $subscription_plans->period ?>" class="btn btn-success">Buy Now</a></li>
+                            <li><a href="#" data-namepr="<?= $subscription_plans->name ?>" data-price="$<?= $subscription_plans->price ?>" data-planid="<?= $subscription_plans->id ?>" data-period="<?= $subscription_plans->period ?>" data-planname="<?= $subscription_plans->name ?>" class="btn btn-success">Buy Now</a></li>
                         <?php } else { ?>
                             <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
                                     buy</a></li>
@@ -115,7 +115,7 @@
         const btns = document.querySelectorAll(".btn");
         var planId;
         var period;
-
+        var planname;
         btns.forEach(btn => {
             btn.addEventListener("click", function(event) {
                 if (btn.innerHTML === "Buy Now") {
@@ -124,6 +124,7 @@
                     let namepr = btn.getAttribute("data-namepr");
                     planId = btn.getAttribute("data-planid");
                     period = btn.getAttribute("data-period");
+                    planname = btn.getAttribute("data-planname");
                     document.getElementById("paypal-popup-title").textContent = namepr;
                     document.getElementById("payprice").textContent = price;
                     document.getElementById("paypal_popup").style.display = "block";
@@ -207,6 +208,10 @@
                                         label: 'period',
                                         name: 'period',
                                         value: ''
+                                    }, {
+                                        label: 'planname',
+                                        name: 'plan_name',
+                                        value: ''
                                     },
                                 ];
 
@@ -247,6 +252,7 @@
                                 document.getElementById("createTime").value = details.create_time;
                                 document.getElementById("plan_id").value = planId;
                                 document.getElementById("period").value = period;
+                                document.getElementById("plan_name").value = planname;
                                 console.log(planId, period)
                                 form.submit();
                             });
