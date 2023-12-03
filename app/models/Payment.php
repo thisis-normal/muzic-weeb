@@ -22,11 +22,16 @@ class Payment {
         $this->db->bind(':payment_status', $data['paymentStatus']);
         //execute
         if ($this->db->execute()) {
-            //get paymentID that just created
-            return $this->db->lastInsertId();
+            return true;
         } else {
             return false;
         }
+    }
+    public function getLastestPayment()
+    {
+        $this->db->query('SELECT payment_id FROM payments ORDER BY create_at DESC LIMIT 1;');
+        $result = $this->db->single();
+        return $result;
     }
     public function getSalaryByMonth($month, $year)
     {

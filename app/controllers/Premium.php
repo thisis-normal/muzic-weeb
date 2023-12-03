@@ -41,7 +41,6 @@ class Premium extends Controller
             'name' => $_POST['shippingName'],
             'email' => $_POST['email'],
             'address' => $_POST['shippingAddress'],
-            'plan' => $_POST['plan'] ?? 'Premium',
             'paypalFee' => $_POST['paypalFee'],
             'netAmount' => $_POST['netAmount'],
             'paymentMethod' => 'Paypal',
@@ -49,10 +48,10 @@ class Premium extends Controller
             'paymentDate' => $_POST['createTime'],
             'expiryDate' => '',
             'subscriptionPlanID' => $_POST['plan_id'],
+            'subscriptionPlanName' => $_POST['plan_name'],
             'period' => $_POST['period'],
             'status' => 'Active'
         ];
-        $data['period'] = 'Daily';
         if ($data['period'] == 'Yearly') {
             $duration = '+ 1 year';
         } elseif ($data['period'] == 'Monthly') {
@@ -66,23 +65,26 @@ class Premium extends Controller
         }
         $data['paymentDate'] = $this->changeTimeZone($data['paymentDate'], 'Asia/Ho_Chi_Minh');
         $data['expiryDate'] = date('Y-m-d H:i:s', strtotime($data['paymentDate'] . $duration));
-        var_dump($data);
-        die();
         //validate
-        if (empty($data['orderID']) || empty($data['userID']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
+        if (empty($data['orderID']) || empty($data['userID']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
             die('Something missing!');
         }
-        //add payment to database and get paymentID
-        $data['paymentID'] = $this->paymentModel->addPayment($data);
-        if ($data['paymentID']) {
-            //add subscription data to database
-            $this->subscriptionModel->addSubscription($data);
-            //send email
-            $this->sendEmail($data);
-            //redirect to success page
-            $this->view('premium/success', $data); //load view inside views/premium/success.php
+        //add payment to database
+        if ($this->paymentModel->addPayment($data)) {
+            //get paymentID
+            $data['paymentID'] = $this->paymentModel->getLastestPayment()->payment_id;
+            //add data to subscription table
+            if ($this->subscriptionModel->addSubscription($data)) {
+//                //update user role
+//                $this->userModel->updateUserRole($data['userID'], 'Premium');
+                //send email
+                $this->sendEmail($data);
+                //pass data to view
+                $this->view('premium/success', $data);
+            } else {
+                die('Something went wrong!');
+            }
         } else {
-            //show error
             die('Something went wrong!');
         }
     }
@@ -116,11 +118,11 @@ class Premium extends Controller
             $emailTemplate = str_replace('[full_name]', $data['name'], $emailTemplate);
             $emailTemplate = str_replace('[email]', $data['email'], $emailTemplate);
             $emailTemplate = str_replace('[address]', $data['address'], $emailTemplate);
-            $emailTemplate = str_replace('[plan]', $data['plan'], $emailTemplate);
+            $emailTemplate = str_replace('[plan]', $data['subscriptionPlanName'], $emailTemplate);
             $emailTemplate = str_replace('[payment_method]', $data['paymentMethod'], $emailTemplate);
             $emailTemplate = str_replace('[payment_status]', $data['paymentStatus'], $emailTemplate);
             $emailTemplate = str_replace('[payment_date]', $data['paymentDate'], $emailTemplate);
-            $emailTemplate = str_replace('[expiry_date]', $data['expiry_date'], $emailTemplate);
+            $emailTemplate = str_replace('[expiry_date]', $data['expiryDate'], $emailTemplate);
             //Recipients
             $mail->setFrom('normal2002.dev@gmail.com', 'Admin');
             $mail->addAddress('thuonghuunguyen2002@gmail.com');        // Add a recipient

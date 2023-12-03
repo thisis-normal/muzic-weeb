@@ -463,7 +463,7 @@ function executeLyricsJS() {
     }
     else {
         const mainContent = document.getElementById('track_lyrics');
-        mainContent.innerHTML = "Bài hát này chưa có lyrics. Chúng tôi sẽ cập nhập sớm nhất có thể !!";
+    mainContent.innerHTML = "You got me!<br>Looks like we don't have the lyrics for this song.";
     }
 
 }

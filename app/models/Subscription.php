@@ -13,8 +13,8 @@ class Subscription
     {
         $this->db->query('INSERT INTO subscriptions (payment_id, user_id, plan_id, start_date, end_date, status) VALUES (:payment_id, :user_id, :plan_id, :start_date, :end_date, :status)');
         //bind values
-        $this->db->bind(':payment_id', $data['orderID']);
-        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':payment_id', $data['paymentID']);
+        $this->db->bind(':user_id', $data['userID']);
         $this->db->bind(':plan_id', $data['subscriptionPlanID']);
         $this->db->bind(':start_date', $data['paymentDate']);
         $this->db->bind(':end_date', $data['expiryDate']);
@@ -25,14 +25,6 @@ class Subscription
         } else {
             return false;
         }
-    }
-
-    public function getSubscriptionByUserID($user_id)
-    {
-        $this->db->query('SELECT * FROM subscriptions WHERE user_id = :user_id');
-        $this->db->bind(':user_id', $user_id);
-        $result = $this->db->single();
-        return $result;
     }
 
     public function getSubscriptionBySubscriptionID($subscription_id)

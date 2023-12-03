@@ -300,7 +300,7 @@
 
                 }
                 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
-                const apiKey = 'cce7b9ae5726c860082e6932e6b5e37f';
+                const apiKey = '2043877c3e4880f25ababf0000654c2a';
 
 
                 function getLyrics(trackName, artistName) {
