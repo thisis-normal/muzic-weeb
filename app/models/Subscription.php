@@ -15,7 +15,7 @@ class Subscription
         //bind values
         $this->db->bind(':payment_id', $data['orderID']);
         $this->db->bind(':user_id', $data['user_id']);
-        $this->db->bind(':plan_id', $data['subscription']);
+        $this->db->bind(':plan_id', $data['subscriptionPlanID']);
         $this->db->bind(':start_date', $data['paymentDate']);
         $this->db->bind(':end_date', $data['expiryDate']);
         $this->db->bind(':status', $data['status']);

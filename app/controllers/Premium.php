@@ -37,7 +37,7 @@ class Premium extends Controller
         $data = [
             'orderID' => $_POST['id'], //id from payment form
             'paymentID' => '', //paymentID will be generated after adding payment data to database
-            'user_id' => $_SESSION['user_id'],
+            'userID' => $_SESSION['user_id'],
             'name' => $_POST['shippingName'],
             'email' => $_POST['email'],
             'address' => $_POST['shippingAddress'],
@@ -48,7 +48,7 @@ class Premium extends Controller
             'paymentStatus' => 'Completed',
             'paymentDate' => $_POST['createTime'],
             'expiryDate' => '',
-            'subscription' => $_POST['plan_id'],
+            'subscriptionPlanID' => $_POST['plan_id'],
             'period' => $_POST['period'],
             'status' => 'Active'
         ];
@@ -69,7 +69,7 @@ class Premium extends Controller
         var_dump($data);
         die();
         //validate
-        if (empty($data['orderID']) || empty($data['user_id']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
+        if (empty($data['orderID']) || empty($data['userID']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
             die('Something missing!');
         }
         //add payment to database and get paymentID
