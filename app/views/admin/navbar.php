@@ -4,7 +4,7 @@
         <span class="text">
             Hello <?= $_SESSION['admin_name'] ?>
             <br>
-            <p class="admin_role"><?= $_SESSION['admin_role'] ?></p>
+            <p class="admin_role hidden"><?= $_SESSION['admin_role'] ?></p>
         </span>
     </a>
     <ul class="side-menu top">

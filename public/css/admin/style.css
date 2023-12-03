@@ -858,7 +858,9 @@ li {
 .content .search {
   position: relative;
 }
-
+.hidden {
+  display: none;
+}
 .search i {
   top: 50%;
   left: 15px;

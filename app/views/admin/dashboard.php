@@ -1,9 +1,9 @@
 <?php
 require APPROOT . '/views/admin/index.php';
 /** @var array $data */ ?>
-<script src="<?= URLROOT ?>/public/js/script.js"></script>
-
-<div id="dashboard-tab" class="tab-content active">
+<!-- <script src="<?= URLROOT ?>/public/js/script.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div id="user-tab" class="tab-content active">
     <main>
         <div class="head-title">
             <div class="left">
@@ -54,7 +54,17 @@ require APPROOT . '/views/admin/index.php';
                     <!-- <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i> -->
                 </div>
-                <canvas id="myChart" width="400" height="200"></canvas>
+                <div style="display: flex;">
+                    <div style="width: 50%;">
+                        <canvas id="myChart1" width="400" height="200"></canvas>
+                    </div>
+                    <div style="width: 50%;">
+                        <canvas id="myChart2" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+
+
             </div>
             <!-- <div class="todo">
             <div class="head">
@@ -91,57 +101,105 @@ require APPROOT . '/views/admin/index.php';
 </section>
 </body>
 <!--  -->
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Biểu đồ đường</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+<script>
+    const menuBar = document.querySelector('#content nav .bx.bx-menu');
+    const sidebar = document.getElementById('sidebar');
 
-<body>
-    <canvas id="myChart" width="400" height="200"></canvas>
-    <script>
-        function drawChart(xValues, yValues) {
-            const ctx = document.getElementById('myChart').getContext('2        d');
-            const myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        label: 'Số người',
-                        data: yValues,
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Thời gian'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Số người'
-                            }
+    menuBar.addEventListener('click', function() {
+        sidebar.classList.toggle('hide');
+    })
+
+    function drawChart1(xValues, yValues) {
+        const ctx = document.getElementById('myChart1').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: 'Số người',
+                    data: yValues,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Thời gian'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Số người'
                         }
                     }
                 }
-            });
-        }
+            }
+        });
+    }
 
-        // Thời gian và số người (ví dụ)
-        const timeValues = [1, 2, 3, 4, 5]; // Giả sử thời gian từ 1 đến 5
-        const peopleValues = [10, 15, 20, 18, 25]; // Số người tương ứng
 
-        // Vẽ biểu đồ với dữ liệu từ hai tham số
-        drawChart(timeValues, peopleValues);
-    </script>
-</body>
 
-</html>
+    function drawChart(xValues, yValues1, yValues2) {
+        const ctx = document.getElementById('myChart2').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar', // Loại biểu đồ cột
+            data: {
+                labels: xValues,
+                datasets: [{
+                        label: 'Nhóm 1',
+                        data: yValues1,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Nhóm 2',
+                        data: yValues2,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Thời gian'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Số người'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Thời gian và số người cho nhóm 1 và nhóm 2 (ví dụ)
+    const timeValues = ['A', 'B', 'C', 'D', 'E', 'C', 'D', 'E', 'C', 'D', 'E', 'C', 'D', 'E']; // Giả sử các nhóm A, B, C, D, E
+    const group1Values = [10, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25]; // Số người cho nhóm 1
+    const group2Values = [12, 17, 22, 20, 28, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25]; // Số người cho nhóm 2
+
+    // Vẽ biểu đồ cột kép với dữ liệu từ ba tham số
+    drawChart(timeValues, group1Values, group2Values);
+
+
+    const timeValues1 = [1, 2, 3, 4, 5]; // Giả sử thời gian từ 1 đến 5
+    const peopleValues1 = [10, 15, 20, 18, 25]; // Số người tương ứng
+
+
+    drawChart1(timeValues1, peopleValues1);
+</script>
+<script src="<?= URLROOT ?>/public/js/script.js"></script>
