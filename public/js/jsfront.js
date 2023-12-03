@@ -30,7 +30,10 @@ function updateTimeProgressBar(audio) {
     var progress = audio.currentTime / audio.duration * 100;
     $(".progress-container .progress").css("width", progress + "%");
 }
-
+function timeToSeconds(time) {
+    const [minutes, seconds] = time.split(':');
+    return parseInt(minutes, 10) * 60 + parseInt(seconds, 10);
+}
 function updateVolumeProgressBar(audio) {
     var volume = audio.volume * 100;
     $(".volume-bar .progress").css("width", volume + "%");
@@ -56,11 +59,11 @@ function Audio() {
     this.audio.addEventListener("timeupdate", function () {
         if (this.duration) {
             updateTimeProgressBar(this);
+
             sessionStorage.setItem("start", $(".progress-container .current-time").text());
             sessionStorage.setItem("end", $(".progress-container .total-time").text());
-            sessionStorage.setItem("dur", $(".progress-container .current-time").text() / $(".progress-container .total-time").text() * 100);
-            // sessionStorage.setItem("dur", $(".progress-container .total-time").text());
-            // sessionStorage.setItem("currentTime", this.duration);
+            sessionStorage.setItem("dur", timeToSeconds($(".progress-container .current-time").text()) / timeToSeconds($(".progress-container .total-time").text()) * 100);
+
         }
     });
 
@@ -69,12 +72,21 @@ function Audio() {
     });
 
     this.setTrack = function (track) {
+        if (sessionStorage.getItem("id_track") != track.id) {
+            sessionStorage.clear();
+        }
+        sessionStorage.setItem('track', JSON.stringify(track));
+        sessionStorage.setItem("id_track", track.id);
+        // sessionStorage.clear();
         this.currentlyPlaying = track;
         this.audio.src = musicFolder + track.file_path;
         console.log(this.audio.src);
     }
 
     this.play = function () {
+        if (sessionStorage.getItem("start")) {
+            this.audio.currentTime = timeToSeconds(sessionStorage.getItem("start"))
+        }
         this.audio.play();
     }
 
