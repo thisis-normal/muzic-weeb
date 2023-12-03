@@ -102,7 +102,7 @@
                     <div class="list">
                         <?php foreach ($data['artists'] as $artist) : ?>
 
-                            <div class="item">
+                            <div class="item" onclick="openPage('<?php echo URLROOT ?>/artists/detail?id=<?php echo $artist->artist_id ?>')">
                                 <img src="<?= URLROOT . '/public/img/' . $artist->image ?>" style="border-radius:100px  " />
                                 <div class="play">
                                     <span class="fa fa-play"></span>

@@ -13,13 +13,31 @@
                 </div>
                 <div class="rightSection">
                     <p class="playlist">Album</p>
-                    <p class="playlistTitle">Album name</p>
+                    <p class="playlistTitle"><?= $data['album'][0]->album_title; ?></p>
                     <!-- <p class="playlistArtist">
                         Artist 1, Artist 2, Artist 3, and more
                     </p> -->
                     <p class="playlistDetail">
-                        <span>15 songs, </span>
-                        <span>1 hr 15 min 30 sec</span>
+                        <span><?= $data['totalSong'] ?> songs, </span>
+                        <span>
+                            about
+                            <?php
+                            //calculate total duration
+                            $totalDuration = 0;
+                            foreach ($data['album'] as $songList) {
+                                $totalDuration += $songList->song_duration;
+                            }
+                            //seperate duration to hour, minute and second
+                            $hour = substr(gmdate('H:i:s', $totalDuration), 0, 2);
+                            $minute = substr(gmdate('H:i:s', $totalDuration), 3, 2);
+                            $second = substr(gmdate('H:i:s', $totalDuration), 6, 2);
+                            if ($hour != 0) {
+                                echo $hour . ' hr ' . $minute . ' min ' . $second . ' sec';
+                            } else {
+                                echo $minute . ' min ' . $second . ' sec';
+                            }
+                            ?>
+                        </span>
                     </p>
                 </div>
             </div>
@@ -27,33 +45,48 @@
                 <thead>
                     <th style="max-width: 30px;">#</th>
                     <th>Title</th>
-                    <th>Album</th>
+                    <th></th>
                     <th>Duration</th>
                 </thead>
-                <tbody>
-                    <tr class='tracklistRow'>
-                        <td class='' onclick="setTrack('1', tempPlaylist, true)">
-                            <span class="itemnum">1</span>
-                            <span class="itemplay"><i class="fa fas fa-play" style="color: #ffffff;"></i></span>
-                        </td>
-                        <td class='trackTitle'>
-                            <img class='play' width="40px" height="40px" src='<?= URLROOT ?> /public/img/music-note.png'>
-                            <div class="">
-                                <span class='trackName'><a href="">Song Title 1</a></span>
-                                <span class='artistName'><a href="">Artist 1</a></span>
-                            </div>
-                        </td>
-                        <td class='trackAlbum'>
-                            <a href="">Album Title 1</a>
-                        </td>
-                        <td class='trackDuration'>
-                            <span class='duration'>03:30</span>
-                        </td>
-                    </tr>
-                    <!-- ... -->
-                    <!-- Add more rows with similar structure for other songs -->
-                    <!-- ... -->
-                </tbody>
+
+                <?php $index = 1;
+                $songIds = array(); // Tạo một mảng mới để chứa các song_id
+
+                ?>
+                <?php foreach ($data['album'] as $songList) : ?>
+                    <tbody>
+                        <tr class='tracklistRow'>
+                            <td class='' onclick="setTrack('<?= $songList->song_id ?>', tempPlaylist, true)">
+                                <span class="itemnum"><?= $index++ ?></span>
+                                <span class="itemplay"><i class="fa fas fa-play" style="color: #ffffff;"></i></span>
+                            </td>
+                            <td class='trackTitle'>
+                                <img class='play' width="40px" height="40px" src='<?= URLROOT ?> /public/img/music-note.png'>
+                                <div class="">
+                                    <span class='trackName'><a href=""><?= $songList->song_title ?></a></span>
+                                    <span class='artistName' onclick="openPage('<?php echo URLROOT ?>/artists/detail?id=<?php echo $songList->artist_id ?>')"><?= $songList->artist_name ?></span>
+
+                                </div>
+                            </td>
+                            <td class='trackAlbum'>
+                                <!-- <a href="" onclick="openPage('<?php echo URLROOT ?>/albums/detail?id=<?php echo $songList->album_id ?>')"><?= $songList->album_title ?></a> -->
+                            </td>
+                            <td class='trackDuration'>
+                                <span class='duration'>
+                                    <?php
+                                    //seperate duration to minute and second
+                                    $minute = substr(gmdate('H:i:s', $songList->song_duration), 3, 2);
+                                    $second = substr(gmdate('H:i:s', $songList->song_duration), 6, 2);
+                                    echo $minute . ':' . $second;
+                                    ?>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                <?php
+                    $songIds[] = $songList->song_id;
+                endforeach;
+                unset($index); ?>
             </table>
         </div>
     </div>

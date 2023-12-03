@@ -68,4 +68,24 @@ class Artist
         $results = $this->db->resultSet();
         return $results;
     }
+    public function getArtistAllByID($artistId)
+    {
+        $this->db->query('SELECT lnk_artist_song.song_id AS song_id, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
+        FROM artists
+        INNER JOIN lnk_artist_song ON artists.artist_id = lnk_artist_song.id
+        INNER JOIN songs ON lnk_artist_song.song_id = songs.id 
+        INNER JOIN albums ON songs.album_id = albums.album_id
+        -- INNER JOIN artists ON songs.artist_id = artists.artist_id
+        WHERE artists.artist_id = :artist_id ');
+        $this->db->bind(':artist_id', $artistId);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+    public function getTotalSongs($artistId)
+    {
+        $this->db->query('SELECT COUNT(*) as total_songs FROM lnk_artist_song WHERE id = :artist_id');
+        $this->db->bind(':artist_id', $artistId);
+        $result = $this->db->single()->total_songs;
+        return $result;
+    }
 }
