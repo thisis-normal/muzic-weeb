@@ -71,8 +71,7 @@
             foreach ($data['subscription_plans'] as $subscription_plans) {
             ?>
                 <li class="price-item">
-                    <input type="text" id="plan_id_front" hidden value="<?= $subscription_plans->id ?>">
-                    <input type="text" id="period_front" hidden value="<?= $subscription_plans->period ?>">
+
 
                     <h2><?= $subscription_plans->name ?></h2>
                     <ul class="feature-list">
@@ -88,7 +87,7 @@
                         <li><strong>Ad-free Listening:</strong> <?= $subscription_plans->ads_disable ?></li>
                         <li><strong>Download music:</strong><?= $subscription_plans->download_music ?></li>
                         <?php if (isUserLoggedIn()) { ?>
-                            <li><a href="#" data-namepr="<?= $subscription_plans->name ?>" data-price="$<?= $subscription_plans->price ?>" class="btn btn-success">Buy Now</a></li>
+                            <li><a href="#" data-namepr="<?= $subscription_plans->name ?>" data-price="$<?= $subscription_plans->price ?>" data-planid="<?= $subscription_plans->id ?>" data-period="<?= $subscription_plans->period ?>" class="btn btn-success">Buy Now</a></li>
                         <?php } else { ?>
                             <li style="color: #1db954"><a href="<?= URLROOT ?>/users/login" class="btn btn-success">Login to
                                     buy</a></li>
@@ -114,12 +113,17 @@
     <script src="https://www.paypal.com/sdk/js?client-id=ASGrPQD3Kl5Ju4m60cmOUF3srF__aWev3fERnjxYENaMZMQcPfK_SyjRcM6sBqLMnXXfr-YW22Ls-wCM&currency=USD"></script>
     <script>
         const btns = document.querySelectorAll(".btn");
+        var planId;
+        var period;
+
         btns.forEach(btn => {
             btn.addEventListener("click", function(event) {
                 if (btn.innerHTML === "Buy Now") {
                     event.preventDefault();
                     let price = btn.getAttribute("data-price");
                     let namepr = btn.getAttribute("data-namepr");
+                    planId = btn.getAttribute("data-planid");
+                    period = btn.getAttribute("data-period");
                     document.getElementById("paypal-popup-title").textContent = namepr;
                     document.getElementById("payprice").textContent = price;
                     document.getElementById("paypal_popup").style.display = "block";
@@ -241,9 +245,9 @@
                                 document.getElementById("paypalFee").value = ((details.purchase_units[0].amount.value) * 0.1).toFixed(2);
                                 document.getElementById("netAmount").value = ((details.purchase_units[0].amount.value) * 0.9).toFixed(2);
                                 document.getElementById("createTime").value = details.create_time;
-                                document.getElementById("plan_id").value = document.getElementById("plan_id_front").value;
-                                document.getElementById("period").value = document.getElementById("period_front").value;
-                                // console.log(document.getElementById("plan_id").value, document.getElementById("period").value)
+                                document.getElementById("plan_id").value = planId;
+                                document.getElementById("period").value = period;
+                                console.log(planId, period)
                                 form.submit();
                             });
                         }
