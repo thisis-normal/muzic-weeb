@@ -9,7 +9,7 @@
             <div class="entityInfo">
                 <div class="leftSection">
                     <div class="playlistImage">
-                        <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0">
+                        <img src="https://user-images.githubusercontent.com/73392859/275700777-0e4f5ba8-7ac9-4826-904a-06cade4a593b.png">
                     </div>
                 </div>
                 <div class="rightSection">
@@ -52,7 +52,7 @@
                     <th>Duration</th>
                 </thead>
 
-                <?= $index = 1;
+                <?php $index = 1;
                 $songIds = array(); // Tạo một mảng mới để chứa các song_id
 
                 ?>

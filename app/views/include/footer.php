@@ -21,7 +21,7 @@
                 <div class="song-bar">
                     <div class="song-infos">
                         <div class="image-container">
-                            <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" alt="" />
+                            <img src="https://user-images.githubusercontent.com/73392859/275700777-0e4f5ba8-7ac9-4826-904a-06cade4a593b.png" alt="" />
                         </div>
                         <div class="song-description">
                             <p class="title">
@@ -258,7 +258,7 @@
                         $(".song-description .title").text(track.title);
 
                         // Yêu cầu thông tin về nghệ sĩ
-                        $.post("<?php echo URLROOT ?>/Songs/getArtistJson/", {
+                        $.post("<?php echo URLROOT ?>/songs/getArtistJson/", {
                             artistId: track.artist_id
                         }, function(artistData) {
                             var artist = artistData;

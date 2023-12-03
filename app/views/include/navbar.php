@@ -20,7 +20,7 @@
                         <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
                              alt="Logo"/>
                     <?php } else { ?>
-                        <img src="https://private-user-images.githubusercontent.com/73392859/287420700-b4f66037-be3e-4c6d-96e5-c896a9e3091c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDE1MjcxOTIsIm5iZiI6MTcwMTUyNjg5MiwicGF0aCI6Ii83MzM5Mjg1OS8yODc0MjA3MDAtYjRmNjYwMzctYmUzZS00YzZkLTk2ZTUtYzg5NmE5ZTMwOTFjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjAyVDE0MjEzMlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTc5ODFkMjU2ZDUyZGMxZGNlMjk4ZWVkYzJlZWQ3MWE2OTU4M2U3OGIxNDIzOGJiZjE0ZmNkNGZlNGUyOTJiOTQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.SDA7am8ZFyG7piU1tqOkfhVlpHJk7aCSNduf5hbLfdg"
+                        <img src="https://user-images.githubusercontent.com/73392859/287420700-b4f66037-be3e-4c6d-96e5-c896a9e3091c.png"
                              alt="Logo"/>
                     <?php } ?>
                 <?php else : ?>
@@ -31,12 +31,6 @@
 
             <div class="navigation">
                 <ul>
-                    <!-- <li>
-                        <a href="">
-                            <span class="fa fa-home"></span>
-                            <span>Home</span>
-                        </a>
-                    </li> -->
                     <li>
                         <p onclick="openPage('<?php echo URLROOT ?>')">
                             <span class="fa fa-home"></span>

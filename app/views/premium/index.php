@@ -71,8 +71,8 @@
             foreach ($data['subscription_plans'] as $subscription_plans) {
             ?>
                 <li class="price-item">
-                    <input type="text" id="id_plan_front" hidden value="<?= $subscription_plans->id ?>">
-                    <input type="text" id="period_plan_front" hidden value="<?= $subscription_plans->period ?>">
+                    <input type="text" id="plan_id_front" hidden value="<?= $subscription_plans->id ?>">
+                    <input type="text" id="period_front" hidden value="<?= $subscription_plans->period ?>">
 
                     <h2><?= $subscription_plans->name ?></h2>
                     <ul class="feature-list">
@@ -196,12 +196,12 @@
                                         value: ''
                                     }, {
                                         label: 'id plan',
-                                        name: 'id_plan',
+                                        name: 'plan_id',
                                         value: ''
                                     },
                                     {
-                                        label: 'period_plan',
-                                        name: 'period_plan',
+                                        label: 'period',
+                                        name: 'period',
                                         value: ''
                                     },
                                 ];
@@ -241,9 +241,9 @@
                                 document.getElementById("paypalFee").value = ((details.purchase_units[0].amount.value) * 0.1).toFixed(2);
                                 document.getElementById("netAmount").value = ((details.purchase_units[0].amount.value) * 0.9).toFixed(2);
                                 document.getElementById("createTime").value = details.create_time;
-                                document.getElementById("id_plan").value = document.getElementById("id_plan_front").value;
-                                document.getElementById("period_plan").value = document.getElementById("period_plan_front").value;
-                                // console.log(document.getElementById("id_plan").value, document.getElementById("period_plan").value)
+                                document.getElementById("plan_id").value = document.getElementById("plan_id_front").value;
+                                document.getElementById("period").value = document.getElementById("period_front").value;
+                                // console.log(document.getElementById("plan_id").value, document.getElementById("period").value)
                                 form.submit();
                             });
                         }

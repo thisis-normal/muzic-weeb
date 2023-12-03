@@ -13,13 +13,14 @@ class Premium extends Controller
     {
         $this->paymentModel = $this->model('Payment');
         $this->userModel = $this->model('User');
+        $this->subscriptionPlanModel = $this->model('SubscriptionPlan');
         $this->subscriptionModel = $this->model('Subscription');
     }
 
     public function index()
     {
         $data = [
-            'subscription_plans' => $this->subscriptionModel->getAllSubscriptionPlan()
+            'subscription_plans' => $this->subscriptionPlanModel->getAllSubscriptionPlan()
         ];
 //        var_dump($data); die();
         $this->view('premium/index', $data);
@@ -35,6 +36,7 @@ class Premium extends Controller
         //get data from payment form
         $data = [
             'orderID' => $_POST['id'], //id from payment form
+            'paymentID' => '', //paymentID will be generated after adding payment data to database
             'user_id' => $_SESSION['user_id'],
             'name' => $_POST['shippingName'],
             'email' => $_POST['email'],
@@ -45,22 +47,36 @@ class Premium extends Controller
             'paymentMethod' => 'Paypal',
             'paymentStatus' => 'Completed',
             'paymentDate' => $_POST['createTime'],
-            'expiry_date' => '',
+            'expiryDate' => '',
+            'subscription' => $_POST['plan_id'],
+            'period' => $_POST['period'],
             'status' => 'Active'
         ];
-//        var_dump($data); die();
+        $data['period'] = 'Daily';
+        if ($data['period'] == 'Yearly') {
+            $duration = '+ 1 year';
+        } elseif ($data['period'] == 'Monthly') {
+            $duration = '+ 1 month';
+        } elseif ($data['period'] == 'Weekly') {
+            $duration = '+ 1 week';
+        } elseif ($data['period'] == 'Daily') {
+            $duration = '+ 1 day';
+        } else {
+            $duration = '+ 1 month';
+        }
         $data['paymentDate'] = $this->changeTimeZone($data['paymentDate'], 'Asia/Ho_Chi_Minh');
-        $data['expiry_date'] = date('Y-m-d H:i:s', strtotime($data['paymentDate'] . ' + 1 month'));
+        $data['expiryDate'] = date('Y-m-d H:i:s', strtotime($data['paymentDate'] . $duration));
         var_dump($data);
         die();
         //validate
         if (empty($data['orderID']) || empty($data['user_id']) || empty($data['name']) || empty($data['email']) || empty($data['address']) || empty($data['plan']) || empty($data['paypalFee']) || empty($data['netAmount']) || empty($data['paymentMethod']) || empty($data['paymentStatus']) || empty($data['paymentDate'])) {
             die('Something missing!');
         }
-        //add payment to database
-        if ($this->paymentModel->addPayment($data)) {
-            //update user's plan
-//            $this->userModel->updateUserPlan($data['user_id'], $data['plan']);
+        //add payment to database and get paymentID
+        $data['paymentID'] = $this->paymentModel->addPayment($data);
+        if ($data['paymentID']) {
+            //add subscription data to database
+            $this->subscriptionModel->addSubscription($data);
             //send email
             $this->sendEmail($data);
             //redirect to success page

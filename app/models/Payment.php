@@ -22,7 +22,8 @@ class Payment {
         $this->db->bind(':payment_status', $data['paymentStatus']);
         //execute
         if ($this->db->execute()) {
-            return true;
+            //get paymentID that just created
+            return $this->db->lastInsertId();
         } else {
             return false;
         }

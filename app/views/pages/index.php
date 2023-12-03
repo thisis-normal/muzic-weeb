@@ -16,7 +16,7 @@
 
             <div class="list">
                 <div class="item" onclick="openPage('<?php echo URLROOT ?>/pages/playlist')">
-                    <img src="https://scontent.fhan5-9.fna.fbcdn.net/v/t1.6435-1/132339848_1082217975562826_8163229432639064333_n.jpg?stp=dst-jpg_p100x100&_nc_cat=109&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=xoNptGZIC2kAX8p40Jt&_nc_oc=AQnEi9zY-vjcAMOusj9WcmyuCIULOcvLOP1TzidLm7fa7z37gWtwmygau20qIPi7yHE&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fhan5-9.fna&oh=00_AfB2mH7ekxI0XHFrgHPwtpQf5v76wC9DJa4UCddqK2tApA&oe=65489C2D" />
+                    <img src="https://memberdata.s3.amazonaws.com/hi/hitsdd/photos/hitsdd_photo_gal__photo_975344211.jpg" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
@@ -25,11 +25,11 @@
                 </div>
 
                 <div class="item">
-                    <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
+                    <img src="https://scontent.fhan5-11.fna.fbcdn.net/v/t1.6435-9/120080799_4450473921691904_7078136059526593922_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=7f8c78&_nc_ohc=zj7AL6-rITgAX-52bur&_nc_ht=scontent.fhan5-11.fna&oh=00_AfAsiS2_nkH6xwL_lp33-3n8J1lYeJigTBMPUWAiRUI2Pg&oe=6592D007" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
-                    <h4>RapCaviar</h4>
+                    <h4>Rap Capital</h4>
                     <p>New Music from Lil Baby, Juice WRLD an...</p>
                 </div>
 
@@ -43,22 +43,30 @@
                 </div>
 
                 <div class="item">
-                    <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
+                    <img src="https://i.scdn.co/image/ab6761610000e5ebe74bb2e397c6d015daa7f944" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
                     <h4>Rock Classics</h4>
                     <p>Rock Legends & epic songs that continue t...</p>
                 </div>
+
+                <div class="item">
+                    <img src="https://images.genius.com/26d765d3d5b68e987f05be7149827141.1000x1000x1.png" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>For Overthinkers</h4>
+                    <p>Little playlist made by INZO</p>
+                </div>
             </div>
         </div>
 
         <div class="spotify-playlists">
-            <h2>My playlist</h2>
+            <h2>Spotify album</h2>
             <div class="list">
-
                 <div class="item">
-                    <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVdOUBb0Mt5ndnNk05p1Qzzh4s1_r9GPkuwBBQWQvRUYJ3ZG7NygoXHP8ctyuriW7DKFQ&usqp=CAU" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
@@ -67,7 +75,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
+                    <img src="https://seeded-session-images.scdn.co/v1/img/artist/2XHIxKEvotTKYODyz95oEf/id" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
@@ -76,7 +84,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
+                    <img src="https://i.scdn.co/image/ab67616d0000b273c92dba552b3283f48b37ca83" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
@@ -85,12 +93,20 @@
                 </div>
 
                 <div class="item">
-                    <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
+                    <img src="https://i.scdn.co/image/ab67706f0000000296e08a91ef3c7a6e7bfaa9a6" />
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
                     <h4>Beats to think to</h4>
                     <p>Focus with deep techno and tech house.</p>
+                </div>
+                <div class="item">
+                    <img src="https://i1.sndcdn.com/artworks-FhieibYzSjiNcF6w-GbTBzA-t500x500.jpg" />
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Overtired</h4>
+                    <p>Dab ft. Chilythoi</p>
                 </div>
             </div>
         </div>
