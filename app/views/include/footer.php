@@ -255,8 +255,8 @@
                         songId: trackId
                     }, function(data) {
                         var track = data;
-                        sessionStorage.removeItem('trackTitle');
-                        sessionStorage.setItem('trackTitle', track.title);
+                        localStorage.removeItem('trackTitle');
+                        localStorage.setItem('trackTitle',track.title); // Thay đổi giá trị theo nhu cầu
                         $(".song-description .title").text(track.title);
 
                         // Yêu cầu thông tin về nghệ sĩ
@@ -264,8 +264,8 @@
                             artistId: track.artist_id
                         }, function(artistData) {
                             var artist = artistData;
-                            sessionStorage.removeItem('artistName');
-                            sessionStorage.setItem('artistName', artist.name);
+                        localStorage.removeItem('artistName');
+                            localStorage.setItem('artistName',artist.name); // Thay đổi giá trị theo nhu cầu
 
                             $(".song-infos .artist").text(artist.name);
                             // $(".song-infos .artist").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
@@ -286,8 +286,8 @@
 
                 window.onload = function() {
                     audioElement = new Audio();
-                    $(".song-description .title").text(sessionStorage.getItem('trackTitle'));
-                    $(".song-infos .artist").text(sessionStorage.getItem('artistName'));
+                    $(".song-description .title").text(localStorage.getItem('trackTitle'));
+                    $(".song-infos .artist").text(localStorage.getItem('artistName'));
                     audioElement.setTrack(JSON.parse(sessionStorage.getItem('track')));
                     $(".progress-container .current-time").text(sessionStorage.getItem("start"));
                     $(".progress-container .total-time").text(sessionStorage.getItem("end"));
@@ -298,7 +298,9 @@
                     // } else {
                     //     pauseSong();
                     // }
-
+                    const trackName = localStorage.getItem('trackTitle'); // Thay đổi giá trị theo nhu cầu
+                    const artistName = localStorage.getItem('artistName');; // Thay đổi giá trị theo nhu cầu
+                    getLyrics(trackName, artistName);
                 }
                 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
                 const apiKey = '2043877c3e4880f25ababf0000654c2a';
@@ -311,18 +313,19 @@
                             .then(response => response.json())
                             .then(data => {
                                 const status = data.message.header.status_code;
-                                if (status === 202) {
+                                console.log(status);
+                                if (status == 200) {
                                     const lyricsBody = data.message.body.lyrics.lyrics_body;
                                     // const cleanLyrics = lyricsBody.replace(/\*{7}.*/, '');
                                     const cleanLyricst = lyricsBody.replace(/\(\d+\)/, '');
                                     const Lyrics = cleanLyricst.replace(/\n/g, '<br>');
-                                    localStorage.removeItem('lyricsContent');
+
                                     localStorage.setItem('lyricsContent', Lyrics);
                                     openPage('<?php echo URLROOT ?>/lyrics/detail');
                                 } else {
 
                                     const Lyrics = "";
-                                    localStorage.removeItem('lyricsContent');
+
                                     localStorage.setItem('lyricsContent', Lyrics);
                                     openPage('<?php echo URLROOT ?>/lyrics/detail');
                                 }
@@ -334,8 +337,8 @@
                 }
                 $("#lyrics").click(function() {
 
-                    const trackName = sessionStorage.getItem('trackTitle'); // Thay đổi giá trị theo nhu cầu
-                    const artistName = sessionStorage.getItem('artistName');; // Thay đổi giá trị theo nhu cầu
+                    const trackName = localStorage.getItem('trackTitle'); // Thay đổi giá trị theo nhu cầu
+                    const artistName = localStorage.getItem('artistName');; // Thay đổi giá trị theo nhu cầu
                     getLyrics(trackName, artistName);
                 });
             </script>

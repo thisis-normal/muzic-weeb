@@ -77,6 +77,8 @@ function Audio() {
         }
         sessionStorage.setItem('track', JSON.stringify(track));
         sessionStorage.setItem("id_track", track.id);
+
+
         // sessionStorage.clear();
         this.currentlyPlaying = track;
         this.audio.src = musicFolder + track.file_path;

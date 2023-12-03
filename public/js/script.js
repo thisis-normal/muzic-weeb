@@ -472,6 +472,12 @@ function executeLyricsJS() {
     }
     else {
         const mainContent = document.getElementById('track_lyrics');
+        mainContent.style.width="50%"
+        mainContent.style.position="absolute";
+        mainContent.style.top="50%";
+        mainContent.style.left="50%";
+        mainContent.style.transform="translate(-50%,-50%)";
+        mainContent.style.fontSize="60px";
     mainContent.innerHTML = "You got me!<br>Looks like we don't have the lyrics for this song.";
     }
 
