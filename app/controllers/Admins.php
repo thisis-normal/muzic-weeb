@@ -40,7 +40,6 @@ class  Admins extends Controller
         ];
         $this->view('admin/user', $data);
     }
-
     public function artist()
     {
         $data = [

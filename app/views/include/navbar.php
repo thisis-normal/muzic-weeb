@@ -15,7 +15,7 @@
         <div class="sidebar">
             <div class="logo" onclick="openPage('<?php echo URLROOT ?>')">
                 <?php if (isUserLoggedIn()) : ?>
-                    <?php if ($_SESSION['license'] == 0) {
+                    <?php if ($_SESSION['license'] == 1) {
                         ?>
                         <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
                              alt="Logo"/>

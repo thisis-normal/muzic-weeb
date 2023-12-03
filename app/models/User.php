@@ -104,8 +104,6 @@ class User
         $row = $this->db->single();
         if ($row !== false) {
             $hashed_password = $row->password;
-//            var_dump($row);
-//            var_dump($hashed_password);die();
         } else {
             return false;
         }
@@ -120,6 +118,18 @@ class User
         //Bind values
         $this->db->bind(':email', $email);
         $this->db->bind(':password', $password);
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function updateUserSubscription($userID, $subscription_id) {
+        $this->db->query("UPDATE users SET subscription_id = :subscription_id WHERE id = :id");
+        //Bind values
+        $this->db->bind(':id', $userID);
+        $this->db->bind(':subscription_id', $subscription_id);
         //Execute
         if ($this->db->execute()) {
             return true;

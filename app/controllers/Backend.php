@@ -15,7 +15,12 @@ class Backend extends Controller
     public function index()
     {
         if (isAdminLoggedIn()) {
-            redirect('admins/index');
+            if ($_SESSION['admin_role'] == 'admin') {
+                redirect('admins/index');
+            } else {
+                //artist
+                redirect('admins/song');
+            }
         } else {
             redirect('backend/login');
         }
@@ -48,16 +53,16 @@ class Backend extends Controller
             if (empty($data['username_error']) && empty($data['password_error'])) {
                 //validated
                 //check and set logged in user
-                $loggedInAdmin = $this->adminModel->login($data['username'], $data['password']);
-                if ($loggedInAdmin) {
+                $isLogin = $this->adminModel->login($data['username'], $data['password']);
+                if ($isLogin) {
                     //create session
-                    $this->createAdminSession($loggedInAdmin);
+                    $this->createAdminSession($isLogin);
                     if ($_SESSION['admin_role'] == 'admin') {
                         redirect('admins/index');
                     } else {
-                        redirect('artists/index');
+                        //artist
+                        redirect('admins/song');
                     }
-                    redirect('admins/dashboard');
                 } else {
                     $data['password_error'] = 'Password incorrect';
                     $this->view('admin/login', $data);
@@ -90,8 +95,6 @@ class Backend extends Controller
         $_SESSION['admin_name'] = $user->username;
         $_SESSION['admin_email'] = $user->email;
         $_SESSION['admin_role'] = $user->role;
-        //redirect to dashboard
-        redirect('admin/index');
     }
 
     public function logout()

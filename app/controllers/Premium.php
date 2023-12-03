@@ -75,12 +75,15 @@ class Premium extends Controller
             $data['paymentID'] = $this->paymentModel->getLastestPayment()->payment_id;
             //add data to subscription table
             if ($this->subscriptionModel->addSubscription($data)) {
-//                //update user role
-//                $this->userModel->updateUserRole($data['userID'], 'Premium');
-                //send email
-                $this->sendEmail($data);
-                //pass data to view
-                $this->view('premium/success', $data);
+//                //update user subscription
+                if ($this->userModel->updateUserSubscription($data['userID'], $data['subscriptionPlanID'])) {
+                    //send email
+                    $this->sendEmail($data);
+                    //pass data to view
+                    $this->view('premium/success', $data);
+                } else {
+                    die('Something went wrong!');
+                }
             } else {
                 die('Something went wrong!');
             }

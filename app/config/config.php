@@ -15,4 +15,3 @@ const IMGROOT = 'http://localhost:2002/muzic-weeb/public/img';
 //Site Name
 const SITENAME = 'PHPMVC';
 
-//define("currentTimestamp",  new \DateTime(null, new \DateTimeZone('UTC')));

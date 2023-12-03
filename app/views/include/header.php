@@ -49,7 +49,7 @@
         <?php else : ?>
             <div class="navbar">
                 <?php
-                if ($_SESSION['license'] != 0) {
+                if ($_SESSION['license'] != 1) {
                 ?>
                     <span style="color: #1db954">Welcome back, <?= $_SESSION['user_name'] ?></span>
                 <?php } else {
