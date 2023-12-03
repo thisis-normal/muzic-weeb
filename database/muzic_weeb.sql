@@ -64,11 +64,11 @@ CREATE TABLE IF NOT EXISTS `artists` (
   `image` varchar(255) NOT NULL,
   `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`artist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~10 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~11 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
-	(11, 'ULSA IT.', 'Just someone not familiar', 'page\'s avatar.png', NULL),
+	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
 	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
 	(13, 'Sơn T&ugrave;ng', 'Nguyễn Thanh T&ugrave;ng, born in 1994, known professionally as Sơn T&ugrave;ng M-TP, is a Vietnamese singer, songwriter, producer, and actor. He is not only known as one of the most successful Vietnamese artists and as the &quot;Prince of V-pop&quot;, but also as the Chairman of three self-created companies: M-TP Entertainment, M-TP Talent and M-TP &amp; Friends. He has received many achievements: a MTV Europe Music Award, an Mnet Asian Music Award, appeared on Forbes Vietnam&#039;s 2018 30 Under 30 list, and is also the first Vietnamese musician to enter the Billboard Social 50. Up until now, he has already released a total of 25 songs, such as &quot;Cơn mưa ngang qua&quot;, &quot;Em của ng&agrave;y h&ocirc;m qua&quot;, &quot; &Acirc;m thầm b&ecirc;n em&quot;, and many more. His single &quot;Chạy ngay đi&quot; was released with a music video featuring Thai actress Davika Hoorne, and with a collaboration with rapper Snoop Dogg, he went on and created the big hit &quot;H&atilde;y trao cho anh&quot;. After releasing &quot;C&oacute; chắc y&ecirc;u l&agrave; đ&acirc;y&quot; in 2020, the song became the 3rd-most-streamed Youtube premiere at the time with 902,000 live viewers. As we all know, music is, without a doubt, the easiest way to connect people. For Sơn T&ugrave;ng M-TP, music is everything he ever wanted to offer to the world around him with all his heart and soul.', 'mmw-4-956.jpg', NULL),
 	(14, 'Phương Mỹ Chi', 'Phuong My Chi was born on January 13, 2003 in a rather crowded family, the whole family had more than 14 people (including My Chi&#039;s parents and eldest sister) living in a small house. Currently, Chi lives in a small alley on Mac Van Street, Ward 12, District 8, Ho Chi Minh City.\r\n\r\nPhuong My Chi is a singer specializing in Southern Vietnamese folk music. My Chi became famous when she participated and won runner-up in the first season of the reality TV show The Voice Kids.', 'pmc.jpg', NULL),
@@ -77,7 +77,8 @@ INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VAL
 	(18, 'Hans Zimmer', 'Hans Florian Zimmer; born 12 September 1957) is a German film score composer and music producer. He has won two Oscars and four Grammys, and has been nominated for three Emmys and a Tony. Zimmer was also named on the list of Top 100 Living Geniuses, published by The Daily Telegraph in 2007', 'hanz.png', NULL),
 	(19, 'Yoasobi', 'Just Yoasobi!', 'yoasobi.jpg', NULL),
 	(20, 'Sam Wills', 'Traingazing song', 'samwills.jpg', NULL),
-	(21, 'IU', 'South Korean singer, songwriter, and actress Lee Ji-eun performs on the sweeter side of the K-pop spectrum, often focused on ballads and light pop. Choosing the stage name IU -- derived from &quot;I&quot; and &quot;you&quot; to symbolize unity -- Lee debuted in the late 2000s with early efforts Lost &amp; Found and IU...IM, but had her breakthrough in 2010 with the chart-topping &quot;Good Day&quot; from her third EP, Real. She remained a fixture at the top of the Korean charts into the 2020s with hits such as 2011&#039;s Last Fantasy, 2019&#039;s Love Poem, and 2021&#039;s platinum-certified Lilac. In addition to her success in Korea, she also branched out into the Japanese market and, in 2020, scored her first number one in the U.S. with &quot;Eight.&quot;', 'IU.jpg', NULL);
+	(21, 'IU', 'South Korean singer, songwriter, and actress Lee Ji-eun performs on the sweeter side of the K-pop spectrum, often focused on ballads and light pop. Choosing the stage name IU -- derived from &quot;I&quot; and &quot;you&quot; to symbolize unity -- Lee debuted in the late 2000s with early efforts Lost &amp; Found and IU...IM, but had her breakthrough in 2010 with the chart-topping &quot;Good Day&quot; from her third EP, Real. She remained a fixture at the top of the Korean charts into the 2020s with hits such as 2011&#039;s Last Fantasy, 2019&#039;s Love Poem, and 2021&#039;s platinum-certified Lilac. In addition to her success in Korea, she also branched out into the Japanese market and, in 2020, scored her first number one in the U.S. with &quot;Eight.&quot;', 'IU.jpg', NULL),
+	(31, 'Normal', 'Just a normal person in a normal world!', '656cbf7edd6a8myself.jpg', NULL);
 
 -- Dumping structure for table muzic_weeb.genres
 CREATE TABLE IF NOT EXISTS `genres` (
@@ -86,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `genres` (
   PRIMARY KEY (`genre_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.genres: ~12 rows (approximately)
+-- Dumping data for table muzic_weeb.genres: ~16 rows (approximately)
 INSERT INTO `genres` (`genre_id`, `name`) VALUES
 	(1, 'Pop'),
 	(2, 'EDM'),
@@ -140,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `lnk_genre_song` (
   KEY `song_genre_fk1` (`genre_id`),
   CONSTRAINT `song_genre_fk0` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.lnk_genre_song: ~13 rows (approximately)
 INSERT INTO `lnk_genre_song` (`id`, `song_id`, `genre_id`) VALUES
@@ -158,7 +159,8 @@ INSERT INTO `lnk_genre_song` (`id`, `song_id`, `genre_id`) VALUES
 	(23, 18, 2),
 	(24, 19, 10),
 	(25, 20, 2),
-	(26, 21, 1);
+	(26, 21, 1),
+	(27, 25, 2);
 
 -- Dumping structure for table muzic_weeb.lnk_playlist_song
 CREATE TABLE IF NOT EXISTS `lnk_playlist_song` (
@@ -202,23 +204,23 @@ CREATE TABLE IF NOT EXISTS `payments` (
   CONSTRAINT `FK_payment_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store data after paying using paypal API';
 
--- Dumping data for table muzic_weeb.payments: ~13 rows (approximately)
+-- Dumping data for table muzic_weeb.payments: ~25 rows (approximately)
 INSERT INTO `payments` (`payment_id`, `user_id`, `fullname`, `email`, `address`, `paypal_fee`, `net_amount`, `payment_method`, `payment_status`, `create_at`) VALUES
 	('09385995UJ5149817', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 12:11:01'),
 	('0A455027AA450160U', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 12:07:46'),
 	('0KJ801808L189420V', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 3, 26.99, 'Paypal', 'Completed', '2023-12-02 15:47:28'),
-	('0TJ73371MP053520R', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-12-02 15:47:26'),
+	('0TJ73371MP053520R', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-09-02 15:47:26'),
 	('0X906967LL058034L', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 12:15:41'),
-	('11J73051R04224929', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-02 15:47:27'),
+	('11J73051R04224929', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-10-02 15:47:27'),
 	('1D25706556450125G', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 7, 62.96, 'Paypal', 'Completed', '2023-12-03 11:04:11'),
-	('1UD26520VK9641308', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-12-02 13:41:24'),
-	('23J54684DB911071L', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-02 15:47:29'),
+	('1UD26520VK9641308', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-02 13:41:24'),
+	('23J54684DB911071L', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-10-02 15:47:29'),
 	('2R925284AC776290G', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 11:11:15'),
 	('416367601Y311031V', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 7, 62.96, 'Paypal', 'Completed', '2023-12-03 12:23:17'),
 	('44W834388F7933530', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-02 15:47:29'),
 	('4AR08404R77445130', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 15:09:04'),
 	('4BE494451C6806435', 26, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 10.2, 91.79, 'Paypal', 'Completed', '2023-12-03 15:41:17'),
-	('4MW652394J824983Y', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 3, 26.99, 'Paypal', 'Completed', '2023-12-02 13:42:15'),
+	('4MW652394J824983Y', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 3, 26.99, 'Paypal', 'Completed', '2023-11-02 13:42:15'),
 	('4SL587226L123391R', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-02 15:47:30'),
 	('64U33759A7005401V', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-12-02 15:47:30'),
 	('6N5493409J1050223', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-12-02 15:47:31'),
@@ -298,20 +300,21 @@ CREATE TABLE IF NOT EXISTS `songs` (
   KEY `song_fk1` (`album_id`),
   CONSTRAINT `song_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.songs: ~8 rows (approximately)
+-- Dumping data for table muzic_weeb.songs: ~11 rows (approximately)
 INSERT INTO `songs` (`id`, `artist_id`, `uploader_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`, `duration`) VALUES
-	(6, 14, 17, 'Song 1', '2023-08-02', 4, '2023-12-02 10:17:39', '65422203460a7soobin.mp3', 'Approved', 273),
-	(7, 18, 17, 'Time', '2023-12-02', 10, '2023-12-02 10:17:42', 'Time.mp3', 'Approved', 276),
+	(6, 14, 17, 'Song 1', '2023-08-02', 4, '2023-12-03 16:07:37', '65422203460a7soobin.mp3', 'Pending', 273),
+	(7, 18, 17, 'Time', '2023-12-02', 10, '2023-12-03 16:07:40', 'Time.mp3', 'Pending', 276),
 	(11, 13, 17, 'Song demo', '2023-11-16', 6, '2023-12-02 10:17:44', 'demo.mp3', 'Approved', 140),
 	(15, 18, 17, 'Time (again)', '2023-11-09', 5, '2023-12-02 16:36:09', '6555d54b9ee38Time.mp3', 'Approved', 276),
 	(16, 18, 17, 'Song abc', '2023-11-23', 7, '2023-12-02 16:36:10', '6563f3cc77e32Time.mp3', 'Approved', 276),
 	(17, 12, 17, 'Shea Hodges', '1990-11-02', 8, '2023-12-02 16:36:12', '6563f68c3e3dadamvinhung.mp3', 'Approved', 320),
-	(18, 12, 26, 'Overthinker', '2023-12-02', 4, '2023-12-02 10:23:52', 'INZO - Overthinker.mp3', 'Approved', 274),
+	(18, 31, 26, 'Overthinker', '2023-12-02', 4, '2023-12-03 18:03:06', 'INZO - Overthinker.mp3', 'Approved', 274),
 	(19, 19, 17, 'Biri-Biri', '2023-12-02', 12, '2023-12-02 11:24:39', '656b13f54783eYOASOBIBiri-Biri Official Music Video.mp3', 'Approved', 191),
 	(20, 14, 17, 'Fake Song', '2023-12-03', 11, '2023-12-03 04:22:57', 'Tragazing.mp3', 'Approved', 60),
-	(21, 20, 17, 'Traingazing', '2023-12-03', 11, '2023-12-03 04:30:19', '656c045823ed3Tragazing.mp3', 'Approved', 60);
+	(21, 20, 17, 'Traingazing', '2023-12-03', 11, '2023-12-03 04:30:19', '656c045823ed3Tragazing.mp3', 'Approved', 60),
+	(25, 31, 26, 'Request Song #1', '2023-12-04', 11, '2023-12-03 17:53:47', '656cc0a915720Tragazing.mp3', 'Pending', 60);
 
 -- Dumping structure for table muzic_weeb.subscriptions
 CREATE TABLE IF NOT EXISTS `subscriptions` (
@@ -331,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   CONSTRAINT `FK_Subs_User` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.subscriptions: ~3 rows (approximately)
+-- Dumping data for table muzic_weeb.subscriptions: ~4 rows (approximately)
 INSERT INTO `subscriptions` (`id`, `payment_id`, `user_id`, `plan_id`, `start_date`, `end_date`, `status`) VALUES
 	(1, '0X906967LL058034L', 26, 2, '2023-12-03 12:15:35', '2024-01-03 12:15:35', 'Active'),
 	(2, '416367601Y311031V', 26, 4, '2023-12-03 12:23:10', '2024-12-03 12:23:10', 'Active'),
@@ -374,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`),
   KEY `FK_user_artist` (`artist_id`),
-  CONSTRAINT `FK_user_artist` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_user_artist` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.users: ~24 rows (approximately)
@@ -401,7 +404,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `updat
 	(23, 'syboky', 'tysyxy@mailinator.com', '$2y$10$OzRZ2a9upss04JeadOHSSuSCFUs5vYPbt1ktcPamWEHoCCNi6PvIK', '2023-10-16 01:50:33', '2023-12-03 08:54:54', 1, 'user', NULL),
 	(24, 'nagiwu', 'hapoxy@mailinator.com', '$2y$10$.XPGynpLoC//MK7JJjEdSuXEesN2XHoxx70EkGAN4tWcBgFIJCRYG', '2023-10-16 01:50:44', '2023-12-03 08:54:54', 1, 'admin', NULL),
 	(25, 'colase', 'hufigyjux@mailinator.com', '$2y$10$xHxT7/J9BPjY6ZHiUxbvWepRnZAs6epawWXJ66QwBFQMltvp41NRu', '2023-10-16 03:52:06', '2023-12-03 08:54:54', 1, 'user', NULL),
-	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$agT/psVLJuv07NJx5fmMfObxLHUHKIH/yhPpbXdsRc5L4c68dGGvy', '2023-11-15 01:35:13', '2023-12-03 15:08:56', 3, 'artist', 11),
+	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$agT/psVLJuv07NJx5fmMfObxLHUHKIH/yhPpbXdsRc5L4c68dGGvy', '2023-11-15 01:35:13', '2023-12-03 17:48:46', 3, 'artist', 31),
 	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', '2023-12-03 08:54:54', 1, 'user', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
