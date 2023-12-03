@@ -76,6 +76,14 @@ class  Admins extends Controller
         $this->view('admin/song', $data);
     }
 
+    public function songRequest()
+    {
+        $data = [
+            'listSongRequest' => $this->songModel->getSongRequest(),
+        ];
+        $this->view('admin/song-request', $data);
+    }
+
     public function genre()
     {
         $data = [
@@ -90,13 +98,7 @@ class  Admins extends Controller
             'listArtist' => $this->artistModel->getAllArtists(),
             'listAlbum' => $this->albumModel->getAllAlbumWithArtistName(),
         ];
-        //        var_dump($data['listAlbum']); die();
         $this->view('admin/album', $data);
-    }
-
-    public function songrequest()
-    {
-        $this->view('admin/songrequest');
     }
 
     public function playlist()
