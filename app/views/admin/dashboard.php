@@ -54,7 +54,7 @@ require APPROOT . '/views/admin/index.php';
                 </div>
                 <div style="display: flex;">
                     <div style="width: 50%;">
-                        <form action="" method="post" id="myForm">
+                        <form action="<?=URLROOT?>/statistics/chart" method="post" id="myForm">
                             <select name="line_chart_timeframe" id="select1">
                                 <option value="">Select Timeframe</option>
                                 <option value="month">This month</option>

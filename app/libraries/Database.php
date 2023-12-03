@@ -43,27 +43,35 @@ class Database
         $this->stmt = $this->dbHandle->prepare($sql);
     }
 
-    // Bind values
-    public function bind($param, $value, $type = null)
+    // Type determination function
+    private function determineType($value)
     {
-        if (is_null($type)) {
-            // Set type
-            switch (true) {
-                case is_int($value):
-                    $type = PDO::PARAM_INT;
-                    break;
-                case is_bool($value):
-                    $type = PDO::PARAM_BOOL;
-                    break;
-                case is_null($value):
-                    $type = PDO::PARAM_NULL;
-                    break;
-                default:
-                    $type = PDO::PARAM_STR;
-            }
+        if (is_int($value)) {
+            return PDO::PARAM_INT;
         }
-        // Bind value
-        $this->stmt->bindValue($param, $value, $type);
+        if (is_bool($value)) {
+            return PDO::PARAM_BOOL;
+        }
+        if (is_null($value)) {
+            return PDO::PARAM_NULL;
+        }
+        return PDO::PARAM_STR;
+    }
+
+    // Bind values
+    public function bind($param, $value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $key => $v) {
+                $type = $this->determineType($v);
+                // Bind value
+                $this->stmt->bindValue(":{$param}[{$key}]", $v, $type);
+            }
+        } else {
+            $type = $this->determineType($value);
+            // Bind value
+            $this->stmt->bindValue($param, $value, $type);
+        }
     }
 
     // Execute the prepared statement
@@ -91,6 +99,7 @@ class Database
     {
         return $this->stmt->rowCount();
     }
+
     public function lastInsertId()
     {
         return $this->dbHandle->lastInsertId();
