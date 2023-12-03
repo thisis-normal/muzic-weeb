@@ -34,7 +34,7 @@ require APPROOT . '/views/admin/index.php';
 
         <div class="table-data">
             <div class="order">
-                <table>
+                <table id="table_artist">
                     <thead>
                         <tr>
                             <th>Ordinal</th>
@@ -117,10 +117,13 @@ require APPROOT . '/views/admin/index.php';
 
         var del = document.querySelectorAll("#artists-tab .delete-user");
         var cre = document.querySelectorAll("#artists-tab .btn-create");
+        var table = document.querySelectorAll("#table_artist tbody tr");
+        if (table.length >= 1) {
 
-        del.forEach(function(element) {
-            element.style.display = 'none';
-        });
+            del.forEach(function(element) {
+                element.style.display = 'none';
+            });
+        }
 
         cre.forEach(function(element) {
             element.style.display = 'none';

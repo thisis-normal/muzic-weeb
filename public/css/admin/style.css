@@ -926,3 +926,15 @@ li.selected {
   border-radius: 5px;
   background: #f2f2f2;
 }
+/* css */
+#select1,
+#select2 {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 24px;
+}
+#select1 option {
+  line-height: 24px;
+}

@@ -83,7 +83,7 @@
         // Lấy tất cả các thẻ li
         var listItems = document.querySelectorAll('.side-menu.top li');
         listItems.forEach(function(li, index) {
-            if (index !== 2 && index !== 5) {
+            if (index !== 2 && index !== 5 && index !== 7) {
                 li.style.display = 'none';
             }
         });

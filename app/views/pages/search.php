@@ -9,7 +9,7 @@
             <h2>Browse All</h2>
             <div class="browseItems">
                 <?php foreach ($data as $genre) : ?>
-                    <div class="browseItem" onclick="openPage('<?php echo URLROOT ?>/genres/detail')">
+                    <div class="browseItem" onclick="openPage('<?php echo URLROOT ?>/genres/detail?id=<?= $genre->genre_id ?>')">
                         <p><?= $genre->name ?></p>
                     </div>
                 <?php

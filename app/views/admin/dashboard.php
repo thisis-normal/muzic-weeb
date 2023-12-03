@@ -54,10 +54,23 @@ require APPROOT . '/views/admin/index.php';
                 </div>
                 <div style="display: flex;">
                     <div style="width: 50%;">
-                        <canvas id="myChart1" width="400" height="200"></canvas>
+                        <form action="" method="post" id="myForm">
+                            <select name="" id="select1">
+                                <option value="month">Month</option>
+                                <option value="quarter">Quarter</option>
+                                <option value="year">Year</option>
+                            </select>
+                            <canvas id="myChart1" width="400" height="200"></canvas>
                     </div>
                     <div style="width: 50%;">
+                        <select name="" id="select2">
+                            <option value="month">Month</option>
+                            <option value="quarter">Quarter</option>
+                            <option value="year">Year</option>
+                        </select>
                         <canvas id="myChart2" width="400" height="200"></canvas>
+                        <input type="submit" value="submit">
+                        </form>
                     </div>
                 </div>
 
@@ -197,5 +210,15 @@ require APPROOT . '/views/admin/index.php';
     const peopleValues1 = [10, 15, 20, 18, 25]; // Số người tương ứng
     //Draw line chart
     drawChart1(timeValues1, peopleValues1);
+    const form = document.getElementById('myForm');
+    const select1 = document.getElementById('select1');
+    const select2 = document.getElementById('select2');
+
+    document.querySelector('#select1').addEventListener('change', function() {
+        document.querySelector('form').submit();
+    });
+    document.querySelector('#select2').addEventListener('change', function() {
+        document.querySelector('form').submit();
+    });
 </script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>

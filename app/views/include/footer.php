@@ -143,12 +143,7 @@
                 }
                 // play
                 function playSong() {
-                    // console.log(4);
-                    // if (audioElement.audio.currentTime == 0) {
-                    //     $.post("includes/handlers/ajax/updatePlays.php", {
-                    //         songId: audioElement.currentlyPlaying.id
-                    //     });
-                    // }
+
 
                     $(".play-pause").removeClass("fa-play");
                     $(".play-pause").addClass("fa-pause");
@@ -237,7 +232,12 @@
                 //settrack
                 function setTrack(trackId, newPlaylist, play) {
 
-
+                    localStorage.removeItem('tracklist');
+                    localStorage.setItem('tracklist', newPlaylist);
+                    localStorage.removeItem('trackid');
+                    localStorage.setItem('trackid', trackId);
+                    localStorage.removeItem('trackplay');
+                    localStorage.setItem('trackplay', play);
                     if (newPlaylist != currentPlaylist) {
                         currentPlaylist = newPlaylist;
                         shufflePlaylist = currentPlaylist.slice();
@@ -256,7 +256,7 @@
                     }, function(data) {
                         var track = data;
                         localStorage.removeItem('trackTitle');
-                        localStorage.setItem('trackTitle',track.title); // Thay đổi giá trị theo nhu cầu
+                        localStorage.setItem('trackTitle', track.title); // Thay đổi giá trị theo nhu cầu
                         $(".song-description .title").text(track.title);
 
                         // Yêu cầu thông tin về nghệ sĩ
@@ -264,8 +264,8 @@
                             artistId: track.artist_id
                         }, function(artistData) {
                             var artist = artistData;
-                        localStorage.removeItem('artistName');
-                            localStorage.setItem('artistName',artist.name); // Thay đổi giá trị theo nhu cầu
+                            localStorage.removeItem('artistName');
+                            localStorage.setItem('artistName', artist.name); // Thay đổi giá trị theo nhu cầu
 
                             $(".song-infos .artist").text(artist.name);
                             // $(".song-infos .artist").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
@@ -286,9 +286,12 @@
 
                 window.onload = function() {
                     audioElement = new Audio();
-                    $(".song-description .title").text(localStorage.getItem('trackTitle'));
-                    $(".song-infos .artist").text(localStorage.getItem('artistName'));
-                    audioElement.setTrack(JSON.parse(sessionStorage.getItem('track')));
+                    setTrack(localStorage.getItem("trackid"), localStorage.getItem("tracklist"), localStorage.getItem("trackplay"))
+                    if (sessionStorage.getItem("start")) {
+                        $(".song-description .title").text(localStorage.getItem('trackTitle'));
+                        $(".song-infos .artist").text(localStorage.getItem('artistName'));
+                        audioElement.setTime(timeToSeconds(sessionStorage.getItem("start")))
+                    }
                     $(".progress-container .current-time").text(sessionStorage.getItem("start"));
                     $(".progress-container .total-time").text(sessionStorage.getItem("end"));
                     $(".progress-container .progress").css("width", sessionStorage.getItem("dur") + "%");
@@ -298,9 +301,7 @@
                     // } else {
                     //     pauseSong();
                     // }
-                    const trackName = localStorage.getItem('trackTitle'); // Thay đổi giá trị theo nhu cầu
-                    const artistName = localStorage.getItem('artistName');; // Thay đổi giá trị theo nhu cầu
-                    getLyrics(trackName, artistName);
+
                 }
                 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
                 const apiKey = '2043877c3e4880f25ababf0000654c2a';

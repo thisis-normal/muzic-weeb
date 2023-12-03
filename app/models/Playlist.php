@@ -61,7 +61,7 @@ class Playlist
     }
     public function searchPlaylists($search)
     {
-        $this->db->query('SELECT lnk_playlist_song.song_id AS song_id, playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration, playlists.description AS playlist_description
+        $this->db->query('SELECT playlists.playlist_id AS id , lnk_playlist_song.song_id AS song_id, playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration, playlists.description AS playlist_description
         FROM playlists 
         INNER JOIN lnk_playlist_song ON playlists.playlist_id = lnk_playlist_song.playlist_id
         INNER JOIN songs ON lnk_playlist_song.song_id = songs.id 

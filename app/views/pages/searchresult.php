@@ -43,7 +43,7 @@
                             <tbody>
                                 <tr class='tracklistRow'>
 
-                                    <td class='trackTitle'>
+                                    <td class='trackTitle' onclick="setTrack('<?= $playlist->song_id ?>', tempPlaylist, true)">
                                         <img class='play' width="40px" height="40px" src='<?= URLROOT ?> /public/img/music-note.png'>
                                         <div class="">
                                             <span class='trackName'><a href=""><?= $playlist->song_title ?></a></span>
@@ -81,7 +81,7 @@
                     <h2>Playlist</h2>
                     <div class="list">
                         <?php foreach ($data['playlists'] as $playlist) : ?>
-                            <div class="item">
+                            <div class="item" onclick="openPage('<?php echo URLROOT ?>/playlists/detail?id=<?php echo $playlist->id ?>')">
                                 <img src="https://th.bing.com/th/id/R.169e29309b53f7873e35844892b3aa64?rik=f4yPfstrpv6L4Q&pid=ImgRaw&r=0" />
                                 <div class="play">
                                     <span class="fa fa-play"></span>
@@ -156,7 +156,7 @@
                 openPage(`http://localhost:2002/muzic-weeb/pages/search/`);
             }
 
-            localStorage.clear("searchText")
+            // localStorage.clear("searchText")
             localStorage.setItem("searchText", searchTerm);
         });
         // searchInput.addEventListener("keydown", function(event) {
