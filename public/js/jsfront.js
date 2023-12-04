@@ -12,6 +12,14 @@ var musicFolder = 'http://localhost:2002/muzic-weeb/public/songs/';
 
 // scheduleAd();
 
+window.onpopstate = function (event) {
+    if (event.state) {
+        openPage(sessionStorage.getItem("urlOld"))
+    } else {
+        console.log('Trang ban đầu');
+    }
+};
+
 
 function formatTime(seconds) {
     var time = Math.round(seconds);

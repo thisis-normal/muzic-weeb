@@ -5,10 +5,17 @@ class Statistics extends Controller
     public function __construct()
     {
         $this->statisticModel = $this->model('Statistic');
+        $this->userModel = $this->model('User');
+
+        $this->songModel = $this->model('Song');
+        $this->paymentModel = $this->model('Payment');
     }
 
     public function chart(): void
     {
+
+
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $chart = [
@@ -19,28 +26,30 @@ class Statistics extends Controller
             ];
             $chart['line_chart_timeframe'] = $this->convertQuarterFromText($chart['line_chart_timeframe']);
             $chart['bar_chart_timeframe'] = $this->convertQuarterFromText($chart['bar_chart_timeframe']);
-//            var_dump($chart['line_chart_timeframe']); die();
-//            if (empty($chart['line_chart_timeframe'])) {
-//                $chart['line_chart_timeframe_err'] = 'Please select a timeframe';
-//            }
-//            if (empty($chart['bar_chart_timeframe'])) {
-//                $chart['bar_chart_timeframe_err'] = 'Please select a timeframe';
-//            }
-//            if (empty($chart['line_chart_timeframe_err']) && empty($chart['bar_chart_timeframe_err'])) {
+            //            var_dump($chart['line_chart_timeframe']); die();
+            //            if (empty($chart['line_chart_timeframe'])) {
+            //                $chart['line_chart_timeframe_err'] = 'Please select a timeframe';
+            //            }
+            //            if (empty($chart['bar_chart_timeframe'])) {
+            //                $chart['bar_chart_timeframe_err'] = 'Please select a timeframe';
+            //            }
+            //            if (empty($chart['line_chart_timeframe_err']) && empty($chart['bar_chart_timeframe_err'])) {
             $lineChart = [];
             foreach ($chart['line_chart_timeframe'] as $month) {
                 $lineChart[] = $this->statisticModel->getRevenueByMonth($month);
             }
-//                $barChart = $this->statisticModel->getRevenueByMonth($chart['bar_chart_timeframe']);
-                $data = [
-                    'lineChart' => $lineChart,
-//                    'barChart' => $barChart
-                ];
-                var_dump($data['lineChart']); die();
-//                $this->view('admin/dashboard', $data);
-//            } else {
-//                $this->view('admin/dashboard', $chart);
-//            }
+            //                $barChart = $this->statisticModel->getRevenueByMonth($chart['bar_chart_timeframe']);
+            $data = [
+                'lineChart' => $lineChart,
+                'totalUser' => $this->userModel->getTotalUser(),
+                'totalSong' => $this->songModel->getTotalSong(),
+                'revenue' => $this->paymentModel->getRevenue(),
+                //                    'barChart' => $barChart
+            ];
+            // var_dump($data['lineChart']); die();
+            $this->view('admin/dashboard', $data);
+        } else {
+            $this->view('admin/dashboard', $chart);
         }
     }
 

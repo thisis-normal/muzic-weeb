@@ -1,6 +1,8 @@
 <?php
+
 require APPROOT . '/views/admin/index.php';
-/** @var array $data */ ?>
+/** @var array $data */
+?>
 <!-- <script src="<?= URLROOT ?>/public/js/script.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div id="user-tab" class="tab-content active">
@@ -238,7 +240,9 @@ require APPROOT . '/views/admin/index.php';
     const timeValues1 = [1, 2, 3, 4, 5]; // Giả sử thời gian từ 1 đến 5
     const peopleValues1 = [10, 15, 20, 18, 25]; // Số người tương ứng
     //Draw line chart
-    drawChart1(timeValues1, peopleValues1);
+
+    // var_dump()
+
     const form = document.getElementById('myForm');
     const select1 = document.getElementById('select1');
     const select2 = document.getElementById('select2');
