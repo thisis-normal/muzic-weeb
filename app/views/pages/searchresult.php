@@ -11,7 +11,7 @@
                     <div style="width: 30%">
                         <div class="spotify-playlists">
                             <h2>Search top results</h2>
-                            <div class="topresults">
+                            <div class="topresults" onclick="openPage('<?php echo URLROOT ?>/artists/detail?id=<?= $data['artists'][0]->artist_id ?>')">
                                 <img src="<?= URLROOT . '/public/img/' . $data['artists'][0]->image ?>" alt="artist">
 
                                 <div class="play">
@@ -24,7 +24,7 @@
 
                     </div>
                 <?php endif; ?>
-                <div class="spotify-playlists" style="width: 70%">
+                <div class="spotify-playlists" style="width: 70%; margin-left: 24px;">
                     <h2>Song</h2>
                     <table class="tracklist">
                         <!--                <thead>-->
@@ -123,7 +123,7 @@
                     <h2>Album</h2>
                     <div class="list">
                         <?php foreach ($data['albums'] as $album) : ?>
-                            <div class="item">
+                            <div class="item" onclick="openPage('<?php echo URLROOT ?>/albums/detail?id=<?php echo $album->album_id ?>')">
                                 <img src="<?= URLROOT . '/public/img/' . $album->cover_image ?>" />
                                 <div class="play">
                                     <span class="fa fa-play"></span>

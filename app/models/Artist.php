@@ -80,7 +80,7 @@ class Artist
     }
     public function getArtistAllByID($artistId)
     {
-        $this->db->query('SELECT lnk_artist_song.song_id AS song_id, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
+        $this->db->query('SELECT lnk_artist_song.song_id AS song_id, songs.title AS song_title,albums.album_id AS album_id,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
         FROM artists
         INNER JOIN lnk_artist_song ON artists.artist_id = lnk_artist_song.id
         INNER JOIN songs ON lnk_artist_song.song_id = songs.id 

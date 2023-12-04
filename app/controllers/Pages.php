@@ -4,11 +4,21 @@ class Pages extends Controller
 {
     public function __construct()
     {
+        $this->albumModel = $this->model('Album');
+        $this->artistModel = $this->model('Artist');
+        $this->playlistModel = $this->model('Playlist');
     }
 
     public function index()
     {
-        $this->view('pages/index');
+        $data = [
+            'album' => $this->albumModel->getAllAlbums(),
+            'playlist' => $this->playlistModel->getAllPlaylist(),
+            'artist' => $this->artistModel->getAllArtists(),
+
+        ];
+
+        $this->view('pages/index', $data);
     }
     public function playlist()
     {

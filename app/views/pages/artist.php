@@ -69,7 +69,7 @@
                                 </div>
                             </td>
                             <td class='trackAlbum'>
-                                <div onclick="openPage('<?php echo URLROOT ?>/albums/detail?id=<?php echo $songList->artist_id ?>')"><?= $songList->album_title ?></div>
+                                <p onclick="openPage('<?php echo URLROOT ?>/albums/detail?id=<?= $songList->album_id ?>')"><?= $songList->album_title ?></p>
                             </td>
                             <td class='trackDuration'>
                                 <span class='duration'>

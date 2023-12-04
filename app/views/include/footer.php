@@ -27,7 +27,7 @@
                             <p class="title">
 
                             </p>
-                            <p class="artist"></p>
+                            <p class="artist" onclick="openPage('<?php echo URLROOT ?>/artists/detail?id=11')"></p>
                         </div>
                     </div>
                     <!-- <div class="icons">
@@ -266,7 +266,8 @@
                             var artist = artistData;
                             localStorage.removeItem('artistName');
                             localStorage.setItem('artistName', artist.name); // Thay đổi giá trị theo nhu cầu
-
+                            localStorage.removeItem('artistId');
+                            localStorage.setItem('artistId', artist.artist_id);
                             $(".song-infos .artist").text(artist.name);
                             // $(".song-infos .artist").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
                         });
@@ -290,6 +291,7 @@
                     if (sessionStorage.getItem("start")) {
                         $(".song-description .title").text(localStorage.getItem('trackTitle'));
                         $(".song-infos .artist").text(localStorage.getItem('artistName'));
+                        // $(".song-infos .artist").attr("onclick", ``)
                         audioElement.setTime(timeToSeconds(sessionStorage.getItem("start")))
                     }
                     $(".progress-container .current-time").text(sessionStorage.getItem("start"));

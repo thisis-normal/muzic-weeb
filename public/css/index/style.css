@@ -59,6 +59,10 @@ body {
 .sidebar .navigation ul li a:hover .fa:focus {
   color: #ffffff;
 }
+table td p,
+table td span {
+  cursor: pointer;
+}
 .sidebar .policies {
   position: absolute;
   bottom: 100px;

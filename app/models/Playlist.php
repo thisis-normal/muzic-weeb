@@ -9,6 +9,11 @@ class Playlist
         $this->db = new Database;
     }
 
+    public function getAllPlaylist()
+    {
+        $this->db->query('SELECT * FROM playlists');
+        return $this->db->resultSet();
+    }
     public function addPlaylist($data)
     {
         $this->db->query('INSERT INTO playlists (playlist_id, user_id, name, description, date_created, status) VALUES (:playlist_id, :user_id, :name, :description, :date_created, :status)');
@@ -39,7 +44,7 @@ class Playlist
 
     public function getPlaylistByID($playlistId)
     {
-        $this->db->query('SELECT lnk_playlist_song.song_id AS song_id, playlists.title AS playlist_title, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
+        $this->db->query('SELECT lnk_playlist_song.song_id AS song_id, playlists.title AS playlist_title, songs.title AS song_title,albums.album_id AS album_id,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,artists.artist_id  AS artist_id,songs.duration as song_duration
         FROM playlists 
         INNER JOIN lnk_playlist_song ON playlists.playlist_id = lnk_playlist_song.playlist_id
         INNER JOIN songs ON lnk_playlist_song.song_id = songs.id 

@@ -66,13 +66,13 @@
                             <td class='trackTitle'>
                                 <img class='play' width="40px" height="40px" src='<?= URLROOT ?> /public/img/music-note.png'>
                                 <div class="">
-                                    <span class='trackName'><a href=""><?= $songList->song_title ?></a></span>
-                                    <span class='artistName'><a href=""><?= $songList->artist_name ?></a></span>
+                                    <span class='trackName'><?= $songList->song_title ?></span>
+                                    <span class='artistName' onclick="openPage('<?php echo URLROOT ?>/artists/detail?id=<?= $songList->artist_id ?>')"><?= $songList->artist_name ?></span>
 
                                 </div>
                             </td>
                             <td class='trackAlbum'>
-                                <a href=""><?= $songList->album_title ?></a>
+                                <p onclick="openPage('<?php echo URLROOT ?>/albums/detail?id=<?= $songList->album_id ?>')"><?= $songList->album_title ?></p>
                             </td>
                             <td class='trackDuration'>
                                 <span class='duration'>

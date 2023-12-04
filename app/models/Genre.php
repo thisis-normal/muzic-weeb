@@ -78,7 +78,7 @@ class Genre
     }
     public function getGenreAllByID($genreId)
     {
-        $this->db->query('SELECT lnk_genre_song.song_id AS song_id, genres.name AS genre_name, songs.title AS song_title,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
+        $this->db->query('SELECT lnk_genre_song.song_id AS song_id, genres.name AS genre_name, songs.title AS song_title,albums.album_id AS album_id,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
         FROM genres
         INNER JOIN lnk_genre_song ON genres.genre_id = lnk_genre_song.id
         INNER JOIN songs ON lnk_genre_song.song_id = songs.id 
