@@ -91,7 +91,7 @@ require APPROOT . '/views/admin/index.php';
                                 <td class="truncate-text"><?= $song->file_path ?></td>
                                 <td><?= $song->status ?></td>
                                 <td>
-                                    <a href="" class="edit-button btnpopup" data-form="form_update_songrequest" data-status="<?= $song->status ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
+                                    <a href="" id="" class="edit-button btnpopup updateSongRq" data-form="form_update_songrequest" data-id="<?= $song->id ?>" data-status="<?= $song->status ?>"><i class='bx bxs-edit' style='color:#0042fb'></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -99,7 +99,7 @@ require APPROOT . '/views/admin/index.php';
                 </table>
             </div>
         </div>
-        <form action="" method="post">
+        <!-- <form action="" method="post">
             <div class="form_update popup form_update_songrequest">
                 <h1>Update Song Request</h1>
                 <br>
@@ -120,7 +120,7 @@ require APPROOT . '/views/admin/index.php';
                     <button id="save-button">Update Song request</button>
                 </div>
             </div>
-        </form>
+        </form> -->
     </main>
 </div>
 </section>
@@ -138,5 +138,26 @@ require APPROOT . '/views/admin/index.php';
     const dataForGenre = ["Pop", "Rock", "Rap"];
     const dataForStatus = ["Active", "Passive", "Deactive"];
     const dataForDefault = ["a", "b", "c"];
+    $(".updateSongRq").click(function(event) {
+        event.preventDefault();
+        var id = $(this).attr("data-id")
+
+        Swal.fire({
+
+            title: "Do you want to update the status of this song?",
+            showDenyButton: true,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Update",
+            denyButtonText: `Not updated`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location.href = "<?= URLROOT ?>/SongManagement";
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not Updated", "", "info");
+            }
+        });
+    })
 </script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>

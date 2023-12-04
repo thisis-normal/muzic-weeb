@@ -54,7 +54,7 @@ require APPROOT . '/views/admin/index.php';
                 </div>
                 <div style="display: flex;">
                     <div style="width: 50%;">
-                        <form action="<?=URLROOT?>/statistics/chart" method="post" id="myForm">
+                        <form action="<?= URLROOT ?>/statistics/chart" method="post" id="myForm">
                             <select name="line_chart_timeframe" id="select1">
                                 <option value="">Select Timeframe</option>
                                 <option value="month">This month</option>
@@ -77,7 +77,7 @@ require APPROOT . '/views/admin/index.php';
                             <option value="year">This year</option>
                         </select>
                         <canvas id="myChart2" width="400" height="200"></canvas>
-                        <input type="submit" value="submit">
+                        <input type="submit" hidden value="submit">
                         </form>
                     </div>
                 </div>
@@ -128,6 +128,27 @@ require APPROOT . '/views/admin/index.php';
     menuBar.addEventListener('click', function() {
         sidebar.classList.toggle('hide');
     })
+    document.addEventListener('DOMContentLoaded', function() {
+        const switchMode = document.getElementById('switch-mode');
+        const isDarkMode = sessionStorage.getItem('darkMode') === 'true';
+        switchMode.checked = isDarkMode;
+        applyDarkMode(isDarkMode);
+        switchMode.addEventListener('change', function() {
+
+            const isChecked = this.checked;
+            applyDarkMode(isChecked);
+            sessionStorage.setItem('darkMode', isChecked ? 'true' : 'false');
+        });
+
+        function applyDarkMode(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
+        }
+    });
+
 
     function drawChart1(xValues, yValues) {
         const ctx = document.getElementById('myChart1').getContext('2d');
@@ -223,10 +244,10 @@ require APPROOT . '/views/admin/index.php';
     const select2 = document.getElementById('select2');
 
     document.querySelector('#select1').addEventListener('change', function() {
-        document.querySelector('form').submit();
+        document.querySelector('#myForm').submit();
     });
     document.querySelector('#select2').addEventListener('change', function() {
-        document.querySelector('form').submit();
+        document.querySelector('#myForm').submit();
     });
 </script>
 <script src="<?= URLROOT ?>/public/js/script.js"></script>
