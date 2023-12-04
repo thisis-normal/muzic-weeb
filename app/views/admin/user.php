@@ -107,7 +107,7 @@ require APPROOT . '/views/admin/index.php';
                                 <td align="center"><?= $user->regis_date ?></td>
                                 <td align="center">
                                     <div> <?php
-                                            echo "$user->is_premium";
+                                            echo "$user->subscription_id";
                                             ?>
                                     </div>
                                 </td>
