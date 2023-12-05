@@ -47,7 +47,18 @@ require APPROOT . '/views/admin/index.php';
                     <p>Total Revenue</p>
                 </span>
             </li>
+            <?php
+            if (isset($data['lineChart'])) {
+                foreach ($data['lineChart'] as $key => $array) {
+                    foreach ($array as $k => $value) {
+                    } ?>
+
+                    <?php
+                }
+            }
+            ?>
         </ul>
+
 
         <div class="table-data">
             <div class="order">
@@ -58,7 +69,11 @@ require APPROOT . '/views/admin/index.php';
                     <div style="width: 50%;">
                         <form action="<?= URLROOT ?>/statistics/chart" method="post" id="myForm">
                             <select name="line_chart_timeframe" id="select1">
-                                <option value="">Select Timeframe</option>
+                                <?php if (isset($data['line_chart_timeframe'])) { ?>
+                                    <option value="<?= $data['line_chart_timeframe'] ?>"><?= $data['line_chart_timeframe'] ?></option>
+                                <?php } else { ?>
+                                    <option value="">Select Timeframe</option>
+                                <?php } ?>
                                 <option value="month">This month</option>
                                 <option value="1stQuarter">1st Quarter</option>
                                 <option value="2ndQuarter">2nd Quarter</option>
@@ -70,7 +85,11 @@ require APPROOT . '/views/admin/index.php';
                     </div>
                     <div style="width: 50%;">
                         <select name="bar_chart_timeframe" id="select2">
-                            <option value="">Select Timeframe</option>
+                            <?php if (isset($data['bar_chart_timeframe'])) { ?>
+                                <option value="<?= $data['bar_chart_timeframe'] ?>"><?= $data['bar_chart_timeframe'] ?></option>
+                            <?php } else { ?>
+                                <option value="">Select Timeframe</option>
+                            <?php } ?>
                             <option value="month">This month</option>
                             <option value="1stQuarter">1st Quarter</option>
                             <option value="2ndQuarter">2nd Quarter</option>
@@ -83,60 +102,26 @@ require APPROOT . '/views/admin/index.php';
                         </form>
                     </div>
                 </div>
-
-
-
             </div>
-            <!-- <div class="todo">
-            <div class="head">
-                <h3>Todos</h3>
-                <i class="bx bx-plus"></i>
-                <i class="bx bx-filter"></i>
-            </div>
-            <ul class="todo-list">
-                <li class="completed">
-                    <p>Todo List</p>
-                    <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="completed">
-                    <p>Todo List</p>
-                    <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="not-completed">
-                    <p>Todo List</p>
-                    <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="completed">
-                    <p>Todo List</p>
-                    <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-                <li class="not-completed">
-                    <p>Todo List</p>
-                    <i class="bx bx-dots-vertical-rounded"></i>
-                </li>
-            </ul>
-        </div> -->
         </div>
     </main>
 </div>
 </section>
 </body>
-<!--  -->
 
-<script>
+<script type="text/javascript">
     const menuBar = document.querySelector('#content nav .bx.bx-menu');
     const sidebar = document.getElementById('sidebar');
 
-    menuBar.addEventListener('click', function() {
+    menuBar.addEventListener('click', function () {
         sidebar.classList.toggle('hide');
     })
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const switchMode = document.getElementById('switch-mode');
         const isDarkMode = sessionStorage.getItem('darkMode') === 'true';
         switchMode.checked = isDarkMode;
         applyDarkMode(isDarkMode);
-        switchMode.addEventListener('change', function() {
-
+        switchMode.addEventListener('change', function () {
             const isChecked = this.checked;
             applyDarkMode(isChecked);
             sessionStorage.setItem('darkMode', isChecked ? 'true' : 'false');
@@ -159,7 +144,7 @@ require APPROOT . '/views/admin/index.php';
             data: {
                 labels: xValues,
                 datasets: [{
-                    label: 'Số người',
+                    label: 'Số tiền',
                     data: yValues,
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',
@@ -177,15 +162,13 @@ require APPROOT . '/views/admin/index.php';
                     y: {
                         title: {
                             display: true,
-                            text: 'Số người'
+                            text: 'Số tiền'
                         }
                     }
                 }
             }
         });
     }
-
-
 
     function drawChart(xValues, yValues1, yValues2) {
         const ctx = document.getElementById('myChart2').getContext('2d');
@@ -194,14 +177,14 @@ require APPROOT . '/views/admin/index.php';
             data: {
                 labels: xValues,
                 datasets: [{
-                        label: 'Nhóm 1',
-                        data: yValues1,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
+                    label: 'Người mới',
+                    data: yValues1,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
                     {
-                        label: 'Nhóm 2',
+                        label: 'VIP mới',
                         data: yValues2,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
@@ -220,7 +203,7 @@ require APPROOT . '/views/admin/index.php';
                     y: {
                         title: {
                             display: true,
-                            text: 'Số người'
+                            text: 'Số tiền'
                         },
                         beginAtZero: true
                     }
@@ -229,28 +212,61 @@ require APPROOT . '/views/admin/index.php';
         });
     }
 
+    const timeValues = [];
+    const group1Values = [];
+    const group2Values = [];
+    <?php if (isset($data['newUserByMonth']) && isset($data['newPremiumUserByMonth'])) {
+    $newUserByMonth = $data['newUserByMonth'];
+    $newPremiumUserByMonth = $data['newPremiumUserByMonth'];
+    ?>
     // data for bar chart
-    const timeValues = ['A', 'B', 'C', 'D', 'E', 'C', 'D', 'E', 'C', 'D', 'E', 'C', 'D', 'E']; // Giả sử các nhóm A, B, C, D, E
-    const group1Values = [10, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25]; // Số người cho nhóm 1
-    const group2Values = [12, 17, 22, 20, 28, 15, 20, 18, 25, 15, 20, 18, 25, 15, 20, 18, 25]; // Số người cho nhóm 2
+    <?php
+    foreach ($newUserByMonth as $key => $value) {
+    foreach ($value as $k => $v) {
+    ?>
+    timeValues.push('<?= $v->month ?>');
+    group1Values.push('<?= $v->total_users ?>');
+    <?php
+    }
+    }
+    foreach ($newPremiumUserByMonth as $key => $value) {
+    foreach ($value as $k => $v) {
+    ?>
+    group2Values.push('<?= $v->total_users ?>');
+    <?php
+    }
+    }
+    ?>
+    <?php } ?>
     // Draw bar chart
     drawChart(timeValues, group1Values, group2Values);
-
+    const timeValues1 = [];
+    const peopleValues1 = [];
     //Data for line chart
-    const timeValues1 = [1, 2, 3, 4, 5]; // Giả sử thời gian từ 1 đến 5
-    const peopleValues1 = [10, 15, 20, 18, 25]; // Số người tương ứng
-    //Draw line chart
+    <?php
+    if (isset($data['lineChart'])) {
+    foreach ($data['lineChart'] as $key => $lineChartArray) {
+    foreach ($lineChartArray as $k => $value) {
+    ?>
+    timeValues1.push('<?= $value->month ?>');
+    peopleValues1.push('<?= $value->total_net_amount ?>');
+    <?php
+    }
+    }
+    }
 
-    // var_dump()
+    ?>
+    //Draw line chart
+    drawChart1(timeValues1, peopleValues1);
 
     const form = document.getElementById('myForm');
     const select1 = document.getElementById('select1');
     const select2 = document.getElementById('select2');
 
-    document.querySelector('#select1').addEventListener('change', function() {
+    document.querySelector('#select1').addEventListener('change', function () {
         document.querySelector('#myForm').submit();
     });
-    document.querySelector('#select2').addEventListener('change', function() {
+    document.querySelector('#select2').addEventListener('change', function () {
         document.querySelector('#myForm').submit();
     });
 </script>
