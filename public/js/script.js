@@ -351,6 +351,22 @@ deleteButtons.forEach(deleteButton => {
 });
 
 //frontend
+function downloadMusicFromURL(url, fileName) {
+    fetch(url)
+        .then(response => response.blob()) // Chuyển đổi dữ liệu nhận được thành blob
+        .then(blob => {
+            const musicUrl = window.URL.createObjectURL(blob); // Tạo URL cho blob
+            const a = document.createElement('a'); // Tạo một thẻ a để tải xuống
+            a.href = musicUrl;
+            a.download = fileName; // Đặt tên tệp khi tải xuống
+            document.body.appendChild(a); // Thêm thẻ a vào body
+            a.click(); // Kích hoạt sự kiện click để tải xuống
+            window.URL.revokeObjectURL(musicUrl); // Giải phóng tài nguyên sau khi tải xuống
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 function displayAd() {
     var ads = document.getElementById("ads");
     ads.style.display = "block";
@@ -363,7 +379,7 @@ function displayAd() {
 
 function scheduleAd() {
     // Thời gian giữa mỗi lần hiển thị banner quảng cáo (20-30 phút)
-    const adInterval = Math.floor(Math.random() * (30 - 20 + 1) + 20) * 60 * 1000; // Chuyển đổi sang mili giây
+    const adInterval = Math.floor(Math.random() * (30 - 20 + 1) + 20) * 1 * 1000; // Chuyển đổi sang mili giây
 
     setTimeout(function () {
         displayAd();

@@ -327,7 +327,9 @@ class Users extends Controller
         unset($_SESSION['user_role']);
         //destroy session
         session_destroy();
+        // $_SESSION['logout'] = URLROOT . '/pages/index';
         //redirect to home
+
         redirect('pages/index');
     }
 

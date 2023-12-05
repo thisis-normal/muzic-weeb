@@ -9,9 +9,24 @@ var shuffle = false;
 var userLoggedIn;
 var timer;
 var musicFolder = 'http://localhost:2002/muzic-weeb/public/songs/';
+var license = document.getElementById("license");
+if (license.getAttribute("data-license") === '1') {
+    scheduleAd();
+    $("#download").on("click", function () {
 
-// scheduleAd();
+        alert("Phải mua premium cơ")
+    })
+}
+else {
 
+    var url = sessionStorage.getItem("file");
+    var fileName = localStorage.getItem("trackTitle");
+    // var download = document.getElementById("download");
+    $("#download").on("click", function () {
+
+        downloadMusicFromURL(url, fileName)
+    })
+}
 window.onpopstate = function (event) {
     if (event.state) {
         openPage(sessionStorage.getItem("urlOld"))
@@ -89,12 +104,13 @@ function Audio() {
         }
         sessionStorage.setItem('track', JSON.stringify(track));
         sessionStorage.setItem("id_track", track.id);
+        sessionStorage.setItem("file", (musicFolder + track.file_path));
 
 
         // sessionStorage.clear();
         this.currentlyPlaying = track;
         this.audio.src = musicFolder + track.file_path;
-        console.log(this.audio.src);
+
     }
 
     this.play = function () {

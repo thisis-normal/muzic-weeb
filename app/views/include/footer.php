@@ -29,14 +29,16 @@
                             </p>
                             <p class="artist" onclick="openPage('<?php echo URLROOT ?>/artists/detail?id=11')"></p>
                         </div>
+
                     </div>
                     <!-- <div class="icons">
-                        <i class="far fa-heart"></i>
-                        <i class="fas fa-compress"></i>
-                    </div> -->
+                            <i class="far fa-heart"></i>
+                            <i class="fas fa-compress"></i>
+                        </div> -->
                 </div>
                 <div class="progress-controller">
                     <div class="control-buttons">
+                        <i class="fas fa-download" id="download"></i>
                         <i class="fas fa-random" id="shuffle" onclick="setShuffle()"></i>
                         <i class="fas fa-step-backward" title="Pre" onclick="prevSong()"></i>
                         <i class="play-pause fas fa-play" title="Play button" onclick="playSong()"></i>
@@ -291,9 +293,13 @@
                     if (sessionStorage.getItem("start")) {
                         $(".song-description .title").text(localStorage.getItem('trackTitle'));
                         $(".song-infos .artist").text(localStorage.getItem('artistName'));
+
                         // $(".song-infos .artist").attr("onclick", ``)
                         audioElement.setTime(timeToSeconds(sessionStorage.getItem("start")))
                     }
+
+
+
                     $(".progress-container .current-time").text(sessionStorage.getItem("start"));
                     $(".progress-container .total-time").text(sessionStorage.getItem("end"));
                     $(".progress-container .progress").css("width", sessionStorage.getItem("dur") + "%");

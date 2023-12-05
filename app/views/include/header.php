@@ -51,9 +51,9 @@
                 <?php
                 if ($_SESSION['license'] != 1) {
                 ?>
-                    <span style="color: #1db954">Welcome back, <?= $_SESSION['user_name'] ?></span>
+                    <span id="license" data-license="' . $_SESSION['license'] . '" style="color: #1db954">Welcome back, <?= $_SESSION['user_name'] ?></span>
                 <?php } else {
-                    echo '<a href="' . URLROOT . '/premium/index"><button type="button">Explore premium</button></a>';
+                    echo '<a id="license" data-license="' . $_SESSION['license'] . '" href="' . URLROOT . '/premium/index"><button type="button">Explore premium</button></a>';
                 }
                 ?>
                 <div class="home_info">
