@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `albums` (
   PRIMARY KEY (`album_id`),
   KEY `album_fk0` (`artist_id`),
   CONSTRAINT `FK_album_artist` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.albums: ~10 rows (approximately)
+-- Dumping data for table muzic_weeb.albums: ~9 rows (approximately)
 INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_image`) VALUES
 	(2, 'Making My Way', 13, '2023-10-25', NULL),
 	(3, 'Ch&uacute;ng ta của hiện tại', 13, '2023-10-25', NULL),
@@ -42,7 +42,8 @@ INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_date`, `cover_i
 	(8, 'Losing Interestss', 17, '2023-10-31', NULL),
 	(10, 'Time', 18, '2023-11-02', NULL),
 	(11, 'Domino', 13, '2023-11-13', NULL),
-	(12, 'Biri-Biri', 19, '2023-12-02', NULL);
+	(12, 'Biri-Biri', 19, '2023-12-02', NULL),
+	(13, 'Đ&aacute;nh đổi', 32, '2023-12-05', NULL);
 
 -- Dumping structure for table muzic_weeb.album_genre
 CREATE TABLE IF NOT EXISTS `album_genre` (
@@ -64,9 +65,9 @@ CREATE TABLE IF NOT EXISTS `artists` (
   `image` varchar(255) NOT NULL,
   `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`artist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.artists: ~11 rows (approximately)
+-- Dumping data for table muzic_weeb.artists: ~13 rows (approximately)
 INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VALUES
 	(11, 'ULSA IT', 'Just someone not familiar', 'page\'s avatar.png', NULL),
 	(12, 'G-Dragon', 'G-Dragon, born Kwon Ji-Yong, is a rapper from Seoul, South Korea who also writes and produces. At the age of 11, he signed to  and, a few years later, joined his label&#039;s popular group , for which he wrote and produced a significant amount of material. November 2008&#039;s Remember topped Korea&#039;s Gaon chart, while most of the group&#039;s releases in Japan were certified gold. In August 2009, Kwon released his first solo album, Heartbreaker; a major success, it also topped the Gaon chart. He and fellow  member  then collaborated on December 2010&#039;s GD &amp; TOP, a set that was more R&amp;B and rap-oriented than their group&#039;s dance-pop-leaning releases. Kwon then issued his first solo EP, One of a Kind, which topped the Billboard World Albums chart. The September 2012 release was led by another chart-topping single, an acoustic ballad titled &quot;That XX,&quot; as well as the hit &quot;Crayon.&quot;', 'Gdragon.jpg', NULL),
@@ -78,7 +79,9 @@ INSERT INTO `artists` (`artist_id`, `name`, `biography`, `image`, `website`) VAL
 	(19, 'Yoasobi', 'Just Yoasobi!', 'yoasobi.jpg', NULL),
 	(20, 'Sam Wills', 'Traingazing song', 'samwills.jpg', NULL),
 	(21, 'IU', 'South Korean singer, songwriter, and actress Lee Ji-eun performs on the sweeter side of the K-pop spectrum, often focused on ballads and light pop. Choosing the stage name IU -- derived from &quot;I&quot; and &quot;you&quot; to symbolize unity -- Lee debuted in the late 2000s with early efforts Lost &amp; Found and IU...IM, but had her breakthrough in 2010 with the chart-topping &quot;Good Day&quot; from her third EP, Real. She remained a fixture at the top of the Korean charts into the 2020s with hits such as 2011&#039;s Last Fantasy, 2019&#039;s Love Poem, and 2021&#039;s platinum-certified Lilac. In addition to her success in Korea, she also branched out into the Japanese market and, in 2020, scored her first number one in the U.S. with &quot;Eight.&quot;', 'IU.jpg', NULL),
-	(31, 'Normal', 'Just a normal person in a normal world!', '656cbf7edd6a8myself.jpg', NULL);
+	(31, 'Normal', 'Just a normal person in a normal world!', '656cbf7edd6a8myself.jpg', NULL),
+	(32, 'Obito', 'This is obito', '656e877dc6952channels4_profile.jpg', NULL),
+	(33, 'INZO', 'INZO!!!!', '656e8d48cd84csamwills.jpg', NULL);
 
 -- Dumping structure for table muzic_weeb.genres
 CREATE TABLE IF NOT EXISTS `genres` (
@@ -115,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `lnk_artist_song` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.lnk_artist_song: ~11 rows (approximately)
+-- Dumping data for table muzic_weeb.lnk_artist_song: ~13 rows (approximately)
 INSERT INTO `lnk_artist_song` (`id`, `song_id`, `artist_id`) VALUES
 	(1, 1, 1),
 	(2, 1, 2),
@@ -141,9 +144,9 @@ CREATE TABLE IF NOT EXISTS `lnk_genre_song` (
   KEY `song_genre_fk1` (`genre_id`),
   CONSTRAINT `song_genre_fk0` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `song_genre_fk1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.lnk_genre_song: ~13 rows (approximately)
+-- Dumping data for table muzic_weeb.lnk_genre_song: ~15 rows (approximately)
 INSERT INTO `lnk_genre_song` (`id`, `song_id`, `genre_id`) VALUES
 	(5, 6, 2),
 	(6, 6, 7),
@@ -160,7 +163,42 @@ INSERT INTO `lnk_genre_song` (`id`, `song_id`, `genre_id`) VALUES
 	(24, 19, 10),
 	(25, 20, 2),
 	(26, 21, 1),
-	(27, 25, 2);
+	(27, 25, 2),
+	(28, 26, 10),
+	(29, 27, 4),
+	(30, 28, 5),
+	(31, 28, 9),
+	(32, 29, 4),
+	(33, 29, 2),
+	(34, 30, 4),
+	(35, 31, 4),
+	(36, 32, 4),
+	(37, 32, 2),
+	(38, 33, 4),
+	(39, 34, 4),
+	(40, 34, 12),
+	(41, 35, 4),
+	(42, 36, 4),
+	(43, 37, 4),
+	(44, 38, 4),
+	(45, 38, 2),
+	(46, 38, 5),
+	(47, 39, 4),
+	(48, 39, 10),
+	(49, 40, 12),
+	(50, 41, 2),
+	(51, 41, 9),
+	(52, 42, 4),
+	(53, 42, 5),
+	(54, 43, 2),
+	(55, 43, 5),
+	(56, 44, 2),
+	(57, 44, 5),
+	(58, 45, 2),
+	(59, 45, 5),
+	(60, 46, 2),
+	(61, 46, 5),
+	(62, 46, 4);
 
 -- Dumping structure for table muzic_weeb.lnk_playlist_song
 CREATE TABLE IF NOT EXISTS `lnk_playlist_song` (
@@ -174,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `lnk_playlist_song` (
   CONSTRAINT `playlist_song_fk1` FOREIGN KEY (`song_id`) REFERENCES `songs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.lnk_playlist_song: ~7 rows (approximately)
+-- Dumping data for table muzic_weeb.lnk_playlist_song: ~9 rows (approximately)
 INSERT INTO `lnk_playlist_song` (`playlist_song_id`, `playlist_id`, `song_id`) VALUES
 	(2, 1, 6),
 	(3, 1, 7),
@@ -204,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   CONSTRAINT `FK_payment_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Store data after paying using paypal API';
 
--- Dumping data for table muzic_weeb.payments: ~25 rows (approximately)
+-- Dumping data for table muzic_weeb.payments: ~31 rows (approximately)
 INSERT INTO `payments` (`payment_id`, `user_id`, `fullname`, `email`, `address`, `paypal_fee`, `net_amount`, `payment_method`, `payment_status`, `create_at`) VALUES
 	('09385995UJ5149817', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 12:11:01'),
 	('0A455027AA450160U', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 12:07:46'),
@@ -212,7 +250,9 @@ INSERT INTO `payments` (`payment_id`, `user_id`, `fullname`, `email`, `address`,
 	('0TJ73371MP053520R', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-09-02 15:47:26'),
 	('0X906967LL058034L', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 12:15:41'),
 	('11J73051R04224929', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-10-02 15:47:27'),
+	('13U14928BA768821B', 8, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-05 00:49:40'),
 	('1D25706556450125G', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 7, 62.96, 'Paypal', 'Completed', '2023-12-03 11:04:11'),
+	('1SG94864E13773821', 8, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-05 00:43:21'),
 	('1UD26520VK9641308', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-11-02 13:41:24'),
 	('23J54684DB911071L', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-10-02 15:47:29'),
 	('2R925284AC776290G', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 11:11:15'),
@@ -222,14 +262,18 @@ INSERT INTO `payments` (`payment_id`, `user_id`, `fullname`, `email`, `address`,
 	('4BE494451C6806435', 26, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 10.2, 91.79, 'Paypal', 'Completed', '2023-12-03 15:41:17'),
 	('4MW652394J824983Y', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 3, 26.99, 'Paypal', 'Completed', '2023-11-02 13:42:15'),
 	('4SL587226L123391R', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-02 15:47:30'),
+	('51989384B40331741', 8, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-05 00:49:04'),
 	('64U33759A7005401V', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 2, 17.99, 'Paypal', 'Completed', '2023-12-02 15:47:30'),
 	('6N5493409J1050223', 8, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-12-02 15:47:31'),
+	('7EH069132A925284M', 8, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-05 00:49:23'),
 	('7ES64703961151256', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 3, 26.99, 'Paypal', 'Completed', '2023-12-02 15:47:31'),
 	('7FY215285M126770F', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 11:52:48'),
 	('7HS16272F5286492H', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-02 15:47:32'),
 	('81Y734934J0662235', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-03 12:15:13'),
 	('8H741607Y6622391M', 26, 'Nguyen Thanh Chung', 'ntc@personal.example.com', '1 Main St, San Jose, CA, 95131, US', 2, 17.99, 'Paypal', 'Completed', '2023-12-02 15:47:33'),
 	('8MB72279JL7443054', 26, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 3, 26.99, 'Paypal', 'Completed', '2023-12-02 15:47:32'),
+	('94298231WY626142C', 8, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-05 00:44:08'),
+	('9RG34232T9589631B', 8, 'ULSA IT', 'followULSAIT@facebook.com', '1 Main St, San Jose, CA, 95131, US', 7, 62.96, 'Paypal', 'Completed', '2023-12-05 00:43:42'),
 	('9Y343967AV103471Y', 8, 'Thuong Nguyen Huu', 'normal.dev@personal.example.com', '43 Tran Duy Hung, My City, WA, 20001, US', 1, 8.99, 'Paypal', 'Completed', '2023-12-02 15:47:33');
 
 -- Dumping structure for table muzic_weeb.playlists
@@ -244,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `playlists` (
   CONSTRAINT `FK_playlist_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.playlists: ~0 rows (approximately)
+-- Dumping data for table muzic_weeb.playlists: ~1 rows (approximately)
 INSERT INTO `playlists` (`playlist_id`, `user_id`, `title`, `description`, `created_at`) VALUES
 	(1, 26, 'This is ULSA IT!', 'The biggest playlist ever!!!', '2023-11-14 04:04:14');
 
@@ -300,21 +344,42 @@ CREATE TABLE IF NOT EXISTS `songs` (
   KEY `song_fk1` (`album_id`),
   CONSTRAINT `song_fk0` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `song_fk1` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.songs: ~11 rows (approximately)
+-- Dumping data for table muzic_weeb.songs: ~32 rows (approximately)
 INSERT INTO `songs` (`id`, `artist_id`, `uploader_id`, `title`, `release_date`, `album_id`, `request_date`, `file_path`, `status`, `duration`) VALUES
 	(6, 14, 17, 'Song 1', '2023-08-02', 4, '2023-12-03 16:07:37', '65422203460a7soobin.mp3', 'Pending', 273),
 	(7, 18, 17, 'Time', '2023-12-02', 10, '2023-12-03 16:07:40', 'Time.mp3', 'Pending', 276),
-	(11, 13, 17, 'Song demo', '2023-11-16', 6, '2023-12-02 10:17:44', 'demo.mp3', 'Approved', 140),
-	(15, 18, 17, 'Time (again)', '2023-11-09', 5, '2023-12-02 16:36:09', '6555d54b9ee38Time.mp3', 'Approved', 276),
-	(16, 18, 17, 'Song abc', '2023-11-23', 7, '2023-12-02 16:36:10', '6563f3cc77e32Time.mp3', 'Approved', 276),
+	(11, 13, 17, 'Song demo', '2023-11-16', 6, '2023-12-05 02:48:29', '656e8df0d7746Tragazing.mp3', 'Approved', 140),
+	(15, 18, 17, 'Time (again)', '2023-11-09', 5, '2023-12-05 02:48:34', '656e8df0d7746Tragazing.mp3', 'Approved', 276),
+	(16, 18, 17, 'Song abc', '2023-11-23', 7, '2023-12-05 02:48:43', '656e8df0d7746Tragazing.mp3', 'Approved', 276),
 	(17, 12, 17, 'Shea Hodges', '1990-11-02', 8, '2023-12-02 16:36:12', '6563f68c3e3dadamvinhung.mp3', 'Approved', 320),
 	(18, 31, 26, 'Overthinker', '2023-12-02', 4, '2023-12-03 18:03:06', 'INZO - Overthinker.mp3', 'Approved', 274),
-	(19, 19, 17, 'Biri-Biri', '2023-12-02', 12, '2023-12-02 11:24:39', '656b13f54783eYOASOBIBiri-Biri Official Music Video.mp3', 'Approved', 191),
+	(19, 19, 17, 'Biri-Biri', '2023-12-02', 12, '2023-12-05 02:49:47', 'YOASOBIBiri-Biri Official Music Video.mp3', 'Approved', 191),
 	(20, 14, 17, 'Fake Song', '2023-12-03', 11, '2023-12-03 04:22:57', 'Tragazing.mp3', 'Approved', 60),
 	(21, 20, 17, 'Traingazing', '2023-12-03', 11, '2023-12-03 04:30:19', '656c045823ed3Tragazing.mp3', 'Approved', 60),
-	(25, 31, 26, 'Request Song #1', '2023-12-04', 11, '2023-12-03 17:53:47', '656cc0a915720Tragazing.mp3', 'Pending', 60);
+	(25, 31, 26, 'Request Song #1', '2023-12-04', 11, '2023-12-03 17:53:47', '656cc0a915720Tragazing.mp3', 'Pending', 60),
+	(26, 19, 17, 'Yoasobi 1', '2023-12-05', 12, '2023-12-05 02:36:38', '656e8cab9e952YOASOBIBiri-Biri Official Music Video.mp3', 'Approved', 191),
+	(27, 19, 17, 'Yoasobi 2', '2023-12-05', 12, '2023-12-05 02:36:58', '656e8cc925f2cYOASOBIBiri-Biri Official Music Video.mp3', 'Approved', 191),
+	(28, 19, 17, 'Yoasobi 3', '2023-12-05', 12, '2023-12-05 02:37:23', '656e8ce0d79c7YOASOBIBiri-Biri Official Music Video.mp3', 'Approved', 191),
+	(29, 33, 17, 'Overthinker', '2023-12-06', 13, '2023-12-05 02:39:34', '656e8d64a7c7fINZO - Overthinker.mp3', 'Approved', 274),
+	(30, 33, 17, 'INZO1', '2023-12-05', 12, '2023-12-05 02:39:53', '656e8d78293dcINZO - Overthinker.mp3', 'Approved', 274),
+	(31, 31, 17, 'INZO2', '2023-12-05', 4, '2023-12-05 02:40:15', '656e8d8ec8d12Tragazing.mp3', 'Approved', 60),
+	(32, 11, 17, 'ULSA IT1', '2023-12-05', 4, '2023-12-05 02:41:04', '656e8dbfbbaf1Tragazing.mp3', 'Approved', 60),
+	(33, 11, 17, 'THIS IS ULSA IT', '2023-12-04', 4, '2023-12-05 02:41:23', '656e8dd19894dINZO - Overthinker.mp3', 'Approved', 274),
+	(34, 12, 17, 'GD01', '2023-12-05', 4, '2023-12-05 02:41:53', '656e8df0d7746Tragazing.mp3', 'Approved', 60),
+	(35, 13, 17, 'Son Tung', '2023-12-05', 4, '2023-12-05 02:42:25', '656e8e10cd8e8INZO - Overthinker.mp3', 'Approved', 274),
+	(36, 12, 17, 'GD02', '2023-12-05', 4, '2023-12-05 02:43:10', '656e8e3da09ceTragazing.mp3', 'Approved', 60),
+	(37, 12, 17, 'GD03', '2023-11-28', 12, '2023-12-05 02:43:23', '656e8e49eefcdTragazing.mp3', 'Approved', 60),
+	(38, 16, 17, 'Mặt Trời Của Em', '2023-12-05', 6, '2023-12-05 02:45:15', '656e8eba9346cTragazing.mp3', 'Approved', 60),
+	(39, 16, 17, 'anh l&agrave; ngoại lệ của em', '2023-12-05', 4, '2023-12-05 02:45:52', '656e8edee0563Tragazing.mp3', 'Approved', 60),
+	(40, 21, 17, 'Blueming', '2023-12-05', 4, '2023-12-05 02:51:45', '656e903f7d159Tragazing.mp3', 'Approved', 60),
+	(41, 21, 17, 'You', '2023-12-05', 12, '2023-12-05 02:52:02', '656e90516c7d7Tragazing.mp3', 'Approved', 60),
+	(42, 21, 17, 'Drama', '2023-12-05', 3, '2023-12-05 02:52:29', '656e906c976ddTragazing.mp3', 'Approved', 60),
+	(43, 32, 17, 'Đ&aacute;nh đổi', '2023-12-05', 13, '2023-12-05 02:53:24', '656e90a2ad083Tragazing.mp3', 'Approved', 60),
+	(44, 32, 17, 'H&agrave; Nội', '2023-12-05', 13, '2023-12-05 02:54:03', '656e90ca94eecTragazing.mp3', 'Approved', 60),
+	(45, 32, 17, 'Đầu Đường X&oacute; Chợ', '2023-12-05', 13, '2023-12-05 02:55:11', 'Obito - Đánh Đổi ft. MCK.mp3', 'Approved', 227),
+	(46, 32, 17, 'Đ&aacute;nh đổi', '2023-12-05', 13, '2023-12-05 02:55:45', '656e912f20b32Obito - Đánh Đổi ft. MCK.mp3', 'Approved', 227);
 
 -- Dumping structure for table muzic_weeb.subscriptions
 CREATE TABLE IF NOT EXISTS `subscriptions` (
@@ -332,14 +397,20 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
   CONSTRAINT `FK_Subs_Bill` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`payment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_Subs_Plan` FOREIGN KEY (`plan_id`) REFERENCES `subscription_plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_Subs_User` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table muzic_weeb.subscriptions: ~4 rows (approximately)
+-- Dumping data for table muzic_weeb.subscriptions: ~10 rows (approximately)
 INSERT INTO `subscriptions` (`id`, `payment_id`, `user_id`, `plan_id`, `start_date`, `end_date`, `status`) VALUES
-	(1, '0X906967LL058034L', 26, 2, '2023-12-03 12:15:35', '2024-01-03 12:15:35', 'Active'),
-	(2, '416367601Y311031V', 26, 4, '2023-12-03 12:23:10', '2024-12-03 12:23:10', 'Active'),
-	(3, '4AR08404R77445130', 26, 2, '2023-12-03 15:08:47', '2024-01-03 15:08:47', 'Active'),
-	(4, '4BE494451C6806435', 26, 3, '2023-12-03 15:41:03', '2024-12-03 15:41:03', 'Active');
+	(1, '0X906967LL058034L', 26, 2, '2023-11-03 12:15:35', '2024-01-03 12:15:35', 'Active'),
+	(2, '416367601Y311031V', 3, 4, '2023-10-03 12:23:10', '2024-12-03 12:23:10', 'Active'),
+	(3, '4AR08404R77445130', 4, 2, '2023-12-03 15:08:47', '2024-01-03 15:08:47', 'Active'),
+	(4, '4BE494451C6806435', 5, 3, '2023-12-03 15:41:03', '2024-12-03 15:41:03', 'Active'),
+	(5, '1SG94864E13773821', 8, 2, '2023-12-05 00:43:13', '2024-01-05 00:43:13', 'Active'),
+	(6, '9RG34232T9589631B', 18, 4, '2023-12-05 00:43:39', '2024-12-05 00:43:39', 'Active'),
+	(7, '94298231WY626142C', 9, 2, '2023-12-05 00:44:04', '2024-01-05 00:44:04', 'Active'),
+	(8, '51989384B40331741', 20, 2, '2023-12-05 00:49:02', '2024-01-05 00:49:02', 'Active'),
+	(9, '7EH069132A925284M', 19, 2, '2023-12-05 00:49:20', '2024-01-05 00:49:20', 'Active'),
+	(10, '13U14928BA768821B', 22, 2, '2023-12-05 00:49:37', '2024-01-05 00:49:37', 'Active');
 
 -- Dumping structure for table muzic_weeb.subscription_plans
 CREATE TABLE IF NOT EXISTS `subscription_plans` (
@@ -369,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(40) NOT NULL,
   `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `regis_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `subscription_id` int NOT NULL DEFAULT '0' COMMENT '0: Basic plan (Free & Default)\r\n1: Ads-free\r\n2: Ads-free + Upload Music',
   `role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user',
   `artist_id` int DEFAULT NULL,
@@ -378,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`),
   KEY `FK_user_artist` (`artist_id`),
   CONSTRAINT `FK_user_artist` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table muzic_weeb.users: ~24 rows (approximately)
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `updated_at`, `subscription_id`, `role`, `artist_id`) VALUES
@@ -388,7 +459,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `updat
 	(4, 'tymagysyv', 'vejuxirite@mailinator.com', '$2y$10$Yb91MEuxMIXk4.26hoDNMe20Jwtf576XFnqaWEjGHempa6Lg7Mtve', '2023-10-13 06:45:27', '2023-12-03 08:54:54', 1, 'user', NULL),
 	(5, 'tikyc', 'tikyc@mailinator.com', '$2y$10$GJU5inJjxgWhljsi5AeJwuYLHQU239sbR9R0nrRndaPyG87wIFs.6', '2023-11-14 07:10:24', '2023-12-03 08:54:54', 1, 'admin', NULL),
 	(6, 'fonyji', 'letozaku@mailinator.com', '$2y$10$iTplO5ySJDp/rth1/TXy5OSb08icFtY3vU3LvGqQMftc0T6HFSXDe', '2023-10-13 06:47:12', '2023-12-03 08:54:54', 1, 'user', NULL),
-	(8, 'bruh', 'bruh@gmail.commm', '$2y$10$DGxo47/yWixj4KD1T6ZNGO1TLL/rM1LilvtsBU6i3mKcj/pabxVva', '2023-11-15 07:22:45', '2023-12-03 08:54:54', 1, 'user', NULL),
+	(8, 'bruh', 'bruh@gmail.commm', '$2y$10$DGxo47/yWixj4KD1T6ZNGO1TLL/rM1LilvtsBU6i3mKcj/pabxVva', '2023-11-15 07:22:45', '2023-12-04 17:44:08', 2, 'user', NULL),
 	(9, 'koryw', 'hihymirubo@mailinator.com', '$2y$10$0p6aY6eftrOBRR9iEqbAt.ARSiWvy/Nv.3k8mQG706vDpVm6FYt.W', '2023-10-12 23:56:02', '2023-12-03 08:54:54', 1, 'user', NULL),
 	(10, 'kivebe', 'werugar@mailinator.com', '$2y$10$iq9LEFIJIeCxIhBwPFHR8.v33yMR/vusKgYILx6YdoVKkn4PflhKe', '2023-10-13 00:01:36', '2023-12-03 08:54:54', 1, 'user', NULL),
 	(11, 'cojeladu', 'qatykuwoz@mailinator.com', '$2y$10$E1m8f6/XW9XvDFQ2xNm7xuimQsw12roGS7itexoztP.7Qz0pPjDD6', '2023-10-13 07:02:37', '2023-12-03 08:54:54', 1, 'user', NULL),
@@ -405,7 +476,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `regis_date`, `updat
 	(24, 'nagiwu', 'hapoxy@mailinator.com', '$2y$10$.XPGynpLoC//MK7JJjEdSuXEesN2XHoxx70EkGAN4tWcBgFIJCRYG', '2023-10-16 01:50:44', '2023-12-03 08:54:54', 1, 'admin', NULL),
 	(25, 'colase', 'hufigyjux@mailinator.com', '$2y$10$xHxT7/J9BPjY6ZHiUxbvWepRnZAs6epawWXJ66QwBFQMltvp41NRu', '2023-10-16 03:52:06', '2023-12-03 08:54:54', 1, 'user', NULL),
 	(26, 'normal', 'thuonghuunguyen2002@gmail.com', '$2y$10$agT/psVLJuv07NJx5fmMfObxLHUHKIH/yhPpbXdsRc5L4c68dGGvy', '2023-11-15 01:35:13', '2023-12-03 17:48:46', 3, 'artist', 31),
-	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', '2023-12-03 08:54:54', 1, 'user', NULL);
+	(27, 'ntc642002', 'chungvvvv@gmail.com', '$2y$10$aiA209k2LKlYvhj0zPMni.Bm1UfP8HMLx6TDXfoLCDaJPGlJPy3wO', '2023-10-18 01:56:14', '2023-12-03 08:54:54', 1, 'user', NULL),
+	(31, 'lahocuh', 'cypinyp@mailinator.com', '$2y$10$0oci1dvaT9BhlU8N.j2mG.YXiIPj7R/wx8iKZ9d5vJVh8G/RV6khS', '2023-12-04 17:06:52', '2023-12-04 17:06:52', 0, 'user', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

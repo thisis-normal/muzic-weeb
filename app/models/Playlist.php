@@ -11,7 +11,7 @@ class Playlist
 
     public function getAllPlaylist()
     {
-        $this->db->query('SELECT * FROM playlists');
+        $this->db->query('SELECT * FROM playlists LIMIT 5');
         return $this->db->resultSet();
     }
     public function addPlaylist($data)

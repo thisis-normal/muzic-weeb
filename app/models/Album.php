@@ -22,11 +22,15 @@ class Album
         }
     }
 
-    public function getAllAlbums()
+    public function getAllAlbums($limit = 0)
     {
-        $this->db->query('SELECT * FROM albums');
-        $results = $this->db->resultSet();
-        return $results;
+        if ($limit == 0) {
+            $this->db->query('SELECT * FROM albums');
+        } else {
+            $this->db->query('SELECT * FROM albums ORDER BY RAND() LIMIT :limit');
+            $this->db->bind(':limit', $limit);
+        }
+        return $this->db->resultSet();
     }
 
     public function getAllAlbumWithArtistName()

@@ -33,7 +33,7 @@
             <h2>Spotify artist</h2>
             <div class="list">
                 <?php foreach ($data['artist'] as $artist) : ?>
-                    <div class="item" onclick="openPage('<?php echo URLROOT ?>/playlists/detail?id=<?= $artist->artist_id ?>')">
+                    <div class="item" onclick="openPage('<?php echo URLROOT ?>/artists/detail?id=<?= $artist->artist_id ?>')">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVdOUBb0Mt5ndnNk05p1Qzzh4s1_r9GPkuwBBQWQvRUYJ3ZG7NygoXHP8ctyuriW7DKFQ&usqp=CAU" />
                         <div class="play">
                             <span class="fa fa-play"></span>
@@ -50,7 +50,7 @@
             <h2>Spotify album</h2>
             <div class="list">
                 <?php foreach ($data['album'] as $album) : ?>
-                    <div class="item" onclick="openPage('<?php echo URLROOT ?>/playlists/detail?id=<?= $album->album_id ?>')">
+                    <div class="item" onclick="openPage('<?php echo URLROOT ?>/albums/detail?id=<?= $album->album_id ?>')">
                         <img src="https://memberdata.s3.amazonaws.com/hi/hitsdd/photos/hitsdd_photo_gal__photo_975344211.jpg" />
                         <div class="play">
                             <span class="fa fa-play"></span>

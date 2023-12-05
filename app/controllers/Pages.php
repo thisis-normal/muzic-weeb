@@ -12,10 +12,9 @@ class Pages extends Controller
     public function index()
     {
         $data = [
-            'album' => $this->albumModel->getAllAlbums(),
+            'album' => $this->albumModel->getAllAlbums(5),
             'playlist' => $this->playlistModel->getAllPlaylist(),
-            'artist' => $this->artistModel->getAllArtists(),
-
+            'artist' => $this->artistModel->getAllArtists(5),
         ];
 
         $this->view('pages/index', $data);

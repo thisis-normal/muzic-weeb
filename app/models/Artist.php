@@ -22,9 +22,14 @@ class Artist
         }
     }
 
-    public function getAllArtists()
+    public function getAllArtists($limit = 0)
     {
-        $this->db->query('SELECT * FROM artists');
+        if ($limit == 0) {
+            $this->db->query('SELECT * FROM artists');
+        } else {
+            $this->db->query('SELECT * FROM artists ORDER BY RAND() LIMIT :limit');
+            $this->db->bind(':limit', $limit);
+        }
         return $this->db->resultSet();
     }
     public function getArtistById($id)
@@ -80,13 +85,11 @@ class Artist
     }
     public function getArtistAllByID($artistId)
     {
-        $this->db->query('SELECT lnk_artist_song.song_id AS song_id, songs.title AS song_title,albums.album_id AS album_id,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
+        $this->db->query('SELECT songs.id as song_id, songs.title AS song_title,albums.album_id AS album_id,albums.title AS album_title, songs.file_path ,artists.name AS artist_name,songs.duration as song_duration
         FROM artists
-        INNER JOIN lnk_artist_song ON artists.artist_id = lnk_artist_song.id
-        INNER JOIN songs ON lnk_artist_song.song_id = songs.id 
+        INNER JOIN songs ON artists.artist_id = songs.artist_id
         INNER JOIN albums ON songs.album_id = albums.album_id
-        -- INNER JOIN artists ON songs.artist_id = artists.artist_id
-        WHERE artists.artist_id = :artist_id ');
+        WHERE artists.artist_id = :artist_id');
         $this->db->bind(':artist_id', $artistId);
         $result = $this->db->resultSet();
         return $result;
